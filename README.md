@@ -1,4 +1,4 @@
-# PostIt
+# PostIt [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=master)](https://travis-ci.org/enodi/PostIt)
 A JavaScript application that allows users communicate with each other by creating groups
 
 # Getting started
