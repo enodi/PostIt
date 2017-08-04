@@ -2,13 +2,13 @@
 A JavaScript application that allows users communicate with each other by creating groups
 
 # Getting started
-> To get the Node server running locally:
+To get the Node server running locally:
 
 # Requirements
-Node
-Express
-Postgres
-Sequelize
+* Node
+* Express
+* Postgres
+* Sequelize
 
 # Clone this repo
 npm install to install all required dependencies
