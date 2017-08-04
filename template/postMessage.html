@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PostIt | post message</title>
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Rasa|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+	<body>
+		<!--HORIZONTAL NAVBAR-->
+		<nav class="white dashboard">
+				<div class="nav-wrapper">
+					<a href="#" class="brand-logo li">PostIt</a>
+						<ul class="hide-on-med-and-down right">
+								<li class="li">
+									 <div class="center row">
+											<div class="col s12 " >
+												<div class="row" id="topbarsearch">
+													<div class="input-field col s6 s12 li">
+														<i class="material-icons prefix">search</i>
+														<input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text" >
+														</div>
+													</div>
+												</div>
+											</div>
+									</li>
+								<li class="li"><i class="material-icons">message</i></li>
+								<li class="li"><a class="dropdown-button li" href="#!" data-activates="dropdown" style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enodi<i class="material-icons right">arrow_drop_down</i></a></li>
+						</ul>
+				</div>
+				<ul id="dropdown" class="dropdown-content">
+					<li><a href="#">My Profile</a></li>
+					<li><a href="createGroup.html">Create Group</a></li>
+					<li><a href="postMessage.html">Post Message</a></li>
+					<li><a href="dashboard.html">Message Board</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Settings</a></li>
+					<li><a href="#">SignOut</a></li>
+				</ul>
+			</nav>
+			<!--VERTICAL NAVBAR-->
+			<ul class="side-nav fixed" id="slide-out" style="background-color:#5E2750;">
+				<li class="brand-logo logo-text">PostIt</li>
+				<li class="divider"></li>
+				<li><a href="#" class="sidebar-text">GROUPS<i class="material-icons right sidebar-text">&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+				<li><a href="#" class="sidebar-text">General</a></li>
+				<li><a href="#" class="sidebar-text">Andela</a></li>
+				<li><a href="#" class="sidebar-text">Andela-BootCamp</a></li>
+				<li class="divider"></li>
+				<li><a href="#" class="sidebar-text">PERSONAL MESSAGES<i class="material-icons right sidebar-text">&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+				<li><a href="#" class="sidebar-text">Audu</a></li>
+			</ul>
+			<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+			<!--BODY-->
+			<div class="container group-container">
+				<div class="row">
+					<div class="col s12 m8 offset-m2 l9 offset-l3">
+						<h2>Post a Message</h2>
+						<p>Post a message to everyone in your group</p>
+						<div class="row">
+							<form>
+								<div class="input-field col s12">
+									<input class="validate" type="text" name="name" id="name" required placeholder="e.g Hi"/>
+									<label for="name">Message</label>
+								</div>
+								<div class="input-field col s12">
+							    <select multiple>
+							      <option value="" disabled selected></option>
+							      <option value="1">Andela</option>
+							      <option value="2">Andela-BootCamp</option>
+							      <option value="3">General</option>
+							    </select>
+									<label>Group Name(s)</label>
+							  </div>
+								<div class="col l7 offset-l5 button">
+									<button class="btn-large" type="button">Cancel</button>
+									<button class="btn-large" type="submit" name="action">Post Message</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>PostIt | SignIn</title>
+		<link href="https://fonts.googleapis.com/css?family=Rasa|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+	<body>
+    <nav>
+     <div class="nav-wrapper #212121 grey darken-4">
+       <a href="index.html" class="brand-logo"><span class="logo grey-text text-lighten-2">PostIt</span></a>
+       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+       <ul class="right hide-on-med-and-down">
+         <li><a href="product.html">Product</a></li>
+         <li><a href="support.html">Support</a></li>
+         <li><a href="signIn.html">My Account</a></li>
+       </ul>
+       <ul class="side-nav" id="mobile-demo">
+         <li><a href="product.html">Product</a></li>
+         <li><a href="support.html">Support</a></li>
+         <li><a href="signIn.html">My Account</a></li>
+       </ul>
+     </div>
+   </nav>
+
+  <!--SignIn form-->
+  <div class="container">
+    <div class="row">
+      <div class="col l8 offset-l2 s12">
+        <center>
+          <div  class="z-depth-1 account">
+            <div class="row">
+              <div class="col s12 s12">
+                <ul id="tabs-swipe-demo" class="tabs">
+                <li class="tab col l6 s6"><a href="#test-swipe-1">SIGN UP</a></li>
+                <li class="tab col l6 s6"><a class="active" href="#test-swipe-2">SIGN IN</a></li>
+                </ul>
+              </div>
+              <div id="test-swipe-1" class="col s12">
+                <h5>Create Your Account</h5>
+								<form>
+	                <div class="row signup">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="text" name="username" id="username" required />
+	                    <label for="username">Username</label>
+	                  </div>
+	                </div>
+	                <div class="row signup">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="text" name="email" id="email" required />
+	                    <label for="email">Email</label>
+	                  </div>
+	                </div>
+	                <div class="row signup">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="password" name="password" id="password" required />
+	                    <label for="password">Password</label>
+	                  </div>
+	                </div>
+	                <div class="row signup">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="text" name="group" id="group" required />
+	                    <label for="group">Group (optional)</label>
+	                  </div>
+	                </div>
+									<div class="row center button">
+										<button class="btn-large waves-effect waves-light" type="submit" name="action">SIGNUP</button>
+									</div>
+								</form>
+              </div>
+              <div id="test-swipe-2" class="col s12">
+                <h5>Log Into Your Account</h5>
+								<form>
+	                <div class="row signin">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="text" name="username" id="username" required />
+	                    <label for="username">Username</label>
+	                  </div>
+	                </div>
+	                <div class="row signin">
+	                  <div class="input-field col s12">
+	                    <input class="validate" type="password" name="password" id="password" required />
+	                    <label for="password">Password</label>
+											<br><br><br><br>
+	                  </div>
+	                </div>
+	                <div class="row center button">
+										<button class="btn-large waves-effect waves-light" type="submit" name="action">SIGNIN</button><br><br>
+	                  <b><a href="forgotPassword.html">Forgot your password?</a></b>
+	                </div>
+								</form>
+              </div>
+            </div>
+        </div>
+      </center>
+    </div>
+  </div>
+</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
+	<script src="js/scripts.js"></script>
+ 	</body>
+</html>
