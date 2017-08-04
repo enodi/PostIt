@@ -1,21 +1,21 @@
 # PostIt
 A JavaScript application that allows users communicate with each other by creating groups
 
-Getting started
-To get the Node server running locally:
+# Getting started
+> To get the Node server running locally:
 
-Requirements
+# Requirements
 Node
 Express
 Postgres
 Sequelize
 
-Clone this repo
+# Clone this repo
 npm install to install all required dependencies
 Install Postgresql and run it
 npm run start to start the local server
 
-Code Overview
+# Code Overview
 Dependencies
 
 expressjs - The server for handling and routing HTTP requests
@@ -23,7 +23,7 @@ jsonwebtoken - For generating JWTs used by authentication
 sequelize - For modeling and mapping Postgres data to javascript
 
 
-Application Structure
+# Application Structure
 
 index.js - The entry point to the application. This file defines express server and connects it to Postgres using sequelize. It also requires the routes and models we'll be using in the application.
 controllers/ - This folder contains all API route handlers
@@ -33,7 +33,7 @@ middleware/ - This folder contains middleware to authenticate users
 migrations/ - This folder contains all migrations
 
 
-Authentication
+# Authentication
 
 Requests are authenticated using the Authorization header with a valid JWT. 
 The middleware is defined in middleware/authenticate.js which can be used to authenticate requests. 
