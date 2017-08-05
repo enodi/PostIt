@@ -1,4 +1,4 @@
-# PostIt [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=master)](https://travis-ci.org/enodi/PostIt)
+# PostIt [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=master)](https://travis-ci.org/enodi/PostIt)  [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=master)](https://coveralls.io/github/enodi/PostIt?branch=master)
 A JavaScript application that allows users communicate with each other by creating groups
 
 # Getting started
@@ -35,6 +35,6 @@ Dependencies
 
 # Authentication
 
-* Requests are authenticated using the Authorization header with a valid JWT. 
-* The middleware is defined in middleware/authenticate.js which can be used to authenticate requests. 
-* It returns a 403 status code if the request cannot be authenticated. 
+* Requests are authenticated using the Authorization header with a valid JWT.
+* The middleware is defined in middleware/authenticate.js which can be used to authenticate requests.
+* It returns a 403 status code if the request cannot be authenticated.
