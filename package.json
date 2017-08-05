@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "build": "webpack-dev-server --history-api-fallback",
-    "test": "mocha server/tests/server_test.js",
-    "cover": "istanbul cover _mocha",
+    "test": "mocha server/test/index.test.js",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha server/test/index.test.js -- -R spec",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Enodi Audu",
@@ -20,6 +20,7 @@
     "eslint-plugin-jsdoc": "^3.1.1",
     "express": "^4.15.3",
     "html-webpack-plugin": "^2.29.0",
+    "jest": "^20.0.4",
     "jsonwebtoken": "^7.4.1",
     "morgan": "^1.8.2",
     "pg": "^7.0.1",
