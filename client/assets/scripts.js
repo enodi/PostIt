@@ -1,8 +1,8 @@
-$(document).ready(function() {
-  $(".button-collapse").sideNav();
+jQuery(document).ready(($) => {
+  $('.button-collapse').sideNav();
   $('.parallax').parallax();
   $('ul.tabs').tabs('select_tab', 'tab_id');
-  $(".dropdown-button").dropdown({
+  $('.dropdown-button').dropdown({
     belowOrigin: true, // displays dropdown below the button
     hover: true,
     inDuration: 300,
