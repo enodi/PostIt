@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
+  // Handles user registration
   signUp(req, res) {
+    // Ensures that username, password and email fields are not empty
     if (!req.body.username) {
       return res.json('username is required');
     } else if (!req.body.email) {
@@ -53,19 +55,21 @@ module.exports = {
     User.findOne({ where: { username: req.body.username } })
    .then((user) => {
      if (!user) {
-       return res.json('Invalid Username');
+       return res.json({ error: 'Invalid Username' });
      }
      // Compares password collected from user with password in database
      const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
      if (!passwordMatched) {
-       return res.json('Password not matched');
+       // If password provided doesn't match password in database, return password doesn't match
+       return res.json({ error: 'Password does not matched' });
      }
+     // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {
        expiresIn: 720
      });
      return res.json({
        success: true,
-       message: 'Welcome',
+       message: 'Login successful',
        token: token1
      });
    })
