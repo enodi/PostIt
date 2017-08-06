@@ -22,7 +22,7 @@ module.exports = {
             createdAt
           }]
         };
-        return res.status(201).json(data); // Return group if group was created
+        return res.status(201).json(data);
       }
       return res.status(400).json(group); // Return 400 upon bad request
     })
