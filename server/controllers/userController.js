@@ -6,11 +6,11 @@ module.exports = {
   // Handles user registration
   signUp(req, res) {
     // Ensures that username, password and email fields are not empty
-    if (!req.body.username) {
+    if (!req.body.username || req.body.username.trim() === '') {
       return res.json('username is required');
-    } else if (!req.body.email) {
+    } else if (!req.body.email || req.body.email.trim() === '') {
       return res.json('email is required');
-    } else if (!req.body.password) {
+    } else if (!req.body.password || req.body.password.trim() === '') {
       return res.json('password is required');
     }
     User.create({

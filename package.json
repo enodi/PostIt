@@ -30,6 +30,7 @@
     "react-router-dom": "^4.1.2",
     "sequelize": "^4.3.2",
     "supertest": "^3.0.0",
+    "validatorjs": "^3.13.3",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.6.1"
   },

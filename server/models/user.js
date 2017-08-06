@@ -5,9 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {
-        args: true,
-        msg: 'username already exists'
+      unique: true,
+      validate: {
+        notEmpty: true
       },
     },
     firstName: {
@@ -19,23 +19,17 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        isEmail: true,
-        contains: {
-          args: '@andela.com',
-          msg: 'Must use andela.com email'
-        },
+        notEmpty: true
       },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: {
-          args: 4,
-          msg: 'Password cannot be less than 4 characters'
-        }
-      }
+        notEmpty: true
+      },
     }
   }, {
     classMethods: {
@@ -44,9 +38,10 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'userId'
         });
         User.belongsToMany(models.Group, {
-          through: 'UserGroup'
+          through: 'UserGroup',
+          foreignKey: 'userId'
         });
-      },
+      }
     },
     hooks: {
       beforeCreate: (user) => {

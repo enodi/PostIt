@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         msg: 'group name already exists'
       },
       validate: {
-        notEmpty: false
+        notEmpty: true
       },
     },
   }, {
@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'groupId'
         });
         Group.belongsToMany(models.User, {
-          through: 'UserGroup'
+          through: 'UserGroup',
+          foreignKey: 'groupId'
         });
       }
     }
