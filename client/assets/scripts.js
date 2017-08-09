@@ -1,4 +1,4 @@
-jQuery(document).ready(($) => {
+$(document).ready(() => {
   $('.button-collapse').sideNav();
   $('.parallax').parallax();
   $('ul.tabs').tabs('select_tab', 'tab_id');

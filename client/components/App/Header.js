@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/main.scss';
-import '../../assets/scripts.js';
 
 export const Header = (props) => {
   return(

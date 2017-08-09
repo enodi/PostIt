@@ -15,7 +15,7 @@ const extractCSSPlugin = new ExtractTextPlugin({
 });
 
 module.exports = {
-  entry: './client/index.js',
+  entry: ['./client/index.js'],
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js'
