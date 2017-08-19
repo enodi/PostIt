@@ -1,7 +1,14 @@
 import React from 'react';
+import HttpService from '../../services/HttpService';
 import '../../assets/main.scss';
 
+const http = new HttpService();
+
 export default class Groups extends React.Component {
+  constructor(props) {
+    super(props);
+    http.getGroups();
+  }
   render() {
     return(
       <div>

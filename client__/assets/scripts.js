@@ -10,4 +10,7 @@ $(document).ready(() => {
     gutter: 0 // spacing from edge
   });
   $('select').material_select();
+  $('.modal').modal({
+    dismissible: false,
+  });
 });

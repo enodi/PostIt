@@ -16,7 +16,7 @@ export default class AuthHeader extends React.Component {
                         <div className="row" id="topbarsearch">
                           <div className="input-field col s6 s12 li">
                             <i className="material-icons prefix">search</i>
-                            <input type="text" placeholder="search" id="autocomplete-input" className="autocomplete red-text" />
+                            <input type="text" placeholder="Search..." id="autocomplete-input" className="autocomplete red-text" />
                             </div>
                           </div>
                         </div>
@@ -26,7 +26,7 @@ export default class AuthHeader extends React.Component {
   								<li className="li"><a className="dropdown-button li" href="#!" data-activates="dropdown" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enodi<i className="material-icons right">arrow_drop_down</i></a></li>
   						</ul>
   				</div>
-          <DropDown profile="My Profile" group="Create Group" message="Post Message" board="Message Board" settings="Settings" signout="SignOut"/>
+          <DropDown profile="My Profile" board="Message Board" settings="Settings" signout="SignOut"/>
   			</nav>
     );
   }
