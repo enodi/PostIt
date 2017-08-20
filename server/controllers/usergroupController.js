@@ -15,4 +15,15 @@ module.exports = {
     })
     .catch(error => res.status(404).json(error));
   },
+
+  retrieve(req, res) {
+    return userGroup
+    .findAll({ limit: 5 },
+      { where: { userId: req.params.user_id } }
+    )
+    .then((usergroup) => {
+      res.json(usergroup);
+    })
+    .catch(error => res.status(400).json(error));
+  },
 };

@@ -65,7 +65,7 @@ module.exports = {
      }
      // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {
-       expiresIn: 720
+       expiresIn: '10h'
      });
      return res.json({
        success: true,
