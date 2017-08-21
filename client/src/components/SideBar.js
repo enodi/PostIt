@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Groups from './Groups';
 import Friends from './Friends';
 import '../assets/main.css';
@@ -10,13 +11,13 @@ export default class SideBar extends React.Component {
         <ul className="side-nav fixed" id="slide-out">
   				<li className="brand-logo logo-text">PostIt</li>
   				<li className="divider"></li>
-  				<li><a href="#modal1" className="sidebar-text modal-trigger ">GROUPS<i className="material-icons right sidebar-text" href="#modal1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+  				<li><Link to="#modal1" className="sidebar-text modal-trigger ">GROUPS<i className="material-icons right sidebar-text" href="#modal1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></Link></li>
   				<Groups name="General" />
   				<li className="divider"></li>
-  				<li><a href="#modal2" className="sidebar-text modal-trigger">PERSONAL MESSAGES<i className="material-icons right sidebar-text" href="#modal2">&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+  				<li><Link to="#modal2" className="sidebar-text modal-trigger">PERSONAL MESSAGES<i className="material-icons right sidebar-text" href="#modal2">&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></Link></li>
   				<Friends />
   			</ul>
-  			<a href="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+  			<Link to="#" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></Link>
 
         {/* Create group Modal */}
         <div className="container group-container">
@@ -29,7 +30,7 @@ export default class SideBar extends React.Component {
               <div id="modal1" className="modal modal-fullscreen">
                 <div className="modal-content">
                   <div className="modal-footer">
-                    <a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</a>
+                    <Link to="#!" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</Link>
                   </div>
                   <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2>Create a Group</h2>
@@ -42,7 +43,7 @@ export default class SideBar extends React.Component {
                         </div>
                         <div className="input-field col s12">
                           <select multiple>
-                            <option value="" disabled value></option>
+                            <option value="" disabled defaultValue></option>
                             <option value="1">Xerxes</option>
                             <option value="2">Feivel</option>
                             <option value="3">Adiel</option>
@@ -74,7 +75,7 @@ export default class SideBar extends React.Component {
               <div id="modal2" className="modal modal-fullscreen">
                 <div className="modal-content">
                   <div className="modal-footer">
-                    <a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</a>
+                    <Link to="#" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</Link>
                   </div>
                   <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2>Post a Message</h2>
@@ -87,7 +88,7 @@ export default class SideBar extends React.Component {
         								</div>
         								<div className="input-field col s12">
         							    <select multiple>
-        							      <option value="" disabled value></option>
+        							      <option value="" disabled defaultValue></option>
         							      <option value="1">Andela</option>
         							      <option value="2">Andela-BootCamp</option>
         							      <option value="3">General</option>

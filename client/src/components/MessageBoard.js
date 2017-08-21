@@ -1,15 +1,8 @@
 import React from 'react';
-import AuthHeader from './AuthHeader';
+import {AuthHeader} from './AuthHeader';
 import SideBar from './SideBar';
 import DashBoard from './Dashboard';
 
-// const moment1 = {
-//   user: {
-//     name: 'Xerxes',
-//     img: require("../../assets/images/pic.jpg"),
-//     text: 'Hello. Feivel you did not send the document to me yesterday'
-//   }
-// }
 const activities = [
     {
       user: {

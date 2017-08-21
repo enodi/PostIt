@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import '../../assets/main.scss';
 
-export default class DropDown extends React.Component {
+export default class DropDown extends Component {
   render() {
     return(
       <div>
         <ul id="dropdown" className="dropdown-content">
-          <li><a href="#">{this.props.profile}</a></li>
-          <li><Link to="/">{this.props.board}</Link></li>
+          <li><Link to="#">{this.props.profile}</Link></li>
+          <li><Link to="/user">{this.props.board}</Link></li>
           <li className="divider"></li>
-          <li><a href="#">{this.props.settings}</a></li>
-          <li><a href="#">{this.props.signout}</a></li>
+          <li><Link to="#">{this.props.settings}</Link></li>
+          <li><Link to="#">{this.props.signout}</Link></li>
         </ul>
       </div>
     );
