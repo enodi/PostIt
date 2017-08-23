@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Routes from './components/Routes';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+describe('<Header />', () => {
+  it('renders 1 <Header /> component', () => {
+  const component = shallow(<Routes />);
+  expect(component).toHaveLength(1);
+  });
 });

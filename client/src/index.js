@@ -7,10 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Routes />
-  </Provider>, document.getElementById('root'));
+ReactDOM.render(<Routes />, document.getElementById('root'));
 registerServiceWorker();
 
 if (module.hot) {

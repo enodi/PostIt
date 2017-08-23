@@ -7,7 +7,7 @@ export const AuthHeader = (props) => {
   return(
     <nav className="white dashboard">
 				<div className="nav-wrapper">
-					<Link to="#" className="brand-logo li">PostIt</Link>
+					<Link to="/" className="brand-logo li">PostIt</Link>
 						<ul className="hide-on-med-and-down right">
               <li className="li">
                  <div className="center row">
