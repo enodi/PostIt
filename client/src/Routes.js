@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import components
-import MessageBoard from './MessageBoard';
-import SignIn from './SignIn';
-import ResetPassword from './ResetPassword';
-import IndexPage from './IndexPage';
-import Product from './Product';
-import Support from './Support';
+import MessageBoard from './components/MessageBoard';
+import SignIn from './components/SignIn';
+import ResetPassword from './components/ResetPassword';
+import IndexPage from './components/IndexPage';
+import Product from './components/Product';
+import Support from './components/Support';
 
 export default class Routes extends Component {
   render() {

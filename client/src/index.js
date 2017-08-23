@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Routes from './components/Routes';
+import Routes from './Routes';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore();
+// const store = createStore();
 
 ReactDOM.render(<Routes />, document.getElementById('root'));
 registerServiceWorker();
