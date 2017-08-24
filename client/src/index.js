@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
-import Routes from './components/Routes';
+import * as userActions from './actions/signUpAction';
+import Routes from './Routes';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore();
+const store = configureStore();
+store.dispatch(userActions.signUp());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Header} from './Header';
 // import '../../assets/main.scss';
 // import '../../assets/scripts.js';
 
@@ -7,7 +6,6 @@ export default class ResetPassword extends React.Component {
   render() {
     return(
       <div>
-        <Header />
         <div className="container reset-password">
           <div className="row">
             <div className="col l8 offset-l2 s12 z-depth-2">
