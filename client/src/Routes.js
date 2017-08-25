@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import components
 import MessageBoard from './components/MessageBoard';
-import SignIn from './components/SignIn';
+import SignIn from './components/SignInPage';
 import ResetPassword from './components/ResetPassword';
 import { Header } from './components/Header';
 import IndexPage from './components/IndexPage';
