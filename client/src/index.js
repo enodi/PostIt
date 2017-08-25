@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from './store/configureStore';
-import { Provider } from 'react-redux';
-import * as userActions from './actions/signUpAction';
 import Routes from './Routes';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = configureStore();
-store.dispatch(userActions.signUp());
+// Defines the store
+const store = createStore(
+  (state = {}) => state,
+  applyMiddleware(thunk) // Dispatches async actions
+);
 
 ReactDOM.render(
   <Provider store={store}>
