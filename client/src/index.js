@@ -4,7 +4,6 @@ import Routes from './Routes';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import registerServiceWorker from './registerServiceWorker';
 
 // Defines the store
 const store = createStore(
@@ -16,7 +15,6 @@ ReactDOM.render(
   <Provider store={store}>
     <Routes />
   </Provider>, document.getElementById('root'));
-registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept()

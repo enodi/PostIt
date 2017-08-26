@@ -25,7 +25,7 @@ class SignInPage extends React.Component {
                       </ul>
                     </div>
 
-                    <SignupForm userSignupRequest={userSignupRequest} />
+                    <SignupForm userSignupRequest={userSignupRequest}/>
 
                     <div id="test-swipe-2" className="col s12">
                       <h5>Log Into Your Account</h5>
@@ -64,9 +64,6 @@ class SignInPage extends React.Component {
 
 SignInPage.propTypes = {
   userSignupRequest: PropTypes.func.isRequired
-};
+}
 
-// connect function takes two parameters(mapStateToProps, mapDispatchToProps)
-// mapStateToProps which provides some piece of data from redux store
-// it takes state and returns an object
-export default connect(null, { userSignupRequest })(SignInPage);
+export default connect((state) => { return {} }, { userSignupRequest })(SignInPage);

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from './common/TextField';
+// import { BrowserRouter } from 'react-router-dom';
+// import TextField from './common/TextField';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -17,13 +18,11 @@ class SignupForm extends React.Component {
   }
 
   onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // prevents page from reloading when submit button is clicked
     this.props.userSignupRequest(this.state);
   }
 
@@ -32,31 +31,54 @@ class SignupForm extends React.Component {
       <div id="test-swipe-1" className="col s12">
         <h5>Create Your Account</h5>
         <form onSubmit={this.onSubmit}>
-          <TextField
-            value={this.state.username}
-            onChange={this.onChange}
-            field="username"
-            label="Username" />
-
-          <TextField
-            value={this.state.email}
-            onChange={this.onChange}
-            field="email"
-            label="Email" />
-
-          <TextField
-            value={this.state.password}
-            onChange={this.onChange}
-            field="password"
-            label="Password"
-            type="password" />
-
-          <TextField
-            value={this.state.group}
-            onChange={this.onChange}
-            field="group"
-            label="Group Name (optional)" />
-
+          <div className="row signup">
+            <div className="input-field col s12">
+              <input
+                value={this.state.username}
+                onChange={this.onChange}
+                className="validate"
+                type="text"
+                name="username"
+                id="username" />
+              <label htmlFor="username">Username</label>
+            </div>
+          </div>
+          <div className="row signup">
+            <div className="input-field col s12">
+              <input
+                value={this.state.email}
+                onChange={this.onChange}
+                className="validate"
+                type="text"
+                name="email"
+                id="email" />
+              <label htmlFor="email">Email</label>
+            </div>
+          </div>
+          <div className="row signup">
+            <div className="input-field col s12">
+              <input
+                value={this.state.password}
+                onChange={this.onChange}
+                className="validate"
+                type="password"
+                name="password"
+                id="password" />
+              <label htmlFor="password">Password</label>
+            </div>
+          </div>
+          <div className="row signup">
+            <div className="input-field col s12">
+              <input
+                value={this.state.group}
+                onChange={this.onChange}
+                className="validate"
+                type="text"
+                name="group"
+                id="group" />
+              <label htmlFor="group">Group (optional)</label>
+            </div>
+          </div>
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"
@@ -70,6 +92,6 @@ class SignupForm extends React.Component {
 
 SignupForm.propTypes = {
   userSignupRequest: PropTypes.func.isRequired
-};
+}
 
 export default SignupForm;
