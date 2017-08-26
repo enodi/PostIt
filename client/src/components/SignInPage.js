@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { userSignupRequest } from '../actions/signupActions';
+import userSignupRequest from '../actions/signupActions';
 import SignupForm from './SignupForm';
 // import '../../assets/main.scss';
 // import '../../assets/scripts.js';
@@ -66,4 +66,4 @@ SignInPage.propTypes = {
   userSignupRequest: PropTypes.func.isRequired
 }
 
-export default connect((state) => { return {} }, { userSignupRequest })(SignInPage);
+export default connect(null, { userSignupRequest })(SignInPage);
