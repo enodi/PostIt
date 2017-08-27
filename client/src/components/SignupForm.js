@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { BrowserRouter } from 'react-router-dom';
 // import TextField from './common/TextField';
 
 class SignupForm extends React.Component {
