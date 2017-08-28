@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import userSignupRequest from '../actions/signupActions';
 import SignupForm from './SignupForm';
+import LoginForm from './LoginForm';
 // import '../../assets/main.scss';
 // import '../../assets/scripts.js';
 
@@ -29,27 +30,7 @@ class SignInPage extends React.Component {
 
                     <div id="test-swipe-2" className="col s12">
                       <h5>Log Into Your Account</h5>
-      								<form>
-                        <div className="row signin">
-      	                  <div className="input-field col s12">
-      	                    <input className="validate" type="text" name="username" id="username" required />
-      	                    <label htmlFor="username">Username</label>
-      	                  </div>
-      	                </div>
-
-                        <div className="row signin">
-      	                  <div className="input-field col s12">
-      	                    <input className="validate" type="password" name="password" id="password" required />
-      	                    <label htmlFor="password">Password</label>
-      											<br/><br/><br/><br/>
-      	                  </div>
-      	                </div>
-
-      	                <div className="row center button">
-      										<button className="btn-large waves-effect waves-light" type="submit" name="action" onClick={this.onSave}>SIGNIN</button><br/><br/>
-      	                  <b><Link to="resetpassword">Forgot your password?</Link></b>
-      	                </div>
-      								</form>
+                      <LoginForm />
                     </div>
                   </div>
               </div>
