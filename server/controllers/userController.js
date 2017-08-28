@@ -1,18 +1,14 @@
+const rules = require('../validation');
 const User = require('../models').User;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
 const Validator = require('validatorjs');
 
-const rules = {
-  username: 'required',
-  email: 'required|email',
-  password: 'required'
-};
-
 module.exports = {
   // Handles user registration
   signUp(req, res) {
     const validation = new Validator(req.body, rules);
+    // Handle user signup if validation passes
     if (validation.passes()) {
       User.findOne({
         where: {
