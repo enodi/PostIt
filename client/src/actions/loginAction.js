@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const loginAction = data => (dispatch) => {
-  axios.post('/api/user/signin', data);
-};
-
-export default loginAction;
+export default function loginAction(data) {
+  return (dispatch) => {
+    return axios.post('/api/user/signin', data);
+  };
+}

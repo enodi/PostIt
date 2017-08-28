@@ -3,78 +3,69 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import loginAction from '../actions/loginAction';
-import TextField from './common/TextField';
-import validateInput from './validations/login';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
-      password: '',
-      isLoading: false,
-      errors: {}
-    };
+      username: '',
+      password: ''
+    }
 
-    this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  isValid() {
-    const { errors, isValid } = validateInput(this.state);
-
-    if(!isValid) {
-      this.setState({ errors });
-    }
-    return isValid;
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   onSubmit(e) {
     e.preventDefault();
-    if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
-      this.props.loginAction(this.state).then(
-        (res) => this.context.router.push('/'),
-        (err) => this.setState({ errors: err.data.errors, isLoading: false })
-      );
-    }
-  }
-
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.props.loginAction(this.state).then(
+      (res) => this.context.router.history.push('/user/user_id')
+    );
   }
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
     return(
-      <form onSubmit={this.onSubmit}>
-        <TextField
-          field="identifier"
-          label='Username'
-          value={identifier}
-          error={errors.identifier}
-          onChange={this.onChange}
-          />
-
-        <TextField
-          field='password'
-          label='Password'
-          value={password}
-          error={errors.password}
-          onChange={this.onChange}
-          type="password"
-          />
-
+      <div id="test-swipe-2" className="col s12">
+        <h5>Log Into Your Account</h5>
+        <form onSubmit={this.onSubmit}>
+          <div className="row signin">
+            <div className="input-field col s12">
+              <input
+                value={this.state.username}
+                onChange={this.onChange}
+                className="validate"
+                type="text"
+                name="username"
+                id="username" required />
+              <label htmlFor="username">Username</label>
+            </div>
+          </div>
+          <div className="row signin">
+            <div className="input-field col s12">
+              <input
+                value={this.state.password}
+                onChange={this.onChange}
+                className="validate"
+                type="password"
+                name="password"
+                id="password" required />
+              <label htmlFor="password">Password</label>
+              <br/><br/><br/><br/>
+            </div>
+          </div>
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"
-              disabled={isLoading}
-              type="submit" name="action">SIGNIN</button><br/><br/>
-            <b><Link to="resetpassword">Forgot your password?</Link></b>
+              type="submit"
+              name="action">SIGNIN</button><br/><br/>
+            <b><Link to="/resetpassword">Forgot your password?</Link></b>
           </div>
-      </form>
+        </form>
+      </div>
     );
   }
 }

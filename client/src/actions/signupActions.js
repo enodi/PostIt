@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const userSignupRequest = userData => (dispatch) => {
-  axios.post('/api/user/signup', userData);
-};
-
-export default userSignupRequest;
+export default function userSignupRequest(userData) {
+  return (dispatch) => {
+    return axios.post('/api/user/signup', userData);
+  };
+}

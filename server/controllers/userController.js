@@ -88,7 +88,7 @@ module.exports = {
      const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
      if (!passwordMatched) {
        // If password provided doesn't match password in database, return password doesn't match
-       return res.json({ error: 'Password does not matched' });
+       return res.json({ error: 'Password does not match' });
      }
      // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {

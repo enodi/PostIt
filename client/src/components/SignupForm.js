@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import userSignupRequest from '../actions/signupActions';
 // import TextField from './common/TextField';
 
 class SignupForm extends React.Component {
@@ -22,7 +24,9 @@ class SignupForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault(); // prevents page from reloading when submit button is clicked
-    this.props.userSignupRequest(this.state);
+    this.props.userSignupRequest(this.state).then(
+      (res) => this.context.router.history.push('/')
+    );
   }
 
   render() {
@@ -93,4 +97,8 @@ SignupForm.propTypes = {
   userSignupRequest: PropTypes.func.isRequired
 }
 
-export default SignupForm;
+SignupForm.contextTypes = {
+  router: PropTypes.object.isRequired
+}
+
+export default connect(null, { userSignupRequest })(SignupForm);

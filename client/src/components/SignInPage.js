@@ -26,12 +26,9 @@ class SignInPage extends React.Component {
                       </ul>
                     </div>
 
-                    <SignupForm userSignupRequest={userSignupRequest}/>
+                    <SignupForm userSignupRequest={userSignupRequest} />
 
-                    <div id="test-swipe-2" className="col s12">
-                      <h5>Log Into Your Account</h5>
-                      <LoginForm />
-                    </div>
+                    <LoginForm />
                   </div>
               </div>
             </center>
