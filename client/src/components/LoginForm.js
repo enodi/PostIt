@@ -21,9 +21,9 @@ class LoginForm extends React.Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    e.preventDefault(); // prevents page from reloading when submit button is clicked
     this.props.loginAction(this.state).then(
-      (res) => this.context.router.history.push('/user/user_id')
+      (res) => this.context.router.history.push('/user/user_id') // Redirects user
     );
   }
 

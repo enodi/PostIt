@@ -1,19 +1,19 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import userSignupRequest from '../actions/signupActions';
+import { userSignupRequest } from '../actions/signupActions';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
-// import '../../assets/main.scss';
-// import '../../assets/scripts.js';
+import { addFlashMessage } from '../actions/flashMessages';
+import FlashMessagesList from './flash/FlashMessagesList';
 
 class SignInPage extends React.Component {
   render() {
-    const { userSignupRequest } = this.props;
+    const { userSignupRequest, addFlashMessage } = this.props;
     return(
       <div>
-        <div className="container">
+        <div className="container"><br/>
+          <FlashMessagesList />
           <div className="row">
             <div className="col l8 offset-l2 s12">
               <center>
@@ -26,7 +26,8 @@ class SignInPage extends React.Component {
                       </ul>
                     </div>
 
-                    <SignupForm userSignupRequest={userSignupRequest} />
+                    <SignupForm userSignupRequest={userSignupRequest}
+                      addFlashMessage={addFlashMessage}/>
 
                     <LoginForm />
                   </div>
@@ -41,7 +42,8 @@ class SignInPage extends React.Component {
 }
 
 SignInPage.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
 }
 
-export default connect(null, { userSignupRequest })(SignInPage);
+export default connect(null, { userSignupRequest, addFlashMessage })(SignInPage);

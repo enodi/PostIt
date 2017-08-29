@@ -13,4 +13,5 @@ $(document).ready(() => {
   $('.modal').modal({
     dismissible: false,
   });
+  $('.tooltipped').tooltip({ delay: 50 });
 });
