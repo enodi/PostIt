@@ -7,7 +7,8 @@ const Validator = require('validatorjs');
 module.exports = {
   // Handles user registration
   signUp(req, res) {
-    const validation = new Validator(req.body, rules);
+    const data = req.body;
+    const validation = new Validator(data, rules);
     // Handle user signup if validation passes
     if (validation.passes()) {
       User.findOne({
@@ -40,7 +41,7 @@ module.exports = {
         const lastName = user.lastName;
         const createdAt = user.createdAt;
         if (user) {
-          const data = {
+          const data1 = {
             message: 'User created successfully',
             id,
             username,
@@ -49,15 +50,15 @@ module.exports = {
             lastName,
             createdAt
           };
-          return res.status(201).send(data);
+          return res.status(201).send(data1);
         }
-        const data = {
+        const data1 = {
           error: [{
             status: 400,
             detail: 'User not created'
           }]
         };
-        return res.status(400).send(data);
+        return res.status(400).send(data1);
       })
       .catch(error => res.status(404).send(error));
     } else if (validation.fails()) {
