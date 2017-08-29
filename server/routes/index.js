@@ -36,7 +36,7 @@ module.exports = (app) => {
   // Route to retrieve all groups a particular user belongs to
   app.get('/api/user/:user_id/group', usergroup.retrieveGroups);
 
-  // Route to fetch all users that belong to a particular group
+  // Route to retrieve all users that belong to a particular group
   app.get('/api/group/:group_id/user', usergroup.retrieveUsers);
 
   // Route to allow loggedIn users post messages to created groups
