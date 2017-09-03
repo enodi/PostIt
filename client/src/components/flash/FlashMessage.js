@@ -13,7 +13,7 @@ class FlashMessage extends React.Component {
   }
 
   render() {
-    const { id, type, text } = this.props.message;
+    const { type, text } = this.props.message;
     return(
       <div className="card">
         <div className={classnames('card', {

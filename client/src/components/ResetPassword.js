@@ -1,6 +1,4 @@
 import React from 'react';
-// import '../../assets/main.scss';
-// import '../../assets/scripts.js';
 
 export default class ResetPassword extends React.Component {
   render() {
