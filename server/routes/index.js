@@ -33,8 +33,11 @@ module.exports = (app) => {
   // Route to allow users add other users to group
   app.post('/api/group/:group_id/user', usergroup.create);
 
-  // Route to fetch all groups that belongs to a particular user
-  app.get('/api/user/:user_id/group', usergroup.retrieve);
+  // Route to retrieve all groups a particular user belongs to
+  app.get('/api/user/:user_id/group', usergroup.retrieveGroups);
+
+  // Route to retrieve all users that belong to a particular group
+  app.get('/api/group/:group_id/user', usergroup.retrieveUsers);
 
   // Route to allow loggedIn users post messages to created groups
   app.post('/api/group/:group_id/message', message.create);

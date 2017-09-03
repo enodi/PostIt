@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import PropTypes from 'prop-types';
-// import '../../assets/main.scss';
+// import * as sessionActions from '../actions/sessionActions';
 
 export default class DropDown extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class DropDown extends Component {
           <li><Link to="/user">{this.props.board}</Link></li>
           <li className="divider"></li>
           <li><Link to="#">{this.props.settings}</Link></li>
-          <li><Link to="#">{this.props.signout}</Link></li>
+          <li><Link to="logout" onClick={this.logOut}>{this.props.signout}</Link></li>
         </ul>
       </div>
     );

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import DropDown from './DropDown';
-import '../assets/main.scss';
 
 export const AuthHeader = (props) => {
   return(

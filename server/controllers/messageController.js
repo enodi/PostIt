@@ -14,19 +14,21 @@ module.exports = {
     })
     .then((message) => {
       if (message) {
-        return res.status(201).json(message); // Return message if message was posted successfully
+        // Return message if message was posted successfully
+        return res.status(201).json(message);
       }
-      return res.status(400).json(message); // Return 400 upon bad request
+      // Return 400 upon bad request
+      return res.status(400).json(message);
     })
-    .catch(error => res.status(404).json(error)); // Return 400 when request isn't found
+    // Return 400 when request isn't found
+    .catch(error => res.status(404).json(error));
   },
 
   // Handles retrieving of messages posted to user groups
   retrieve(req, res) {
-    return Message
-    .findAll({ limit: 5 },
-      { where: { groupId: req.params.group_id } }
-    )
+    Message.findAll({
+      where: { groupId: req.params.group_id }
+    })
     .then((message) => {
       res.json(message);
     })

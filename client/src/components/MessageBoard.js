@@ -1,7 +1,7 @@
 import React from 'react';
-import {AuthHeader} from './AuthHeader';
-import SideBar from './SideBar';
 import DashBoard from './Dashboard';
+import { AuthHeader } from './AuthHeader';
+import SideBar from './SideBar';
 
 const activities = [
     {

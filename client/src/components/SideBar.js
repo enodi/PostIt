@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Groups from './Groups';
 import Friends from './Friends';
-import '../assets/main.css';
 
 export default class SideBar extends React.Component {
   render() {
