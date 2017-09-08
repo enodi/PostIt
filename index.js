@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./server/routes')(app);
 
 // Default route that sends a welcome message in JSON format
-/* app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to PostIt Application',
-}));*/
+// app.get('*', (req, res) => res.status(200).send({
+//   message: 'Welcome to PostIt Application',
+// }));
 
 module.exports = app;

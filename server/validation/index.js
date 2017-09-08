@@ -1,5 +1,5 @@
 const rules = {
-  username: 'required|min:5',
+  username: 'required|min:4',
   email: 'required|email',
   password: 'required'
 };

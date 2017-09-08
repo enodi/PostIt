@@ -1,25 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router';
+// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+// import loginAction from '../actions/loginAction';
+import * as sessionActions from '../actions/sessionActions';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
-      isLoading: false
-    }
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
-  }
+      credentials: {
+        username: '',
+        password: ''
+      }
 
-  onSubmit(e) {
-    e.preventDefault();
-    this.props.loginAction(this.state);
+    }
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    const field = e.target.name;
+    const credentials = this.state.credentials;
+    credentials[field] = e.target.value;
+    return this.setState({ credentials: credentials });
+  }
+
+  onSubmit(e) {
+    e.preventDefault(); // prevents page from reloading when submit button is clicked
+    this.props.actions.loginInUser(this.state.credentials);
   }
 
   render() {
@@ -30,7 +41,7 @@ class LoginForm extends React.Component {
           <div className="row signin">
             <div className="input-field col s12">
               <input
-                value={this.state.username}
+                value={this.state.credentials.username}
                 onChange={this.onChange}
                 className="validate"
                 type="text"
@@ -42,7 +53,7 @@ class LoginForm extends React.Component {
           <div className="row signin">
             <div className="input-field col s12">
               <input
-                value={this.state.password}
+                value={this.state.credentials.password}
                 onChange={this.onChange}
                 className="validate"
                 type="password"
@@ -65,4 +76,18 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+// LoginForm.propTypes = {
+//   loginAction: PropTypes.func.isRequired
+// }
+
+// LoginForm.contextTypes = {
+//   router: PropTypes.object.isRequired
+// }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm);

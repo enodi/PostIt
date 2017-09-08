@@ -4,7 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 
 // import components
 import MessageBoard from './components/MessageBoard';
-import SignIn from './components/SignInPage';
+import SignIn from './components/LogInPage';
 import ResetPassword from './components/ResetPassword';
 import IndexPage from './components/IndexPage';
 import Product from './components/Product';

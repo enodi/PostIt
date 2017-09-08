@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { userSignupRequest } from '../actions/signupActions';
-import classnames from 'classnames';
-// import TextField from './common/TextField';
+import { browserHistory } from 'react-router';
 
-class SignupForm extends React.Component {
+class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,47 +10,69 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       group: '',
-      errors: {}
+      isLoading: false
     }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+  }
+
+  onFocus(e) {
+    const name = e.target.name;
+    switch (name) {
+      case "username":
+        this.setState({ usernameError: '' });
+        break;
+      case "email":
+        this.setState({ emailError: '' });
+        break;
+      case "password":
+        this.setState({ passwordError: '' });
+        break;
+    }
+  }
+
+  onBlur(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    const re = /\S+@\S+\.\S+/;
+    const emailVal = re.test(value);
+    switch (name) {
+      case "username":
+        if (value.length < 4 || !value) {
+          this.setState({ usernameError: 'Username should be atleast 4 characters'})
+        }
+        break;
+      case "password":
+        if (!value) {
+          this.setState({ passwordError: 'Password field cannot be empty'})
+        }
+        break;
+      case "email":
+        if (!value) {
+          this.setState({ emailError: 'Email field cannot be empty'})
+        }
+        if (!emailVal) {
+          this.setState({ emailError: 'invalid email'})
+        }
+        break;
+    }
   }
 
   onChange(e) {
-    if (!!this.state.errors[e.target.name]) {
-      let errors = Object.assign({}, this.state.errors);
-      delete errors[e.target.name];
-      this.setState({
-        [e.target.name]: e.target.value,
-        errors
-       });
-    } else {
-      this.setState({ [e.target.name]: e.target.value });
-    }
+    this.setState({ [e.target.name]: e.target.value });
   }
 
+  // handles submitting of user data
   onSubmit(e) {
-    e.preventDefault(); // prevents page from reloading when submit button is clicked
-    this.props.userSignupRequest(this.state).then(
+    e.preventDefault();
+    this.props.signupAction(this.state).then(
       () => {
-        this.props.addFlashMessage({
-          type: 'success',
-          text: 'You signed up successfully. Welcome!'
-        })
+        browserHistory.push('/');
       }
-    );
-
-    // Signup Validation
-    let errors = {};
-    if (this.state.username === '') {
-      errors.username = "This field can't be empty";
-    } else if (this.state.username.length < 5) {
-      errors.username = "The username must be atleast 5 characters";
-    }
-    if (this.state.email === '') errors.email = "This field can't be empty";
-    if (this.state.password === '') errors.password = "This field can't be empty";
-    this.setState({ errors });
+    )
   }
 
   render() {
@@ -63,54 +82,54 @@ class SignupForm extends React.Component {
         <form onSubmit={this.onSubmit}>
           <div className="row signup">
             <div className="input-field col s12">
-              <div className={classnames('field', { error: !!this.state.errors.username})}>
-                <label htmlFor="username">Username</label>
-                <input
-                  value={this.state.username}
-                  onChange={this.onChange}
-                  className="validate"
-                  type="text"
-                  name="username"
-                  id="username" />
-                <span>{this.state.errors.username}</span>
-              </div>
+              <input
+                value={this.state.username}
+                onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                className="validate"
+                type="text"
+                name="username" required />
+              <label htmlFor="username">Username</label>
             </div>
+            <div style={{color:"red"}}>{this.state.usernameError}</div>
           </div>
           <div className="row signup">
             <div className="input-field col s12">
-              <div className={classnames('field', { error: !!this.state.errors.email})}>
-                <input
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  className="validate"
-                  type="email"
-                  name="email"
-                  id="email" />
-                <label htmlFor="email">Email</label>
-                <span>{this.state.errors.email}</span>
-              </div>
+              <input
+                value={this.state.email}
+                onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                className="validate"
+                type="email"
+                name="email"
+                id="email" required />
+              <label htmlFor="email">Email</label>
             </div>
+            <div style={{color:"red"}}>{this.state.emailError}</div>
           </div>
           <div className="row signup">
             <div className="input-field col s12">
-              <div className={classnames('field', { error: !!this.state.errors.password})}>
-                <input
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  className="validate"
-                  type="password"
-                  name="password"
-                  id="password" />
-                <label htmlFor="password">Password</label>
-                <span>{this.state.errors.password}</span>
-              </div>
+              <input
+                value={this.state.password}
+                onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                className="validate"
+                type="password"
+                name="password"
+                id="password" required />
+              <label htmlFor="password">Password</label>
             </div>
+            <div style={{color:"red"}}>{this.state.passwordError}</div>
           </div>
           <div className="row signup">
             <div className="input-field col s12">
               <input
                 value={this.state.group}
                 onChange={this.onChange}
+                onBlur={this.onBlur}
                 className="validate"
                 type="text"
                 name="group"
@@ -129,13 +148,8 @@ class SignupForm extends React.Component {
   }
 }
 
-SignupForm.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
+SignUpForm.propTypes = {
+  signupAction: PropTypes.func.isRequired
 }
 
-SignupForm.contextTypes = {
-  router: PropTypes.object.isRequired
-}
-
-export default connect(null, { userSignupRequest })(SignupForm);
+export default SignUpForm;

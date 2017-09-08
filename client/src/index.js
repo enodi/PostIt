@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import Routes from './Routes';
 import { Provider } from 'react-redux';
-// import Routes from './components/Routes';
-// import registerServiceWorker from './registerServiceWorker';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer';

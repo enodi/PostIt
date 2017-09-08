@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as types from './actionTypes';
+import * as types from './actionTypes__';
 
 export function loginSuccess(user) {
   return {

@@ -4,10 +4,10 @@
   "description": "A JavaScript Application that allows users communicate with each other within a group",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon ./bin/www\" \"npm run client\"",
+    "start": "concurrently \"nodemon ./bin/www\" \"cd client && npm start\"",
     "client": "node start-client.js",
     "build": "webpack-dev-server --history-api-fallback",
-    "test": "mocha server/test/index.test.js",
+    "test": "mocha server/test/test.js",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha server/test/index.test.js -- -R spec",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
@@ -20,6 +20,7 @@
     "chai-http": "^3.0.0",
     "es6-promise": "^4.1.1",
     "eslint-plugin-jsdoc": "^3.1.1",
+    "expect": "^21.0.2",
     "express": "^4.15.3",
     "html-webpack-plugin": "^2.29.0",
     "isomorphic-fetch": "^2.2.1",

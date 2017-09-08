@@ -1,17 +1,10 @@
 const supertest = require('supertest');
 const app = require('../../index.js');
+const User = require('../models/user');
 // const expect = require('chai').expect;
 // const assert = require('chai').assert;
 
 const request = supertest(app);
-
-// const user = {
-//   firstname: 'Enodi',
-//   lastname: 'Audu',
-//   username: 'enodi',
-//   email: 'enodi@andela.com',
-//   password: 'password123'
-// };
 
 describe('API Route', () => {
   describe('GET: /', () => {
@@ -52,19 +45,4 @@ describe('API Route', () => {
     });
   });
 
-  // describe('POST: /api/user/signup', () => {
-  //   it('should register a user', (done) => {
-  //     request
-  //     .post('/api/user/signup')
-  //     .send({ email: 'main@andela.com', username: 'main', password: 'endo' })
-  //     // .expect('Content-Type', '/json')
-  //     .expect(201)
-  //     .end((err, res) => {
-  //       assert.equal(res.body.data.username, 'main');
-  //       assert.equal(res.body.data.email, 'main@andela.com');
-  //       assert.equal(res.body.data.password, 'endo');
-  //       done();
-  //     });
-  //   });
-  // });
 });

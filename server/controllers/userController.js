@@ -2,13 +2,20 @@ const rules = require('../validation');
 const User = require('../models').User;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
+// const Validator = require('validator');
+// const isEmpty = require('lodash/isEmpty');
 const Validator = require('validatorjs');
 
 module.exports = {
   // Handles user registration
   signUp(req, res) {
     const data = req.body;
-    const validation = new Validator(data, rules);
+    const errors = {
+      'required.username': 'Username field is required',
+      'min.username': 'Username must be atleast 4 characters',
+      'required.email': 'Email field is required'
+    };
+    const validation = new Validator(data, rules, errors);
     // Handle user signup if validation passes
     if (validation.passes()) {
       User.findOne({
@@ -25,7 +32,7 @@ module.exports = {
             res.json('Username already exists');
           }
         }
-      })
+      });
       User.create({
         firstName: req.body.first_name,
         lastName: req.body.last_name,
