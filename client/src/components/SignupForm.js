@@ -17,7 +17,12 @@ class SignUpForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
+    // this.onClick = this.onClick.bind(this);
   }
+
+  // onClick() {
+  //   Materialize.toast(message);
+  // }
 
   onFocus(e) {
     const name = e.target.name;
@@ -72,7 +77,7 @@ class SignUpForm extends React.Component {
       () => {
         this.props.addFlashMessage({
           type: 'success',
-          text: 'You signed up successfully. Welcome'
+          text: 'You signed up successfully. You can now log into your account',
         })
         browserHistory.push('/');
       }
@@ -144,7 +149,8 @@ class SignUpForm extends React.Component {
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"
-              type="submit" name="action">SIGNUP</button>
+              type="submit"
+              name="action">SIGNUP</button>
           </div>
         </form>
       </div>
