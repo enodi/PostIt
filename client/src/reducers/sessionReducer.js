@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import * as types from '../actions/actionTypes__';
+import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
 export default function sessionReducer(state = initialState.session, action) {

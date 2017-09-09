@@ -1,4 +1,4 @@
-import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from './actionTypes__';
+import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from './actionTypes';
 
 // Action creator
 export const addFlashMessage = message => ({
