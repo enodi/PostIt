@@ -37,6 +37,7 @@
     "redux": "^3.7.2",
     "sequelize": "^4.3.2",
     "supertest": "^3.0.0",
+    "ui-notifier": "^0.1.2",
     "validator": "^8.1.0",
     "validatorjs": "^3.13.3",
     "webpack": "^3.3.0",

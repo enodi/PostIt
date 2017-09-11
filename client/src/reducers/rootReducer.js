@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
-import flashMessages from './flashMessages';
-import session from './sessionReducer';
+import session from './authReducer';
 
 const rootReducer = combineReducers({
-  flashMessages,
   session
 });
 

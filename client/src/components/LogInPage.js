@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';
-import { signupAction } from '../actions/signupAction';
-import { addFlashMessage } from '../actions/flashMessages';
-import { logInUser } from '../actions/sessionActions';
+import { signupAction } from '../actions/auth/signupAction';
+import { logInUser } from '../actions/auth/logInAction';
 
 class LogInPage extends React.Component {
   render() {
-    const { signupAction, addFlashMessage, logInUser } = this.props;
+    const { signupAction, logInUser } = this.props;
     return(
       <div>
         <div className="container"><br/>
@@ -25,8 +24,7 @@ class LogInPage extends React.Component {
                       </ul>
                     </div>
 
-                    <SignUpForm signupAction={signupAction}
-                      addFlashMessage={addFlashMessage} />
+                    <SignUpForm signupAction={signupAction} />
 
                     <LogInForm onSubmit={logInUser}/>
                   </div>
@@ -42,8 +40,7 @@ class LogInPage extends React.Component {
 
 LogInPage.propTypes = {
   signupAction: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
   logInUser: PropTypes.func.isRequired
 }
 
-export default connect(null, { signupAction, addFlashMessage, logInUser })(LogInPage);
+export default connect(null, { signupAction, logInUser })(LogInPage);

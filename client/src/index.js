@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import './assets/main.css';
+import 'materialize-css';
 
 // Defines the store
 const store = createStore(
@@ -22,6 +23,6 @@ ReactDOM.render(
     <Router history={browserHistory}>{Routes}</Router>
   </Provider>, document.getElementById('root'));
 
-if (module.hot) {
-  module.hot.accept()
-}
+// if (module.hot) {
+//   module.hot.accept()
+// }

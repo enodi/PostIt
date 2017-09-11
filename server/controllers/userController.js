@@ -1,7 +1,7 @@
 const rules = require('../validation');
 const User = require('../models').User;
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt-nodejs');
+// const bcrypt = require('bcrypt-nodejs');
 // const Validator = require('validator');
 // const isEmpty = require('lodash/isEmpty');
 const Validator = require('validatorjs');
@@ -88,6 +88,12 @@ module.exports = {
      if (!user) {
        return res.status(401).send({ error: 'Invalid credentials' });
      }
+    //  // Compares password collected from user with password in database
+    //  const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
+    //  if (!passwordMatched) {
+    //    // If password provided doesn't match password in database, return password doesn't match
+    //    return res.json({ error: 'Password does not match' });
+    //  }
      // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {
        expiresIn: '10h'

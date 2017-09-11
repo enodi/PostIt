@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+// import PropTypes from 'prop-types';
+import Materialize from 'materialize-css';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -9,20 +9,14 @@ class SignUpForm extends React.Component {
       username: '',
       email: '',
       password: '',
-      group: '',
-      isLoading: false
+      group: ''
     }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
-    // this.onClick = this.onClick.bind(this);
   }
-
-  // onClick() {
-  //   Materialize.toast(message);
-  // }
 
   onFocus(e) {
     const name = e.target.name;
@@ -75,13 +69,11 @@ class SignUpForm extends React.Component {
   // handles submitting of user data
   onSubmit(e) {
     e.preventDefault();
-    this.props.signupAction(this.state).then(
-      () => {
-        this.props.addFlashMessage({
-          type: 'success',
-          text: 'You signed up successfully. You can now log into your account',
-        })
-        browserHistory.push('/');
+    this.props.signupAction(this.state).then(()=>{
+      Materialize.toast('SignUp Successfully. You can now log into your account', 2000, 'blue',
+         () => {
+             window.location.href = "/";
+         });
       }
     )
   }
@@ -158,11 +150,6 @@ class SignUpForm extends React.Component {
       </div>
     );
   }
-}
-
-SignUpForm.propTypes = {
-  signupAction: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
 }
 
 export default SignUpForm;

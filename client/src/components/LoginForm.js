@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 // import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as sessionActions from '../actions/sessionActions';
+import * as sessionActions from '../actions/auth/logInAction';
 
 class LogInForm extends React.Component {
   constructor(props) {

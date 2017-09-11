@@ -2,10 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     groupName: {
       type: DataTypes.STRING,
-      unique: {
-        args: true,
-        msg: 'group name already exists'
-      },
+      unique: true,
       validate: {
         notEmpty: true
       },

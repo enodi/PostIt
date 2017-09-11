@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as sessionActions from '../actions/sessionActions';
+import * as sessionActions from '../actions/auth/logInAction';
 import DropDown from './DropDown';
 
 class Header extends React.Component {

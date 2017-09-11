@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import DashBoard from './Dashboard';
 import SideBar from './SideBar';
+import { createGroup } from '../actions/groupAction';
 
 const activities = [
     {
@@ -33,13 +36,19 @@ const activities = [
     }
 ]
 
-export default class MessageBoard extends React.Component {
+class MessageBoard extends React.Component {
   render() {
     return(
       <div>
-        <SideBar />
+        <SideBar createGroup={createGroup} />
         <DashBoard activities={activities} />
       </div>
     );
   }
 }
+
+MessageBoard.propTypes = {
+  createGroup: PropTypes.func.isRequired
+}
+
+export default connect(null, { createGroup })(MessageBoard);
