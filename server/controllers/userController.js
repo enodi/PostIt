@@ -26,48 +26,49 @@ module.exports = {
       .then((userExists) => {
         if (userExists) {
           if (userExists.email === req.body.email) {
-            res.json('Email already exists');
+            res.status(400).json('Email already exists');
           }
           if (userExists.username === req.body.username) {
-            res.json('Username already exists');
+            res.status(400).json('Username already exists');
           }
+        } else {
+          User.create({
+            firstName: req.body.first_name,
+            lastName: req.body.last_name,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password
+          })
+          .then((user) => {
+            const id = user.id;
+            const username = user.username;
+            const email = user.email;
+            const firstName = user.firstName;
+            const lastName = user.lastName;
+            const createdAt = user.createdAt;
+            if (user) {
+              const data1 = {
+                message: 'User created successfully',
+                id,
+                username,
+                email,
+                firstName,
+                lastName,
+                createdAt
+              };
+              return res.status(201).send(data1);
+            }
+            const data1 = {
+              error: [{
+                status: 400,
+                detail: 'User not created'
+              }]
+            };
+            return res.status(400).send(data1);
+          })
+          .catch(error => res.status(404).send(error));
         }
       });
-      User.create({
-        firstName: req.body.first_name,
-        lastName: req.body.last_name,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-      })
-      .then((user) => {
-        const id = user.id;
-        const username = user.username;
-        const email = user.email;
-        const firstName = user.firstName;
-        const lastName = user.lastName;
-        const createdAt = user.createdAt;
-        if (user) {
-          const data1 = {
-            message: 'User created successfully',
-            id,
-            username,
-            email,
-            firstName,
-            lastName,
-            createdAt
-          };
-          return res.status(201).send(data1);
-        }
-        const data1 = {
-          error: [{
-            status: 400,
-            detail: 'User not created'
-          }]
-        };
-        return res.status(400).send(data1);
-      })
-      .catch(error => res.status(404).send(error));
     } else if (validation.fails()) {
       res.json(validation.errors.all());
     }
