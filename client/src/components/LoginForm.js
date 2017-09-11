@@ -1,21 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router';
+// import PropTypes from 'prop-types';
+// import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as sessionActions from '../actions/sessionActions';
 
-class LoginForm extends React.Component {
+class LogInForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      isLoading: false
+      error: ''
     }
-    this.onSubmit = this.onSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+    this.onFocus = this.onFocus.bind(this);
   }
 
-  onSubmit(e) {
+  onFocus(e) {
+    // Clear error message when user is focused on a particular field
+    const name = e.target.name;
+    switch (name) {
+      case "username":
+        this.setState({ usernameError: '' });
+        break;
+      case "password":
+        this.setState({ passwordError: '' });
+        break;
+      default:
+    }
+  }
+
+  onBlur(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    switch (name) {
+      case "username":
+        // Display error message if username field is empty
+        if (!value) {
+          this.setState({ usernameError: 'Please insert your username'});
+        }
+        break;
+      case "password":
+        // Display error message if password field is empty
+        if(!value) {
+          this.setState({ passwordError: 'Please insert your password'})
+        }
+        break;
+      default:
+    }
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.loginAction(this.state);
+    this.props.onSubmit(this.state)
+    .then((data) => {
+        window.location.href = "/users";
+   },
+   (data) => {
+     this.setState({ error: data.response.data.error })
+   }
+   )
   }
 
   onChange(e) {
@@ -23,35 +71,43 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    // Deconstruct state
+    const { username, password } = this.state;
     return(
       <div id="test-swipe-2" className="col s12">
         <h5>Log Into Your Account</h5>
-        <form onSubmit={this.onSubmit}>
+        <div style={{color: 'red'}}>{this.state.error}</div>
+        <form onSubmit={this.handleSubmit}>
           <div className="row signin">
             <div className="input-field col s12">
               <input
-                value={this.state.username}
+                value={username}
                 onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
                 className="validate"
                 type="text"
                 name="username"
                 id="username" required />
               <label htmlFor="username">Username</label>
             </div>
+            <div style={{color:"red"}}>{this.state.usernameError}</div>
           </div>
           <div className="row signin">
             <div className="input-field col s12">
               <input
-                value={this.state.password}
+                value={password}
                 onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
                 className="validate"
                 type="password"
                 name="password"
                 id="password" required />
               <label htmlFor="password">Password</label>
-              <br/><br/><br/><br/>
             </div>
-          </div>
+            <div style={{color:"red"}}>{this.state.passwordError}</div>
+          </div><br/><br/><br/><br/>
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"
@@ -65,4 +121,10 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(LogInForm);

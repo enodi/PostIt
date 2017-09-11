@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 // import '../../assets/main.scss';
 
 export default class Friends extends React.Component {

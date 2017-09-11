@@ -36,6 +36,7 @@ class SignUpForm extends React.Component {
       case "password":
         this.setState({ passwordError: '' });
         break;
+      default:
     }
   }
 
@@ -63,6 +64,7 @@ class SignUpForm extends React.Component {
           this.setState({ emailError: 'invalid email'})
         }
         break;
+      default:
     }
   }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import DashBoard from './Dashboard';
-import { AuthHeader } from './AuthHeader';
 import SideBar from './SideBar';
 
 const activities = [
@@ -38,7 +37,6 @@ export default class MessageBoard extends React.Component {
   render() {
     return(
       <div>
-        <AuthHeader />
         <SideBar />
         <DashBoard activities={activities} />
       </div>

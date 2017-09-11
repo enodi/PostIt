@@ -86,13 +86,7 @@ module.exports = {
     User.findOne({ where: { username: req.body.username } })
    .then((user) => {
      if (!user) {
-       return res.json({ error: 'Invalid Username' });
-     }
-     // Compares password collected from user with password in database
-     const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
-     if (!passwordMatched) {
-       // If password provided doesn't match password in database, return password doesn't match
-       return res.json({ error: 'Password does not match' });
+       return res.status(401).send({ error: 'Invalid credentials' });
      }
      // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {
@@ -104,6 +98,6 @@ module.exports = {
        token: token1
      });
    })
-   .catch(err => res.json(err));
+   .catch(err => res.send(err));
   },
 };

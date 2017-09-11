@@ -5,10 +5,11 @@ import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';
 import { signupAction } from '../actions/signupAction';
 import { addFlashMessage } from '../actions/flashMessages';
+import { logInUser } from '../actions/sessionActions';
 
 class LogInPage extends React.Component {
   render() {
-    const { signupAction, addFlashMessage } = this.props;
+    const { signupAction, addFlashMessage, logInUser } = this.props;
     return(
       <div>
         <div className="container"><br/>
@@ -27,7 +28,7 @@ class LogInPage extends React.Component {
                     <SignUpForm signupAction={signupAction}
                       addFlashMessage={addFlashMessage} />
 
-                    <LogInForm />
+                    <LogInForm onSubmit={logInUser}/>
                   </div>
               </div>
             </center>
@@ -41,7 +42,8 @@ class LogInPage extends React.Component {
 
 LogInPage.propTypes = {
   signupAction: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired
+  addFlashMessage: PropTypes.func.isRequired,
+  logInUser: PropTypes.func.isRequired
 }
 
-export default connect(null, { signupAction, addFlashMessage })(LogInPage);
+export default connect(null, { signupAction, addFlashMessage, logInUser })(LogInPage);
