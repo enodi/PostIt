@@ -11,13 +11,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+      priority: {
+        type: Sequelize.STRING,
+        defaultValue: 'normal'
       },
       groupId: {
         type: Sequelize.INTEGER,
         allowNull: false
+      },
+      sender: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

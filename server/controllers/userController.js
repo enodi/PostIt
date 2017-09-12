@@ -8,13 +8,7 @@ module.exports = {
   // Handles user registration
   signUp(req, res) {
     const data = req.body;
-    const errors = {
-      'required.username': 'Username field is required',
-      'min.username': 'Username must be atleast 4 characters',
-      'required.email': 'Email field is required',
-      'required.fullname': 'Fullname field is required'
-    };
-    const validation = new Validator(data, rules, errors);
+    const validation = new Validator(data, rules);
     // Handle user signup if validation passes
     if (validation.passes()) {
       User.findOne({

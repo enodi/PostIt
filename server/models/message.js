@@ -4,31 +4,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+    priority: {
+      type: DataTypes.STRING,
+      defaultValue: 'normal'
     },
     groupId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-  }, {
-    classMethods: {
-      associate: (models) => {
-        Message.hasMany(models.ReadMessage, {
-          foreignKey: 'messageId'
-        });
-        Message.hasMany(models.DeletedMessage, {
-          foreignKey: 'messageId'
-        });
-        Message.belongsTo(models.User, {
-          foreignKey: 'userId'
-        });
-        Message.belongsTo(models.Group, {
-          foreignKey: 'groupId'
-        });
-      }
+    sender: {
+      type: DataTypes.STRING,
     }
   });
+  Message.associate = (models) => {
+    Message.belongsTo(models.Group, {
+      foreignKey: 'groupId',
+      onDelete: 'CASCADE'
+    });
+  };
   return Message;
 };

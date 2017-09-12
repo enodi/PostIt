@@ -11,10 +11,7 @@ export function logInUser(credentials) {
   return (dispatch) => {
     return axios.post('/api/user/signin', credentials)
     .then((res) => {
-      console.log(res.data);
-      // If we get a positive response,
-      // Store jwt from response in session storage
-      sessionStorage.setItem('jwt', res.data.token);
+      localStorage.setItem('jwt', res.data.token);
       // Dispatch loginSuccess action to the reducer
       dispatch(loginSuccess());
     })
@@ -23,7 +20,7 @@ export function logInUser(credentials) {
 
 export function logOutUser() {
   // Remove JWT from sessionStorage when user logs out
-  sessionStorage.removeItem('jwt');
+  localStorage.removeItem('jwt');
   return {
     type: types.LOG_OUT
   };

@@ -8,7 +8,8 @@ class SignUpForm extends React.Component {
       fullname: '',
       username: '',
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -54,12 +55,12 @@ class SignUpForm extends React.Component {
         break;
       case "password":
         if (!value) {
-          this.setState({ passwordError: 'Password field cannot be empty'})
+          this.setState({ passwordError: 'This field is required'})
         }
         break;
       case "email":
         if (!value) {
-          this.setState({ emailError: 'Email field cannot be empty'})
+          this.setState({ emailError: 'This field is required'})
         }
         if (!emailVal) {
           this.setState({ emailError: 'invalid email'})
@@ -76,25 +77,25 @@ class SignUpForm extends React.Component {
   // handles submitting of user data
   onSubmit(e) {
     const myColour = { background: '#2979FF', text: '#ffffff' };
+    const notification = notify.show('SignUp Successful', "custom", 4000, myColour);
     e.preventDefault();
-    this.props.signupAction(this.state).then(()=>{
-      notify.show('SignUp Successfully. You can now log into your account', "custom", 2000, myColour,
-         () => {
-             window.location.href = "/";
-         });
-      },
-      (data) => {
-        console.log(data);
-        // this.setState({ error: response.data.error })
-      }
-    )
-  }
+    this.props.signupAction(this.state)
+    .then((res) => {
+        notification;
+        window.location.href = '/dashboard';
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      // .catch((error) => console.log(error))
+    }
 
   render() {
     return(
       <div id="test-swipe-1" className="col s12">
         <Notifications />
         <h5>Create Your Account</h5>
+        <div style={{color: 'red'}}>{this.state.error}</div>
         <form onSubmit={this.onSubmit}>
           <div className="row signup">
             <div className="input-field col s12">

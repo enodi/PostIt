@@ -18,19 +18,19 @@ export default (
     <Route path="/signin" component={SignIn} />
     <Route path="/support" component={Support} />
     <Route path="/resetpassword" component={ResetPassword} />
-    <Route path="/users" component={MessageBoard} onEnter={requireAuth}/>
+    <Route path="/dashboard" component={MessageBoard} />
   </Route>
 );
 
-function requireAuth (nextState, replace) {
-  // If token is not provided on login, redirect user to login page
-  if (!sessionStorage.jwt) {
-    replace ({
-      path: '/signin',
-      state: { nextPath: nextState.location.path }
-    })
-  }
-}
+// function requireAuth (nextState, replace) {
+//   // If token is not provided on login, redirect user to login page
+//   if (!sessionStorage.jwt) {
+//     replace ({
+//       path: '/signin',
+//       state: { nextPath: nextState.location.path }
+//     })
+//   }
+// }
 
 // export default class Routes extends Component {
 //   render() {

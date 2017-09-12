@@ -10,15 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     classMethods: {
-      associate: (models) => {
-        UserGroup.belongsTo(models.Group, {
-          foreignKey: 'groupId'
-        });
-        UserGroup.belongsTo(models.User, {
-          foreignKey: 'userId'
-        });
+      associate() {
       },
-    },
+    }
   });
   return UserGroup;
 };

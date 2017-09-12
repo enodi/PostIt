@@ -15,7 +15,8 @@ class SideBar extends React.Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    // this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target);
   }
 
   onSubmit(e) {
@@ -65,7 +66,7 @@ class SideBar extends React.Component {
                           <label htmlFor="name">Group Name</label>
                         </div>
                         <div className="input-field col s12">
-                          <select multiple value={this.state.value} onChange={this.onChange}>
+                          <select multiple onChange={this.onChange}>
                             <option value="" disabled defaultValue></option>
                             <option value="1">Xerxes</option>
                             <option value="2">Feivel</option>

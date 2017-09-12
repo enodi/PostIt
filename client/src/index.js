@@ -3,19 +3,22 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import Routes from './Routes';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './reducers/rootReducer';
+import configureStore from './store/configureStore';
+// import thunk from 'redux-thunk';
+// import { createStore, applyMiddleware, compose } from 'redux';
+// import rootReducer from './reducers/rootReducer';
 import './assets/main.css';
 
-// Defines the store
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
-);
+// Create an instance of store
+const store = configureStore()
+// // Defines the store
+// const store = createStore(
+//   rootReducer,
+//   compose(
+//     applyMiddleware(thunk),
+//     window.devToolsExtension ? window.devToolsExtension() : f => f
+//   )
+// );
 
 ReactDOM.render(
   <Provider store={store}>

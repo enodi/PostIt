@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import SignUpForm from './SignUpForm';
 import LogInForm from './LogInForm';
 import { signupAction } from '../actions/auth/signupAction';
-import { logInUser } from '../actions/auth/logInAction';
+// import { logInUser } from '../actions/auth/logInAction';
 
 class LogInPage extends React.Component {
   render() {
-    const { signupAction, logInUser } = this.props;
+    const { signupAction } = this.props;
     return(
       <div>
         <div className="container"><br/>
@@ -26,7 +26,7 @@ class LogInPage extends React.Component {
 
                     <SignUpForm signupAction={signupAction} />
 
-                    <LogInForm onSubmit={logInUser}/>
+                    <LogInForm />
                   </div>
               </div>
             </center>
@@ -39,8 +39,7 @@ class LogInPage extends React.Component {
 }
 
 LogInPage.propTypes = {
-  signupAction: PropTypes.func.isRequired,
-  logInUser: PropTypes.func.isRequired
+  signupAction: PropTypes.func.isRequired
 }
 
-export default connect(null, { signupAction, logInUser })(LogInPage);
+export default connect(null, { signupAction })(LogInPage);
