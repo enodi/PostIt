@@ -1,15 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Notifications, {notify} from 'react-notify-toast';
 
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      fullname: '',
       username: '',
       email: '',
-      password: '',
-      group: ''
+      password: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -21,6 +20,9 @@ class SignUpForm extends React.Component {
   onFocus(e) {
     const name = e.target.name;
     switch (name) {
+      case "fullname":
+        this.setState({ fullnameError: '' });
+        break;
       case "username":
         this.setState({ usernameError: '' });
         break;
@@ -40,6 +42,11 @@ class SignUpForm extends React.Component {
     const re = /\S+@\S+\.\S+/;
     const emailVal = re.test(value);
     switch (name) {
+      case "fullname":
+        if (!value) {
+          this.setState({ fullnameError: 'This field is required'})
+        }
+        break;
       case "username":
         if (value.length < 4 || !value) {
           this.setState({ usernameError: 'Username should be atleast 4 characters'})
@@ -77,7 +84,7 @@ class SignUpForm extends React.Component {
          });
       },
       (data) => {
-        console.log(data.res.error);
+        console.log(data);
         // this.setState({ error: response.data.error })
       }
     )
@@ -89,6 +96,20 @@ class SignUpForm extends React.Component {
         <Notifications />
         <h5>Create Your Account</h5>
         <form onSubmit={this.onSubmit}>
+          <div className="row signup">
+            <div className="input-field col s12">
+              <input
+                value={this.state.fullname}
+                onChange={this.onChange}
+                onBlur={this.onBlur}
+                onFocus={this.onFocus}
+                className="validate"
+                type="text"
+                name="fullname" required />
+              <label htmlFor="fullname">Full Name</label>
+            </div>
+            <div style={{color:"red"}}>{this.state.fullnameError}</div>
+          </div>
           <div className="row signup">
             <div className="input-field col s12">
               <input
@@ -133,7 +154,7 @@ class SignUpForm extends React.Component {
             </div>
             <div style={{color:"red"}}>{this.state.passwordError}</div>
           </div>
-          <div className="row signup">
+          {/*<div className="row signup">
             <div className="input-field col s12">
               <input
                 value={this.state.group}
@@ -145,7 +166,7 @@ class SignUpForm extends React.Component {
                 id="group" />
               <label htmlFor="group">Group (optional)</label>
             </div>
-          </div>
+          </div>*/}
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"

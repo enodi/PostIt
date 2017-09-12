@@ -7,7 +7,6 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import './assets/main.css';
-import 'materialize-css';
 
 // Defines the store
 const store = createStore(

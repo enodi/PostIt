@@ -2,8 +2,6 @@ const rules = require('../validation');
 const User = require('../models').User;
 const jwt = require('jsonwebtoken');
 // const bcrypt = require('bcrypt-nodejs');
-// const Validator = require('validator');
-// const isEmpty = require('lodash/isEmpty');
 const Validator = require('validatorjs');
 
 module.exports = {
@@ -13,7 +11,8 @@ module.exports = {
     const errors = {
       'required.username': 'Username field is required',
       'min.username': 'Username must be atleast 4 characters',
-      'required.email': 'Email field is required'
+      'required.email': 'Email field is required',
+      'required.fullname': 'Fullname field is required'
     };
     const validation = new Validator(data, rules, errors);
     // Handle user signup if validation passes
@@ -26,15 +25,14 @@ module.exports = {
       .then((userExists) => {
         if (userExists) {
           if (userExists.email === req.body.email) {
-            res.status(400).json('Email already exists');
+            return res.status(400).send('Email already exists');
           }
           if (userExists.username === req.body.username) {
-            res.status(400).json('Username already exists');
+            return res.status(400).send('Username already exists');
           }
         } else {
           User.create({
-            firstName: req.body.first_name,
-            lastName: req.body.last_name,
+            fullname: req.body.fullname,
             username: req.body.username,
             email: req.body.email,
             password: req.body.password
@@ -43,18 +41,20 @@ module.exports = {
             const id = user.id;
             const username = user.username;
             const email = user.email;
-            const firstName = user.firstName;
-            const lastName = user.lastName;
-            const createdAt = user.createdAt;
+            const fullname = user.fullname;
             if (user) {
+              const token = jwt.sign({
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                fullname: user.fullname }, 'Andela', { expiresIn: '10h' });
               const data1 = {
                 message: 'User created successfully',
                 id,
                 username,
                 email,
-                firstName,
-                lastName,
-                createdAt
+                fullname,
+                token
               };
               return res.status(201).send(data1);
             }
@@ -72,14 +72,6 @@ module.exports = {
     } else if (validation.fails()) {
       res.json(validation.errors.all());
     }
-    // Ensures that username, password and email fields are not empty
-    // if (!req.body.username || req.body.username.trim() === '') {
-    //   return res.json('username is required');
-    // } else if (!req.body.email || req.body.email.trim() === '') {
-    //   return res.json('email is required');
-    // } else if (!req.body.password || req.body.password.trim() === '') {
-    //   return res.json('password is required');
-    // }
   },
 
   signIn(req, res) {

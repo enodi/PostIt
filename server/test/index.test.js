@@ -50,14 +50,14 @@ describe('API Route', () => {
     });
   });
 
-  // describe('POST: /api/group', () => {
-  //   it('should return status code 200 when user accesses group route', (done) => {
-  //     request
-  //     .post('/api/group')
-  //     .expect(200)
-  //     .end(done);
-  //   });
-  // });
+  describe('POST: /api/group', () => {
+    it('should return status code 200 when user accesses group route', (done) => {
+      request
+      .post('/api/group')
+      .expect(200)
+      .end(done);
+    });
+  });
 });
 
 // describe('User Model test', () => {

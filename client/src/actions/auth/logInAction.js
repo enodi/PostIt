@@ -11,7 +11,7 @@ export function logInUser(credentials) {
   return (dispatch) => {
     return axios.post('/api/user/signin', credentials)
     .then((res) => {
-      console.log(res.data.token);
+      console.log(res.data);
       // If we get a positive response,
       // Store jwt from response in session storage
       sessionStorage.setItem('jwt', res.data.token);
