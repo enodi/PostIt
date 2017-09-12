@@ -1,11 +1,6 @@
-// Set env variable to test
-// process.env.NODE_ENV = 'test';
-
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const db = require('../models');
-
-// const server = require('../../index');
 
 const expect = require('expect');
 
@@ -33,71 +28,40 @@ describe('User Model test', () => {
         }).catch((err) => { done(err); });
     });
   });
+  it('should create a new group', (done) => {
+    db.Group.sync({ force: true }).then(() => {
+      db.Group.create({ groupName: 'general' })
+      .then((group) => {
+        if (group) {
+          expect('general').toBe(group.dataValues.groupName);
+        }
+        done();
+      }).catch((err) => { done(err); });
+    });
+  });
+  it('should create a new message', (done) => {
+    db.Message.sync({ force: true }).then(() => {
+      db.Message.create({ message: 'hello', userId: 1, groupId: 1 })
+      .then((message) => {
+        if (message) {
+          expect('hello').toBe(message.dataValues.message);
+          expect(1).toBe(message.dataValues.userId);
+          expect(1).toBe(message.dataValues.groupId);
+        }
+        done();
+      }).catch((err) => { done(err); });
+    });
+  });
+  it('should add user to group', (done) => {
+    db.UserGroup.sync({ force: true }).then(() => {
+      db.UserGroup.create({ userId: 1, groupId: 1 })
+      .then((usergroup) => {
+        if (usergroup) {
+          expect(1).toBe(usergroup.dataValues.userId);
+          expect(1).toBe(usergroup.dataValues.groupId);
+        }
+        done();
+      }).catch((err) => { done(err); });
+    });
+  });
 });
-  // it('I should be able to create a new group with this model', (done) => {
-  //   Group.sync({ force: true }).then(() => {
-  //     Group.create({ groupName: 'Man United', description: 'Class of 2015', userId: 1 })
-  //       .then((group) => {
-  //         expect('Zikites').toNotBe('Zike');
-  //         expect('Class of 2015').toBe(group.dataValues.description);
-  //         expect(group.dataValues.userId.toString()).toBe('1');
-  //         done();
-  //       });
-  //   }).catch((err) => { done(err); });
-  // }, 10000);
-  // });
-  //
-// describe('User', () => {
-//   // Empty database before each test
-//   beforeEach((done) => {
-//     User.destroy({}, (err) => {
-//       done();
-//     });
-//   });
-//
-//   describe('/POST User', () => {
-//     it('it should not post a user without username field', (done) => {
-//       const user = {
-//         email: 'enodi@gmail.com',
-//         password: 'password',
-//         first_name: 'Enodi',
-//         last_name: 'Audu'
-//       }
-//       chai.request(server)
-//       .post('/api/user/signup')
-//       .send(user)
-//       .end((err, res) => {
-//         res.should.have.status(200);
-//         res.body.should.be.a('object');
-//         res.body.should.have.property('errors');
-//         res.body.errors.should.have.property('username');
-//         res.body.errors.username.have.property('kind').eql('required');
-//         done();
-//       });
-//     });
-
-    // it('it should POST a user', (done) => {
-    //   const user = {
-    //     email: 'enodi@gmail.com',
-    //     password: 'password',
-    //     first_name: 'Enodi',
-    //     last_name: 'Audu',
-    //     username: 'enodi'
-    //   }
-    //   chai.request(server)
-    //   .post('/api/user/signup')
-    //   .send(user)
-    //   .end((err, res) => {
-    //     res.should.have.status(200);
-    //     res.body.should.be.a('object');
-    //     res.body.should.have.property('message').eql('User created successfully');
-    //     res.body.user.should.have.property('username');
-    //     res.body.user.should.have.property('email');
-    //     res.body.user.should.have.property('first_name');
-    //     res.body.user.should.have.property('last_name');
-    //     res.body.user.should.have.property('password');
-    //     done();
-    //   });
-    // });
-//   });
-// });

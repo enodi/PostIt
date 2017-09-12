@@ -9,7 +9,7 @@
   "test": {
     "username": "postgres",
     "password": "adminpassword",
-    "database": "postitapp",
+    "database": "postittest",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
