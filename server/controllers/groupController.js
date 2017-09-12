@@ -19,31 +19,32 @@ module.exports = {
       .then((groupExists) => {
         if (groupExists) {
           if (groupExists.groupName === req.body.group_name.toLowerCase()) {
-            res.json('Group name already exists');
+            res.status(409).json('Group name already exists');
           }
+        } else {
+          Group.create({
+            groupName: req.body.group_name.toLowerCase()
+          })
+          .then((group) => {
+            const id = group.id;
+            const groupName = group.groupName;
+            const createdAt = group.createdAt;
+            if (group) {
+              const data = {
+                data: [{
+                  message: 'group created successfully',
+                  id,
+                  groupName,
+                  createdAt
+                }]
+              };
+              return res.status(201).json(data);
+            }
+            return res.status(400).json(group); // Return 400 upon bad request
+          })
+          .catch(error => res.status(404).json(error)); // Return 404 when request made wasn't found
         }
-      })
-      Group.create({
-        groupName: req.body.group_name.toLowerCase()
-      })
-      .then((group) => {
-        const id = group.id;
-        const groupName = group.groupName;
-        const createdAt = group.createdAt;
-        if (group) {
-          const data = {
-            data: [{
-              message: 'group created successfully',
-              id,
-              groupName,
-              createdAt
-            }]
-          };
-          return res.status(201).json(data);
-        }
-        return res.status(400).json(group); // Return 400 upon bad request
-      })
-      .catch(error => res.status(404).json(error)); // Return 404 when request made wasn't found
+      });
     } else if (validation.fails()) {
       res.json(validation.errors.all());
     }

@@ -3,8 +3,8 @@ const path = require('path');
 const Sequelize = require('sequelize');
 
 const basename = path.basename(module.filename);
-const env = process.env.NODE_ENV || 'test';
-const config = require('./../config/config.json')[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.json')[env];
 
 const db = {};
 let sequelize;

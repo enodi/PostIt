@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Materialize from 'materialize-css';
+import Notifications, {notify} from 'react-notify-toast';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -68,12 +68,17 @@ class SignUpForm extends React.Component {
 
   // handles submitting of user data
   onSubmit(e) {
+    const myColour = { background: '#2979FF', text: '#ffffff' };
     e.preventDefault();
     this.props.signupAction(this.state).then(()=>{
-      Materialize.toast('SignUp Successfully. You can now log into your account', 2000, 'blue',
+      notify.show('SignUp Successfully. You can now log into your account', "custom", 2000, myColour,
          () => {
              window.location.href = "/";
          });
+      },
+      (data) => {
+        console.log(data.res.error);
+        // this.setState({ error: response.data.error })
       }
     )
   }
@@ -81,6 +86,7 @@ class SignUpForm extends React.Component {
   render() {
     return(
       <div id="test-swipe-1" className="col s12">
+        <Notifications />
         <h5>Create Your Account</h5>
         <form onSubmit={this.onSubmit}>
           <div className="row signup">
