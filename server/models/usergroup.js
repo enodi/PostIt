@@ -1,18 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-  const UserGroup = sequelize.define('UserGroup', {
+  const UserGroups = sequelize.define('UserGroups', {
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      type: DataTypes.INTEGER
     },
     groupId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+      allowNull: false,
+      type: DataTypes.INTEGER
+    }
   }, {
     classMethods: {
       associate() {
       },
     }
   });
-  return UserGroup;
+  return UserGroups;
 };

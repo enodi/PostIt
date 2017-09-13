@@ -2,6 +2,9 @@ import React from 'react';
 // import { Link } from 'react-router';
 import Groups from './Groups';
 import Friends from './Friends';
+import {Input} from 'react-materialize'
+
+// const select =
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -11,15 +14,23 @@ class SideBar extends React.Component {
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onChange(e) {
-    // this.setState({ [e.target.name]: e.target.value });
-    console.log(e.target);
+  handleChange(e) {
+    const options = e.target.options;
+    const selected = [];
+    const keys = Object.keys(options);
+    for (let i=0; i<keys.length; i++) {
+      if (options[i].selected) {
+        selected.push(options[i].value);
+      }
+    }
+    this.setState({ selected });
   }
 
   onSubmit(e) {
+    console.log('submitting form');
     this.props.createGroup(this.state);
   }
 
@@ -66,12 +77,18 @@ class SideBar extends React.Component {
                           <label htmlFor="name">Group Name</label>
                         </div>
                         <div className="input-field col s12">
-                          <select multiple onChange={this.onChange}>
-                            <option value="" disabled defaultValue></option>
+                          <Input s={12} type='select' multiple defaultValue={[]} onChange={this.handleChange}>
+                            <option value="" disabled>Select Friends</option>
                             <option value="1">Xerxes</option>
                             <option value="2">Feivel</option>
                             <option value="3">Adiel</option>
-                          </select>
+                        	</Input>
+                          {/*<select multiple id="testSelect" onChange={this.handleChange} defaultValue={[]}>
+                            <option value="" disabled>Select Friends</option>
+                            <option value="1">Xerxes</option>
+                            <option value="2">Feivel</option>
+                            <option value="3">Adiel</option>
+                          </select>*/}
                           <label>Send Invites (optional)</label>
                         </div>
                         <div className="col l7 offset-l5 button">

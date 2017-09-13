@@ -20,16 +20,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        User.hasMany(models.Message, {
+          foreignKey: 'userId'
+        });
+        User.belongsToMany(models.Group, {
+          through: 'UserGroup'
+        });
+      }
+    },
+    hooks: {
+      beforeCreate: (user) => {
+        const salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(user.password, salt);
+      }
+    },
   });
-  User.associate = (models) => {
-    User.belongsToMany(models.Group, {
-      through: 'UserGroup',
-      foreignKey: 'userId',
-    });
-  };
-  User.beforeCreate = (user) => {
-    const salt = bcrypt.genSaltSync(10);
-    user.password = bcrypt.hashSync(user.password, salt);
-  };
   return User;
 };

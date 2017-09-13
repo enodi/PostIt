@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Notifications, {notify} from 'react-notify-toast';
+import { signupAction } from '../actions/auth/signupAction';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -8,8 +12,7 @@ class SignUpForm extends React.Component {
       fullname: '',
       username: '',
       email: '',
-      password: '',
-      error: ''
+      password: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -74,19 +77,26 @@ class SignUpForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  // handles submitting of user data
   onSubmit(e) {
     const myColour = { background: '#2979FF', text: '#ffffff' };
-    const notification = notify.show('SignUp Successful', "custom", 4000, myColour);
     e.preventDefault();
     this.props.signupAction(this.state)
     .then((res) => {
-        notification;
-        window.location.href = '/dashboard';
+        if (res === undefined) {
+          notify.show('SignUp Successful', "custom", 4000, myColour);
+          browserHistory.push('/dashboard');
+        }
+        else {
+          const error = res;
+          const colour = { background: '#C62828', text: '#ffffff' };
+          notify.show(error, "custom", 4000, colour);
+          // const error = res;
+          // console.log(error);
+        }
       })
-      .catch((error) => {
-        console.log(error);
-      })
+      // .catch((res) => {
+      //   console.log(res);
+      // })
       // .catch((error) => console.log(error))
     }
 
@@ -95,7 +105,6 @@ class SignUpForm extends React.Component {
       <div id="test-swipe-1" className="col s12">
         <Notifications />
         <h5>Create Your Account</h5>
-        <div style={{color: 'red'}}>{this.state.error}</div>
         <form onSubmit={this.onSubmit}>
           <div className="row signup">
             <div className="input-field col s12">
@@ -180,4 +189,8 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+SignUpForm.propTypes = {
+  signupAction : PropTypes.func.isRequired
+}
+
+export default connect(null, {signupAction} )(SignUpForm);

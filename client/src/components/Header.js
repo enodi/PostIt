@@ -1,21 +1,21 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as sessionActions from '../actions/auth/logInAction';
+// import {bindActionCreators} from 'redux';
+// import * as sessionActions from '../actions/auth/logInAction';
 import DropDown from './DropDown';
 
 class Header extends React.Component {
   constructor(props) {
     super();
-    this.logOut = this.logOut.bind(this);
+    // this.logOut = this.logOut.bind(this);
   }
 
-  logOut(e) {
-    e.preventDefault();
-    this.props.actions.logOutUser();
-  }
+  // logOut(e) {
+  //   e.preventDefault();
+  //   this.props.actions.logOutUser();
+  // }
 
   render() {
     if (!this.props.logged_in) {
@@ -81,18 +81,18 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
-  actions: PropTypes.object.isRequired
-}
+// Header.propTypes = {
+//   actions: PropTypes.object.isRequired
+// }
 
 function mapStateToProps(state, ownProps) {
   return {logged_in: state.session};
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(sessionActions, dispatch)
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps /* , mapDispatchToProps */)(Header);
