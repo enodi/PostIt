@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
-// import PropTypes from 'prop-types';
-// import { browserHistory } from 'react-router';
-// import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-// import * as sessionActions from '../actions/auth/logInAction';
+import { signinAction } from '../actions/auth/signinAction';
 
 class LogInForm extends React.Component {
   constructor(props) {
@@ -56,14 +56,18 @@ class LogInForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.state)
-    .then((data) => {
-        window.location.href = "/dashboard";
-   },
-   (data) => {
-     this.setState({ error: data.response.data.error })
-   }
-   )
+    this.props.signinAction(this.state)
+    .then((res) => {
+        if (res.status === 200) {
+          browserHistory.push('/dashboard')
+        }
+        else {
+          this.setState({ error: res.message })
+        }
+    })
+    .catch((error) => {
+      return error;
+    })
   }
 
   onChange(e) {
@@ -121,10 +125,8 @@ class LogInForm extends React.Component {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(sessionActions, dispatch)
-//   };
-// }
+LogInForm.propTypes = {
+  signinAction: PropTypes.func.isRequired
+}
 
-export default LogInForm;
+export default connect(null, {signinAction})(LogInForm);

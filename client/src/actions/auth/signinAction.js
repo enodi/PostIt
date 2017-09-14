@@ -1,24 +1,31 @@
 import axios from 'axios';
+import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
 
-export function loginSuccess() {
+export function signinSuccess() {
   return {
     type: types.LOG_IN_SUCCESS
   };
 }
 
-export function logInUser(credentials) {
+export function signinAction(credentials) {
   return (dispatch) => {
     return axios.post('/api/user/signin', credentials)
     .then((res) => {
-      localStorage.setItem('jwt', res.data.token);
+      const token = res.data.token;
+      localStorage.setItem('jwt', token);
       // Dispatch loginSuccess action to the reducer
-      dispatch(loginSuccess());
+      setAuthorizationToken(token);
+      dispatch(signinSuccess());
+      return res;
+    })
+    .catch((error) => {
+      return error.response.data;
     })
   };
 }
 
-export function logOutUser() {
+export function signoutUser() {
   // Remove JWT from sessionStorage when user logs out
   localStorage.removeItem('jwt');
   return {

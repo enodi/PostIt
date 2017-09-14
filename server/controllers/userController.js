@@ -1,7 +1,7 @@
 const rules = require('../validation');
 const User = require('../models').User;
 const jwt = require('jsonwebtoken');
-// const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt-nodejs');
 const Validator = require('validatorjs');
 
 module.exports = {
@@ -19,10 +19,10 @@ module.exports = {
       .then((userExists) => {
         if (userExists) {
           if (userExists.email === req.body.email) {
-            return res.status(400).send('Email already exists');
+            return res.status(400).send({ message: 'Email already exists' });
           }
           if (userExists.username === req.body.username) {
-            return res.status(400).send('Username already exists');
+            return res.status(400).send({ message: 'Username already exists' });
           }
         } else {
           User.create({
@@ -39,9 +39,7 @@ module.exports = {
             if (user) {
               const token = jwt.sign({
                 id: user.id,
-                username: user.username,
-                email: user.email,
-                fullname: user.fullname }, 'Andela', { expiresIn: '10h' });
+                username: user.username }, 'Andela', { expiresIn: '10h' });
               const data1 = {
                 message: 'User created successfully',
                 id,
@@ -73,19 +71,19 @@ module.exports = {
     User.findOne({ where: { username: req.body.username } })
    .then((user) => {
      if (!user) {
-       return res.status(401).send({ error: 'Invalid credentials' });
+       return res.status(401).send({ message: 'Invalid credentials' });
      }
-    //  // Compares password collected from user with password in database
-    //  const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
-    //  if (!passwordMatched) {
-    //    // If password provided doesn't match password in database, return password doesn't match
-    //    return res.json({ error: 'Password does not match' });
-    //  }
+     // Compares password collected from user with password in database
+     const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
+     if (!passwordMatched) {
+       // If password provided doesn't match password in database, return password doesn't match
+       return res.status(401).send({ message: 'Invalid credentials' });
+     }
      // If password provided matches password in database, generate user token
      const token1 = jwt.sign({ username: user.username }, 'Andela', {
        expiresIn: '10h'
      });
-     return res.json({
+     return res.send({
        success: true,
        message: 'Login successful',
        token: token1

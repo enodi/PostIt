@@ -78,26 +78,21 @@ class SignUpForm extends React.Component {
   }
 
   onSubmit(e) {
-    const myColour = { background: '#2979FF', text: '#ffffff' };
     e.preventDefault();
     this.props.signupAction(this.state)
     .then((res) => {
-        if (res === undefined) {
-          notify.show('SignUp Successful', "custom", 4000, myColour);
+        if (res.status === 200) {
           browserHistory.push('/dashboard');
         }
         else {
-          const error = res;
+          const error = res.message;
           const colour = { background: '#C62828', text: '#ffffff' };
           notify.show(error, "custom", 4000, colour);
-          // const error = res;
-          // console.log(error);
         }
       })
-      // .catch((res) => {
-      //   console.log(res);
-      // })
-      // .catch((error) => console.log(error))
+      .catch((error) => {
+        return error;
+      })
     }
 
   render() {

@@ -5,7 +5,7 @@ const initialState = {
   user: {}
 };
 
-export default function currentUser(state = initialState, action = {}) {
+export default function signupReducer(state = initialState, action = {}) {
   switch (action.type) {
     case types.SIGNUP_SUCCESSFUL:
       return {
@@ -20,7 +20,7 @@ export default function currentUser(state = initialState, action = {}) {
     case types.REMOVE_SIGN_UP_MESSAGE:
       return {
         ...state,
-        signedUp: null,
+        signedUp: false,
       };
     default:
       return state;

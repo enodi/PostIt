@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SignUpForm from './SignUpForm';
-import LogInForm from './LogInForm';
+import SignUpForm from './SignupForm';
+import LogInForm from './LoginForm';
 import { signupAction } from '../actions/auth/signupAction';
 // import { logInUser } from '../actions/auth/logInAction';
 

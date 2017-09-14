@@ -10,6 +10,9 @@ function setCurrentUser(user) {
   }
 }
 
+/**
+* @param {Boolean} - signedUp indicates if user just signed up
+*/
 function signedUp(signedUp) {
   return {
     type: types.SIGNED_UP,
@@ -26,6 +29,7 @@ export function signupAction(userData) {
       setAuthorizationToken(token);
       dispatch(setCurrentUser(jwtDecode(token)));
       dispatch(signedUp(true));
+      return res;
     })
     .catch((error) => {
       return error.response.data;
