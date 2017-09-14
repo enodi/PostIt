@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import Notifications, {notify} from 'react-notify-toast';
 import { signupAction } from '../actions/auth/signupAction';
 
 class SignUpForm extends React.Component {
@@ -12,7 +11,8 @@ class SignUpForm extends React.Component {
       fullname: '',
       username: '',
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -81,13 +81,11 @@ class SignUpForm extends React.Component {
     e.preventDefault();
     this.props.signupAction(this.state)
     .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           browserHistory.push('/dashboard');
         }
         else {
-          const error = res.message;
-          const colour = { background: '#C62828', text: '#ffffff' };
-          notify.show(error, "custom", 4000, colour);
+          this.setState({ error: res.message })
         }
       })
       .catch((error) => {
@@ -96,15 +94,17 @@ class SignUpForm extends React.Component {
     }
 
   render() {
+    // Deconstruct state
+    const { username, password, email, fullname } = this.state;
     return(
       <div id="test-swipe-1" className="col s12">
-        <Notifications />
         <h5>Create Your Account</h5>
+        <div style={{color: 'red'}}>{this.state.error}</div>
         <form onSubmit={this.onSubmit}>
           <div className="row signup">
             <div className="input-field col s12">
               <input
-                value={this.state.fullname}
+                value={fullname}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
                 onFocus={this.onFocus}
@@ -118,7 +118,7 @@ class SignUpForm extends React.Component {
           <div className="row signup">
             <div className="input-field col s12">
               <input
-                value={this.state.username}
+                value={username}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
                 onFocus={this.onFocus}
@@ -132,7 +132,7 @@ class SignUpForm extends React.Component {
           <div className="row signup">
             <div className="input-field col s12">
               <input
-                value={this.state.email}
+                value={email}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
                 onFocus={this.onFocus}
@@ -147,7 +147,7 @@ class SignUpForm extends React.Component {
           <div className="row signup">
             <div className="input-field col s12">
               <input
-                value={this.state.password}
+                value={password}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
                 onFocus={this.onFocus}
@@ -159,19 +159,6 @@ class SignUpForm extends React.Component {
             </div>
             <div style={{color:"red"}}>{this.state.passwordError}</div>
           </div>
-          {/*<div className="row signup">
-            <div className="input-field col s12">
-              <input
-                value={this.state.group}
-                onChange={this.onChange}
-                onBlur={this.onBlur}
-                className="validate"
-                type="text"
-                name="group"
-                id="group" />
-              <label htmlFor="group">Group (optional)</label>
-            </div>
-          </div>*/}
           <div className="row center button">
             <button
               className="btn-large waves-effect waves-light"

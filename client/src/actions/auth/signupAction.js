@@ -10,16 +10,6 @@ function setCurrentUser(user) {
   }
 }
 
-/**
-* @param {Boolean} - signedUp indicates if user just signed up
-*/
-function signedUp(signedUp) {
-  return {
-    type: types.SIGNED_UP,
-    signedUp
-  }
-}
-
 export function signupAction(userData) {
   return (dispatch) => {
     return axios.post('/api/user/signup', userData)
@@ -28,17 +18,10 @@ export function signupAction(userData) {
       localStorage.setItem('jwt', token);
       setAuthorizationToken(token);
       dispatch(setCurrentUser(jwtDecode(token)));
-      dispatch(signedUp(true));
       return res;
     })
     .catch((error) => {
       return error.response.data;
     });
   };
-}
-
-export function removeSignUpMessage() {
-  return (dispatch) => {
-    dispatch({ type: types.REMOVE_SIGN_UP_MESSAGE });
-  }
 }
