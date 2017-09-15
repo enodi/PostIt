@@ -15,38 +15,38 @@ describe('API Route', () => {
   describe('GET: /', () => {
     it('should return status code 200 when user accesses application index route', (done) => {
       request
-      .get('/')
-      .expect(200)
-      .expect(/Welcome to PostIt Application, Conversation just became easy/)
-      .end(done);
+        .get('/')
+        .expect(200)
+        .expect(/Welcome to PostIt Application, Conversation just became easy/)
+        .end(done);
     });
   });
 
   describe('GET: /api', () => {
     it('should return status code 200 when user accesses API index route', (done) => {
       request
-      .get('/api')
-      .expect(200)
-      .expect(/Welcome to PostIt Application API/)
-      .end(done);
+        .get('/api')
+        .expect(200)
+        .expect(/Welcome to PostIt Application API/)
+        .end(done);
     });
   });
 
   describe('GET: /', () => {
     it('should return status code 403 when user wrong route', (done) => {
       request
-      .get('/fdhs')
-      .expect(403)
-      .end(done);
+        .get('/fdhs')
+        .expect(403)
+        .end(done);
     });
   });
 
   describe('POST: /api/user/signup', () => {
     it('should return status code 200 when user accesses signup route', (done) => {
       request
-      .post('/api/user/signup')
-      .expect(200)
-      .end(done);
+        .post('/api/user/signup')
+        .expect(200)
+        .end(done);
     });
   });
 
@@ -54,9 +54,9 @@ describe('API Route', () => {
     describe('when user access route without token', () => {
       it('should return status code 403 No token provided', (done) => {
         request
-        .post('/api/group')
-        .expect(403)
-        .end(done);
+          .post('/api/group')
+          .expect(403)
+          .end(done);
       });
     });
   });
@@ -64,46 +64,46 @@ describe('API Route', () => {
     describe('when user tries to login with incomplete information', () => {
       it('should return status code 401 when no username and password are supplied', (done) => {
         request
-        .post('/api/user/signin')
-        .expect(401)
-        .end((err, res) => {
-          expect(res.body.message).toBe('Invalid credentials');
-          done();
-        });
+          .post('/api/user/signin')
+          .expect(401)
+          .end((err, res) => {
+            expect(res.body.message).toBe('Invalid credentials');
+            done();
+          });
       });
       it('should return status code 401 when no password is supplied', (done) => {
         request
-        .post('/api/user/signin')
-        .send({
-          username: 'user',
-        })
-        .expect(401)
-        .end((err, res) => {
-          expect(res.body.message).toBe('Invalid credentials');
-          done();
-        });
+          .post('/api/user/signin')
+          .send({
+            username: 'user',
+          })
+          .expect(401)
+          .end((err, res) => {
+            expect(res.body.message).toBe('Invalid credentials');
+            done();
+          });
       });
       it('should return status code 401 when no username is supplied', (done) => {
         request
-        .post('/api/user/signin')
-        .send({
-          password: 'password',
-        })
-        .expect(401)
-        .end((err, res) => {
-          expect(res.body.message).toBe('Invalid credentials');
-          done();
-        });
+          .post('/api/user/signin')
+          .send({
+            password: 'password',
+          })
+          .expect(401)
+          .end((err, res) => {
+            expect(res.body.message).toBe('Invalid credentials');
+            done();
+          });
       });
       it('should return status code  when no username is supplied', (done) => {
-      request
-      .post('/api/user/signin')
-      .send({})
-      .expect()
-      .end((err, res) => {
-      expect(res.body.message).toBe('Invalid credentials');
-      done();
-      });
+        request
+          .post('/api/user/signin')
+          .send({})
+          .expect()
+          .end((err, res) => {
+            expect(res.body.message).toBe('Invalid credentials');
+            done();
+          });
       });
     });
   });
