@@ -2,47 +2,47 @@ const Group = require('../models').Group;
 const Validator = require('validatorjs');
 
 const rules = {
-  group_name: 'required'
+  name: 'required'
 };
 
 module.exports = {
   // Handles creation of broadcast groups
   create(req, res) {
     const validation = new Validator(req.body, rules);
-    // if (!req.body.group_name) {
-    //   return res.json('All fields are required');
-    // }
     if (validation.passes()) {
       Group.findOne({
-        where: { groupName: req.body.group_name.toLowerCase() }
+        where: { name: req.body.name.toLowerCase() }
       })
       .then((groupExists) => {
         if (groupExists) {
-          if (groupExists.groupName === req.body.group_name.toLowerCase()) {
+          if (groupExists.name === req.body.name.toLowerCase()) {
             res.status(409).json('Group name already exists');
           }
         } else {
           Group.create({
-            groupName: req.body.group_name.toLowerCase()
+            name: req.body.name.toLowerCase(),
+            description: req.body.description
           })
           .then((group) => {
             const id = group.id;
-            const groupName = group.groupName;
+            const name = group.name;
+            const description = group.description;
             const createdAt = group.createdAt;
             if (group) {
               const data = {
                 data: [{
                   message: 'group created successfully',
                   id,
-                  groupName,
+                  name,
+                  description,
                   createdAt
                 }]
               };
-              return res.status(201).json(data);
+              return res.status(201).send(data);
             }
-            return res.status(400).json(group); // Return 400 upon bad request
+            return res.status(400).send(group); // Return 400 upon bad request
           })
-          .catch(error => res.status(404).json(error)); // Return 404 when request made wasn't found
+          .catch(error => res.status(404).send(error)); // Return 404 when request made wasn't found
         }
       });
     } else if (validation.fails()) {

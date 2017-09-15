@@ -3,22 +3,25 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import Routes from './Routes';
 import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
-// import thunk from 'redux-thunk';
-// import { createStore, applyMiddleware, compose } from 'redux';
-// import rootReducer from './reducers/rootReducer';
+import {signinSuccess} from './actions/auth/signinAction';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducers/rootReducer';
 import './assets/main.css';
 
-// Create an instance of store
-const store = configureStore()
-// // Defines the store
-// const store = createStore(
-//   rootReducer,
-//   compose(
-//     applyMiddleware(thunk),
-//     window.devToolsExtension ? window.devToolsExtension() : f => f
-//   )
-// );
+// Defines the store
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+);
+
+if (localStorage.jwt) {
+  store.dispatch(signinSuccess())
+}
+
 
 ReactDOM.render(
   <Provider store={store}>

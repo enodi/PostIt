@@ -1,37 +1,33 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // import { Link } from 'react-router';
 import Groups from './Groups';
 import Friends from './Friends';
-import {Input} from 'react-materialize'
+import { groupAction } from '../actions/groupAction';
 
-// const select =
 
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groupName: ''
+      name: '',
+      description: ''
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
-  handleChange(e) {
-    const options = e.target.options;
-    const selected = [];
-    const keys = Object.keys(options);
-    for (let i=0; i<keys.length; i++) {
-      if (options[i].selected) {
-        selected.push(options[i].value);
-      }
-    }
-    this.setState({ selected });
+  handleOnChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   onSubmit(e) {
-    console.log('submitting form');
-    this.props.createGroup(this.state);
+    e.preventDefault();
+    this.props.groupAction(this.state)
+    .then((res) => {
+      console.log(res);
+    });
   }
 
   render() {
@@ -40,26 +36,41 @@ class SideBar extends React.Component {
         <ul className="side-nav fixed" id="slide-out">
   				<li className="brand-logo logo-text">PostIt</li>
   				<li className="divider"></li>
-  				<li><a href="#modal1" className="sidebar-text modal-trigger ">GROUPS<i className="material-icons right sidebar-text" href="#modal1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+  				<li>
+            <a href="#modal1" className="sidebar-text modal-trigger ">
+              GROUPS
+            <i className="material-icons right sidebar-text" href="#modal1">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_box
+            </i>
+            </a>
+          </li>
   				<Groups name="General" />
   				<li className="divider"></li>
-  				<li><a href="#modal2" className="sidebar-text modal-trigger">PERSONAL MESSAGES<i className="material-icons right sidebar-text" href="#modal2">&nbsp;&nbsp;&nbsp;&nbsp;add_box</i></a></li>
+  				<li>
+            <a href="#modal2" className="sidebar-text modal-trigger">
+              PERSONAL MESSAGES
+              <i className="material-icons right sidebar-text" href="#modal2">
+                &nbsp;&nbsp;&nbsp;&nbsp;add_box
+              </i>
+              </a>
+            </li>
   				<Friends />
   			</ul>
-  			<a href="hello" data-activates="slide-out" className="button-collapse"><i className="material-icons">menu</i></a>
+  			<a href="hello" data-activates="slide-out" className="button-collapse">
+          <i className="material-icons">menu</i>
+        </a>
 
         {/* Create group Modal */}
         <div className="container group-container">
           <div className="row">
             <div className="col s12 m8 offset-m2 l9 offset-l3">
-              {/* Modal Trigger <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>*/}
-
 
               {/* Modal Structure */}
               <div id="modal1" className="modal modal-fullscreen">
                 <div className="modal-content">
                   <div className="modal-footer">
-                    <a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</a>
+                    <a href="#!"
+                      className="modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</a>
                   </div>
                   <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2>Create a Group</h2>
@@ -69,30 +80,25 @@ class SideBar extends React.Component {
                         <div className="input-field col s12">
                           <input
                             className="validate"
-                            onChange={this.onChange}
+                            onChange={this.handleOnChange}
                             type="text"
-                            name="groupName"
-                            id="name"
+                            name="name"
+                            value={this.state.name}
                             placeholder="e.g Andela" required/>
                           <label htmlFor="name">Group Name</label>
                         </div>
                         <div className="input-field col s12">
-                          <Input s={12} type='select' multiple defaultValue={[]} onChange={this.handleChange}>
-                            <option value="" disabled>Select Friends</option>
-                            <option value="1">Xerxes</option>
-                            <option value="2">Feivel</option>
-                            <option value="3">Adiel</option>
-                        	</Input>
-                          {/*<select multiple id="testSelect" onChange={this.handleChange} defaultValue={[]}>
-                            <option value="" disabled>Select Friends</option>
-                            <option value="1">Xerxes</option>
-                            <option value="2">Feivel</option>
-                            <option value="3">Adiel</option>
-                          </select>*/}
-                          <label>Send Invites (optional)</label>
+                          <input
+                            className="validate"
+                            onChange={this.handleOnChange}
+                            type="text"
+                            name="description"
+                            value={this.state.description}
+                            placeholder="Channel for fellows" />
+                          <label htmlFor="description">Description</label>
                         </div>
                         <div className="col l7 offset-l5 button">
-                          <button className="btn-large" type="button">Cancel</button>
+                          {/*<button className="btn-large" type="button">Cancel</button>*/}
                           <button
                             className="btn-large"
                             type="submit"
@@ -119,7 +125,10 @@ class SideBar extends React.Component {
               <div id="modal2" className="modal modal-fullscreen">
                 <div className="modal-content">
                   <div className="modal-footer">
-                    <a href="hello" className=" modal-action modal-close waves-effect waves-green btn-flat large material-icons">close</a>
+                    <a href="#"
+                      className="modal-action modal-close waves-effect waves-green btn-flat large material-icons">
+                      close
+                    </a>
                   </div>
                   <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2>Post a Message</h2>
@@ -130,7 +139,6 @@ class SideBar extends React.Component {
         									<input
                             className="validate"
                             type="text"
-                            id="name"
                             placeholder="e.g Hi" required />
         									<label htmlFor="name">Message</label>
         								</div>
@@ -161,4 +169,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar;
+export default connect(null, { groupAction })(SideBar);

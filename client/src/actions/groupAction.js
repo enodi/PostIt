@@ -1,9 +1,24 @@
 import axios from 'axios';
-// import { browserHistory } from 'react-router';
-// import * as actionTypes from './actionTypes';
+// import jwtDecode from 'jwt-decode';
+// import setAuthorizationToken from '../utils/setAuthorizationToken';
+import * as types from './actionTypes';
 
-// Action for creating new group
-export function createGroup(name){
-    axios.post('/api/group', name)
-    .then((res) => console.log(res))
+export function groupSuccess(group) {
+  return {
+    type: types.CREATE_GROUP_SUCCESSFUL,
+    group
+  };
+}
+
+export function groupAction(data) {
+  return (dispatch) => {
+    return axios.post('/api/group', data)
+    .then((res) => {
+      dispatch(groupSuccess());
+      return res;
+    })
+    .catch((error) => {
+      return error.response.data;
+    });
+  };
 }

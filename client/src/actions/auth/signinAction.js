@@ -21,7 +21,7 @@ export function signinAction(credentials) {
     })
     .catch((error) => {
       return error.response.data;
-    })
+    });
   };
 }
 
