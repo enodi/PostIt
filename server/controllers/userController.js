@@ -67,6 +67,13 @@ module.exports = {
   },
 
   signIn(req, res) {
+    const username = req.body.username || null;
+    const password = req.body.password || null;
+    if (!username || !password) {
+      return res.status(401).json({
+        message: 'Invalid credentials',
+      });
+    }
     // Handles user login
     User.findOne({ where: { username: req.body.username } })
    .then((user) => {

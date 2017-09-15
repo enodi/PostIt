@@ -14,7 +14,7 @@ export function groupAction(data) {
   return (dispatch) => {
     return axios.post('/api/group', data)
     .then((res) => {
-      dispatch(groupSuccess(res.data));
+      dispatch(groupSuccess());
       return res;
     })
     .catch((error) => {

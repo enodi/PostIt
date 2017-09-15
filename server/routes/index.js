@@ -1,3 +1,4 @@
+const path = require('path');
 const user = require('../controllers/userController');
 const group = require('../controllers/groupController');
 const usergroup = require('../controllers/usergroupController');
@@ -11,13 +12,21 @@ module.exports = (app) => {
     next();
   });
 
-  app.get('/', (req, res) => res.status(200).send({
-    message: 'Welcome to PostIt Application, Conversation just became easy',
-  }));
+  // app.get('/', (req, res) => res.status(200).send({
+  //   message: 'Welcome to PostIt Application, Conversation just became easy',
+  // }));
 
   app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to PostIt Application API',
   }));
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+  });
+
+  app.get('/dist/*', (req, res) => {
+    res.sendFile(path.join(__dirname, `../client/${req.originalUrl}`));
+  });
 
   // Route to allow users signup
   app.post('/api/user/signup', user.signUp);
@@ -26,7 +35,7 @@ module.exports = (app) => {
   app.post('/api/user/signin', user.signIn);
 
   // Performs user authentication on routes
-  app.use(authenticate.authentication);
+  // app.use(authenticate.authentication);
   // Route to allow user create a broadcast group
   app.post('/api/group', group.create);
 

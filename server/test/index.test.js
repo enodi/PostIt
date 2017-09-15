@@ -51,11 +51,60 @@ describe('API Route', () => {
   });
 
   describe('POST: /api/group', () => {
-    it('should return status code 200 when user accesses group route', (done) => {
+    describe('when user access route without token', () => {
+      it('should return status code 403 No token provided', (done) => {
+        request
+        .post('/api/group')
+        .expect(403)
+        .end(done);
+      });
+    });
+  });
+  describe('POST: /api/user/signin', () => {
+    describe('when user tries to login with incomplete information', () => {
+      it('should return status code 401 when no username and password are supplied', (done) => {
+        request
+        .post('/api/user/signin')
+        .expect(401)
+        .end((err, res) => {
+          expect(res.body.message).toBe('Invalid credentials');
+          done();
+        });
+      });
+      it('should return status code 401 when no password is supplied', (done) => {
+        request
+        .post('/api/user/signin')
+        .send({
+          username: 'user',
+        })
+        .expect(401)
+        .end((err, res) => {
+          expect(res.body.message).toBe('Invalid credentials');
+          done();
+        });
+      });
+      it('should return status code 401 when no username is supplied', (done) => {
+        request
+        .post('/api/user/signin')
+        .send({
+          password: 'password',
+        })
+        .expect(401)
+        .end((err, res) => {
+          expect(res.body.message).toBe('Invalid credentials');
+          done();
+        });
+      });
+      it('should return status code  when no username is supplied', (done) => {
       request
-      .post('/api/group')
-      .expect(200)
-      .end(done);
+      .post('/api/user/signin')
+      .send({})
+      .expect()
+      .end((err, res) => {
+      expect(res.body.message).toBe('Invalid credentials');
+      done();
+      });
+      });
     });
   });
 });
