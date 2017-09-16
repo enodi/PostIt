@@ -43,20 +43,20 @@ class SideBar extends React.Component {
           <li>
             <a href="#modal1" className="sidebar-text modal-trigger">
               GROUPS
-    <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
+              <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
             </a>
           </li>
           <Groups name="General" />
           <li className="divider"></li>
           <li><a href="#modal2" className="sidebar-text modal-trigger">
             PERSONAL MESSAGES
-  <i className="material-icons right sidebar-text" href="#modal2">add_box</i>
+          <i className="material-icons right sidebar-text" href="#modal2">add_box</i>
           </a>
           </li>
           <Friends />
         </ul>
         <a
-          href="hello"
+          href="#"
           data-activates="slide-out"
           className="button-collapse"
         >

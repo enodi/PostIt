@@ -11,10 +11,10 @@ export default class ActivityItem extends React.Component {
               <img src={activity.user.img} alt="" className="circle responsive-img" />
             </div>
             <div className="col s11">
-              <b>{activity.user.name}</b>
-              <span className="black-text">
+              <b><p>{activity.user.name}</p></b>
+              <p className="black-text">
                 {activity.user.text}
-              </span>
+              </p>
             </div>
           </div>
         </div>
