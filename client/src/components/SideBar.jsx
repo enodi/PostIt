@@ -2,7 +2,7 @@ import React from 'react';
 import {
   connect
 } from 'react-redux';
-// import { Link } from 'react-router';
+import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import Friends from './Friends';
 import { groupAction } from '../actions/groupAction';
@@ -27,10 +27,19 @@ class SideBar extends React.Component {
   }
 
   onSubmit(e) {
+    const color = { background: '#448AFF', text: '#FFFFFF' };
+    const myColor = { background: '#C62828', text: '#FFFFFF' };
     e.preventDefault();
     this.props.groupAction(this.state)
       .then((res) => {
-        console.log(res);
+        if (res.status === 201) {
+          notify.show(res.data.message, 'custom', 3000, color);
+        } else {
+          notify.show(res, 'custom', 3000, myColor);
+        }
+      })
+      .catch((error) => {
+        return error;
       });
   }
 
@@ -78,6 +87,7 @@ class SideBar extends React.Component {
                     >close
                     </a>
                   </div>
+                  <Notifications />
                   <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2> Create a Group </h2>
                     <p> Start a conversation with your friends by creating a group </p>

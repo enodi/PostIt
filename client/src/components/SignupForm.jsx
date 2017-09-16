@@ -85,12 +85,12 @@ class SignUpForm extends React.Component {
           browserHistory.push('/dashboard');
         }
         else {
-          this.setState({ error: res.message })
+          this.setState({ error: res.message });
         }
       })
       .catch((error) => {
         return error;
-      })
+      });
   }
 
   render() {
