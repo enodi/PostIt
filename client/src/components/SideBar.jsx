@@ -6,6 +6,9 @@ import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import Friends from './Friends';
 import { groupAction } from '../actions/groupAction';
+import MessageInput from './MessageInput';
+import MessageGroup from './MessageGroup';
+import MessageButton from './MessageButton';
 
 
 class SideBar extends React.Component {
@@ -18,12 +21,6 @@ class SideBar extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
-  }
-
-  handleOnChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
   }
 
   onSubmit(e) {
@@ -41,6 +38,12 @@ class SideBar extends React.Component {
       .catch((error) => {
         return error;
       });
+  }
+
+  handleOnChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   render() {
@@ -119,7 +122,7 @@ class SideBar extends React.Component {
                         <div className="col l7 offset-l5 button">
                           <button
                             className="btn-large"
-                            type="button"
+                            type="reset"
                           >
                             Cancel
                           </button>
@@ -154,36 +157,16 @@ class SideBar extends React.Component {
 </a> </div> <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2> Post a Message </h2> <p> Post a message to everyone in your group </p> <div className="row">
                       <form>
-                        <div className="input-field col s12">
-                          <input
-                            className="validate"
-                            type="text"
-                            placeholder="e.g Hi"
-                            required
-                          />
-                          <label htmlFor="name"> Message </label>
-                        </div>
-                        <div className="input-field col s12">
-                          <select multiple >
-                            <option value="" disabled defaultValue > </option>
-                            <option value="1"> Andela </option>
-                            <option value="2"> Andela - BootCamp </option>
-                            <option value="3"> General </option>
-                          </select>
-                          <label> Group Name(s) </label>
-                        </div> <div className="col l7 offset-l5 button">
+                        <MessageInput />
+                        <MessageGroup />
+                        <div className="col l7 offset-l5 button">
                           <button
                             className="btn-large"
-                            type="button"
+                            type="reset"
                           >
                             Cancel
                             </button>
-                          <button
-                            className="btn-large"
-                            type="submit"
-                            name="action"
-                          > Post Message
-                          </button>
+                          <MessageButton />
                         </div>
                       </form>
                     </div>
