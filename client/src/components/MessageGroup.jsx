@@ -1,19 +1,13 @@
 import React from 'react';
 
-const MessageGroup = ({ groups }) =>
+const MessageGroup = () =>
   (
     <div className="input-field col s12">
       <select multiple >
-        {
-          groups.map(group =>
-            (<option
-              id={group.id}
-              value={group.name}
-              disabled
-              defaultValue
-            />)
-          )
-        }
+        <option
+          disabled
+          defaultValue
+        />
       </select>
       <label> Group Name(s) </label>
     </div>
