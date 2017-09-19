@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
 const Validator = require('validatorjs');
 
-module.exports = {
+class user {
   // Handles user registration
-  signUp(req, res) {
+  static signUp(req, res) {
     const data = req.body;
     const validation = new Validator(data, rules);
     // Handle user signup if validation passes
@@ -33,22 +33,24 @@ module.exports = {
               });
             }
           } else {
-            User.create({
-              fullname: req.body.fullname,
-              username: req.body.username,
-              email: req.body.email,
-              password: req.body.password
-            })
-              .then((user) => {
-                const id = user.id;
-                const username = user.username;
-                const email = user.email;
-                const fullname = user.fullname;
-                if (user) {
-                  const token = jwt.sign({
-                    id: user.id,
-                    username: user.username
-                  }, 'Andela', {
+            User
+              .create({
+                fullname: req.body.fullname,
+                username: req.body.username,
+                email: req.body.email,
+                password: req.body.password
+              })
+              .then((userCreated) => {
+                if (userCreated) {
+                  const id = userCreated.id;
+                  const username = userCreated.username;
+                  const email = userCreated.email;
+                  const fullname = userCreated.fullname;
+                  const token = jwt
+                    .sign({
+                      userId: userCreated.id,
+                      username: userCreated.username
+                    }, req.app.get('jwtSecret'), {
                       expiresIn: '10h'
                     });
                   const data1 = {
@@ -69,15 +71,16 @@ module.exports = {
                 };
                 return res.status(400).send(data1);
               })
-              .catch(error => res.status(404).send(error));
+              .catch(error => res.status(501).send(error));
           }
-        });
+        })
+        .catch(error => res.status(501).send(error));
     } else if (validation.fails()) {
       res.json(validation.errors.all());
     }
-  },
+  }
 
-  signIn(req, res) {
+  static signIn(req, res) {
     const username = req.body.username || null;
     const password = req.body.password || null;
     if (!username || !password) {
@@ -86,19 +89,20 @@ module.exports = {
       });
     }
     // Handles user login
-    User.findOne({
-      where: {
-        username: req.body.username
-      }
-    })
-      .then((user) => {
-        if (!user) {
+    User
+      .findOne({
+        where: {
+          username: req.body.username
+        }
+      })
+      .then((userFound) => {
+        if (!userFound) {
           return res.status(401).send({
             message: 'Invalid credentials'
           });
         }
         // Compares password collected from user with password in database
-        const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
+        const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
         if (!passwordMatched) {
           // If password provided doesn't match password in database, return password doesn't match
           return res.status(401).send({
@@ -106,9 +110,11 @@ module.exports = {
           });
         }
         // If password provided matches password in database, generate user token
-        const token1 = jwt.sign({
-          username: user.username
-        }, 'Andela', {
+        const token1 = jwt
+          .sign({
+            username: userFound.username,
+            userId: userFound.id,
+          }, req.app.get('jwtSecret'), {
             expiresIn: '10h'
           });
         return res.send({
@@ -118,5 +124,6 @@ module.exports = {
         });
       })
       .catch(err => res.send(err));
-  },
-};
+  }
+}
+export default user;

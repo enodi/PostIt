@@ -10,6 +10,8 @@ import Routes from './Routes';
 import './src/assets/scripts';
 import { signinSuccess } from './src/actions/auth/signinAction';
 
+import setAuthorizationToken from './src/utils/setAuthorizationToken';
+
 // Defines the store
 const store = createStore(
   rootReducer,
@@ -20,6 +22,7 @@ const store = createStore(
 );
 
 if (localStorage.jwt) {
+  setAuthorizationToken(localStorage.jwt);
   store.dispatch(signinSuccess())
 }
 

@@ -1,14 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class Groups extends React.Component {
-  render() {
-    return(
+// export default class Groups extends React.Component {
+//   render() {
+//     console.log('this====', this.props.groups)
+//     // if(this.props.groups) {
+//     //   return (
+//     //     this.props.groups.Groups.map((group) => {
+//     //       <p>{group.name}</p>
+//     //     })
+//     //   )
+//     // } else return null
+//     // return(<p>new</p>)
+//     // const { userGroups } = this.props;
+//     // return(
+//       <div>
+//         {
+//           this.props.groups && this.props.groups.Groups.map((group) => {
+//             <li><Link to="#" className="sidebar-text black-text">another dude </Link></li>
+//           })
+//         }
+//       </div>
+//     // );
+//   }
+// }
+
+const Groups = (props) => {
+  return(
       <div>
-        <li><Link to="#" className="sidebar-text">{this.props.name}</Link></li>
-        {/*<li><a href="#" className="sidebar-text">Andela-BootCamp</a></li>
-        <li><a href="#" className="sidebar-text">Andela</a></li>*/}
+        {
+          props.groups && props.groups.Groups.map((group) => { return(
+            <li><Link to="#" className="sidebar-text black-text">{group.name}</Link></li>
+          )
+          })
+        }
       </div>
     );
-  }
 }
+
+export default Groups; 

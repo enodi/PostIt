@@ -2,24 +2,26 @@ module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     name: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: true
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
-    creator: {
-      type: DataTypes.STRING,
+    UserId: {
+      type: DataTypes.INTEGER,
+    }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Group.hasMany(models.Message);
+        Group.belongsToMany(models.User, {
+          through: 'UserGroup',
+          foreignKey: 'GroupId',
+          onDelete: 'CASCADE'
+        });
+      }
     }
   });
-  Group.associate = (models) => {
-    Group.belongsToMany(models.User, {
-      through: 'UserGroup',
-      foreignKey: 'groupId'
-    });
-    Group.hasMany(models.Message, {
-      foreignKey: 'groupId',
-      as: 'groupMessage'
-    });
-  };
   return Group;
 };
+

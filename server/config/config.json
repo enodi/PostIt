@@ -1,14 +1,14 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "adminpassword",
-    "database": "postitapp",
-    "host": "127.0.0.1",
+    "username": "andeladeveloper",
+    "password": null,
+    "database": "postgres",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
-    "password": "adminpassword",
+    "password": "postgres",
     "database": "postittest",
     "host": "127.0.0.1",
     "dialect": "postgres"

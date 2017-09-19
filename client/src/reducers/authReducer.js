@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
-import initialState from './initialState';
+import { authInitialState } from './initialState';
 
-export default function authReducer(state = initialState, action = {}) {
+export default function authReducer(state = authInitialState, action = {}) {
   switch (action.type) {
     case types.SIGNUP_SUCCESSFUL:
       return {

@@ -5,7 +5,7 @@ import {
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import Friends from './Friends';
-import { groupAction } from '../actions/groupAction';
+import { groupAction, retrieveGroups } from '../actions/groupAction';
 import MessageInput from './MessageInput';
 import MessageGroup from './MessageGroup';
 import MessageButton from './MessageButton';
@@ -21,6 +21,11 @@ class SideBar extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  componentDidMount() {
+    const { user } = this.props.currentUser
+    this.props.retrieveGroups(user.userId)
   }
 
   onSubmit(e) {
@@ -47,6 +52,8 @@ class SideBar extends React.Component {
   }
 
   render() {
+    console.log(this.props.groups, 'I got here')
+    const { userGroups } = this.props.groups
     return (
       <div>
         <ul className="side-nav fixed" id="slide-out">
@@ -58,7 +65,7 @@ class SideBar extends React.Component {
               <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
             </a>
           </li>
-          <Groups name="General" />
+          <Groups {...userGroups} />
           <li className="divider"></li>
           <li><a href="#modal2" className="sidebar-text modal-trigger">
             PERSONAL MESSAGES
@@ -181,6 +188,14 @@ class SideBar extends React.Component {
   }
 }
 
-export default connect(null, {
-  groupAction
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.authReducer,
+    groups: state.groupReducer
+  }
+}
+
+export default connect(mapStateToProps, {
+  groupAction,
+  retrieveGroups
 })(SideBar);

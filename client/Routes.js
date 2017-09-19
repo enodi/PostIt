@@ -24,10 +24,10 @@ export default (
 
 function requireAuth(nextState, replace) {
   // If token is not provided on login, redirect user to login page
-  if (!localStorage.jwt) {
-    replace ({
+  if (!window.localStorage.jwt) {
+    replace({
       pathname: '/signin',
       state: { nextPath: nextState.location.pathname }
-    })
+    });
   }
 }

@@ -17,6 +17,7 @@ export function signinAction(credentials) {
         const token = res.data.token;
         localStorage.setItem('jwt', token);
         // Dispatch loginSuccess action to the reducer
+
         setAuthorizationToken(token);
         dispatch(signinSuccess(jwtDecode(token)));
         return res;
@@ -34,3 +35,19 @@ export function signoutUser() {
     type: types.LOG_OUT
   };
 }
+
+// export function retrieveGroups(userId) {
+//   return (dispatch) => {
+//     return axios.get(`/api/user/${userId}/group`)
+//       .then((res) => {
+//         // Dispatch loginSuccess action to the reducer
+
+//         // dispatch(signinSuccess(jwtDecode(token)));
+//         return res;
+//       })
+//       .catch((error) => {
+//         throw error;
+//       });
+//   };
+// }
+

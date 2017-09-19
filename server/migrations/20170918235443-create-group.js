@@ -1,26 +1,26 @@
 module.exports = {
-  up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('Messages', {
+  up: (queryInterface, Sequelize) => {
+    queryInterface.createTable('Groups', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      message: {
+      name: {
         type: Sequelize.STRING,
-        allowNull: false
+        unique: true
       },
-      priority: {
-        type: Sequelize.STRING,
-        defaultValue: 'normal'
+      description: {
+        type: Sequelize.STRING
       },
-      groupId: {
+      UserId: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      sender: {
-        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +30,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }),
-  down: queryInterface => queryInterface.dropTable('Messages'),
+    });
+  },
+  down: (queryInterface) => {
+    queryInterface.dropTable('Groups');
+  }
 };

@@ -1,26 +1,34 @@
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     priority: {
       type: DataTypes.STRING,
       defaultValue: 'normal'
     },
-    groupId: {
+    GroupId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    sender: {
+    UserId: {
       type: DataTypes.INTEGER,
     }
+  }, {
+    classMethods: {
+      associate: (models) => {
+        Message.belongsTo(models.Group, {
+          foreignKey: 'GroupId',
+          onDelete: 'CASCADE'
+        });
+        Message.belongsTo(models.User, {
+          foreignKey: 'UserId',
+          onDelete: 'CASCADE'
+        });
+      }
+    }
   });
-  Message.associate = (models) => {
-    Message.belongsTo(models.Group, {
-      foreignKey: 'groupId',
-      onDelete: 'CASCADE'
-    });
-  };
   return Message;
 };
+
