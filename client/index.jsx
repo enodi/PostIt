@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './src/reducers/rootReducer';
@@ -9,6 +10,7 @@ import './src/assets/main.scss';
 import Routes from './Routes';
 import './src/assets/scripts';
 import { signinSuccess } from './src/actions/auth/signinAction';
+// import { signinSuccess } from './src/actions/auth/signinAction';
 
 import setAuthorizationToken from './src/utils/setAuthorizationToken';
 
@@ -22,8 +24,10 @@ const store = createStore(
 );
 
 if (localStorage.jwt) {
+  const token = localStorage.getItem('jwt');
   setAuthorizationToken(localStorage.jwt);
-  store.dispatch(signinSuccess())
+  store.dispatch(signinSuccess(jwtDecode(token)));
+  // store.dispatch(retrieveGroupsSuccess())
 }
 
 

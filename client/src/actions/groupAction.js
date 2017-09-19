@@ -32,7 +32,6 @@ export function retrieveGroups(userId) {
   return dispatch =>
     axios.get(`/api/user/${userId}/group`)
       .then((res) => {
-        console.log('I was called');
         dispatch(retrieveGroupsSuccess(res.data));
       })
       .catch((error) => {

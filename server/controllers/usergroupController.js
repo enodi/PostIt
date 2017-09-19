@@ -90,7 +90,7 @@ class userGroupClass {
   // Retrives all groups a particular user belongs to
   static retrieveGroups(req, res) {
     const userID = parseInt(req.params.user_id, 10);
-    console.log('======', userID);
+    // console.log('======', userID);
     if (isNaN(userID)) {
       return res.status(404).json({
         error: 'Invalid User Id',
@@ -109,7 +109,7 @@ class userGroupClass {
     // }).then((foundUser) => {
     //   console.log('*******', foundUser);
     //   foundUser.getGroups({
-    //     joinTableAttributes: [] 
+    //     joinTableAttributes: []
     //   }).then((groups) => {
     //     res.status(200).json({
     //       groups
@@ -118,12 +118,13 @@ class userGroupClass {
     //     console.log(err, '=========')
     //   })
     // });
-    
+
     User.findOne({
       where: { id: req.params.user_id },
       attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       include: [
-        { model: Group }
+        { model: Group,
+          attributes: ['name', 'description', 'createdAt', ['UserId', 'ownerId']] }
       ]
     }).then((groups) => {
       res.status(200).json({

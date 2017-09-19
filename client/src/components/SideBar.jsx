@@ -25,6 +25,7 @@ class SideBar extends React.Component {
 
   componentDidMount() {
     const { user } = this.props.currentUser
+    // Retrieve all groups a user belongs to
     this.props.retrieveGroups(user.userId)
   }
 
@@ -52,7 +53,7 @@ class SideBar extends React.Component {
   }
 
   render() {
-    console.log(this.props.groups, 'I got here')
+    // console.log(this.props.groups, 'I got here')
     const { userGroups } = this.props.groups
     return (
       <div>

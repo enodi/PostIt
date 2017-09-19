@@ -18,8 +18,6 @@ class group {
         .then((groupExists) => {
           if (groupExists) {
             if (groupExists.name === req.body.name.toLowerCase()) {
-              console.log(req.decoded, '=========0==')
-              
               return res.status(409).json('Group name already exists');
             }
           } else {
@@ -29,14 +27,11 @@ class group {
                 description: req.body.description
               })
               .then((groupCreated) => {
-                console.log(req.decoded, '=========1==')
                 User.findOne({
                   where: { id: req.decoded.userId }
                 }).then((foundUser) => {
                   if (groupCreated) {
                     groupCreated.addUser(foundUser).then(() => {
-                console.log('======2=====')
-                
                       const id = groupCreated.id;
                       const name = groupCreated.name;
                       const description = groupCreated.description;
@@ -53,23 +48,17 @@ class group {
                     });
                   }
                 });
-                console.log('======3=====')
-                
                 // return res.status(400).send({ error: 'Unsuccessful' }); // Return 400 upon bad request
               })
               .catch((error) => {
-                console.log('=====4======')
-                
-                res.status(501).send(error)}); // Return 501 when request wasn't completed
+                res.status(404).send({ error: 'Not Found' });
+              }); // Return 501 when request wasn't completed
           }
         })
         .catch((error) => {
-          console.log('=====5======')
-          
-          res.status(501).send(error)});
+          res.status(404).send({ error: 'Not Found' });
+        });
     } else {
-      console.log('=====6======')
-      
       return res.json(validation.errors.all());
     }
   }

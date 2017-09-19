@@ -17,7 +17,6 @@ class authenticate {
     } else {
       // If token isn't provided
       return res.status(403).send({
-        error: true,
         message: 'Unauthorised user'
       });
     }
