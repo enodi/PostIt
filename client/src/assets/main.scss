@@ -143,12 +143,16 @@
 		color: #e0e0e0 !important;
 	}
 	li {
+		&:hover {
+			background-color: #6e3c61 !important;
+		}
 		a {
 			font-family: 'Raleway', sans-serif;
 			font-size: 13px !important;
+			
 		}
 		i.material-icons {
-			margin: 0px 0px 0px 0px !important;
+			margin: 20px 0px 0px 0px !important;
 		}
 	}
 }

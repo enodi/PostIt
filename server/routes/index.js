@@ -2,24 +2,22 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import path from 'path';
+import dotenv from 'dotenv';
+import validations from '../middleware/validateGroup';
 
-import user from '../controllers/userController';
-import group from '../controllers/groupController';
-import userGroupClass from '../controllers/usergroupController';
-import message from '../controllers/messageController';
 import authenticate from '../middleware/authenticate';
+import { user, group, usergroup, message } from '../controllers';
 
+// import user from '../controllers/userController';
+// import group from '../controllers/groupController';
+// import userGroupClass from '../controllers/usergroupController';
+// import message from '../controllers/messageController';
 
-require('dotenv').config();
-
-
-const JwTSecret = process.env.JWT_TOKEN;
+dotenv.config();
 
 const app = express();
 // Log requests to console
 app.use(logger('dev'));
-
-app.set('jwtSecret', JwTSecret);
 
 // Parse incoming request data
 app.use(bodyParser.json());
@@ -50,19 +48,19 @@ app.post('/api/user/signup', user.signUp);
 app.post('/api/user/signin', user.signIn);
 
 // Performs user authentication on routes
-app.use(authenticate.authentication);
+app.use(authenticate.isLoggedIn);
 // Route to allow user create a broadcast group
-app.post('/api/group', group.create);
+app.post('/api/group', validations.validateGroup, group.create);
 // app.get('/api/user/:userId/groups', group.create);
 
 // Route to allow users add other users to group
-app.post('/api/group/:group_id/user', userGroupClass.create);
+app.post('/api/group/:group_id/user', usergroup.create);
 
 // Route to retrieve all groups a particular user belongs to
-app.get('/api/user/:user_id/group', userGroupClass.retrieveGroups);
+app.get('/api/user/:user_id/group', usergroup.retrieveGroups);
 
 // Route to retrieve all users that belong to a particular group
-app.get('/api/group/:group_id/user', userGroupClass.retrieveUsers);
+app.get('/api/group/:group_id/user', usergroup.retrieveUsers);
 
 // Route to allow loggedIn users post messages to created groups
 app.post('/api/group/:group_id/message', message.create);

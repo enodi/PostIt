@@ -1,11 +1,7 @@
-const user = require('./userController');
-const group = require('./groupController');
-const usergroup = require('./usergroupController');
-const message = require('./messageController');
+import user from './userController';
+import group from './groupController';
+import usergroup from './usergroupController';
+import message from './messageController';
 
-module.exports = {
-  user,
-  group,
-  usergroup,
-  message
-};
+export { user, group, usergroup, message };
+

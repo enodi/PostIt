@@ -53,7 +53,6 @@ class SideBar extends React.Component {
   }
 
   render() {
-    // console.log(this.props.groups, 'I got here')
     const { userGroups } = this.props.groups
     return (
       <div>
@@ -162,7 +161,7 @@ class SideBar extends React.Component {
                       href="#"
                       className="modal-action modal-close waves-effect waves-green btn-flat large material-icons"
                     >close
-</a> </div> <div className="col s12 m8 offset-m2 l8 offset-l2">
+                    </a> </div> <div className="col s12 m8 offset-m2 l8 offset-l2">
                     <h2> Post a Message </h2> <p> Post a message to everyone in your group </p> <div className="row">
                       <form>
                         <MessageInput />

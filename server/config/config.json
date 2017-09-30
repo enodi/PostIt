@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "andeladeveloper",
+    "username": "Enodi",
     "password": null,
-    "database": "postgres",
+    "database": "postit",
     "host": "localhost",
     "dialect": "postgres"
   },

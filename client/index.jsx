@@ -8,9 +8,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './src/reducers/rootReducer';
 import './src/assets/main.scss';
 import Routes from './Routes';
-import './src/assets/scripts';
 import { signinSuccess } from './src/actions/auth/signinAction';
-// import { signinSuccess } from './src/actions/auth/signinAction';
+import './src/assets/scripts';
 
 import setAuthorizationToken from './src/utils/setAuthorizationToken';
 
@@ -27,7 +26,6 @@ if (localStorage.jwt) {
   const token = localStorage.getItem('jwt');
   setAuthorizationToken(localStorage.jwt);
   store.dispatch(signinSuccess(jwtDecode(token)));
-  // store.dispatch(retrieveGroupsSuccess())
 }
 
 
@@ -36,6 +34,3 @@ ReactDOM.render(
     <Router history={browserHistory}>{Routes}</Router>
   </Provider>, document.getElementById('root'));
 
-// if (module.hot) {
-//   module.hot.accept();
-// }

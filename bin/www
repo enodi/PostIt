@@ -1,8 +1,6 @@
-// Import http and app
-// const http = require('http');
 import http from 'http';
-import app from '../server/routes';
 
+import app from '../server/routes';
 // const app = require('../index');
 
 // Use port 8888 unless there exist a preconfigured port

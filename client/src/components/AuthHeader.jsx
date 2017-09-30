@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import DropDown from './DropDown';
 
-export const AuthHeader = (props) => {
+export default class AuthHeader extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      search: ''
+    }
+  } 
   return (
     <nav className="white dashboard">
       <div className="nav-wrapper">

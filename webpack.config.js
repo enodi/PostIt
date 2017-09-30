@@ -3,7 +3,6 @@ const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './client/index.html',
@@ -40,30 +39,30 @@ module.exports = {
   },
   module: {
     rules: [{
-        test: /\.(png|jpg)$/,
-        loader: 'file-loader'
-      },
-      {
-        test: /\.scss$/,
-        use: extractCSSPlugin.extract({
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          cacheDirectory: true,
-          presets: ['react', 'es2015'],
-        }
+      test: /\.(png|jpg)$/,
+      loader: 'file-loader'
+    },
+    {
+      test: /\.scss$/,
+      use: extractCSSPlugin.extract({
+        use: ['css-loader', 'sass-loader']
+      })
+    },
+    {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/,
+      query: {
+        cacheDirectory: true,
+        presets: ['react', 'es2015'],
+      }
 
-      },
-      {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      },
+    },
+    {
+      test: /\.jsx$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    },
     ]
   },
 

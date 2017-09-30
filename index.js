@@ -1,4 +1,4 @@
-// // Import express, morgan and body-parser
+// // // Import express, morgan and body-parser
 
 // // const express = require('express');
 // // const bodyParser = require('body-parser');
@@ -24,5 +24,5 @@
 // // Require routes for the Application
 // require('./server/routes')(app);
 
-// export default app;
-// // module.exports = app;
+// //export default app;
+// module.exports = app;

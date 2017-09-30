@@ -1,10 +1,8 @@
-// Import Message Model
-// const Message = require('../models').Message;
 import { Message } from '../models';
 
 
 // Handles posting of messages to user groups
-class message {
+class MessageClass {
   static create(req, res) {
     if (!req.body.user_id || !req.body.message) {
       return res.status(401).json('All fields are required');
@@ -38,4 +36,4 @@ class message {
       .catch(error => res.status(400).json(error));
   }
 }
-export default message;
+export default MessageClass;
