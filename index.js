@@ -1,28 +1,24 @@
-// // // Import express, morgan and body-parser
+import express from 'express';
+import bodyParser from 'body-parser';
+import logger from 'morgan';
+import path from 'path';
+import UserRouter from './server/routes/users';
+import GroupsRouter from './server/routes/groups';
 
-// // const express = require('express');
-// // const bodyParser = require('body-parser');
-// // const logger = require('morgan');
-// // const path = require('path');
-// import express from 'express';
-// import bodyParser from 'body-parser';
-// import logger from 'morgan';
-// import path from 'path';
-// // Create an instance of express
-// const app = express();
 
-// // Log requests to console
-// app.use(logger('dev'));
+const app = express();
 
-// // Parse incoming request data
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-//   extended: false
-// }));
-// // app.use(express.static('dist'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-// // Require routes for the Application
-// require('./server/routes')(app);
+app.get('/', (req, res) => res.status(200).send({
+  message: 'Welcome to PostIt Application, Conversation just became easy',
+}));
 
-// //export default app;
-// module.exports = app;
+app.use('/api/users', UserRouter);
+app.use('/api/groups', GroupsRouter);
+
+export default app;
