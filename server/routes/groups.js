@@ -4,7 +4,7 @@ import GroupController from '../controllers/groupController';
 import UserGroupController from '../controllers/usergroupController';
 import MessageController from '../controllers/messageController';
 import authenticate from '../middleware/authenticate';
-import validations from '../middleware/validateGroup';
+import validations from '../middleware/validation';
 
 const app = express.Router();
 
@@ -14,7 +14,7 @@ app.route('/')
   .post(validations.validateGroup, GroupController.create);
 
 app.route('/:group_id/user')
-  .post(UserGroupController.create)
+  .post(validations.validateUserGroup, UserGroupController.create)
   .get(UserGroupController.retrieveUsers);
 
 app.route('/:group_id/message')

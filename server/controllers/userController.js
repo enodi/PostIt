@@ -6,84 +6,49 @@ import { User } from '../models';
 import rules from '../validation';
 
 class UserClass {
-  // Handles user registration
   static signUp(req, res) {
-    const data = req.body;
-    const validation = new Validator(data, rules);
-
-    if (validation.fails()) {
-      res.json(validation.errors.all());
-    }
-
     User
-    .findOne({
-      where: {
-        $or: [{
-          email: req.body.email
-        }, {
-          username: req.body.username
-        }]
-      }
-    })
-    .then((userExists) => {
-      if (userExists) {
-        if (userExists.email === req.body.email) {
-          return res.status(409).json({
-            message: 'Email already exists'
-          });
-        }
-        if (userExists.username === req.body.username) {
-          return res.status(409).json({
-            message: 'Username already exists'
-          });
-        }
-      }
-      User
-        .create({
-          fullname: req.body.fullname,
-          username: req.body.username,
-          email: req.body.email,
-          password: req.body.password
-        })
-        .then((userCreated) => {
-          if (userCreated) {
-            const id = userCreated.id;
-            const username = userCreated.username;
-            const email = userCreated.email;
-            const fullname = userCreated.fullname;
-            const token = jwt
-              .sign({
-                userId: userCreated.id,
-                username: userCreated.username
-              }, process.env.JWT_SECRET, {
-                expiresIn: '10h'
-              });
-            const data1 = {
-              message: 'User created successfully',
-              id,
-              username,
-              email,
-              fullname,
-              token
-            };
-            return res.status(201).send(data1);
-          }
-          const data1 = {
-            error: [{
-              status: 400,
-              detail: 'User not created'
-            }]
+      .create({
+        fullname: req.body.fullname,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then((userCreated) => {
+        if (userCreated) {
+          const { id,
+            username,
+            email,
+            fullname } = userCreated;
+          const token = jwt
+            .sign({
+              userId: userCreated.id,
+              username: userCreated.username
+            }, process.env.JWT_SECRET, {
+              expiresIn: '10h'
+            });
+          const user = {
+            id,
+            username,
+            email,
+            fullname,
+            token
           };
-          return res.status(400).send(data1);
-        })
-          .catch(error => res.status(501).send(error));
-    })
-    .catch(error => res.status(501).send(error));
+          return res.status(201).send(user);
+        }
+        const data1 = {
+          error: [{
+            detail: 'User not created'
+          }]
+        };
+        return res.status(400).send(data1);
+      })
+      .catch(error => res.status(501).send(error));
   }
 
   static signIn(req, res) {
     if (!req.body.username || !req.body.password) {
-      return res.status(401).json({
+      return res.status(400).json({
         message: 'Invalid credentials',
       });
     }
@@ -96,7 +61,7 @@ class UserClass {
       })
       .then((userFound) => {
         if (!userFound) {
-          return res.status(400).send({
+          return res.status(409).send({
             message: 'Invalid credentials'
           });
         }
@@ -104,12 +69,12 @@ class UserClass {
         const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
         if (!passwordMatched) {
           // If password provided doesn't match password in database, return password doesn't match
-          return res.status(401).send({
+          return res.status(409).send({
             message: 'Invalid credentials'
           });
         }
         // If password provided matches password in database, generate user token
-        const token1 = jwt
+        const token = jwt
           .sign({
             username: userFound.username,
             userId: userFound.id,
@@ -118,8 +83,7 @@ class UserClass {
           });
         return res.send({
           success: true,
-          message: 'Login successful',
-          token: token1
+          token
         });
       })
       .catch(err => res.send(err));

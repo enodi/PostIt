@@ -18,7 +18,7 @@ app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to PostIt Application, Conversation just became easy',
 }));
 
-app.use('/api/users', UserRouter);
-app.use('/api/groups', GroupsRouter);
+app.use('/api/user', UserRouter);
+app.use('/api/group', GroupsRouter);
 
 export default app;
