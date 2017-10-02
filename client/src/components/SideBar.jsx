@@ -4,7 +4,6 @@ import {
 } from 'react-redux';
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
-import Friends from './Friends';
 import { groupAction, retrieveGroups } from '../actions/groupAction';
 
 class SideBar extends React.Component {

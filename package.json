@@ -49,6 +49,7 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.2.0",
     "supertest": "^3.0.0",
+    "toastr": "^2.1.2",
     "ui-notifier": "^0.1.2",
     "validator": "^8.1.0",
     "validatorjs": "^3.13.3",

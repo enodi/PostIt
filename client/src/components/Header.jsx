@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, IndexLink } from 'react-router';
 import {connect} from 'react-redux';
-import DropDown from './DropDown';
 import SearchResult from './SearchResult';
-import { retrieveUsers } from '../actions/searchAction.js';
+import { retrieveUsers } from '../actions/searchAction';
+import { signOutUser } from '../actions/auth/signinAction';
 
 class Header extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Header extends React.Component {
     }
 
     this.onChange = this.onChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,6 +28,11 @@ class Header extends React.Component {
   onChange(e) {
     this.setState({ search: e.target.value });
     this.props.retrieveUsers(e.target.value);
+  }
+
+  handleOnClick(e) {
+    e.preventDefault();
+    this.props.signOutUser();
   }
 
   render() {
@@ -55,7 +61,7 @@ class Header extends React.Component {
            <div className="nav-wrapper">
              <Link to="/" className="brand-logo li">PostIt</Link>
              <ul className="right hide-on-med-and-down">
-               <li><i className="large material-icons black-text">input</i></li>
+               <li><i className="large material-icons black-text" onClick={this.handleOnClick}>input</i></li>
              </ul>
              <ul className="side-nav" id="mobile-demo">
                <li><i className="large material-icons black-text">input</i></li>
@@ -75,4 +81,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { retrieveUsers })(Header);
+export default connect(mapStateToProps, { retrieveUsers, signOutUser })(Header);

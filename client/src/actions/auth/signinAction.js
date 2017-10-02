@@ -1,5 +1,7 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import jwtDecode from 'jwt-decode';
+import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
 
@@ -10,6 +12,12 @@ export function signinSuccess(user) {
   };
 }
 
+export function signOutSuccess() {
+  return {
+    type: types.SIGN_OUT_SUCCESSFUL
+  };
+}
+
 export function signinAction(credentials) {
   return (dispatch) => {
     return axios.post('/api/user/signin', credentials)
@@ -17,22 +25,22 @@ export function signinAction(credentials) {
         const token = res.data.token;
         localStorage.setItem('jwt', token);
         // Dispatch loginSuccess action to the reducer
-
         setAuthorizationToken(token);
         dispatch(signinSuccess(jwtDecode(token)));
-        return res;
+        browserHistory.push('/dashboard');
       })
       .catch((error) => {
-        throw error;
+        toastr.error(error.response.data.message);
       });
   };
 }
 
-export function signoutUser() {
-  // Remove JWT from sessionStorage when user logs out
-  localStorage.removeItem('jwt');
-  return {
-    type: types.LOG_OUT
+export function signOutUser() {
+  return (dispatch) => {
+    // Remove JWT from sessionStorage when user logs out
+    localStorage.removeItem('jwt');
+    dispatch(signOutSuccess());
+    browserHistory.push('/signin');
   };
 }
 

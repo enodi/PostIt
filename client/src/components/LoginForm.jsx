@@ -76,21 +76,6 @@ class LogInForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.signinAction(this.state)
-      .then((res) => {
-        if (res.status === 200) {
-          // this.context.router.history.push('/dashboard');
-          browserHistory.push('/dashboard');
-        } else {
-          this.setState({
-            error: res.message
-          });
-        }
-      })
-      .catch((err) => {
-        this.setState({
-          error: err.response.data.message,
-        });
-      });
   }
 
   render() {
