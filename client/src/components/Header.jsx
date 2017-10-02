@@ -2,17 +2,32 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 import {connect} from 'react-redux';
 import DropDown from './DropDown';
+import SearchResult from './SearchResult';
+import { retrieveUsers } from '../actions/searchAction.js';
 
 class Header extends React.Component {
   constructor(props) {
-    super();
-    // this.logOut = this.logOut.bind(this);
+    super(props);
+    this.state = {
+      search: '',
+      searchResult: []
+    }
+
+    this.onChange = this.onChange.bind(this);
   }
 
-  // logOut(e) {
-  //   e.preventDefault();
-  //   this.props.actions.logOutUser();
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searchResult) {
+      this.setState({
+        searchResult: nextProps.searchResult
+      });
+    }
+  }
+
+  onChange(e) {
+    this.setState({ search: e.target.value });
+    this.props.retrieveUsers(e.target.value);
+  }
 
   render() {
     if (!this.props.logged_in) {
@@ -36,43 +51,17 @@ class Header extends React.Component {
       );
     } else {
       return(
-        <nav className="white dashboard">
-    				<div className="nav-wrapper">
-    					<Link to="#" className="brand-logo li">PostIt</Link>
-    						<ul className="hide-on-med-and-down right">
-                  <li className="li">
-                     <div className="center row">
-                        <div className="col s12 " >
-                          <div className="row" id="topbarsearch">
-                            <div className="input-field col s6 s12 li">
-                              <i className="material-icons prefix">search</i>
-                              <input type="text" placeholder="Search..." id="autocomplete-input" className="autocomplete red-text" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                    </li>
-    								{/*<li className="li"><i className="material-icons">message</i></li>*/}
-    								<li className="li">
-                      <Link to="#"
-                        className="dropdown-button li"
-                        data-activates="dropdown" >
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;Enodi
-                        <i className="material-icons right">
-                          arrow_drop_down
-                        </i>
-                      </Link>
-                    </li>
-    						</ul>
-    				</div>
-            <DropDown
-              profile="My Profile"
-              board="Message Board"
-              settings="Settings"
-              signout="SignOut"/>
-    			</nav>
+        <nav className="white dashboard logout-icon">
+           <div className="nav-wrapper">
+             <Link to="/" className="brand-logo li">PostIt</Link>
+             <ul className="right hide-on-med-and-down">
+               <li><i className="large material-icons black-text">input</i></li>
+             </ul>
+             <ul className="side-nav" id="mobile-demo">
+               <li><i className="large material-icons black-text">input</i></li>
+             </ul>
+           </div>
+         </nav>
       );
     }
   }
@@ -80,7 +69,10 @@ class Header extends React.Component {
 
 
 function mapStateToProps(state, ownProps) {
-  return {logged_in: state.authReducer.isAuthenticated};
+  return {
+    logged_in: state.authReducer.isAuthenticated,
+    searchResult: state.searchReducer.search
+  };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { retrieveUsers })(Header);

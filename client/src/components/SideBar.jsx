@@ -6,10 +6,6 @@ import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import Friends from './Friends';
 import { groupAction, retrieveGroups } from '../actions/groupAction';
-import MessageInput from './MessageInput';
-import MessageGroup from './MessageGroup';
-import MessageButton from './MessageButton';
-
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -24,6 +20,7 @@ class SideBar extends React.Component {
   }
 
   componentDidMount() {
+    $('.modal').modal();
     const { user } = this.props.currentUser
     // Retrieve all groups a user belongs to
     this.props.retrieveGroups(user.userId)
@@ -66,13 +63,6 @@ class SideBar extends React.Component {
             </a>
           </li>
           <Groups {...userGroups} />
-          <li className="divider"></li>
-          <li><a href="#modal2" className="sidebar-text modal-trigger">
-            PERSONAL MESSAGES
-          <i className="material-icons right sidebar-text" href="#modal2">add_box</i>
-          </a>
-          </li>
-          <Friends />
         </ul>
         <a
           href="#"
@@ -149,45 +139,11 @@ class SideBar extends React.Component {
             </div>
           </div>
         </div>
-
-        { /* Post message Modal */}
-        <div className="container group-container">
-          <div className="row">
-            <div className="col s12 m8 offset-m2 l9 offset-l3">
-              <div id="modal2" className="modal modal-fullscreen">
-                <div className="modal-content">
-                  <div className="modal-footer">
-                    <a
-                      href="#"
-                      className="modal-action modal-close waves-effect waves-green btn-flat large material-icons"
-                    >close
-                    </a> </div> <div className="col s12 m8 offset-m2 l8 offset-l2">
-                    <h2> Post a Message </h2> <p> Post a message to everyone in your group </p> <div className="row">
-                      <form>
-                        <MessageInput />
-                        <MessageGroup />
-                        <div className="col l7 offset-l5 button">
-                          <button
-                            className="btn-large"
-                            type="reset"
-                          >
-                            Cancel
-                            </button>
-                          <MessageButton />
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
 }
-
+    
 const mapStateToProps = (state) => {
   return {
     currentUser: state.authReducer,

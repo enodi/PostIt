@@ -21,6 +21,7 @@ class SignUpForm extends React.Component {
     this.onFocus = this.onFocus.bind(this);
   }
 
+
   onFocus(e) {
     const name = e.target.name;
     switch (name) {
@@ -97,7 +98,7 @@ class SignUpForm extends React.Component {
     // Deconstruct state
     const { username, password, email, fullname } = this.state;
     return (
-      <div id="test-swipe-1" className="col s12">
+      <div id="test-swipe-2" className="col s12">
         <h5>Create Your Account</h5>
         <div style={{ color: 'red' }}>{this.state.error}</div>
         <form onSubmit={this.onSubmit}>

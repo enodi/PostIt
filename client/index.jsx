@@ -5,11 +5,14 @@ import { Provider } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+
+import 'materialize-css/dist/js/materialize';
+import './src/assets/scripts';
+
 import rootReducer from './src/reducers/rootReducer';
 import './src/assets/main.scss';
 import Routes from './Routes';
 import { signinSuccess } from './src/actions/auth/signinAction';
-import './src/assets/scripts';
 
 import setAuthorizationToken from './src/utils/setAuthorizationToken';
 

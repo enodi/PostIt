@@ -46,7 +46,9 @@ const validations = {
       User.findOne({
         where: {
           $or: [{
-            email,
+            email
+          },
+          {
             username
           }]
         }

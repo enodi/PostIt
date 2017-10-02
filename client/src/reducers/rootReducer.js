@@ -3,10 +3,12 @@ import { combineReducers } from 'redux';
 // import signinReducer from './signinReducer'
 import authReducer from './authReducer';
 import groupReducer from './groupReducer';
+import searchReducer from './searchReducer';
 
 const rootReducer = combineReducers({
   authReducer,
-  groupReducer
+  groupReducer,
+  searchReducer
 });
 
 export default rootReducer;

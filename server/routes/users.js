@@ -14,7 +14,10 @@ app.route('/signin')
 
 app.use(authenticate.isLoggedIn);
 app.route('/:user_id/group')
-  .post(UserGroupController.retrieveGroups);
+  .get(UserGroupController.retrieveGroups);
 
+app.use(authenticate.isLoggedIn);
+app.route('/search')
+  .get(UserController.fetchUsers);
 
 export default app;

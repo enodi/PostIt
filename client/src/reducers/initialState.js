@@ -7,3 +7,7 @@ export const groupInitialState = {
   newGroup: [],
   userGroups: {}
 };
+
+export const searchInitialState = {
+  search: []
+};

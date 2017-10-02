@@ -25,6 +25,7 @@ class LogInForm extends React.Component {
     this.onFocus = this.onFocus.bind(this);
   }
 
+
   onFocus(e) {
     // Clear error message when user is focused on a particular field
     const name = e.target.name;
@@ -100,7 +101,7 @@ class LogInForm extends React.Component {
     } = this.state;
     return (
       <div
-        id="test-swipe-2"
+        id="test-swipe-1"
         className="col s12"
       >
         <h5 > Log Into Your Account </h5>

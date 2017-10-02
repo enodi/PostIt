@@ -36,18 +36,3 @@ export function signoutUser() {
   };
 }
 
-// export function retrieveGroups(userId) {
-//   return (dispatch) => {
-//     return axios.get(`/api/user/${userId}/group`)
-//       .then((res) => {
-//         // Dispatch loginSuccess action to the reducer
-
-//         // dispatch(signinSuccess(jwtDecode(token)));
-//         return res;
-//       })
-//       .catch((error) => {
-//         throw error;
-//       });
-//   };
-// }
-

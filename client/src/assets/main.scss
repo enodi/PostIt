@@ -122,11 +122,23 @@
 	.li {
 		padding: 0px 12px;
 		color: #333 !important;
-	}
-	li {
 		a {
 			&:hover {
 				background-color: transparent !important;
+			}
+		}
+	}
+}
+
+.logout-icon {
+	ul {
+		li {
+			margin-right: 80px;
+			i {
+				font-size: 40px;
+				&:hover {
+					background-color: transparent !important;
+				}
 			}
 		}
 	}
@@ -154,6 +166,12 @@
 		i.material-icons {
 			margin: 20px 0px 0px 0px !important;
 		}
+	}
+}
+
+#message-modal {
+	label {
+		margin-right: 50px;
 	}
 }
 

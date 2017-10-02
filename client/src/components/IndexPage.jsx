@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Footer } from './Footer';
-import bk from '../assets/images/3.jpg';
 
 export default class IndexPage extends Component {
+  componentDidMount () {
+    $('.parallax').parallax();
+    $('.button-collapse').sideNav();
+  }
+
   render() {
     return(
       <div>
@@ -24,7 +28,7 @@ export default class IndexPage extends Component {
             </div>
           </div>
            <div className="parallax">
-             <img src={bk} alt="" />
+             <img src={require("../assets/images/3.jpg")} alt="" />
             </div>
          </div>
 

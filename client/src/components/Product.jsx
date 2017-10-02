@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Footer } from './Footer';
 
 export default class Product extends Component {
+  componentDidMount () {
+    $('.parallax').parallax();
+  }
+  
   render() {
     return(
       <div>

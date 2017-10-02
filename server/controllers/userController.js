@@ -1,9 +1,6 @@
-import Validator from 'validatorjs';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt-nodejs';
 import { User } from '../models';
-
-import rules from '../validation';
 
 class UserClass {
   static signUp(req, res) {
@@ -28,6 +25,7 @@ class UserClass {
               expiresIn: '10h'
             });
           const user = {
+            message: 'User created successfully',
             id,
             username,
             email,
@@ -87,6 +85,28 @@ class UserClass {
         });
       })
       .catch(err => res.send(err));
+  }
+
+  static fetchUsers(req, res) {
+    if (!req.query.q) {
+      return res.status(400)
+        .json({ message: 'query params must be passed' });
+    }
+    User.findAll({
+      where: {
+        username: {
+          $ilike: `%${req.query.q}%`
+        }
+      },
+      attributes: {
+        exclude:
+        ['password', 'createdAt', 'updatedAt']
+      }
+    })
+      .then((retrieveUsers) => {
+        res.status(200).json(retrieveUsers);
+      })
+      .catch(error => res.status(400).json(error));
   }
 }
 export default UserClass;

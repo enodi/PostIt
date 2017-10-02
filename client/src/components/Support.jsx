@@ -3,6 +3,10 @@ import { Link } from 'react-router';
 import { Footer } from './Footer';
 
 export default class Support extends Component {
+  componentDidMount () {
+    $('.parallax').parallax();
+  }
+  
   render() {
     return(
       <div>

@@ -1,9 +1,4 @@
-import Validator from 'validatorjs';
-import { Group, User } from '../models';
-
-const rules = {
-  name: 'required'
-};
+import { Group } from '../models';
 
 class GroupClass {
   static create(req, res) {
@@ -17,10 +12,11 @@ class GroupClass {
       .then((groupCreated) => {
         if (groupCreated) {
           const { id,
-          name,
-          description,
-          createdAt } = groupCreated;
+            name,
+            description,
+            createdAt } = groupCreated;
           const data = {
+            message: 'Group created successfully',
             id,
             name,
             description,
