@@ -14,8 +14,23 @@ export function messageAction(groupId, data) {
       .then((res) => {
         dispatch(messageSuccess(res.data));
       })
-      .catch((error) => {
-        return error.response.data;
-      });
+      .catch(error => error.response.data);
+  };
+}
+
+export function getMessageSuccess(messages) {
+  return {
+    type: types.RETRIEVE_MESSAGE_SUCCESSFUL,
+    messages
+  };
+}
+
+export function getMessages(groupId) {
+  return (dispatch) => {
+    axios.get(`api/group/${groupId}/messages`)
+      .then((res) => {
+        dispatch(getMessageSuccess(res.data));
+      })
+      .catch(error => error.response.data);
   };
 }

@@ -3,6 +3,7 @@ import {
   connect
 } from 'react-redux';
 import SideBar from './SideBar';
+import DashBoard from './DashBoard';
 import { messageAction } from '../actions/messageAction';
 
 class MessageBoard extends React.Component {
@@ -32,15 +33,16 @@ class MessageBoard extends React.Component {
 
   handleOnSubmit(e) {
     e.preventDefault();
-    console.log(this.state, '******')
     const { activeGroup } = this.props.groupReducer;
     this.props.messageAction(activeGroup.id, this.state);
   }
 
   render() {
+    const { groupMessages } = this.props.messageReducer;
     return(
       <div>
         <SideBar />
+        <DashBoard messages={groupMessages} />
         <div className="fixed-action-btn vertical">
         <a className="btn-floating btn-large red">
           <i className="large material-icons">mode_edit</i>
@@ -153,7 +155,8 @@ class MessageBoard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    groupReducer: state.groupReducer
+    groupReducer: state.groupReducer,
+    messageReducer: state.messageReducer
   }
 }
 

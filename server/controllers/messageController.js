@@ -31,7 +31,7 @@ class MessageClass {
   // Handles retrieving of messages posted to user groups
   static retrieve(req, res) {
     Message.findAll({
-      where: { groupId: req.params.group_id }
+      where: { GroupId: req.params.group_id }
     })
       .then((messageRetrieved) => {
         res.status(200).json(messageRetrieved);

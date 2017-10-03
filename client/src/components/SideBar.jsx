@@ -5,6 +5,7 @@ import {
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import { groupAction, retrieveGroups, activeGroup } from '../actions/groupAction';
+import { getMessages } from '../actions/messageAction';
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class SideBar extends React.Component {
   handleActiveGroup(e) {
     e.preventDefault();
     this.props.activeGroup({name: e.target.name, id: e.target.id});
-    
+    this.props.getMessages(e.target.id);
   }
 
   render() {
@@ -161,5 +162,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   groupAction,
   retrieveGroups,
-  activeGroup
+  activeGroup,
+  getMessages
 })(SideBar);

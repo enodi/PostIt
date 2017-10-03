@@ -14,5 +14,6 @@ export const searchInitialState = {
 };
 
 export const messageInitialState = {
-  newMessage: {}
+  newMessage: {},
+  groupMessages: []
 };
