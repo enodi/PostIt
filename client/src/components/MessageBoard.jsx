@@ -1,7 +1,42 @@
 import React from 'react';
+import {
+  connect
+} from 'react-redux';
 import SideBar from './SideBar';
+import { messageAction } from '../actions/messageAction';
 
 class MessageBoard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      priority: 'normal',
+      message: ''
+
+    }
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.priorityOnChange = this.priorityOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
+
+  priorityOnChange(e) {
+    this.setState({
+      priority: e.target.id
+    });
+  }
+
+  handleOnChange(e) {
+    this.setState({
+     [e.target.name]: e.target.value,
+    })
+  }
+
+  handleOnSubmit(e) {
+    e.preventDefault();
+    console.log(this.state, '******')
+    const { activeGroup } = this.props.groupReducer;
+    this.props.messageAction(activeGroup.id, this.state);
+  }
+
   render() {
     return(
       <div>
@@ -37,23 +72,53 @@ class MessageBoard extends React.Component {
             <div className="col s12">
               <h4 className="center">Post a Message </h4>
               <p className="center">Post a message to everyone in your group </p>
-              <form>
+              <form onSubmit={this.handleOnSubmit}>
                 <div className="input-field col s12">
-                  <textarea className="materialize-textarea"></textarea>
-                  <label htmlFor="name"> Message</label>
-                </div>
-
-                <div>
+                    <i className="material-icons prefix">mode_edit</i>
+                    <input 
+                      type="text" 
+                      name="message"
+                      value={this.state.message}
+                      onChange={this.handleOnChange}
+                      placeholder="Message"
+                      id="autocomplete-input" 
+                      className="autocomplete"
+                     />
+                
                   <p>
-                    <input className="with-gap" name="normal" type="radio" id="normal" checked />
+                    <input 
+                      className="with-gap" 
+                      type="radio" 
+                      id="normal" 
+                      checked={this.state.priority==='normal'}
+                      onChange={this.priorityOnChange} />
                     <label htmlFor="normal">Normal</label>
 
-                    <input className="with-gap" name="normal" type="radio" id="urgent"/>
+                    <input 
+                      className="with-gap"  
+                      type="radio" 
+                      id="urgent"
+                      checked={this.state.priority==='urgent'}
+                      onChange={this.priorityOnChange} />
                     <label htmlFor="urgent">Urgent</label>
 
-                    <input className="with-gap" name="normal" type="radio" id="critical"/>
+                    <input 
+                      className="with-gap" 
+                      type="radio" 
+                      id="critical"
+                      checked={this.state.priority==='critical'}
+                      onChange={this.priorityOnChange} />
                     <label htmlFor="critical">Critical</label>
                   </p>
+                </div>
+                <div className="col l7 offset-l5 button">
+                  <button
+                    className="btn-large right"
+                    type="submit"
+                    name="action"
+                  >
+                    Post Message
+                  </button>
                 </div>
               </form>
             </div>
@@ -86,4 +151,10 @@ class MessageBoard extends React.Component {
   }
 }
 
-export default MessageBoard;
+const mapStateToProps = (state) => {
+  return {
+    groupReducer: state.groupReducer
+  }
+}
+
+export default connect(mapStateToProps, { messageAction })(MessageBoard);

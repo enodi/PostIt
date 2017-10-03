@@ -21,21 +21,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, {
-    classMethods: {
-      associate: (models) => {
-        User.hasMany(models.Message);
-        User.hasMany(models.Group, {
-          foreignKey: 'UserId',
-          onDelete: 'CASCADE'
-        });
-        User.belongsToMany(models.Group, {
-          through: 'UserGroup',
-          foreignKey: 'UserId',
-          onDelete: 'CASCADE'
-        });
+      classMethods: {
+        associate: (models) => {
+          User.hasMany(models.Message, {
+            foreignKey: 'UserId'
+          });
+          User.hasMany(models.Group, {
+            foreignKey: 'UserId',
+            onDelete: 'CASCADE'
+          });
+          User.belongsToMany(models.Group, {
+            through: 'UserGroup',
+            foreignKey: 'UserId',
+            onDelete: 'CASCADE'
+          });
+        }
       }
-    }
-  });
+    });
 
   User.beforeCreate((user) => {
     const salt = bcrypt.genSaltSync(10);

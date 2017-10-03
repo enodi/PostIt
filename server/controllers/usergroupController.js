@@ -53,7 +53,7 @@ class UserGroupClass {
       include: [
         {
           model: Group,
-          attributes: ['name', 'description', 'createdAt', ['UserId', 'ownerId']]
+          attributes: ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
         }
       ]
     }).then((groups) => {

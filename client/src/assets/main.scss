@@ -173,6 +173,26 @@
 	label {
 		margin-right: 50px;
 	}
+	button {
+		margin: 20px 0px;
+		background-color: #6e3c61 !important;
+	}
+	.input-box_text {
+    font-size: 0.95rem;
+    width: 90%;
+    margin-left: 2%;
+    margin-bottom: auto;
+    line-height: 1.2rem;
+    border: 2px solid #e0e0e0 ;
+    border-radius: 0.2rem;
+    background-clip: padding-box;
+    color: #3d3c40 ;
+    box-shadow: none;
+    outline: 0;
+    bottom: 0;
+    min-height: 41px !important;
+    padding: 9px 5px 9px 8px;
+  }
 }
 
 .group-container {

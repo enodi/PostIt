@@ -9,6 +9,9 @@ export default function groupReducer(state = groupInitialState, action = {}) {
     case types.RETRIEVE_GROUP_SUCCESSFUL:
       return { ...state, ...{ userGroups: action.groups } };
 
+    case types.ACTIVE_GROUP_CLICKED:
+      return { ...state, ...{ activeGroup: action.active } };
+
     default:
       return state;
   }

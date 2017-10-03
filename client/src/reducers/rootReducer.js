@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import groupReducer from './groupReducer';
 import searchReducer from './searchReducer';
+import messageReducer from './messageReducer';
 import * as types from '../actions/actionTypes';
 
 const appReducer = combineReducers({
   authReducer,
   groupReducer,
-  searchReducer
+  searchReducer,
+  messageReducer
 });
 
 const rootReducer = (state, action) => {

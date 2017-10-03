@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
-// import * as sessionActions from '../actions/sessionActions';
 
 export default class SearchDropDown extends Component {
   render() {

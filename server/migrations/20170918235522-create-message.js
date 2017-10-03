@@ -12,8 +12,8 @@ module.exports = {
         allowNull: false
       },
       priority: {
-        type: Sequelize.STRING,
-        defaultValue: 'normal'
+        type: Sequelize.ENUM,
+        values: ['normal', 'urgent', 'critical']
       },
       UserId: {
         type: Sequelize.INTEGER,

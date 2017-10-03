@@ -4,7 +4,7 @@ import {
 } from 'react-redux';
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
-import { groupAction, retrieveGroups } from '../actions/groupAction';
+import { groupAction, retrieveGroups, activeGroup } from '../actions/groupAction';
 
 class SideBar extends React.Component {
   constructor(props) {
@@ -16,6 +16,7 @@ class SideBar extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleActiveGroup = this.handleActiveGroup.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,12 @@ class SideBar extends React.Component {
     });
   }
 
+  handleActiveGroup(e) {
+    e.preventDefault();
+    this.props.activeGroup({name: e.target.name, id: e.target.id});
+    
+  }
+
   render() {
     const { userGroups } = this.props.groups
     return (
@@ -61,7 +68,8 @@ class SideBar extends React.Component {
               <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
             </a>
           </li>
-          <Groups {...userGroups} />
+          <Groups {...userGroups} 
+          onActiveGroup = {this.handleActiveGroup} />
         </ul>
         <a
           href="#"
@@ -152,5 +160,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   groupAction,
-  retrieveGroups
+  retrieveGroups,
+  activeGroup
 })(SideBar);

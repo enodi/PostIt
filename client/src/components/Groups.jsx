@@ -6,7 +6,12 @@ const Groups = (props) => {
       <div>
         {
           props.groups && props.groups.Groups.map((group) => { return (
-            <li key={group.id}><Link to="#" className="sidebar-text black-text">{group.name}</Link></li>
+            <li key={group.id}>
+              <Link to="#" 
+                id={group.id}
+                name={group.name}
+                onClick={props.onActiveGroup} 
+                className="sidebar-text black-text">{group.name}</Link></li>
           )
           })
         }

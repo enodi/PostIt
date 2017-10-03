@@ -4,10 +4,15 @@ export const authInitialState = {
 };
 
 export const groupInitialState = {
-  newGroup: [],
-  userGroups: {}
+  newGroup: {},
+  userGroups: {},
+  activeGroup: {}
 };
 
 export const searchInitialState = {
   search: []
+};
+
+export const messageInitialState = {
+  newMessage: {}
 };

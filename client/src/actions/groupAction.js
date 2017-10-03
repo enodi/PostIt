@@ -39,3 +39,10 @@ export function retrieveGroups(userId) {
       });
 }
 
+export function activeGroup(active) {
+  return {
+    type: types.ACTIVE_GROUP_CLICKED,
+    active
+  };
+}
+

@@ -10,6 +10,7 @@ class GroupClass {
         UserId
       })
       .then((groupCreated) => {
+        groupCreated.addUser(UserId);
         if (groupCreated) {
           const { id,
             name,
