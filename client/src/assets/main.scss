@@ -1,0 +1,280 @@
+.nav-wrapper {
+	a {
+		font-size: 16px;
+		font-family: Source Sans Pro, Calibri, sans-serif;
+		color: #d2d2d2;
+	}
+}
+
+.logo {
+	font-family: Source Sans Pro, Calibri, sans-serif;
+	padding-left: 50px;
+	font-weight: 300;
+	font-size: 40px;
+}
+
+.parallax-container {
+	h1 {
+		color: #d2d2d2;
+		font-size: 5em;
+		font-family: Source Sans Pro, Calibri, sans-serif;
+	}
+	h4 {
+		color: #d2d2d2;
+		font-size: 1.5em;
+		font-family: Calibri light;
+		font-weight: lighter;
+		word-spacing: 3px;
+	}
+	.btn-large {
+		background-color: #AD1457;
+		color: #FFF;
+		margin-top: 25px;
+		font-size: 1.5em;
+		font-family: Calibri light;
+		border: 2px solid #AD1457;
+		&:hover {
+			background-color: #880E4F;
+			color: #fff;
+			border: 2px solid #880E4F;
+		}
+	}
+}
+
+.cta {
+	font-weight: 300;
+	text-shadow: 1px 1px black;
+}
+
+.talk {
+	h4 {
+		color: #212121;
+		font-size: 2.5em;
+		font-family: Calibri light;
+		font-weight: lighter;
+	}
+}
+
+.platform-background {
+	h4 {
+		color: #880E4F;
+		font-size: 2.5em;
+		font-family: Calibri light;
+		font-weight: 600;
+	}
+	p {
+		color: #880E4F;
+		font-size: 1.5em;
+		font-family: Source Sans Pro, Calibri, sans-serif;
+	}
+}
+
+.faq {
+	h5 {
+		font-size: 2.5em;
+		font-family: Calibri light;
+		padding: 38px 0px;
+	}
+	li {
+		padding: 6px 0px;
+		a {
+			color: #880E4F;
+			&:hover {
+				color: #880E4F;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.tabs {
+	.indicator {
+		background-color: #D81B60 !important;
+	}
+}
+
+.account {
+	margin-top: 110px;
+	height: 700px;
+	.tab {
+		a {
+			color: #000 !important;
+		}
+	}
+	h5 {
+		padding: 20px 0px;
+	}
+	.signup {
+		padding: 0px 80px;
+	}
+	.signin {
+		padding: 0px 80px;
+	}
+	.button {
+		button {
+			padding: 0px 70px;
+			background-color: #EC407A !important;
+		}
+	}
+}
+
+.dashboard {
+	.li {
+		padding: 0px 12px;
+		color: #333 !important;
+		a {
+			&:hover {
+				background-color: transparent !important;
+			}
+		}
+	}
+}
+
+.logout-icon {
+	ul {
+		li {
+			margin-right: 80px;
+			i {
+				font-size: 40px;
+				&:hover {
+					background-color: transparent !important;
+				}
+			}
+		}
+	}
+}
+
+.fixed {
+	background-color: #5E2750;
+	.logo-text {
+		color: #fff !important;
+		font-size: 28px !important;
+		text-align: center !important;
+	}
+	.sidebar-text {
+		color: #e0e0e0 !important;
+	}
+	li {
+		&:hover {
+			background-color: #6e3c61 !important;
+		}
+		a {
+			font-family: 'Raleway', sans-serif;
+			font-size: 13px !important;
+			
+		}
+		i.material-icons {
+			margin: 20px 0px 0px 0px !important;
+		}
+	}
+}
+
+#message-modal {
+	label {
+		margin-right: 50px;
+	}
+	button {
+		margin: 20px 0px;
+		background-color: #6e3c61 !important;
+	}
+	.input-box_text {
+    font-size: 0.95rem;
+    width: 90%;
+    margin-left: 2%;
+    margin-bottom: auto;
+    line-height: 1.2rem;
+    border: 2px solid #e0e0e0 ;
+    border-radius: 0.2rem;
+    background-clip: padding-box;
+    color: #3d3c40 ;
+    box-shadow: none;
+    outline: 0;
+    bottom: 0;
+    min-height: 41px !important;
+    padding: 9px 5px 9px 8px;
+  }
+}
+
+.group-container {
+	.modal-fullscreen {
+		h2 {
+			font-family: Calibri;
+			font-size: 3em;
+			color: #424242;
+			margin-top: 20px;
+		}
+		p {
+			font-family: Calibri;
+			font-size: 1.3em;
+			color: #424242;
+		}
+	}
+	.modal-footer {
+		a {
+			font-size: 40px;
+		}
+	}
+	.input-field {
+		margin-top: 50px;
+	}
+	label {
+		color: #424242 !important;
+		font-size: 1.2em !important;
+	}
+	.modal-fullscreen.open {
+		width: 100%;
+		max-height: 100%;
+		height: 100%;
+		top: 0 !important;
+	}
+	.modal-fullscreen>.modal-content {
+		height: calc(100% - 56px);
+	}
+	.button {
+		button {
+			border: 2px solid #EC407A !important;
+			border-radius: 7px;
+			font-family: Calibri;
+			background-color: transparent !important;
+			color: #424242;
+			margin: 70px 0px 0px 55px;
+		}
+	}
+}
+
+.reset-password {
+	margin-top: 80px !important;
+	h2 {
+		font-family: Calibri;
+		text-align: center;
+		color: #424242 !important;
+		font-size: 3em !important;
+	}
+	p {
+		font-family: Calibri;
+		font-size: 1.3em;
+		text-align: center;
+		color: #424242;
+	}
+	.button {
+		button {
+			border: 2px solid #EC407A !important;
+			border-radius: 7px;
+			font-family: Calibri;
+			background-color: #EC407A !important;
+			color: #fff;
+		}
+	}
+}
+
+.page-footer {
+	li {
+		padding: 6px 0px;
+		a {
+			color: #fff;
+			&:hover {
+				color: #880E4F;
+			}
+		}
+	}
+}

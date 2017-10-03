@@ -1,6 +1,6 @@
-// Import http and app
-const http = require('http');
-const app = require('../index');
+import http from 'http';
+
+import app from '../index';
 
 // Use port 8888 unless there exist a preconfigured port
 const port = parseInt(process.env.PORT, 10) || 8888;

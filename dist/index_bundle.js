@@ -67,7 +67,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: Couldn't find preset \"es2015\" relative to directory \"C:\\\\Users\\\\Mba\\\\version-control\\\\PostItApp\"\n    at C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:293:19\n    at Array.map (native)\n    at OptionManager.resolvePresets (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:275:20)\n    at OptionManager.mergePresets (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:264:10)\n    at OptionManager.mergeOptions (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:249:14)\n    at OptionManager.init (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\options\\option-manager.js:368:12)\n    at File.initOptions (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\index.js:212:65)\n    at new File (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\file\\index.js:135:24)\n    at Pipeline.transform (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-core\\lib\\transformation\\pipeline.js:46:16)\n    at transpile (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-loader\\lib\\index.js:49:20)\n    at Object.module.exports (C:\\Users\\Mba\\version-control\\PostItApp\\node_modules\\babel-loader\\lib\\index.js:174:20)");
+
 
 /***/ })
 /******/ ]);

@@ -1,31 +1,36 @@
-const Group = require('../models').Group;
+import { Group } from '../models';
 
-module.exports = {
-  // Handles creation of broadcast groups
-  create(req, res) {
-    if (!req.body.group_name) {
-      return res.json('All fields are required');
-    }
-    Group.create({
-      groupName: req.body.group_name
-    })
-    .then((group) => {
-      const id = group.id;
-      const groupName = group.groupName;
-      const createdAt = group.createdAt;
-      if (group) {
-        const data = {
-          data: [{
-            message: 'group created successfully',
+class GroupClass {
+  static create(req, res) {
+    const UserId = req.decoded.userId;
+    Group
+      .create({
+        name: req.body.name.toLowerCase(),
+        description: req.body.description,
+        UserId
+      })
+      .then((groupCreated) => {
+        groupCreated.addUser(UserId);
+        if (groupCreated) {
+          const { id,
+            name,
+            description,
+            createdAt } = groupCreated;
+          const data = {
+            message: 'Group created successfully',
             id,
-            groupName,
+            name,
+            description,
             createdAt
-          }]
-        };
-        return res.status(201).json(data); // Return group if group was created
-      }
-      return res.status(400).json(group); // Return 400 upon bad request
-    })
-    .catch(error => res.status(404).json(error)); // Return 404 when request made wasn't found
-  },
-};
+          };
+          return res.status(201).send(data);
+        }
+      })
+      .catch((error) => {
+        res.status(404).send({ error });
+      });
+  }
+}
+
+export default GroupClass;
+
