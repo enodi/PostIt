@@ -1,19 +1,11 @@
 import supertest from 'supertest';
 import expect from 'expect';
-import app from '../server/routes';
+import app from '../index';
 import db from '../server/models/index';
 
 import User from '../server/models/user';
 
 const request = supertest(app);
-
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const supertest = require('supertest');
-// const expect = require('expect');
-// const expect = require('chai').expect;
-// const assert = require('chai').assert;
-
 
 describe('API Route', () => {
   describe('GET: /', () => {
@@ -22,16 +14,6 @@ describe('API Route', () => {
         .get('/')
         .expect(200)
         .expect(/Welcome to PostIt Application, Conversation just became easy/)
-        .end(done);
-    });
-  });
-
-  describe('GET: /api', () => {
-    it('should return status code 200 when user accesses API index route', (done) => {
-      request
-        .get('/api')
-        .expect(200)
-        .expect(/Welcome to PostIt Application API/)
         .end(done);
     });
   });
@@ -110,7 +92,7 @@ describe('POST: /api/group', () => {
     it('should return status code 403', (done) => {
       request
         .post('/api/group')
-        .expect(403)
+        .expect(401)
         .end(done);
     });
   });
@@ -121,7 +103,7 @@ describe('POST: /api/group/:group_id/message', () => {
     it('should return status code 403', (done) => {
       request
         .post('/api/group/:group_id/message')
-        .expect(403)
+        .expect(401)
         .end(done);
     });
   });
@@ -132,7 +114,7 @@ describe('GET: /api/group/:group_id/messages', () => {
     it('should return status code 403', (done) => {
       request
         .get('/api/group/:group_id/messages')
-        .expect(403)
+        .expect(401)
         .end(done);
     });
   });
@@ -143,7 +125,7 @@ describe('POST: /api/group/:group_id/user', () => {
     it('should return status code 403', (done) => {
       request
         .post('/api/group/:group_id/user')
-        .expect(403)
+        .expect(401)
         .end(done);
     });
   });
