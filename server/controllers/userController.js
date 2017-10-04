@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcryptjs';
 import { User } from '../models';
 
 class UserClass {
