@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DashBoard = (props) => {
+const Dashboard = (props) => {
   return(
     <div className="row">
 				<div className="col s12 m8 offset-m2 l9 offset-l2">
@@ -27,4 +27,4 @@ const DashBoard = (props) => {
   );
 }
 
-export default DashBoard;
+export default Dashboard;

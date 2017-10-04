@@ -3,7 +3,7 @@ import {
   connect
 } from 'react-redux';
 import SideBar from './SideBar';
-import DashBoard from './DashBoard';
+import Dashboard from './Dashboard';
 import { messageAction } from '../actions/messageAction';
 
 class MessageBoard extends React.Component {
@@ -42,7 +42,7 @@ class MessageBoard extends React.Component {
     return(
       <div>
         <SideBar />
-        <DashBoard messages={groupMessages} />
+        <Dashboard messages={groupMessages} />
         <div className="fixed-action-btn vertical">
         <a className="btn-floating btn-large red">
           <i className="large material-icons">mode_edit</i>
