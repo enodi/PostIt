@@ -19,20 +19,20 @@ class MessageBoard extends React.Component {
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
-  priorityOnChange(e) {
+  priorityOnChange(event) {
     this.setState({
-      priority: e.target.id
+      priority: event.target.id
     });
   }
 
-  handleOnChange(e) {
+  handleOnChange(event) {
     this.setState({
-     [e.target.name]: e.target.value,
+     [event.target.name]: event.target.value,
     })
   }
 
-  handleOnSubmit(e) {
-    e.preventDefault();
+  handleOnSubmit(event) {
+    event.preventDefault();
     const { activeGroup } = this.props.groupReducer;
     this.props.messageAction(activeGroup.id, this.state);
   }

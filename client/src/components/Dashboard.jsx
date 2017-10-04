@@ -1,7 +1,6 @@
 import React from 'react';
 
 const DashBoard = (props) => {
-	console.log(props, '=======')
   return(
     <div className="row">
 				<div className="col s12 m8 offset-m2 l9 offset-l2">

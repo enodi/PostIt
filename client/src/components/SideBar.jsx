@@ -27,10 +27,10 @@ class SideBar extends React.Component {
     this.props.retrieveGroups(user.userId)
   }
 
-  onSubmit(e) {
+  onSubmit(event) {
     const color = { background: '#448AFF', text: '#FFFFFF' };
     const myColor = { background: '#C62828', text: '#FFFFFF' };
-    e.preventDefault();
+    event.preventDefault();
     this.props.groupAction(this.state)
       .then((res) => {
         if (res.status === 201) {
@@ -44,16 +44,16 @@ class SideBar extends React.Component {
       });
   }
 
-  handleOnChange(e) {
+  handleOnChange(event) {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
   }
 
-  handleActiveGroup(e) {
-    e.preventDefault();
-    this.props.activeGroup({name: e.target.name, id: e.target.id});
-    this.props.getMessages(e.target.id);
+  handleActiveGroup(event) {
+    event.preventDefault();
+    this.props.activeGroup({name: event.target.name, id: event.target.id});
+    this.props.getMessages(event.target.id);
   }
 
   render() {

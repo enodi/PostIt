@@ -5,6 +5,11 @@ import { browserHistory } from 'react-router';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
 
+/**
+ * @export
+ * @param {Object} user
+ * @returns {Object} object
+ */
 export function signinSuccess(user) {
   return {
     type: types.LOG_IN_SUCCESS,
@@ -12,12 +17,23 @@ export function signinSuccess(user) {
   };
 }
 
+
+/**
+ * @export
+ * @returns  {Object} action type
+ */
 export function signOutSuccess() {
   return {
     type: types.SIGN_OUT_SUCCESSFUL
   };
 }
 
+
+/**
+ * @export
+ * @param {any} credentials
+ * @returns {Object} Promise
+ */
 export function signinAction(credentials) {
   return (dispatch) => {
     return axios.post('/api/user/signin', credentials)
@@ -35,6 +51,10 @@ export function signinAction(credentials) {
   };
 }
 
+/**
+ * @export
+ * @returns {Object} Promise
+ */
 export function signOutUser() {
   return (dispatch) => {
     // Remove JWT from sessionStorage when user logs out

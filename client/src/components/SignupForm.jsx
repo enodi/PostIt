@@ -22,8 +22,8 @@ class SignUpForm extends React.Component {
   }
 
 
-  onFocus(e) {
-    const name = e.target.name;
+  onFocus(event) {
+    const name = event.target.name;
     switch (name) {
       case "fullname":
         this.setState({ fullnameError: '' });
@@ -41,9 +41,9 @@ class SignUpForm extends React.Component {
     }
   }
 
-  onBlur(e) {
-    const name = e.target.name;
-    const value = e.target.value;
+  onBlur(event) {
+    const name = event.target.name;
+    const value = event.target.value;
     const re = /\S+@\S+\.\S+/;
     const emailVal = re.test(value);
     switch (name) {
@@ -74,12 +74,12 @@ class SignUpForm extends React.Component {
     }
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
     this.props.signupAction(this.state)
       .then((res) => {
         if (res.status === 201) {

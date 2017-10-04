@@ -25,13 +25,13 @@ class Header extends React.Component {
     }
   }
 
-  onChange(e) {
-    this.setState({ search: e.target.value });
-    this.props.retrieveUsers(e.target.value);
+  onChange(event) {
+    this.setState({ search: event.target.value });
+    this.props.retrieveUsers(event.target.value);
   }
 
-  handleOnClick(e) {
-    e.preventDefault();
+  handleOnClick(event) {
+    event.preventDefault();
     this.props.signOutUser();
   }
 

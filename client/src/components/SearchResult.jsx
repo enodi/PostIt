@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 export default class SearchDropDown extends Component {
   render() {
-    console.log(this.props.data, 'yo');
       if (true) {
         return(
           <div>

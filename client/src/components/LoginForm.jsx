@@ -26,9 +26,9 @@ class LogInForm extends React.Component {
   }
 
 
-  onFocus(e) {
+  onFocus(event) {
     // Clear error message when user is focused on a particular field
-    const name = e.target.name;
+    const name = event.target.name;
     switch (name) {
       case 'username':
         this.setState({
@@ -44,9 +44,9 @@ class LogInForm extends React.Component {
     }
   }
 
-  onBlur(e) {
-    const name = e.target.name;
-    const value = e.target.value;
+  onBlur(event) {
+    const name = event.target.name;
+    const value = event.target.value;
     switch (name) {
       case 'username':
         // Display error message if username field is empty
@@ -67,14 +67,14 @@ class LogInForm extends React.Component {
       default:
     }
   }
-  onChange(e) {
+  onChange(event) {
     this.setState({
-      [e.target.name]: e.target.value
+      [event.target.name]: event.target.value
     });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit(event) {
+    event.preventDefault();
     this.props.signinAction(this.state)
   }
 
