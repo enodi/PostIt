@@ -30,6 +30,8 @@ app.get('/', (req, res) => res.status(200).send({
 app.use('/api/user', UserRouter);
 app.use('/api/group', GroupsRouter);
 
+app.get('*', (req, res) => res.redirect(301, '/'));
+
 app.listen(process.env.PORT || 3200);
 
 export default app;

@@ -11,12 +11,12 @@ const userGroupRule = {
 };
 
 const validations = {
-  validateGroup(request, response, next) {
-    const validation = new Validator(request.body, rule);
+  validateGroup(req, res, next) {
+    const validation = new Validator(req.body, rule);
     let {
       name,
       description
-    } = request.body;
+    } = req.body;
     name = name.toLowerCase();
     description = description.toLowerCase();
 
@@ -27,20 +27,20 @@ const validations = {
         }
       }).then((groupExists) => {
         if (groupExists) {
-          return response.status(409).json('Group name already exists');
+          return res.status(409).json('Group name already exists');
         }
         next();
       });
     });
-    validation.fails(() => response.json(validation.errors.all()));
+    validation.fails(() => res.json(validation.errors.all()));
   },
 
-  validateUser(request, response, next) {
-    const validation = new Validator(request.body, rules);
+  validateUser(req, res, next) {
+    const validation = new Validator(req.body, rules);
     const {
       email,
       username
-    } = request.body;
+    } = req.body;
 
     validation.passes(() => {
       User.findOne({
@@ -54,18 +54,18 @@ const validations = {
         }
       }).then((userExists) => {
         if (userExists) {
-          return response.status(409).json('Email or Username already exist');
+          res.status(409).json('Email or Username already exist');
         }
         next();
       });
     });
-    validation.fails(() => response.json(validation.errors.all()));
+    validation.fails(() => res.json(validation.errors.all()));
   },
 
-  validateUserGroup(request, response, next) {
-    const validation = new Validator(request.body, userGroupRule);
-    const groupId = request.params.group_id;
-    const userId = request.body.userId;
+  validateUserGroup(req, res, next) {
+    const validation = new Validator(req.body, userGroupRule);
+    const groupId = req.params.group_id;
+    const userId = req.body.userId;
 
     validation.passes(() => {
       User.findById(userId)
@@ -79,13 +79,13 @@ const validations = {
                   UserGroup
                     .findOne({
                       where: {
-                        $and: [{ GroupId: request.params.group_id },
-                        { UserId: request.body.userId }]
+                        $and: [{ GroupId: req.params.group_id },
+                        { UserId: req.body.userId }]
                       }
                     })
                     .then((userExists) => {
                       if (userExists) {
-                        return response.status(400).json('User is already a member of this group');
+                        return res.status(400).json('User is already a member of this group');
                       }
                       next();
                     });
@@ -94,7 +94,7 @@ const validations = {
           }
         });
     });
-    validation.fails(() => response.json(validation.errors.all()));
+    validation.fails(() => res.json(validation.errors.all()));
   }
 };
 

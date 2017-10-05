@@ -16,7 +16,6 @@ function setCurrentUser(user) {
   };
 }
 
-
 /**
  *
  * @export

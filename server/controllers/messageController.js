@@ -28,7 +28,10 @@ class MessageClass {
       })
       .then((messageCreated) => {
         if (messageCreated) {
-          return res.status(201).json(messageCreated);
+          return res.status(201).json({
+            message: 'message posted successfully',
+            messageCreated
+          });
         }
         return res.status(400).json({ error: 'message not created' });
       })

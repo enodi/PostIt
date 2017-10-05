@@ -82,7 +82,7 @@ class SignUpForm extends React.Component {
     event.preventDefault();
     this.props.signupAction(this.state)
       .then((res) => {
-        if (res.status === 201) {
+        if (res.status === 201) {  
           browserHistory.push('/dashboard');
         }
         else {

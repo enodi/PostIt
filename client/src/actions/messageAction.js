@@ -1,6 +1,6 @@
 import axios from 'axios';
+import toastr from 'toastr';
 import * as types from './actionTypes';
-
 
 /**
  *
@@ -27,6 +27,7 @@ export function messageAction(groupId, data) {
     axios.post(`api/group/${groupId}/message`, data)
       .then((res) => {
         dispatch(messageSuccess(res.data));
+        toastr.success(res.data.message);
       })
       .catch(error => error.response.data);
   };
