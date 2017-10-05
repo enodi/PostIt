@@ -138,7 +138,7 @@ class LogInForm extends React.Component {
             >
               SIGNIN
               </button><br /> <br />
-            <b> <a href="/resetpassword"> Forgot your password ? </a></b>
+            <b> <Link to="/resetpassword"> Forgot your password ? </Link></b>
           </div>
         </form>
       </div>
