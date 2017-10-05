@@ -10,7 +10,8 @@
     "test": "mocha --compilers js:babel-register",
     "start:dev": "nodemon ./bin/www --exec babel-node",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha server/test/index.test.js -- -R spec",
-    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "migrate": "NODE_ENV=production DATABASE_URL=postgres://vuelgazf:tu31OD7ICb_tJVu_cEurW5_AUPLr6g6X@horton.elephantsql.com:5432/vuelgazf sequelize db:migrate"
   },
   "author": "Enodi Audu",
   "license": "ISC",

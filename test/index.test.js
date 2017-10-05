@@ -97,11 +97,13 @@ describe('POST: /api/group/:group_id/message', () => {
 
 describe('GET: /api/group/:group_id/messages', () => {
   describe('when an unauthenticated user tries to retrieve messages from a group', () => {
-    it('should return status code 403', (done) => {
+    it('should return status code 401', (done) => {
       request
         .get('/api/group/:group_id/messages')
         .expect(401)
-        .end(done);
+        .end();
+
+      done();
     });
   });
 });

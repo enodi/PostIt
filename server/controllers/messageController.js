@@ -54,7 +54,7 @@ class MessageClass {
       .then((messageRetrieved) => {
         res.status(200).json(messageRetrieved);
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(401).json(error));
   }
 }
 export default MessageClass;
