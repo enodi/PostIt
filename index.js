@@ -2,12 +2,17 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import webpack from 'webpack';
+import dotenv from 'dotenv';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import UserRouter from './server/routes/users';
 import GroupsRouter from './server/routes/groups';
 import config from './webpack.config';
+
+dotenv.config();
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
 
 const app = express(),
   compiler = webpack(config);
