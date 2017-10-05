@@ -1,6 +1,13 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
+
+/**
+ *
+ * @export groupSuccess
+ * @param {any} group
+ * @returns {Object} action type
+ */
 export function groupSuccess(group) {
   return {
     type: types.CREATE_GROUP_SUCCESSFUL,
@@ -8,6 +15,13 @@ export function groupSuccess(group) {
   };
 }
 
+
+/**
+ *
+ * @export retrieveGroupsSuccess
+ * @param {any} groups
+ * @returns {Object} action type
+ */
 export function retrieveGroupsSuccess(groups) {
   return {
     type: types.RETRIEVE_GROUP_SUCCESSFUL,
@@ -15,6 +29,13 @@ export function retrieveGroupsSuccess(groups) {
   };
 }
 
+
+/**
+ *
+ * @export groupAction
+ * @param {any} data
+ * @returns {Object} Promise
+ */
 export function groupAction(data) {
   return (dispatch) => {
     return axios.post('/api/group', data)
@@ -28,6 +49,13 @@ export function groupAction(data) {
   };
 }
 
+
+/**
+ *
+ * @export retrieveGroups
+ * @param {any} userId
+ * @returns {Object} Promise
+ */
 export function retrieveGroups(userId) {
   return dispatch =>
     axios.get(`/api/user/${userId}/group`)
@@ -39,6 +67,13 @@ export function retrieveGroups(userId) {
       });
 }
 
+
+/**
+ *
+ * @export activeGroup
+ * @param {any} active
+ * @returns {Object} action type
+ */
 export function activeGroup(active) {
   return {
     type: types.ACTIVE_GROUP_CLICKED,

@@ -1,6 +1,14 @@
 import * as types from '../actions/actionTypes';
 import { groupInitialState } from './initialState';
 
+
+/**
+ *
+ * @export groupReducer
+ * @param {any} [state=groupInitialState]
+ * @param {any} [action={}]
+ * @returns {Object} object
+ */
 export default function groupReducer(state = groupInitialState, action = {}) {
   switch (action.type) {
     case types.CREATE_GROUP_SUCCESSFUL:

@@ -4,6 +4,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const key = process.env.JWT_SECRET;
+
+
+/**
+ *
+ * @class authenticate
+ */
 class authenticate {
   /**
    * isLoggedIn - checks if a user looged in

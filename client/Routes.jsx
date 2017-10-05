@@ -8,7 +8,23 @@ import ResetPassword from './src/components/ResetPassword';
 import IndexPage from './src/components/IndexPage';
 import Product from './src/components/Product';
 import Support from './src/components/Support';
-import App from './App';
+import App from './App.jsx';
+
+
+/**
+ * @param {any} nextState
+ * @param {any} replace
+ * @returns {Object} object
+ */
+function requireAuth(nextState, replace) {
+  // If token is not provided on login, redirect user to login page
+  if (!window.localStorage.jwt) {
+    replace({
+      pathname: '/signin',
+      state: { nextPath: nextState.location.pathname }
+    });
+  }
+}
 
 export default (
   <Route path="/" component={App}>
@@ -21,12 +37,3 @@ export default (
   </Route>
 );
 
-function requireAuth(nextState, replace) {
-  // If token is not provided on login, redirect user to login page
-  if (!window.localStorage.jwt) {
-    replace({
-      pathname: '/signin',
-      state: { nextPath: nextState.location.pathname }
-    });
-  }
-}

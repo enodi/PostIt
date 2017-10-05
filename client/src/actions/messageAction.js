@@ -1,6 +1,13 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
+
+/**
+ *
+ * @export messageSuccess
+ * @param {any} message
+ * @returns {Object} action type
+ */
 export function messageSuccess(message) {
   return {
     type: types.POST_MESSAGE_SUCCESSFUL,
@@ -8,6 +15,13 @@ export function messageSuccess(message) {
   };
 }
 
+/**
+ *
+ * @export messageAction
+ * @param {any} groupId
+ * @param {any} data
+ * @returns {Object} Promise
+ */
 export function messageAction(groupId, data) {
   return (dispatch) => {
     axios.post(`api/group/${groupId}/message`, data)
@@ -18,6 +32,12 @@ export function messageAction(groupId, data) {
   };
 }
 
+/**
+ *
+ * @export getMessageSuccess
+ * @param {any} messages
+ * @returns {Object} action type
+ */
 export function getMessageSuccess(messages) {
   return {
     type: types.RETRIEVE_MESSAGE_SUCCESSFUL,
@@ -25,6 +45,12 @@ export function getMessageSuccess(messages) {
   };
 }
 
+/**
+ *
+ * @export getMessages
+ * @param {any} groupId
+ * @returns {Object} Promise
+ */
 export function getMessages(groupId) {
   return (dispatch) => {
     axios.get(`api/group/${groupId}/messages`)

@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-// set token in header
+
+/**
+ *
+ * @export setAuthorizationToken
+ * @param {any} token
+ */
 export default function setAuthorizationToken(token) {
   if (token) {
     axios.defaults.headers.common['x-access-token'] = token;

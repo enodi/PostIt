@@ -1,6 +1,19 @@
 import { Group } from '../models';
 
+
+/**
+ *
+ * @class GroupClass
+ */
 class GroupClass {
+
+  /**
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @memberof GroupClass
+   * @returns {Object} Promise
+   */
   static create(req, res) {
     const UserId = req.decoded.userId;
     Group

@@ -6,9 +6,9 @@ import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
 
 /**
- * @export
+ * @export signinSuccess
  * @param {Object} user
- * @returns {Object} object
+ * @returns {Object} action type
  */
 export function signinSuccess(user) {
   return {
@@ -19,7 +19,7 @@ export function signinSuccess(user) {
 
 
 /**
- * @export
+ * @export signOutSuccess
  * @returns  {Object} action type
  */
 export function signOutSuccess() {
@@ -30,7 +30,7 @@ export function signOutSuccess() {
 
 
 /**
- * @export
+ * @export signinAction
  * @param {any} credentials
  * @returns {Object} Promise
  */
@@ -52,7 +52,7 @@ export function signinAction(credentials) {
 }
 
 /**
- * @export
+ * @export signOutUser
  * @returns {Object} Promise
  */
 export function signOutUser() {

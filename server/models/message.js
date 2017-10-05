@@ -15,19 +15,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     }
   }, {
-      classMethods: {
-        associate: (models) => {
-          Message.belongsTo(models.Group, {
-            foreignKey: 'GroupId',
-            onDelete: 'CASCADE'
-          });
-          Message.belongsTo(models.User, {
-            foreignKey: 'UserId',
-            onDelete: 'CASCADE'
-          });
-        }
+    classMethods: {
+      associate: (models) => {
+        Message.belongsTo(models.Group, {
+          foreignKey: 'GroupId',
+          onDelete: 'CASCADE'
+        });
+        Message.belongsTo(models.User, {
+          foreignKey: 'UserId',
+          onDelete: 'CASCADE'
+        });
       }
-    });
+    }
+  });
   return Message;
 };
 

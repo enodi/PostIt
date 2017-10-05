@@ -1,4 +1,3 @@
-import Validator from 'validatorjs';
 import {
   UserGroup,
   Group,
@@ -6,11 +5,20 @@ import {
 } from '../models';
 
 
-const rules = {
-  user_id: 'required'
-};
+/**
+ *
+ * @class UserGroupClass
+ */
 class UserGroupClass {
-  // Adds a new user to a group
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserGroupClass
+   */
   static create(req, res) {
     UserGroup
       .create({
@@ -27,7 +35,14 @@ class UserGroupClass {
       .catch(error => res.status(404).json(error));
   }
 
-  // Retieves all users that belong to a particular group
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserGroupClass
+   */
   static retrieveUsers(req, res) {
     UserGroup.findAll({
       where: { groupId: req.params.group_id }
@@ -38,7 +53,14 @@ class UserGroupClass {
       .catch(error => res.status(400).json(error));
   }
 
-  // Retrives all groups a particular user belongs to
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserGroupClass
+   */
   static retrieveGroups(req, res) {
     const userID = parseInt(req.params.user_id, 10);
     if (isNaN(userID)) {

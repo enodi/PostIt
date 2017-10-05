@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import GroupController from '../controllers/groupController';
 import UserGroupController from '../controllers/usergroupController';
 import MessageController from '../controllers/messageController';

@@ -2,7 +2,21 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { User } from '../models';
 
+
+/**
+ *
+ * @class UserClass
+ */
 class UserClass {
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
   static signUp(req, res) {
     User
       .create({
@@ -44,6 +58,15 @@ class UserClass {
       .catch(error => res.status(501).send(error));
   }
 
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
   static signIn(req, res) {
     if (!req.body.username || !req.body.password) {
       return res.status(400).json({
@@ -87,6 +110,15 @@ class UserClass {
       .catch(err => res.send(err));
   }
 
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
   static fetchUsers(req, res) {
     if (!req.query.q) {
       return res.status(400)
