@@ -24,7 +24,7 @@ function setCurrentUser(user) {
  */
 export function signupAction(userData) {
   return (dispatch) => {
-    return axios.post('/api/user/signup', userData)
+    return axios.post('/api/v1/user/signup', userData)
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem('jwt', token);

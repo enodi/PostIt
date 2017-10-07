@@ -24,7 +24,7 @@ export function messageSuccess(message) {
  */
 export function messageAction(groupId, data) {
   return (dispatch) => {
-    axios.post(`api/group/${groupId}/message`, data)
+    axios.post(`api/v1/group/${groupId}/message`, data)
       .then((res) => {
         dispatch(messageSuccess(res.data));
         toastr.success(res.data.message);
@@ -54,7 +54,7 @@ export function getMessageSuccess(messages) {
  */
 export function getMessages(groupId) {
   return (dispatch) => {
-    axios.get(`api/group/${groupId}/messages`)
+    axios.get(`api/v1/group/${groupId}/messages`)
       .then((res) => {
         dispatch(getMessageSuccess(res.data));
       })

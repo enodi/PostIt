@@ -23,7 +23,7 @@ export function retrieveUsersSuccess(users) {
  */
 export function retrieveUsers(username) {
   return dispatch =>
-    axios.get(`/api/user/search?q=${username}`)
+    axios.get(`/api/v1/user/search?q=${username}`)
       .then((res) => {
         dispatch(retrieveUsersSuccess(res.data));
       })

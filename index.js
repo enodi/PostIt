@@ -35,8 +35,8 @@ app.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to PostIt Application, Conversation just became easy',
 }));
 
-app.use('/api/user', UserRouter);
-app.use('/api/group', GroupsRouter);
+app.use('/api/v1/user', UserRouter);
+app.use('/api/v1/group', GroupsRouter);
 
 app.get('*', (req, res) => res.redirect(301, '/'));
 

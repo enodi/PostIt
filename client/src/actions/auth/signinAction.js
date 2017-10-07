@@ -36,7 +36,7 @@ export function signOutSuccess() {
  */
 export function signinAction(credentials) {
   return (dispatch) => {
-    return axios.post('/api/user/signin', credentials)
+    return axios.post('/api/v1/user/signin', credentials)
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem('jwt', token);

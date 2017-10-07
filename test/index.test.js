@@ -5,20 +5,20 @@ import db from '../server/models/index';
 
 const request = supertest(app);
 
-describe('POST: /api/user/signup', () => {
+describe('POST: /api/v1/user/signup', () => {
   it('should return status code 200 when user accesses signup route', (done) => {
     request
-      .post('/api/user/signup')
+      .post('/api/v1/user/signup')
       .expect(200)
       .end(done);
   });
 });
 
-describe('POST: /api/user/signin', () => {
+describe('POST: /api/v1/user/signin', () => {
   describe('when user tries to login with incomplete information', () => {
     it('should return status code 401 when no username and password are supplied', (done) => {
       request
-        .post('/api/user/signin')
+        .post('/api/v1/user/signin')
         .expect(401)
         .end((err, res) => {
           expect(res.body.message).toBe('Invalid credentials');
@@ -27,7 +27,7 @@ describe('POST: /api/user/signin', () => {
     });
     it('should return status code 401 when no password is supplied', (done) => {
       request
-        .post('/api/user/signin')
+        .post('/api/v1/user/signin')
         .send({
           username: 'user',
         })
@@ -39,7 +39,7 @@ describe('POST: /api/user/signin', () => {
     });
     it('should return status code 401 when no username is supplied', (done) => {
       request
-        .post('/api/user/signin')
+        .post('/api/v1/user/signin')
         .send({
           password: 'password',
         })
@@ -51,7 +51,7 @@ describe('POST: /api/user/signin', () => {
     });
     it('should return status code  when no username is supplied', (done) => {
       request
-        .post('/api/user/signin')
+        .post('/api/v1/user/signin')
         .send({})
         .expect()
         .end((err, res) => {
@@ -62,44 +62,44 @@ describe('POST: /api/user/signin', () => {
   });
 });
 
-describe('POST: /api/user/signup', () => {
+describe('POST: /api/v1/user/signup', () => {
   describe('when user tries to signup with no information', () => {
     it('should return status code 200 when all fields are empty', (done) => {
       request
-        .post('/api/user/signup')
+        .post('/api/v1/user/signup')
         .expect(200)
         .end(done);
     });
   });
 });
 
-describe('POST: /api/group', () => {
+describe('POST: /api/v1/group', () => {
   describe('when an unauthenticated user tries to create a group', () => {
     it('should return status code 403', (done) => {
       request
-        .post('/api/group')
+        .post('/api/v1/group')
         .expect(401)
         .end(done);
     });
   });
 });
 
-describe('POST: /api/group/:group_id/message', () => {
+describe('POST: /api/v1/group/:group_id/message', () => {
   describe('when an unauthenticated user tries to post a message to a group', () => {
     it('should return status code 403', (done) => {
       request
-        .post('/api/group/:group_id/message')
+        .post('/api/v1/group/:group_id/message')
         .expect(401)
         .end(done);
     });
   });
 });
 
-describe('GET: /api/group/:group_id/messages', () => {
+describe('GET: /api/v1/group/:group_id/messages', () => {
   describe('when an unauthenticated user tries to retrieve messages from a group', () => {
     it('should return status code 401', (done) => {
       request
-        .get('/api/group/:group_id/messages')
+        .get('/api/v1/group/:group_id/messages')
         .expect(401)
         .end();
 
@@ -108,11 +108,11 @@ describe('GET: /api/group/:group_id/messages', () => {
   });
 });
 
-describe('POST: /api/group/:group_id/user', () => {
+describe('POST: /api/v1/group/:group_id/user', () => {
   describe('when an unauthenticated user tries to add users to a group', () => {
     it('should return status code 403', (done) => {
       request
-        .post('/api/group/:group_id/user')
+        .post('/api/v1/group/:group_id/user')
         .expect(401)
         .end(done);
     });

@@ -38,7 +38,7 @@ export function retrieveGroupsSuccess(groups) {
  */
 export function groupAction(data) {
   return (dispatch) => {
-    return axios.post('/api/group', data)
+    return axios.post('/api/v1/group', data)
       .then((res) => {
         dispatch(groupSuccess(res.data));
         return res;
@@ -58,7 +58,7 @@ export function groupAction(data) {
  */
 export function retrieveGroups(userId) {
   return dispatch =>
-    axios.get(`/api/user/${userId}/group`)
+    axios.get(`/api/v1/user/${userId}/group`)
       .then((res) => {
         dispatch(retrieveGroupsSuccess(res.data));
       })
