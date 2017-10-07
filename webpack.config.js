@@ -14,8 +14,9 @@ const extractCSSPlugin = new ExtractTextPlugin({
   filename: 'main.css'
 });
 const hotModuleReplacement = new webpack.HotModuleReplacementPlugin({});
+
 module.exports = {
-  entry: ['./client/index.jsx'],
+  entry: ['webpack-hot-middleware/client', './client/index.jsx'],
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js',
@@ -25,19 +26,19 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   devtool: 'inline-source-map',
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    port: 5000,
-    proxy: {
-      '/api/*': {
-        target: 'http://localhost:8888',
-        secure: false,
-        changeOrigin: true,
-      }
-    }
-  },
+  // devServer: {
+  //   historyApiFallback: true,
+  //   hot: true,
+  //   inline: true,
+  //   port: 5000,
+  //   proxy: {
+  //     '/api/*': {
+  //       target: 'http://localhost:8888',
+  //       secure: false,
+  //       changeOrigin: true,
+  //     }
+  //   }
+  // },
   module: {
     rules: [{
       test: /\.(png|jpg)$/,
@@ -77,5 +78,6 @@ module.exports = {
     extractCSSPlugin,
     hotModuleReplacement,
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 };

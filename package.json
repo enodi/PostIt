@@ -4,11 +4,11 @@
   "description": "A JavaScript Application that allows users communicate with each other within a group",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "npm run build && babel-node index.js",
     "client": "node start-client.js",
-    "build": "webpack-dev-server --history-api-fallback",
-    "test": "mocha --compilers js:babel-register",
-    "start:dev": "nodemon ./bin/www --exec babel-node",
+    "build": "webpack",
+    "test": "NODE_ENV=test mocha --compilers js:babel-register",
+    "start:dev": "nodemon --exec babel-node index.js",
     "coverage": "istanbul cover node_modules/mocha/bin/_mocha server/test/index.test.js -- -R spec",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },

@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
@@ -12,15 +13,17 @@ import config from './webpack.config';
 
 dotenv.config();
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
-
 const app = express(),
   compiler = webpack(config);
 
-app.use(webpackDevMiddleware(compiler));
-app.use(webpackHotMiddleware(compiler, {
-  publicPath: config.output.publicPath
-}));
+if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  app.use(webpackDevMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  }));
+} else {
+  app.use(express.static(path.resolve(__dirname, 'dist')));
+}
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
