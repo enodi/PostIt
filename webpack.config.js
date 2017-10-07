@@ -25,20 +25,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
-  devtool: 'inline-source-map',
-  // devServer: {
-  //   historyApiFallback: true,
-  //   hot: true,
-  //   inline: true,
-  //   port: 5000,
-  //   proxy: {
-  //     '/api/*': {
-  //       target: 'http://localhost:8888',
-  //       secure: false,
-  //       changeOrigin: true,
-  //     }
-  //   }
-  // },
+  devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',
   module: {
     rules: [{
       test: /\.(png|jpg)$/,
@@ -73,6 +60,18 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      minimize: true,
+      compressor: {
+        warnings: false,
+      },
     }),
     HtmlWebpackPluginConfig,
     extractCSSPlugin,
