@@ -17,9 +17,9 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 # Project Dependencies
 * Dependies
 
-  * axios: A JavaScript library used to make http requests from nodejs or XMLHttpRequests from the browser
-  * babel-cli: Used to transpile es6 code to es5 on the command line
-  * babel-preset-es2015: Plugin that adds support for es6
+  * [axios](https://www.npmjs.com/package/axios): A JavaScript library used to make http requests from nodejs or        XMLHttpRequests from the browser
+  * [babel-cli](https://www.npmjs.com/package/babel-cli) : Used to transpile es6 code to es5 on the command line
+  * [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015): Plugin that adds support for es6
   * babel-preset-react: Plugin that adds support for jsx
   * bcryptjs: Used to hash passwords
   * body-parser: Nodejs body parsing middleware. Parse incoming request bodies in a middleware before your handlers, available     under the req.body property. 
