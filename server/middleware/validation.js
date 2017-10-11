@@ -32,7 +32,7 @@ const validations = {
         next();
       });
     });
-    validation.fails(() => res.json(validation.errors.all()));
+    validation.fails(() => res.status(400).json(validation.errors.all()));
   },
 
   validateUser(req, res, next) {
@@ -54,12 +54,14 @@ const validations = {
         }
       }).then((userExists) => {
         if (userExists) {
-          res.status(409).json('Email or Username already exist');
+          return res.status(409).json({
+            message: 'Email or Username already exist'
+          });
         }
         next();
       });
     });
-    validation.fails(() => res.json(validation.errors.all()));
+    validation.fails(() => res.status(400).json(validation.errors.all()));
   },
 
   validateUserGroup(req, res, next) {
@@ -85,7 +87,7 @@ const validations = {
                     })
                     .then((userExists) => {
                       if (userExists) {
-                        return res.status(400).json('User is already a member of this group');
+                        return res.status(409).json('User is already a member of this group');
                       }
                       next();
                     });
@@ -94,7 +96,7 @@ const validations = {
           }
         });
     });
-    validation.fails(() => res.json(validation.errors.all()));
+    validation.fails(() => res.status(400).json(validation.errors.all()));
   }
 };
 

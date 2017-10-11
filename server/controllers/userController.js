@@ -36,7 +36,7 @@ class UserClass {
               userId: userCreated.id,
               username: userCreated.username
             }, process.env.JWT_SECRET, {
-              expiresIn: '10h'
+              expiresIn: process.env.JWT_EXPIRY_TIME
             });
           const user = {
             message: 'User created successfully',
@@ -48,14 +48,14 @@ class UserClass {
           };
           return res.status(201).send(user);
         }
-        const data1 = {
-          error: [{
-            detail: 'User not created'
-          }]
-        };
-        return res.status(400).send(data1);
+        // const data1 = {
+        //   error: [{
+        //     detail: 'User not created'
+        //   }]
+        // };
+        // return res.status(400).send(data1);
       })
-      .catch(error => res.status(501).send(error));
+      .catch(error => res.status(500).send(error));
   }
 
 
@@ -68,7 +68,8 @@ class UserClass {
    * @memberof UserClass
    */
   static signIn(req, res) {
-    if (!req.body.username || !req.body.password) {
+    if (!req.body.username || req.body.username === ' '
+      || !req.body.password || req.body.password === ' ') {
       return res.status(400).json({
         message: 'Invalid credentials',
       });
@@ -82,7 +83,7 @@ class UserClass {
       })
       .then((userFound) => {
         if (!userFound) {
-          return res.status(409).send({
+          return res.status(404).send({
             message: 'Invalid credentials'
           });
         }
@@ -90,7 +91,7 @@ class UserClass {
         const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
         if (!passwordMatched) {
           // If password provided doesn't match password in database, return password doesn't match
-          return res.status(409).send({
+          return res.status(422).send({
             message: 'Invalid credentials'
           });
         }
@@ -100,9 +101,9 @@ class UserClass {
             username: userFound.username,
             userId: userFound.id,
           }, process.env.JWT_SECRET, {
-            expiresIn: '10h'
+            expiresIn: process.env.JWT_EXPIRY_TIME
           });
-        return res.send({
+        return res.status(200).send({
           success: true,
           token
         });
@@ -121,7 +122,7 @@ class UserClass {
    */
   static fetchUsers(req, res) {
     if (!req.query.q) {
-      return res.status(400)
+      return res.status(422)
         .json({ message: 'query params must be passed' });
     }
     User.findAll({
@@ -138,7 +139,7 @@ class UserClass {
       .then((retrieveUsers) => {
         res.status(200).json(retrieveUsers);
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
 }
 export default UserClass;

@@ -17,7 +17,7 @@ app.route('/:user_id/group')
   .get(UserGroupController.retrieveGroups);
 
 app.use(authenticate.isLoggedIn);
-app.route('/search')
+app.route('/users')
   .get(UserController.fetchUsers);
 
 export default app;

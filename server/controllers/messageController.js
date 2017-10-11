@@ -16,7 +16,7 @@ class MessageClass {
    */
   static create(req, res) {
     if (!req.body.message || !req.body.priority) {
-      return res.status(422).json('All fields are required');
+      return res.status(400).json('All fields are required');
     }
     const UserId = req.decoded.userId;
     Message
@@ -35,7 +35,7 @@ class MessageClass {
         }
         return res.status(400).json({ error: 'message not created' });
       })
-      .catch(error => res.status(404).json(error));
+      .catch(error => res.status(500).json(error));
   }
 
 
@@ -54,7 +54,7 @@ class MessageClass {
       .then((messageRetrieved) => {
         res.status(200).json(messageRetrieved);
       })
-      .catch(error => res.status(401).json(error));
+      .catch(error => res.status(500).json(error));
   }
 }
 export default MessageClass;

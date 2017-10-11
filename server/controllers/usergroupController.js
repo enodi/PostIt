@@ -32,7 +32,7 @@ class UserGroupClass {
         }
         return res.status(400).json(usergroupCreated);
       })
-      .catch(error => res.status(404).json(error));
+      .catch(error => res.status(500).json(error));
   }
 
   /**
@@ -64,7 +64,7 @@ class UserGroupClass {
   static retrieveGroups(req, res) {
     const userID = parseInt(req.params.user_id, 10);
     if (isNaN(userID)) {
-      return res.status(404).json({
+      return res.status(400).json({
         error: 'Invalid User Id',
       });
     }

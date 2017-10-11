@@ -14,9 +14,10 @@ import config from './webpack.config';
 dotenv.config();
 
 const app = express(),
-  compiler = webpack(config);
+  compiler = webpack(config),
+  isDevelopment = process.env.NODE_ENV === 'development';
 
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+if (isDevelopment) {
   app.use(webpackDevMiddleware(compiler));
   app.use(webpackHotMiddleware(compiler, {
     publicPath: config.output.publicPath

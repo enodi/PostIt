@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -15,6 +14,8 @@ const extractCSSPlugin = new ExtractTextPlugin({
 });
 const hotModuleReplacement = new webpack.HotModuleReplacementPlugin({});
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 module.exports = {
   entry: ['webpack-hot-middleware/client', './client/index.jsx'],
   output: {
@@ -23,7 +24,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',
   module: {
@@ -43,7 +44,7 @@ module.exports = {
       exclude: /node_modules/,
       query: {
         cacheDirectory: true,
-        presets: ['react', 'es2015'],
+        presets: ['react', 'es2015', 'stage-2'],
       }
 
     },
@@ -63,7 +64,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
