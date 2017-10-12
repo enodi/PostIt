@@ -66,6 +66,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 * Write descriptive commit messages
 * Make sure to test your work
 * Create a pull request
+
 Note: Certain guidelines and style guides must be followed when contributing. More info can be found on the repo's [wiki](https://github.com/enodi/PostIt/wiki)
 
 # FAQ
