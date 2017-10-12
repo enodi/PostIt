@@ -62,6 +62,8 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 # Want To Contribute?
 * Fork this repo to your personal repository 
 * Make your contribution
+* Commit your change
+* Write descriptive commit messages
 * Make sure to test your work
 * Create a pull request
 Note: Certain guidelines and style guides must be followed when contributing. More info can be found on the repo's [wiki](https://github.com/enodi/PostIt/wiki)
@@ -69,6 +71,9 @@ Note: Certain guidelines and style guides must be followed when contributing. Mo
 # FAQ
 * Can I contribute to this project?
   * Yes
+
+# License
+* https://github.com/enodi/PostIt/blob/master/LICENSE
 
 # Author
 Enodi Audu - @enodi
