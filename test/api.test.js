@@ -455,6 +455,18 @@ describe('GET /api/v1/group/:group_id/user', () => {
 });
 
 describe('POST /api/v1/group/:group_id/message', () => {
+  before((done) => {
+    request
+    .post('/api/v1/user/signin')
+    .send({
+      username: 'enodi',
+      password: 'password',
+    })
+    .end((err, res) => {
+      token = res.body.token;
+      done();
+    });
+  });
   it('should return 201 when a message is posted successfully', (done) => {
     request
     .post(`/api/v1/group/${1}/message`)
