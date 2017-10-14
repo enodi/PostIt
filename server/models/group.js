@@ -1,30 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
-    groupName: {
+    name: {
       type: DataTypes.STRING,
-      unique: {
-        args: true,
-        msg: 'group name already exists'
-      },
-      validate: {
-        notEmpty: true
-      },
+      unique: true
     },
+    description: {
+      type: DataTypes.STRING
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+    }
   }, {
     classMethods: {
       associate: (models) => {
         Group.hasMany(models.Message, {
-          foreignKey: 'groupId'
-        });
-        Group.hasMany(models.DeletedGroup, {
-          foreignKey: 'groupId'
+          foreignKey: 'GroupId'
         });
         Group.belongsToMany(models.User, {
           through: 'UserGroup',
-          foreignKey: 'groupId'
+          foreignKey: 'GroupId',
+          onDelete: 'CASCADE'
         });
       }
     }
   });
   return Group;
 };
+

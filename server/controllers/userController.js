@@ -1,78 +1,145 @@
-const User = require('../models').User;
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt-nodejs');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import { User } from '../models';
 
-module.exports = {
-  // Handles user registration
-  signUp(req, res) {
-    // Ensures that username, password and email fields are not empty
-    if (!req.body.username || req.body.username.trim() === '') {
-      return res.json('username is required');
-    } else if (!req.body.email || req.body.email.trim() === '') {
-      return res.json('email is required');
-    } else if (!req.body.password || req.body.password.trim() === '') {
-      return res.json('password is required');
+
+/**
+ *
+ * @class UserClass
+ */
+class UserClass {
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
+  static signUp(req, res) {
+    User
+      .create({
+        fullname: req.body.fullname,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      })
+      .then((userCreated) => {
+        if (userCreated) {
+          const { id,
+            username,
+            email,
+            fullname } = userCreated;
+          const token = jwt
+            .sign({
+              userId: userCreated.id,
+              username: userCreated.username
+            }, process.env.JWT_SECRET, {
+              expiresIn: process.env.JWT_EXPIRY_TIME
+            });
+          const user = {
+            message: 'User created successfully',
+            id,
+            username,
+            email,
+            fullname,
+            token
+          };
+          return res.status(201).send(user);
+        }
+        // const data1 = {
+        //   error: [{
+        //     detail: 'User not created'
+        //   }]
+        // };
+        // return res.status(400).send(data1);
+      })
+      .catch(error => res.status(500).send(error));
+  }
+
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
+  static signIn(req, res) {
+    if (!req.body.username || req.body.username === ' '
+      || !req.body.password || req.body.password === ' ') {
+      return res.status(400).json({
+        message: 'Invalid credentials',
+      });
     }
-    User.create({
-      firstName: req.body.first_name,
-      lastName: req.body.last_name,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
-    })
-    .then((user) => {
-      const id = user.id;
-      const username = user.username;
-      const email = user.email;
-      const firstName = user.firstName;
-      const lastName = user.lastName;
-      const createdAt = user.createdAt;
-      if (user) {
-        const data = {
-          message: 'User created successfully',
-          id,
-          username,
-          email,
-          firstName,
-          lastName,
-          createdAt
-        };
-        return res.status(201).send(data);
-      }
-      const data = {
-        error: [{
-          status: 400,
-          detail: 'User not created'
-        }]
-      };
-      return res.status(400).send(data);
-    })
-    .catch(error => res.status(404).send(error));
-  },
-
-  signIn(req, res) {
     // Handles user login
-    User.findOne({ where: { username: req.body.username } })
-   .then((user) => {
-     if (!user) {
-       return res.json({ error: 'Invalid Username' });
-     }
-     // Compares password collected from user with password in database
-     const passwordMatched = bcrypt.compareSync(req.body.password, user.password);
-     if (!passwordMatched) {
-       // If password provided doesn't match password in database, return password doesn't match
-       return res.json({ error: 'Password does not matched' });
-     }
-     // If password provided matches password in database, generate user token
-     const token1 = jwt.sign({ username: user.username }, 'Andela', {
-       expiresIn: 720
-     });
-     return res.json({
-       success: true,
-       message: 'Login successful',
-       token: token1
-     });
-   })
-   .catch(err => res.json(err));
-  },
-};
+    User
+      .findOne({
+        where: {
+          username: req.body.username
+        }
+      })
+      .then((userFound) => {
+        if (!userFound) {
+          return res.status(404).send({
+            message: 'Invalid credentials'
+          });
+        }
+        // Compares password collected from user with password in database
+        const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
+        if (!passwordMatched) {
+          // If password provided doesn't match password in database, return password doesn't match
+          return res.status(422).send({
+            message: 'Invalid credentials'
+          });
+        }
+        // If password provided matches password in database, generate user token
+        const token = jwt
+          .sign({
+            username: userFound.username,
+            userId: userFound.id,
+          }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRY_TIME
+          });
+        return res.status(200).send({
+          success: true,
+          token
+        });
+      })
+      .catch(err => res.send(err));
+  }
+
+
+  /**
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns {Object} Promise
+   * @memberof UserClass
+   */
+  static fetchUsers(req, res) {
+    if (!req.query.q) {
+      return res.status(422)
+        .json({ message: 'query params must be passed' });
+    }
+    User.findAll({
+      where: {
+        username: {
+          $ilike: `%${req.query.q}%`
+        }
+      },
+      attributes: {
+        exclude:
+        ['password', 'createdAt', 'updatedAt']
+      }
+    })
+      .then((retrieveUsers) => {
+        res.status(200).json(retrieveUsers);
+      })
+      .catch(error => res.status(500).json(error));
+  }
+}
+export default UserClass;

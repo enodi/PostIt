@@ -1,34 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     message: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
-    userId: {
+    priority: {
+      type: DataTypes.ENUM,
+      values: ['normal', 'urgent', 'critical']
+    },
+    GroupId: {
       type: DataTypes.INTEGER,
-      allowNull: false
     },
-    groupId: {
+    UserId: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
+    }
   }, {
     classMethods: {
       associate: (models) => {
-        Message.hasMany(models.ReadMessage, {
-          foreignKey: 'messageId'
-        });
-        Message.hasMany(models.DeletedMessage, {
-          foreignKey: 'messageId'
+        Message.belongsTo(models.Group, {
+          foreignKey: 'GroupId',
+          onDelete: 'CASCADE'
         });
         Message.belongsTo(models.User, {
-          foreignKey: 'userId'
-        });
-        Message.belongsTo(models.Group, {
-          foreignKey: 'groupId'
+          foreignKey: 'UserId',
+          onDelete: 'CASCADE'
         });
       }
     }
   });
   return Message;
 };
+
