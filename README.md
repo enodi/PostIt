@@ -1,4 +1,4 @@
-# PostIt [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=add-license)](https://travis-ci.org/enodi/PostIt)  [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=master)](https://coveralls.io/github/enodi/PostIt?branch=master)
+# PostIt [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=add-license)](https://travis-ci.org/enodi/PostIt) [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=chore%2F152155945%2Ftest-user-model)](https://coveralls.io/github/enodi/PostIt?branch=chore%2F152155945%2Ftest-user-model)
 
 # Introduction
 PostIt is a JavaScript application that allow registered users communicate with each other via groups. It allows you post messages and retrieve messages from groups you belong to. It includes a well structured API documentation that can be used by anyone.
