@@ -17,7 +17,7 @@ import App from './App.jsx';
  * @returns {Object} object
  */
 function requireAuth(nextState, replace) {
-  // If token is not provided on login, redirect choreuser to login page
+  // If token is not provided on login, redirect user to login page
   if (!window.localStorage.jwt) {
     replace({
       pathname: '/signin',
