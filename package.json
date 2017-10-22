@@ -7,10 +7,11 @@
     "start": "npm run build && babel-node index.js",
     "client": "node start-client.js",
     "build": "webpack",
-    "test": "NODE_ENV=test mocha --compilers js:babel-register",
+    "test": "NODE_ENV=test mocha test/*.test.js --compilers js:babel-register",
     "start:dev": "nodemon --exec babel-node index.js",
-    "coverage": "istanbul cover node_modules/mocha/bin/_mocha server/test/index.test.js -- -R spec",
-    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha test/*.test.js",
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "showcoverage": "open coverage/lcov-report/index.html"
   },
   "author": "Enodi Audu",
   "license": "ISC",
@@ -62,6 +63,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-istanbul": "^0.12.2",
     "babel-register": "^6.26.0",
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
