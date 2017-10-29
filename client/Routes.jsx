@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-// import components
 import MessageBoard from './src/components/MessageBoard';
 import SignIn from './src/components/LogInPage';
 import ResetPassword from './src/components/ResetPassword';
