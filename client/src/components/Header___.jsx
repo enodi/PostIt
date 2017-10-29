@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 import {connect} from 'react-redux';
 import SearchResult from './SearchResult';
 import { retrieveUsers } from '../actions/searchAction';
-import { signOutUser } from '../actions/auth/signinAction';
+import { signoutUser } from '../actions/auth/signinAction';
 
 class Header extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Header extends React.Component {
 
   handleOnClick(event) {
     event.preventDefault();
-    this.props.signOutUser();
+    this.props.signoutUser();
   }
 
   render() {
@@ -81,4 +81,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { retrieveUsers, signOutUser })(Header);
+export default connect(mapStateToProps, { retrieveUsers, signoutUser })(Header);

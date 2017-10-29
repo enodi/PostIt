@@ -4,9 +4,18 @@ import {
 } from 'react-redux';
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
-import { groupAction, retrieveGroups, activeGroup } from '../actions/groupAction';
+import { groupAction,
+  retrieveGroups,
+  activeGroup } from '../actions/groupAction';
 import { getMessages } from '../actions/messageAction';
 
+
+/**
+ *
+ *
+ * @class SideBar
+ * @extends {React.Component}
+ */
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
@@ -22,9 +31,8 @@ class SideBar extends React.Component {
 
   componentDidMount() {
     $('.modal').modal();
-    const { user } = this.props.currentUser
-    // Retrieve all groups a user belongs to
-    this.props.retrieveGroups(user.userId)
+    const { user } = this.props.currentUser;
+    this.props.retrieveGroups(user.userId);
   }
 
   onSubmit(event) {
@@ -52,12 +60,12 @@ class SideBar extends React.Component {
 
   handleActiveGroup(event) {
     event.preventDefault();
-    this.props.activeGroup({name: event.target.name, id: event.target.id});
+    this.props.activeGroup({ name: event.target.name, id: event.target.id });
     this.props.getMessages(event.target.id);
   }
 
   render() {
-    const { userGroups } = this.props.groups
+    const { userGroups } = this.props.groups;
     return (
       <div>
         <ul className="side-nav fixed" id="slide-out">
@@ -69,8 +77,10 @@ class SideBar extends React.Component {
               <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
             </a>
           </li>
-          <Groups {...userGroups} 
-          onActiveGroup = {this.handleActiveGroup} />
+          <Groups
+          {...userGroups}
+          onActiveGroup = {this.handleActiveGroup}
+          />
         </ul>
         <a
           href="#"
@@ -151,13 +161,11 @@ class SideBar extends React.Component {
     );
   }
 }
-    
-const mapStateToProps = (state) => {
-  return {
-    currentUser: state.authReducer,
-    groups: state.groupReducer
-  }
-}
+
+const mapStateToProps = state => ({
+  currentUser: state.authReducer,
+  groups: state.groupReducer
+});
 
 export default connect(mapStateToProps, {
   groupAction,
