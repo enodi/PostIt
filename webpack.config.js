@@ -39,19 +39,13 @@ module.exports = {
       })
     },
     {
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
       query: {
         cacheDirectory: true,
         presets: ['react', 'es2015', 'stage-2'],
       }
-
-    },
-    {
-      test: /\.jsx$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
     },
     ]
   },
@@ -77,7 +71,6 @@ module.exports = {
     HtmlWebpackPluginConfig,
     extractCSSPlugin,
     hotModuleReplacement,
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
 };
