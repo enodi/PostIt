@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 // import { bindActionCreators } from 'redux';
 import {
   signinAction
-} from '../actions/auth/signinAction';
+} from '../../actions/auth/signinAction';
 
-class LogInForm extends React.Component {
+class SigninForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,14 +68,15 @@ class LogInForm extends React.Component {
     }
   }
   onChange(event) {
+    const value = event.target.value.trim();
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: value
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.signinAction(this.state)
+    this.props.signinAction(this.state);
   }
 
   render() {
@@ -146,11 +147,11 @@ class LogInForm extends React.Component {
   }
 }
 
-LogInForm.propTypes = {
+SigninForm.propTypes = {
   signinAction: PropTypes.func.isRequired
 };
-LogInForm.contextTypes = {
+SigninForm.contextTypes = {
   router: PropTypes.object.isRequired,
 };
 
-export default connect(null, { signinAction })(LogInForm);
+export default connect(null, { signinAction })(SigninForm);

@@ -26,12 +26,12 @@ const NavBar = () => (
       <ul className="right hide-on-med-and-down">
         <li><Link to="/product">Product</Link></li>
         <li><Link to="/support">Support</Link></li>
-        <li><Link to="/signin">My Account</Link></li>
+        <li><Link to="/account">My Account</Link></li>
       </ul>
       <ul className="side-nav" id="mobile-demo">
         <li><Link to="/product">Product</Link></li>
         <li><Link to="/support">Support</Link></li>
-        <li><Link to="/signin">My Account</Link></li>
+        <li><Link to="/account">My Account</Link></li>
       </ul>
     </div>
   </nav>

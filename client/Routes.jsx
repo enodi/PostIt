@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import MessageBoard from './src/components/MessageBoard';
-import SignIn from './src/components/LogInPage';
-import ResetPassword from './src/components/ResetPassword';
-import IndexPage from './src/components/IndexPage';
-import Product from './src/components/Product';
-import Support from './src/components/Support';
+import MessageBoard from './src/components/MessageBoard.jsx';
+import SignIn from './src/components/Authentication/SigninPage.jsx';
+import ResetPassword from './src/components/ResetPassword.jsx';
+import IndexPage from './src/components/IndexPage.jsx';
+import Product from './src/components/Product.jsx';
+import Support from './src/components/Support.jsx';
 import App from './App.jsx';
 
 
@@ -29,7 +29,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={IndexPage} />
     <Route path="/product" component={Product} />
-    <Route path="/signin" component={SignIn} />
+    <Route path="/account" component={SignIn} />
     <Route path="/support" component={Support} />
     <Route path="/resetpassword" component={ResetPassword} />
     <Route path="/dashboard" component={MessageBoard} onEnter={requireAuth} />

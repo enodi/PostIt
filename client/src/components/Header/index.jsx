@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NavBar from './NavBar';
-import AuthNavBar from './AuthNavBar';
+import NavBar from './NavBar.jsx';
+import AuthNavBar from './AuthNavBar.jsx';
 
 /**
  *
