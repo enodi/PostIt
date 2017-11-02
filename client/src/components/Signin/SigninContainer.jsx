@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { signinAction } from '../../../actions/auth/signinAction';
-import '../../../assets/main.scss';
-import SigninForm from './SigninForm.jsx';
+import { signinAction } from '../../actions/auth/signinAction';
+import Signin from './Signin.jsx';
 
 /**
  *
  *
- * @class SigninForm
+ * @class SigninContainer
  * @extends {React.Component}
  */
-class SigninFormContainer extends React.Component {
+class SigninContainer extends React.Component {
   /**
-   * Creates an instance of SigninForm.
+   * Creates an instance of SigninContainer.
    * @param {any} props
-   * @memberof SigninForm
+   * @memberof SigninContainer
    */
   constructor(props) {
     super(props);
@@ -35,10 +34,9 @@ class SigninFormContainer extends React.Component {
    *
    * @param {any} event
    * @returns {void}
-   * @memberof SigninFormContainer
+   * @memberof SigninContainer
    */
   onFocus(event) {
-    // Clear error message when user is focused on a particular field
     const name = event.target.name;
     switch (name) {
       case 'username':
@@ -60,7 +58,7 @@ class SigninFormContainer extends React.Component {
    *
    * @param {any} event
    * @returns {void}
-   * @memberof SigninFormContainer
+   * @memberof SigninContainer
    */
   onBlur(event) {
     const name = event.target.name;
@@ -89,7 +87,7 @@ class SigninFormContainer extends React.Component {
    *
    * @param {any} event
    * @returns {void}
-   * @memberof SigninFormContainer
+   * @memberof SigninContainer
    */
   onChange(event) {
     const value = event.target.value.trim();
@@ -103,22 +101,22 @@ class SigninFormContainer extends React.Component {
    *
    * @param {any} event
    * @returns {void}
-   * @memberof SigninFormContainer
+   * @memberof SigninContainer
    */
   handleSubmit(event) {
     event.preventDefault();
     this.props.signinAction(this.state);
   }
 
-  /**
-   *
-   *
-   * @returns {jsx}
-   * @memberof SigninFormContainer
-   */
+ /**
+  *
+  *
+  * @returns
+  * @memberof SigninContainer
+  */
   render() {
     return (
-        <SigninForm
+        <Signin
           state={this.state}
           onChange={this.onChange}
           handleSubmit={this.handleSubmit}
@@ -129,8 +127,8 @@ class SigninFormContainer extends React.Component {
   }
 }
 
-SigninFormContainer.propTypes = {
+SigninContainer.propTypes = {
   signinAction: PropTypes.func.isRequired
 };
 
-export default connect(null, { signinAction })(SigninFormContainer);
+export default connect(null, { signinAction })(SigninContainer);

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
-import '../../../assets/main.scss';
-import InputField from '../../Common/InputField.jsx';
+import InputField from '../Common/InputField.jsx';
 
-const SigninForm = props => (
+const Signin = props => (
   <div id="test-swipe-1" className="col s12">
   <h5 > Log Into Your Account </h5>
   <div style={{ color: 'red' }}>{props.error} </div>
@@ -58,7 +57,7 @@ const SigninForm = props => (
 </div>
 );
 
-SigninForm.propTypes = {
+Signin.propTypes = {
   onBlur: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -66,4 +65,4 @@ SigninForm.propTypes = {
   state: PropTypes.object.isRequired
 };
 
-export default SigninForm;
+export default Signin;

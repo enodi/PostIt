@@ -1,17 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import SignupForm from '../Authentication__/SignupForm.jsx';
-import SigninFormContainer from './Signin/SigninFormContainer.jsx';
-import { signupAction } from '../../actions/auth/signupAction';
+import SignupContainer from '../components/Signup/SignupConatiner.jsx';
+import SigninContainer from '../components/Signin/SigninContainer.jsx';
 
-class SigninPage extends React.Component {
+/**
+ *
+ *
+ * @class AuthenticationPage
+ * @extends {React.Component}
+ */
+class AuthenticationPage extends React.Component {
+  /**
+   *
+   * @returns {void}
+   * @memberof AuthenticationPage
+   */
   componentDidMount() {
      $('ul.tabs').tabs();
   }
 
+  /**
+   *
+   *
+   * @returns {jsx}
+   * @memberof AuthenticationPage
+   */
   render() {
-    const { signupAction } = this.props;
     return (
       <div>
         <div className="container"><br/>
@@ -26,10 +39,10 @@ class SigninPage extends React.Component {
                         <li className="tab col l6 s6"><a href="#test-swipe-2">SIGN UP</a></li>
                       </ul>
                     </div>
-
-                    <SignupForm signupAction={signupAction} />
-
-                    <SigninFormContainer />
+                    <div>
+                    <SignupContainer />
+                    <SigninContainer />
+                    </div>
                   </div>
               </div>
             </center>
@@ -41,8 +54,4 @@ class SigninPage extends React.Component {
   }
 }
 
-SigninPage.propTypes = {
-  signupAction: PropTypes.func.isRequired
-};
-
-export default connect(null, { signupAction })(SigninPage);
+export default AuthenticationPage;

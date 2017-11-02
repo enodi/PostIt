@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { signoutUser } from '../../actions/auth/signinAction';
 
 /**
- * This class is the container component
- * for the different NavBar
- * It is responsible for managing state
+ * This class is responsible for managing state
  * change and handling user signout
  *
  * @class AuthNavBar

@@ -5,7 +5,7 @@ import AuthNavBar from './AuthNavBar.jsx';
 
 /**
  *
- * Header Presentational Component
+ * Header Component
  *
  * @param {object} props
  *
