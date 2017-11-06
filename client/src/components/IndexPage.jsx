@@ -23,7 +23,7 @@ export default class IndexPage extends Component {
             </div>
             <div className="row">
               <div className="col l4">
-                <Link to ='/' className="waves-effect hoverable btn-large">Get Started</Link>
+                <Link to ='/account' className="waves-effect hoverable btn-large">Get Started</Link>
               </div>
             </div>
           </div>

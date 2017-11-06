@@ -1,4 +1,6 @@
 import axios from 'axios';
+import toastr from 'toastr';
+import { browserHistory } from 'react-router';
 import * as types from './actionTypes';
 
 
@@ -41,7 +43,8 @@ export function groupAction(data) {
     return axios.post('/api/v1/group', data)
       .then((res) => {
         dispatch(groupSuccess(res.data));
-        return res;
+        toastr.success(res.data.message);
+        browserHistory.push('/dashboard');
       })
       .catch((error) => {
         return error.response.data;

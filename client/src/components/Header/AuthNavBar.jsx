@@ -55,14 +55,14 @@ class AuthNavBar extends React.Component {
           <li>
             <i
               className="large material-icons black-text"
-              onClick={this.handleOnClick}>input
+              onClick={this.handleOnClick}>person
             </i>
           </li>
         </ul>
         <ul className="side-nav" id="mobile-demo">
           <li>
             <i className="large material-icons black-text">
-              input
+              person
             </i>
           </li>
         </ul>

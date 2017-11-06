@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  connect
-} from 'react-redux';
+import { connect } from 'react-redux';
 import Notifications, { notify } from 'react-notify-toast';
 import Groups from './Groups';
 import { groupAction,
@@ -90,12 +88,10 @@ class SideBar extends React.Component {
           <i className="material-icons">menu</i>
         </a>
 
-        {/* Create group Modal */}
         <div className="container group-container">
           <div className="row">
             <div className="col s12 m8 offset-m2 l9 offset-l3">
 
-              { /* Modal Structure */}
               <div id="modal1" className="modal modal-fullscreen">
                 <div className="modal-content">
                   <div className="modal-footer">

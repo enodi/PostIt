@@ -2,8 +2,8 @@ import React from 'react';
 import {
   connect
 } from 'react-redux';
-import SideBar from './SideBar';
-import Dashboard from './Dashboard';
+import Sidebar from '../components/Dashboard/Sidebar.jsx';
+import Dashboard from './Dashboard.jsx';
 import { messageAction } from '../actions/messageAction';
 
 class MessageBoard extends React.Component {
@@ -41,7 +41,7 @@ class MessageBoard extends React.Component {
     const { groupMessages } = this.props.messageReducer;
     return(
       <div>
-        <SideBar />
+        <Sidebar />
         <Dashboard messages={groupMessages} />
         <div className="fixed-action-btn vertical">
         <a className="btn-floating btn-large red">
