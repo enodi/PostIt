@@ -48,26 +48,39 @@ class AuthNavBar extends React.Component {
    */
   render() {
     return (
-      <nav className="white dashboard logout-icon">
-      <div className="nav-wrapper">
-        <Link to="/" className="brand-logo li">PostIt</Link>
-        <ul className="right hide-on-med-and-down">
-          <li>
-            <i
-              className="large material-icons black-text"
-              onClick={this.handleOnClick}>person
-            </i>
-          </li>
-        </ul>
-        <ul className="side-nav" id="mobile-demo">
-          <li>
-            <i className="large material-icons black-text">
-              person
-            </i>
-          </li>
-        </ul>
+      <div>
+        <nav className="white dashboard logout-icon">
+          <div className="nav-wrapper">
+            <Link to="/" className="brand-logo li">PostIt</Link>
+            <ul className="right hide-on-med-and-down">
+              <li>
+                <a href="#add_users" className="modal-trigger">
+                  <i className="material-icons black-text" href="#add_users">group_add</i>
+                </a>
+              </li>
+              <li>
+                <i
+                  className="large material-icons black-text"
+                  onClick={this.handleOnClick}>input
+                </i>
+              </li>
+            </ul>
+            <ul className="side-nav" id="mobile-demo">
+              <li>
+                <i className="large material-icons black-text">
+                group_add
+                </i>
+              </li>
+              <li>
+                <i className="large material-icons black-text">
+                  input
+                </i>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
       </div>
-    </nav>
     );
   }
 }

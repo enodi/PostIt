@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import MessageBoard from './src/components/Dashboard/MessageBoard.jsx';
+import Dashboard from './src/components/Dashboard/Dashboard.jsx';
 import AuthenticationPage from './src/components/AuthenticationPage.jsx';
 import ResetPassword from './src/components/ResetPassword.jsx';
 import IndexPage from './src/components/IndexPage.jsx';
@@ -32,6 +32,6 @@ export default(
     <Route path="/account" component={AuthenticationPage}/>
     <Route path="/support" component={Support}/>
     <Route path="/resetpassword" component={ResetPassword}/>
-    <Route path="/dashboard" component={MessageBoard} onEnter={requireAuth}/>
+    <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
   </Route>
 );

@@ -5,18 +5,19 @@ import InputField from '../../Common/InputField.jsx';
 const PostMessage = props => (
   <div className="container post-message">
     <div className="row">
-      <form onSubmit={props.handleOnSubmit}>
-        <div className="input-field col l11 offset-l1">
-          <div className="card-panel">
+      <div className="panel">
+        <form onSubmit={props.handleOnSubmit}>
+          <div className="input-field col m10 offset-m1">
+          <div className="input-border">
             <InputField
               className="autocomplete"
               type={'text'}
               name={'messsage'}
               value={props.state.message}
               onChange={props.handleOnChange}
-              label={'Message'}
-              htmlFor={'message'}
-              required />
+              placeholder={'Type a message'}
+              required/>
+          </div>
             <p>
               <input
                 className="with-gap"
@@ -42,15 +43,16 @@ const PostMessage = props => (
                 onChange={props.priorityOnChange} />
               <label htmlFor="critical">Critical</label>
             </p>
-          <button
-            className="btn-large right"
-            type="submit"
-            name="action">
-            Post Message
-          </button>
           </div>
-        </div>
-      </form>
+          <div className="input-field col m1">
+            <div className="button-border">
+              <button className="btn-large right" type="submit" name="action">
+                send
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 );

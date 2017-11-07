@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Group from './Group/Group.jsx';
-import { groupAction, retrieveGroups } from '../../actions/groupAction';
+import { signoutUser } from '../../actions/auth/signinAction';
+import { createGroup, retrieveGroups, activeGroup } from '../../actions/groupAction';
 
 /**
  *
@@ -25,6 +26,8 @@ class Sidebar extends React.Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleActiveGroup = this.handleActiveGroup.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   /**
@@ -35,7 +38,6 @@ class Sidebar extends React.Component {
   componentDidMount() {
     $('.modal').modal();
     const user = this.props.currentUser;
-    console.log(user.userId);
     this.props.retrieveGroups(user.userId);
   }
 
@@ -47,7 +49,20 @@ class Sidebar extends React.Component {
    */
   onSubmit(event) {
     event.preventDefault();
-    this.props.groupAction(this.state);
+    const user = this.props.currentUser;
+    this.props.createGroup(this.state, user.userId);
+  }
+
+  /**
+   *
+   *
+   * @param {any} event
+   * @returns {}
+   * @memberof Sidebar
+   */
+  handleActiveGroup(event, name, id) {
+    event.preventDefault();
+    this.props.activeGroup({ name, id });
   }
 
   /**
@@ -65,25 +80,37 @@ class Sidebar extends React.Component {
   /**
    *
    *
+   * @param {any} event
+   * @memberof Sidebar
+   */
+  handleOnClick(event) {
+    event.preventDefault();
+    this.props.signoutUser();
+  }
+
+  /**
+   *
+   *
    * @returns
    * @memberof Sidebar
    */
   render() {
     return (
       <div>
-      <Group
-        groups={this.props.groups}
-        handleOnChange={this.handleOnChange}
-        state={this.state}
-        onSubmit={this.onSubmit}
-        handleRetrieveGroup={this.handleRetrieveGroup}/>
+        <Group
+          groups={this.props.groups.Groups}
+          handleOnChange={this.handleOnChange}
+          state={this.state}
+          onSubmit={this.onSubmit}
+          active={this.handleActiveGroup}
+          handleOnClick={this.handleOnClick}/>
       </div>
     );
   }
 }
 
 Sidebar.propTypes = {
-  groupAction: PropTypes.func.isRequired
+  createGroup: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -92,4 +119,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps,
-  { groupAction, retrieveGroups })(Sidebar);
+  { createGroup, retrieveGroups, activeGroup, signoutUser })(Sidebar);

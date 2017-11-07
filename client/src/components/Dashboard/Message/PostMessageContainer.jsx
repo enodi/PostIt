@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostMessage from './PostMessage.jsx';
-import { messageAction } from '../../../actions/messageAction';
+import MessageBoard from './MessageBoard.jsx';
+import { postMessage } from '../../../actions/messageAction';
 
 /**
  *
@@ -58,7 +59,8 @@ class PostMessageContainer extends React.Component {
    */
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.messageAction(this.state);
+    const group = this.props.group;
+    this.props.postMessage(group.activeGroup.id, this.state);
   }
 
   /**
@@ -69,14 +71,21 @@ class PostMessageContainer extends React.Component {
    */
   render() {
     return (
-      <PostMessage
-        handleOnChange={this.handleOnChange}
-        state={this.state}
-        handleOnSubmit={this.handleOnSubmit}
-        priorityOnChange={this.priorityOnChange}/>
+      <div>
+        <PostMessage
+          handleOnChange={this.handleOnChange}
+          state={this.state}
+          handleOnSubmit={this.handleOnSubmit}
+          priorityOnChange={this.priorityOnChange}/>
+        <MessageBoard groupMessages={this.props.messages}/>
+      </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  group: state.groupReducer,
+  messages: state.messageReducer.groupMessages
+});
 
-export default connect(null, { messageAction })(PostMessageContainer);
+export default connect(mapStateToProps, { postMessage })(PostMessageContainer);

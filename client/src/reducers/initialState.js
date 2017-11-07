@@ -7,7 +7,3 @@ export const searchInitialState = {
   search: []
 };
 
-export const messageInitialState = {
-  newMessage: {},
-  groupMessages: []
-};

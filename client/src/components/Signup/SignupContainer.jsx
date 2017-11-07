@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { signupAction } from '../../actions/auth/signupAction';
 import Signup from './Signup.jsx';
 
@@ -96,23 +95,7 @@ class SignupContainer extends React.Component {
    */
   onSubmit(event) {
     event.preventDefault();
-    const { error, disable } = this.validateInput(this.state);
-    if (!disable) {
-      this.props.signupAction(this.state)
-        .then((res) => {
-          if (res.status === 201) {
-            browserHistory.push('/dashboard');
-          } else {
-            this.setState({ error: res.message });
-          }
-        })
-        .catch(err => err);
-    } else {
-      this.setState({
-        error,
-        disable
-      });
-    }
+    this.props.signupAction(this.state);
   }
 
   /**

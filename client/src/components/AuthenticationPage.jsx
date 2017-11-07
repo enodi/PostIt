@@ -1,5 +1,5 @@
 import React from 'react';
-import SignupContainer from '../components/Signup/SignupConatiner.jsx';
+import SignupContainer from '../components/Signup/SignupContainer.jsx';
 import SigninContainer from '../components/Signin/SigninContainer.jsx';
 
 /**

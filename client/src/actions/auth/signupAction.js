@@ -1,4 +1,6 @@
 import axios from 'axios';
+import toastr from 'toastr';
+import { browserHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
@@ -30,10 +32,9 @@ export function signupAction(userData) {
         localStorage.setItem('jwt', token);
         setAuthorizationToken(token);
         dispatch(setCurrentUser(jwtDecode(token)));
-        return res;
+        toastr.success(res.data.message);
+        browserHistory.push('/dashboard');
       })
-      .catch((error) => {
-        return error.response.data;
-      });
+      .catch(error => toastr.error(error.response.data.message));
   };
 }

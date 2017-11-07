@@ -19,18 +19,16 @@ class UserGroupClass {
    * @returns {Object} Promise
    * @memberof UserGroupClass
    */
-  static create(req, res) {
-    UserGroup
-      .create({
-        GroupId: req.params.group_id,
-        UserId: req.body.userId
-      })
-      .then((usergroupCreated) => {
-        if (usergroupCreated) {
-          // Return user and group data when request is successful
-          return res.status(201).json(usergroupCreated);
+  static addUser(req, res) {
+    User.create({
+      GroupId: req.params.group_id,
+      UserId: req.body.userId
+    })
+      .then((userAdded) => {
+        if (userAdded) {
+          return res.status(201).json(userAdded);
         }
-        return res.status(400).json(usergroupCreated);
+        return res.status(400).json(userAdded);
       })
       .catch(error => res.status(500).json(error));
   }

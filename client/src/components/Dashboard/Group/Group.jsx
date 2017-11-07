@@ -6,7 +6,11 @@ import GroupList from './GroupList.jsx';
 const Group = props => (
   <div>
     <ul className="side-nav fixed" id="slide-out">
-      <li className="brand-logo logo-text"> PostIt </li>
+      <li className="brand-logo logo-text">PostIt
+        <i className="small material-icons white-text">
+        input
+        </i>
+      </li>
       <li className="divider"></li>
       <li>
         <a href="#modal1" className="sidebar-text modal-trigger">
@@ -14,15 +18,11 @@ const Group = props => (
           <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
         </a>
       </li>
-      <GroupList
-        handleRetrieveGroup={props.handleRetrieveGroup} />
+      {props.groups && props.groups.map(group => <GroupList
+        group={group}
+        active={props.active}
+        />)}
     </ul>
-    <a
-      href="#"
-      data-activates="slide-out"
-      className="button-collapse">
-      <i className="material-icons">menu</i>
-    </a>
     <div className="container group-container">
       <div className="row">
         <div className="col s12 m8 offset-m2 l9 offset-l3">

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputField = ({
-  name, value, id, type, htmlFor, label, onChange, onBlur, onFocus
+  name, value, id, type, htmlFor, label, onChange, onBlur, onFocus, placeholder
 }) => (
   <div className="input-field col s12" >
     <input
@@ -13,6 +13,7 @@ const InputField = ({
       onFocus={onFocus}
       name={name}
       id={id}
+      placeholder={placeholder}
     />
     <label htmlFor={htmlFor} > {label} </label>
   </div >
@@ -27,7 +28,8 @@ InputField.PropTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired
+  onFocus: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired
 };
 
 InputField.defaultProps = {

@@ -13,7 +13,7 @@ app.route('/')
   .post(validations.validateGroup, GroupController.create);
 
 app.route('/:group_id/user')
-  .post(validations.validateUserGroup, UserGroupController.create)
+  .post(validations.validateUserGroup, UserGroupController.addUser)
   .get(UserGroupController.retrieveUsers);
 
 app.route('/:group_id/message')

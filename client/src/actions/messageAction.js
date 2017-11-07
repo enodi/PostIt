@@ -17,24 +17,6 @@ export function messageSuccess(message) {
 
 /**
  *
- * @export messageAction
- * @param {any} groupId
- * @param {any} data
- * @returns {Object} Promise
- */
-export function messageAction(groupId, data) {
-  return (dispatch) => {
-    axios.post(`api/v1/group/${groupId}/message`, data)
-      .then((res) => {
-        dispatch(messageSuccess(res.data));
-        toastr.success(res.data.message);
-      })
-      .catch(error => error.response.data);
-  };
-}
-
-/**
- *
  * @export getMessageSuccess
  * @param {any} messages
  * @returns {Object} action type
@@ -57,6 +39,23 @@ export function getMessages(groupId) {
     axios.get(`api/v1/group/${groupId}/messages`)
       .then((res) => {
         dispatch(getMessageSuccess(res.data));
+      })
+      .catch(error => error.response.data);
+  };
+}
+
+/**
+ *
+ * @export messageAction
+ * @param {any} groupId
+ * @param {any} data
+ * @returns {Object} Promise
+ */
+export function postMessage(groupId, data) {
+  return (dispatch) => {
+    axios.post(`api/v1/group/${groupId}/message`, data)
+      .then((res) => {
+        dispatch(getMessages(groupId));
       })
       .catch(error => error.response.data);
   };

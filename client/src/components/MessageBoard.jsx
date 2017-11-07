@@ -153,11 +153,9 @@ class MessageBoard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    groupReducer: state.groupReducer,
-    messageReducer: state.messageReducer
-  }
-}
+const mapStateToProps = state => ({
+  groupReducer: state.groupReducer,
+  messageReducer: state.messageReducer
+});
 
 export default connect(mapStateToProps, { messageAction })(MessageBoard);

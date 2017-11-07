@@ -39,7 +39,7 @@ class UserClass {
               expiresIn: process.env.JWT_EXPIRY_TIME
             });
           const user = {
-            message: 'User created successfully',
+            message: 'Signup successful',
             id,
             username,
             email,

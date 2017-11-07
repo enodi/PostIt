@@ -1,7 +1,7 @@
 import axios from 'axios';
 import toastr from 'toastr';
-import { browserHistory } from 'react-router';
 import * as types from './actionTypes';
+import { getMessages } from './messageAction';
 
 
 /**
@@ -10,7 +10,7 @@ import * as types from './actionTypes';
  * @param {any} group
  * @returns {Object} action type
  */
-export function groupSuccess(group) {
+export function createGroupSuccess(group) {
   return {
     type: types.CREATE_GROUP_SUCCESSFUL,
     group
@@ -31,28 +31,6 @@ export function retrieveGroupsSuccess(groups) {
   };
 }
 
-
-/**
- *
- * @export groupAction
- * @param {any} data
- * @returns {Object} Promise
- */
-export function groupAction(data) {
-  return (dispatch) => {
-    return axios.post('/api/v1/group', data)
-      .then((res) => {
-        dispatch(groupSuccess(res.data));
-        toastr.success(res.data.message);
-        browserHistory.push('/dashboard');
-      })
-      .catch((error) => {
-        return error.response.data;
-      });
-  };
-}
-
-
 /**
  *
  * @export retrieveGroups
@@ -63,13 +41,43 @@ export function retrieveGroups(userId) {
   return dispatch =>
     axios.get(`/api/v1/user/${userId}/group`)
       .then((res) => {
-        dispatch(retrieveGroupsSuccess(res.data));
+        dispatch(retrieveGroupsSuccess(res.data.groups.Groups));
       })
-      .catch((error) => {
-        return error.response.data;
-      });
+      .catch(error => error.response.data);
 }
 
+
+/**
+ *
+ * @export groupAction
+ * @param {any} data
+ * @returns {Object} Promise
+ */
+export function createGroup(data, userId) {
+  return (dispatch) => {
+    return axios.post('/api/v1/group', data)
+      .then((res) => {
+        dispatch(retrieveGroups(userId));
+        toastr.success(res.data.message);
+        $('#modal1').modal('close');
+      })
+      .catch(error => toastr.error(error.response.data));
+  };
+}
+
+/**
+ *
+ *
+ * @export
+ * @param {any} active
+ * @returns
+ */
+export function activeGroupSuccess(active) {
+  return {
+    type: types.ACTIVE_GROUP_CLICKED,
+    active
+  };
+}
 
 /**
  *
@@ -78,9 +86,9 @@ export function retrieveGroups(userId) {
  * @returns {Object} action type
  */
 export function activeGroup(active) {
-  return {
-    type: types.ACTIVE_GROUP_CLICKED,
-    active
+  return (dispatch) => {
+    dispatch(getMessages(active.id));
+    dispatch(activeGroupSuccess(active));
   };
 }
 
