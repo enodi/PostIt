@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from './src/components/Header';
+import Header from './src/components/Header/index.jsx';
 
+ /* eslint-disable react/prefer-stateless-function */
+/**
+ * @class App
+ * @classdesc main app component
+ */
 class App extends React.Component {
+
+  /**
+   * render - renders app component
+   * @return {object} the component view
+   */
   render() {
     return (
       <div className="container-fluid">
@@ -14,7 +24,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default App;

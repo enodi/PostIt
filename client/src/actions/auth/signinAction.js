@@ -12,7 +12,7 @@ import * as types from '../actionTypes';
  */
 export function signinSuccess(user) {
   return {
-    type: types.LOG_IN_SUCCESS,
+    type: types.SIGN_IN_SUCCESS,
     user
   };
 }
@@ -22,7 +22,7 @@ export function signinSuccess(user) {
  * @export signOutSuccess
  * @returns  {Object} action type
  */
-export function signOutSuccess() {
+export function signoutSuccess() {
   return {
     type: types.SIGN_OUT_SUCCESSFUL
   };
@@ -40,14 +40,11 @@ export function signinAction(credentials) {
       .then((res) => {
         const token = res.data.token;
         localStorage.setItem('jwt', token);
-        // Dispatch loginSuccess action to the reducer
         setAuthorizationToken(token);
         dispatch(signinSuccess(jwtDecode(token)));
         browserHistory.push('/dashboard');
       })
-      .catch((error) => {
-        toastr.error(error.response.data.message);
-      });
+      .catch(error => toastr.error(error.response.data.message));
   };
 }
 
@@ -55,12 +52,11 @@ export function signinAction(credentials) {
  * @export signOutUser
  * @returns {Object} Promise
  */
-export function signOutUser() {
+export function signoutUser() {
   return (dispatch) => {
-    // Remove JWT from sessionStorage when user logs out
     localStorage.removeItem('jwt');
-    dispatch(signOutSuccess());
-    browserHistory.push('/signin');
+    dispatch(signoutSuccess());
+    browserHistory.push('/account');
   };
 }
 

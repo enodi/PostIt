@@ -24,7 +24,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',
   module: {
@@ -34,9 +34,20 @@ module.exports = {
     },
     {
       test: /\.scss$/,
-      use: extractCSSPlugin.extract({
-        use: ['css-loader', 'sass-loader']
-      })
+      exclude: /node_modules/,
+      use: [{
+        loader: 'style-loader',
+      }, {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+        },
+      }, {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        },
+      }]
     },
     {
       test: /\.(js|jsx)$/,

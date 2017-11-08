@@ -145,23 +145,28 @@
 }
 
 .fixed {
-	background-color: #5E2750;
+	background-color: #212121;
+	.small {
+		padding-left: 90px;
+	}
 	.logo-text {
 		color: #fff !important;
 		font-size: 28px !important;
-		text-align: center !important;
 	}
 	.sidebar-text {
 		color: #e0e0e0 !important;
 	}
 	li {
 		&:hover {
-			background-color: #6e3c61 !important;
+			background-color: #424242 !important;
 		}
 		a {
 			font-family: 'Raleway', sans-serif;
 			font-size: 13px !important;
-			
+			color: #e0e0e0 !important;
+			&:active {
+				color: red;
+			}
 		}
 		i.material-icons {
 			margin: 20px 0px 0px 0px !important;
@@ -169,30 +174,52 @@
 	}
 }
 
-#message-modal {
-	label {
-		margin-right: 50px;
+.add-user {
+	p {
+		font-size: 20px;
 	}
 	button {
-		margin: 20px 0px;
-		background-color: #6e3c61 !important;
+		font-family: Calibri;
+		background-color: #880E4F !important;
 	}
-	.input-box_text {
-    font-size: 0.95rem;
-    width: 90%;
-    margin-left: 2%;
-    margin-bottom: auto;
-    line-height: 1.2rem;
-    border: 2px solid #e0e0e0 ;
-    border-radius: 0.2rem;
-    background-clip: padding-box;
-    color: #3d3c40 ;
-    box-shadow: none;
-    outline: 0;
-    bottom: 0;
-    min-height: 41px !important;
-    padding: 9px 5px 9px 8px;
-  }
+}
+
+.post-message {
+	.panel {
+		height: 130px;
+		position: fixed;
+		bottom: 0;
+		width: 70%;
+	}
+	button {
+		font-family: Calibri;
+		background-color: #880E4F !important;
+	}
+	& .button-border{
+		border-radius: 2px;
+		display: inline-block;
+		min-width: 100%;
+		margin: -15px;
+		padding: 2px 10px;
+		position: relative;
+	}
+	& .input-border{
+		border-radius: 2px;
+		display: inline-block;
+		min-width: 100%;
+		margin: -15px;
+		padding: 2px 10px;
+		position: relative;
+		box-shadow: 0 10px 10px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+		& input[type=text]{
+			margin:0 !important;
+			border-bottom: none!important;
+			&:focus {
+				border-bottom: none!important;
+				box-shadow: none!important;
+			}
+		}
+	}
 }
 
 .group-container {
@@ -277,4 +304,15 @@
 			}
 		}
 	}
+}
+
+.circle {
+	width: 30px;
+	height: 20px;
+}
+
+.display-message {
+	max-height: 600px;
+	overflow: scroll;
+	margin-left: 30px;
 }

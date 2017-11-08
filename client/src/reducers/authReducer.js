@@ -16,7 +16,7 @@ export default function authReducer(state = authInitialState, action = {}) {
         isAuthenticated: true,
         user: action.user
       };
-    case types.LOG_IN_SUCCESS:
+    case types.SIGN_IN_SUCCESS:
       return {
         isAuthenticated: true,
         user: action.user

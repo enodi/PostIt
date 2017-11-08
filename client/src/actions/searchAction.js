@@ -8,9 +8,9 @@ import * as types from './actionTypes';
  * @param {any} users
  * @returns {Object} action type
  */
-export function retrieveUsersSuccess(users) {
+export function searchUsersSuccess(users) {
   return {
-    type: types.RETRIEVE_USERS_SUCCESSFUL,
+    type: types.SEARCH_USERS_SUCCESSFUL,
     users
   };
 }
@@ -21,13 +21,11 @@ export function retrieveUsersSuccess(users) {
  * @param {any} username
  * @returns {Object} Promise
  */
-export function retrieveUsers(username) {
+export function searchUsers(username) {
   return dispatch =>
     axios.get(`/api/v1/user/search?q=${username}`)
       .then((res) => {
-        dispatch(retrieveUsersSuccess(res.data));
+        dispatch(searchUsersSuccess(res.data));
       })
-      .catch((error) => {
-        return error.response.data;
-      });
+      .catch(error => error.response.data);
 }

@@ -1,7 +1,9 @@
 import * as types from '../actions/actionTypes';
-import { groupInitialState } from './initialState';
 
-
+const groupInitialState = {
+  Groups: [],
+  activeGroup: {}
+};
 /**
  *
  * @export groupReducer
@@ -12,10 +14,10 @@ import { groupInitialState } from './initialState';
 export default function groupReducer(state = groupInitialState, action = {}) {
   switch (action.type) {
     case types.CREATE_GROUP_SUCCESSFUL:
-      return { ...state, ...{ newGroup: action.group } };
+      return { ...state, ...{ Groups: action.group } };
 
     case types.RETRIEVE_GROUP_SUCCESSFUL:
-      return { ...state, ...{ userGroups: action.groups } };
+      return { ...state, ...{ Groups: action.groups } };
 
     case types.ACTIVE_GROUP_CLICKED:
       return { ...state, ...{ activeGroup: action.active } };

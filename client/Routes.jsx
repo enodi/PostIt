@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import MessageBoard from './src/components/MessageBoard';
-import SignIn from './src/components/LogInPage';
-import ResetPassword from './src/components/ResetPassword';
+import Dashboard from './src/components/Dashboard/Dashboard';
+import AuthenticationPage from './src/components/AuthenticationPage';
 import IndexPage from './src/components/IndexPage';
 import Product from './src/components/Product';
 import Support from './src/components/Support';
-import App from './App.jsx';
-
+import App from './App';
 
 /**
  * @param {any} nextState
@@ -16,23 +14,22 @@ import App from './App.jsx';
  * @returns {Object} object
  */
 function requireAuth(nextState, replace) {
-  // If token is not provided on login, redirect user to login page
   if (!window.localStorage.jwt) {
     replace({
-      pathname: '/signin',
-      state: { nextPath: nextState.location.pathname }
+      pathname: '/account',
+      state: {
+        nextPath: nextState.location.pathname
+      }
     });
   }
 }
 
-export default (
+export default(
   <Route path="/" component={App}>
-    <IndexRoute component={IndexPage} />
-    <Route path="/product" component={Product} />
-    <Route path="/signin" component={SignIn} />
-    <Route path="/support" component={Support} />
-    <Route path="/resetpassword" component={ResetPassword} />
-    <Route path="/dashboard" component={MessageBoard} onEnter={requireAuth} />
+    <IndexRoute component={IndexPage}/>
+    <Route path="/product" component={Product}/>
+    <Route path="/account" component={AuthenticationPage}/>
+    <Route path="/support" component={Support}/>
+    <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
   </Route>
 );
-

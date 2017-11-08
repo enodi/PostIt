@@ -11,12 +11,10 @@ import './src/assets/scripts';
 
 import rootReducer from './src/reducers/rootReducer';
 import './src/assets/main.scss';
-import Routes from './Routes';
+import Routes from './Routes.jsx';
 import { signinSuccess } from './src/actions/auth/signinAction';
-
 import setAuthorizationToken from './src/utils/setAuthorizationToken';
 
-// Defines the store
 const store = createStore(
   rootReducer,
   compose(

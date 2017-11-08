@@ -30,7 +30,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
-          expect(res.body.message).to.equal('User created successfully');
+          expect(res.body.message).to.equal('Signup successful');
           done();
         });
     });
@@ -321,7 +321,7 @@ describe('POST /api/v1/user/signin', () => {
 });
 
 
-describe('GET /api/v1/user/users', () => {
+describe('GET /api/v1/user/search', () => {
   before((done) => {
     request
     .post('/api/v1/user/signin')
@@ -338,7 +338,7 @@ describe('GET /api/v1/user/users', () => {
   describe('handles retrieving users', () => {
     it('should return 200 when user is retrieved successfully', (done) => {
       request
-        .get('/api/v1/user/users')
+        .get('/api/v1/user/search')
         .set('x-access-token', token)
         .query({ q: 'enodi' })
         .end((err, res) => {
@@ -349,7 +349,7 @@ describe('GET /api/v1/user/users', () => {
 
     it('should return 422 when a query param isn\'t passed', (done) => {
       request
-        .get('/api/v1/user/users')
+        .get('/api/v1/user/search')
         .set('x-access-token', token)
         .end((err, res) => {
           expect(res.status).to.equal(422);
@@ -359,7 +359,7 @@ describe('GET /api/v1/user/users', () => {
 
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/user/users')
+      .get('/api/v1/user/search')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
@@ -369,7 +369,7 @@ describe('GET /api/v1/user/users', () => {
 });
 
 
-describe('GET /api/v1/user/:user_id/group', () => {
+describe('GET /api/v1/user/:userId/group', () => {
   describe('handles retrieving groups', () => {
     it('should return 200 when group is retrieved successfully', (done) => {
       request
@@ -393,7 +393,7 @@ describe('GET /api/v1/user/:user_id/group', () => {
 
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/user/:user_id/group')
+      .get('/api/v1/user/:userId/group')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
@@ -444,10 +444,10 @@ describe('POST /api/v1/group', () => {
   });
 });
 
-describe('POST /api/v1/group/:group_id/user', () => {
+describe('POST /api/v1/group/:groupId/user', () => {
   it('should return 401 when an unauthenticated user tries to access this route', (done) => {
     request
-    .post('/api/v1/group/:group_id/user')
+    .post('/api/v1/group/:groupId/user')
     .end((err, res) => {
       expect(res.status).to.equal(401);
       done();
@@ -455,10 +455,10 @@ describe('POST /api/v1/group/:group_id/user', () => {
   });
 });
 
-describe('GET /api/v1/group/:group_id/user', () => {
+describe('GET /api/v1/group/:groupId/user', () => {
   it('should return 401 when an unauthenticated user tries to access this route', (done) => {
     request
-    .get('/api/v1/group/:group_id/user')
+    .get('/api/v1/group/:groupId/user')
     .end((err, res) => {
       expect(res.status).to.equal(401);
       done();
@@ -466,7 +466,7 @@ describe('GET /api/v1/group/:group_id/user', () => {
   });
 });
 
-describe('POST /api/v1/group/:group_id/message', () => {
+describe('POST /api/v1/group/:groupId/message', () => {
   before((done) => {
     request
     .post('/api/v1/user/signin')
@@ -523,7 +523,7 @@ describe('POST /api/v1/group/:group_id/message', () => {
 
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .post('/api/v1/group/:group_id/message')
+      .post('/api/v1/group/:groupId/message')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
@@ -532,7 +532,7 @@ describe('POST /api/v1/group/:group_id/message', () => {
   });
 });
 
-describe('GET /api/v1/group/:group_id/messages', () => {
+describe('GET /api/v1/group/:groupId/messages', () => {
   describe('handles retrieving messages', () => {
     it('should return 200 when messages are retrieved', (done) => {
       request
@@ -545,9 +545,70 @@ describe('GET /api/v1/group/:group_id/messages', () => {
     });
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/group/:group_id/messages')
+      .get('/api/v1/group/:groupId/messages')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        done();
+      });
+    });
+  });
+});
+
+describe('POST /api/v1/group/:groupId/user', () => {
+  before((done) => {
+    request
+    .post('/api/v1/user/signin')
+    .send({
+      username: 'enodi',
+      password: 'password',
+    })
+    .end((err, res) => {
+      token = res.body.token;
+      done();
+    });
+  });
+  describe('handles adding users to group', () => {
+    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+      request
+      .get('/api/v1/group/:groupId/user')
+      .end((err, res) => {
+        expect(res.status).to.equal(401);
+        done();
+      });
+    });
+    it('should return 404 when user tries to add a user that doesn\'t exist', (done) => {
+      request
+      .post(`/api/v1/group/${1}/user`)
+      .set('x-access-token', token)
+      .send({
+        userId: 10
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        done();
+      });
+    });
+    it('should return 422 when user tries to add an existing user', (done) => {
+      request
+      .post(`/api/v1/group/${1}/user`)
+      .set('x-access-token', token)
+      .send({
+        userId: 1
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(422);
+        done();
+      });
+    });
+    it('should return 404 when group doesn\'t exist', (done) => {
+      request
+      .post(`/api/v1/group/${10}/user`)
+      .set('x-access-token', token)
+      .send({
+        userId: 1
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
         done();
       });
     });

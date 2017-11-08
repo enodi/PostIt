@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { User } from '../models';
+import { User, Group } from '../models';
 
 
 /**
@@ -39,7 +39,7 @@ class UserClass {
               expiresIn: process.env.JWT_EXPIRY_TIME
             });
           const user = {
-            message: 'User created successfully',
+            message: 'Signup successful',
             id,
             username,
             email,
@@ -111,6 +111,60 @@ class UserClass {
       .catch(err => res.send(err));
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {any} req
+   * @param {any} res
+   * @returns
+   * @memberof UserClass
+   */
+  static addUsers(req, res) {
+    if (!req.body.userId) {
+      return res.status(400).json({
+        message: 'No user selected'
+      });
+    }
+    Group.findOne({
+      where: {
+        id: req.params.groupId
+      }
+    }).then((foundGroup) => {
+      if (!foundGroup) {
+        return res.status(404).json({
+          message: 'Group doesn\'t exist'
+        });
+      }
+      User.findOne({
+        where: {
+          id: req.body.userId
+        }
+      }).then((foundUser) => {
+        if (!foundUser) {
+          return res.status(404).json({
+            message: 'User not found'
+          });
+        }
+        foundGroup.addUser(foundUser).then((addedUser) => {
+          if (addedUser.length === 0) {
+            return res.status(422).json({
+              message: 'User is already a member of the group'
+            });
+          }
+          return res.status(200).json({
+            message: 'User added successfully'
+          });
+        });
+      })
+      .catch(error => res.status(500).json({
+        err: error.response.data
+      }));
+    })
+    .catch(error => res.status(500).json({
+      err: error.response.data
+    }));
+  }
 
   /**
    *

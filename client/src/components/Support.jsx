@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Footer } from './Footer';
+import Footer from './Footer.jsx';
 
 export default class Support extends Component {
   componentDidMount () {

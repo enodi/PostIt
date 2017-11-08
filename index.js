@@ -25,7 +25,7 @@ if (isDevelopment) {
 } else {
   app.use(express.static(path.resolve(__dirname, 'dist')));
 }
-
+app.use(express.static(path.resolve(__dirname, 'dist')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,7 +39,8 @@ app.get('/', (req, res) => res.status(200).send({
 app.use('/api/v1/user', UserRouter);
 app.use('/api/v1/group', GroupsRouter);
 
-app.get('*', (req, res) => res.redirect(301, '/'));
+app.get('*', (req, res) => res.status(200)
+.sendFile(path.join(__dirname, './client/index.html')));
 
 app.listen(process.env.PORT || 3200);
 
