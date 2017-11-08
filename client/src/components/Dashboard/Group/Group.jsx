@@ -7,7 +7,7 @@ const Group = props => (
   <div>
     <ul className="side-nav fixed" id="slide-out">
       <li className="brand-logo logo-text">PostIt
-        <i className="small material-icons white-text">
+        <i className="small material-icons white-text" onClick={props.handleOnClick}>
         input
         </i>
       </li>
@@ -21,6 +21,7 @@ const Group = props => (
       {props.groups && props.groups.map(group => <GroupList
         group={group}
         active={props.active}
+        key={group.id}
         />)}
     </ul>
     <div className="container group-container">

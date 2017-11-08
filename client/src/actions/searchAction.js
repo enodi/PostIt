@@ -25,10 +25,7 @@ export function searchUsers(username) {
   return dispatch =>
     axios.get(`/api/v1/user/search?q=${username}`)
       .then((res) => {
-        console.log(res.data);
         dispatch(searchUsersSuccess(res.data));
       })
-      .catch((error) => {
-        return error.response.data;
-      });
+      .catch(error => error.response.data);
 }

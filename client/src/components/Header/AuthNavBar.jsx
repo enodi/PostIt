@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { signoutUser } from '../../actions/auth/signinAction';
 
 /**
  * This class is responsible for managing state
@@ -11,33 +9,6 @@ import { signoutUser } from '../../actions/auth/signinAction';
  * @extends {React.Component}
  */
 class AuthNavBar extends React.Component {
-
-  /**
-   * Creates an instance of AuthNavBar.
-   * @param {object} props
-   *
-   * @memberof AuthNavBar
-   */
-  constructor(props) {
-    super(props);
-
-    this.handleOnClick = this.handleOnClick.bind(this);
-  }
-
-  /**
-   * Handles user signout and removing token
-   * from localStorage
-   *
-   * @param {object} event
-   *
-   * @returns {void}
-   *
-   * @memberof AuthNavBar
-   */
-  handleOnClick(event) {
-    event.preventDefault();
-    this.props.signoutUser();
-  }
 
   /**
    *
@@ -58,12 +29,6 @@ class AuthNavBar extends React.Component {
                   <i className="material-icons black-text" href="#add_users">group_add</i>
                 </a>
               </li>
-              <li>
-                <i
-                  className="large material-icons black-text"
-                  onClick={this.handleOnClick}>input
-                </i>
-              </li>
             </ul>
             <ul className="side-nav" id="mobile-demo">
               <li>
@@ -71,18 +36,12 @@ class AuthNavBar extends React.Component {
                 group_add
                 </i>
               </li>
-              <li>
-                <i className="large material-icons black-text">
-                  input
-                </i>
-              </li>
             </ul>
           </div>
         </nav>
-        
       </div>
     );
   }
 }
 
-export default connect(null, { signoutUser })(AuthNavBar);
+export default AuthNavBar;

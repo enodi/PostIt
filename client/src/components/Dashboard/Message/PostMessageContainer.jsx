@@ -61,6 +61,10 @@ class PostMessageContainer extends React.Component {
     event.preventDefault();
     const group = this.props.group;
     this.props.postMessage(group.activeGroup.id, this.state);
+    this.setState({
+      priority: 'normal',
+      message: ''
+    });
   }
 
   /**
@@ -72,12 +76,13 @@ class PostMessageContainer extends React.Component {
   render() {
     return (
       <div>
+      <MessageBoard groupMessages={this.props.messages}/>
         <PostMessage
           handleOnChange={this.handleOnChange}
           state={this.state}
           handleOnSubmit={this.handleOnSubmit}
           priorityOnChange={this.priorityOnChange}/>
-        <MessageBoard groupMessages={this.props.messages}/>
+        
       </div>
     );
   }

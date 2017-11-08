@@ -22,7 +22,7 @@ class MessageClass {
     }
     const UserId = req.decoded.userId;
     Message
-      .create({ UserId, GroupId: req.params.group_id, message: req.body.message, priority: req.body.priority })
+      .create({ UserId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
       .then((messageCreated) => {
         if (messageCreated) {
           return res
@@ -47,7 +47,7 @@ class MessageClass {
   static retrieve(req, res) {
     Message.findAll({
       where: {
-        GroupId: req.params.group_id
+        GroupId: req.params.groupId
       },
       include: [
         {

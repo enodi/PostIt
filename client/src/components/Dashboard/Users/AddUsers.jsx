@@ -20,13 +20,13 @@ const AddUsers = props => (
         </div>
       </div>
       <div className="container add-user">
-          {props.searchResult && props.searchResult.map(user => <div className="row">
+          {props.searchResult && props.searchResult.map(user => <div key={user.id} className="row">
             <div className="col m10">
               <p>{user.username}</p>
             </div>
             <div className="col m2">
               <div className="button-border">
-                <button className="btn-large right" type="submit" name="action">
+                <button id={user.id} onClick={props.onClick} className="btn-large right" type="submit" name="action">
                   add
                 </button>
               </div>
