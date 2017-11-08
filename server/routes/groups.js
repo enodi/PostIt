@@ -1,6 +1,6 @@
 import express from 'express';
+import UserController from '../controllers/userController';
 import GroupController from '../controllers/groupController';
-import UserGroupController from '../controllers/usergroupController';
 import MessageController from '../controllers/messageController';
 import authenticate from '../middleware/authenticate';
 import validations from '../middleware/validation';
@@ -12,14 +12,13 @@ app.use(authenticate.isLoggedIn);
 app.route('/')
   .post(validations.validateGroup, GroupController.create);
 
-app.route('/:group_id/user')
-  .post(validations.validateUserGroup, UserGroupController.addUser)
-  .get(UserGroupController.retrieveUsers);
-
-app.route('/:group_id/message')
+app.route('/:groupId/message')
   .post(MessageController.create);
 
-app.route('/:group_id/messages')
+app.route('/:groupId/messages')
   .get(MessageController.retrieve);
+
+app.route('/:groupId/user')
+  .post(UserController.addUsers);
 
 export default app;

@@ -13,7 +13,7 @@ app.route('/signin')
   .post(UserController.signIn);
 
 app.use(authenticate.isLoggedIn);
-app.route('/:user_id/group')
+app.route('/:userId/group')
   .get(UserGroupController.retrieveGroups);
 
 app.use(authenticate.isLoggedIn);

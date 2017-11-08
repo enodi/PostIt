@@ -1,4 +1,4 @@
-import {Message, User} from '../models';
+import { Message, User } from '../models';
 
 /**
  *
@@ -22,16 +22,16 @@ class MessageClass {
     }
     const UserId = req.decoded.userId;
     Message
-      .create({UserId, GroupId: req.params.group_id, message: req.body.message, priority: req.body.priority})
+      .create({ UserId, GroupId: req.params.group_id, message: req.body.message, priority: req.body.priority })
       .then((messageCreated) => {
         if (messageCreated) {
           return res
             .status(201)
-            .json({message: 'message posted successfully', messageCreated});
+            .json({ message: 'message posted successfully', messageCreated });
         }
         return res
           .status(400)
-          .json({error: 'message not created'});
+          .json({ error: 'message not created' });
       })
       .catch(error => res.status(500).json(error));
   }

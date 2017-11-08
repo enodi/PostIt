@@ -24,7 +24,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   },
   devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',
   module: {
