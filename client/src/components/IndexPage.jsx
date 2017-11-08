@@ -1,22 +1,40 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Footer } from './Footer';
+import Footer from './Footer';
 
+/**
+ *
+ *
+ * @export
+ * @class IndexPage
+ * @extends {Component}
+ */
 export default class IndexPage extends Component {
-  componentDidMount () {
+  /**
+   *
+   *
+   * @memberof IndexPage
+   */
+  componentDidMount() {
     $('.parallax').parallax();
     $('.button-collapse').sideNav();
   }
 
+  /**
+   *
+   *
+   * @returns {jsx}
+   * @memberof IndexPage
+   */
   render() {
-    return(
+    return (
       <div>
         <div className="parallax-container valign-wrapper">
           <div className="container">
             <div className="row">
               <div className="col l8 s12 white-text">
                 <h1 className="left-align valign">Welcome to PostIt</h1>
-      					   <h4 className="thin-text">
+                   <h4 className="thin-text">
                    PostIt brings all pieces of conversation and people to
                    a place so that communication becomes easy</h4>
               </div>
@@ -88,11 +106,11 @@ export default class IndexPage extends Component {
                   <Link to="#">View more</Link>
                 </div>
               </div>
+            </div>
           </div>
-        </div>
-      </div><br/>
+        </div><br/>
       <Footer />
-      </div>
+    </div>
     );
   }
 }

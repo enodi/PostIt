@@ -1,13 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Dashboard from './src/components/Dashboard/Dashboard.jsx';
-import AuthenticationPage from './src/components/AuthenticationPage.jsx';
-import ResetPassword from './src/components/ResetPassword.jsx';
-import IndexPage from './src/components/IndexPage.jsx';
-import Product from './src/components/Product.jsx';
-import Support from './src/components/Support.jsx';
-import App from './App.jsx';
+import Dashboard from './src/components/Dashboard/Dashboard';
+import AuthenticationPage from './src/components/AuthenticationPage';
+import IndexPage from './src/components/IndexPage';
+import Product from './src/components/Product';
+import Support from './src/components/Support';
+import App from './App';
 
 /**
  * @param {any} nextState
@@ -31,7 +30,6 @@ export default(
     <Route path="/product" component={Product}/>
     <Route path="/account" component={AuthenticationPage}/>
     <Route path="/support" component={Support}/>
-    <Route path="/resetpassword" component={ResetPassword}/>
     <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
   </Route>
 );

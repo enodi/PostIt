@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { Footer } from './Footer';
+import Footer from './Footer';
 
+/**
+ *
+ *
+ * @export
+ * @class Product
+ * @extends {Component}
+ */
 export default class Product extends Component {
+  /**
+   *
+   *
+   * @memberof Product
+   */
   componentDidMount () {
     $('.parallax').parallax();
   }
