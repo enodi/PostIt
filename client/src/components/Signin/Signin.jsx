@@ -51,7 +51,9 @@ const Signin = props => (
         name="action"
       >SIGNIN
       </button>
-      <b><Link to="/resetpassword"> Forgot your password ? </Link></b>
+      <p className="center">
+        <b><Link to="/forgotPassword"> Forgot your password ? </Link></b>
+      </p>
     </div>
   </form>
 </div>

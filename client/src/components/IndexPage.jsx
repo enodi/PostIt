@@ -53,7 +53,7 @@ export default class IndexPage extends Component {
       <div className="background #000000 black">
         <div className="row center-align">
           <div className="col l12 s12">
-            <img src={require("../assets/images/bk2.png")} className="circle responsive-img" alt="" />
+            <img src={require("../assets/images/bk2.png")} className="responsive-img" alt="" />
           </div>
         </div>
       </div>
