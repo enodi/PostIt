@@ -17,6 +17,9 @@ class ForgotPasswordContainer extends React.Component {
   handleOnSubmit(event) {
     event.preventDefault();
     this.props.passwordResetLink(this.state);
+    this.setState({
+      email: ''
+    });
   }
 
   handleOnChange(event) {
@@ -31,7 +34,7 @@ class ForgotPasswordContainer extends React.Component {
       <ForgotPassword
         handleOnChange={this.handleOnChange}
         handleOnSubmit={this.handleOnSubmit}
-        state={this.state}/>
+        state={this.state} />
     );
   }
 }

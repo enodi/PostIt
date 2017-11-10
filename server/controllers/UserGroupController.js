@@ -1,5 +1,4 @@
 import {
-  UserGroup,
   Group,
   User
 } from '../models';

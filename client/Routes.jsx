@@ -6,6 +6,7 @@ import AuthenticationPage from './src/components/AuthenticationPage';
 import IndexPage from './src/components/IndexPage';
 import Product from './src/components/Product';
 import Support from './src/components/Support';
+import ResetPasswordContainer from './src/components/ResetPassword/ResetPasswordContainer';
 import ForgotPasswordContainer from './src/components/ResetPassword/ForgotPasswordContainer';
 import App from './App';
 
@@ -32,6 +33,7 @@ export default(
     <Route path="/account" component={AuthenticationPage}/>
     <Route path="/support" component={Support}/>
     <Route path="/forgotPassword" component={ForgotPasswordContainer} />
+    <Route path="/resetPassword" component={ResetPasswordContainer} />
     <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
   </Route>
 );

@@ -1,31 +1,38 @@
 import React from 'react';
+import InputField from '../Common/InputField';
 
 const ResetPassword = props => (
   <div className="container reset-password">
   <div className="row">
     <div className="col l8 offset-l2 s12 z-depth-2">
       <h2>Reset Password</h2>
-      <form>
+      <form onSubmit={props.handleOnSubmit}>
         <div className="input-field col s12">
-          <input
+          <InputField
             className="validate"
-            type="password"
-            name="password"
-            id="password"
-            required/>
-          <label htmlFor="email">Password</label>
+            label={'Password'}
+            onChange={props.handleOnChange}
+            htmlFor={'password'}
+            type={'password'}
+            name={'password'}
+            id={'password'}
+            required
+          />
         </div>
         <div className="input-field col s12">
-          <input
+          <InputField
             className="validate"
-            type="password"
-            name="password"
-            id="password"
-            required/>
-          <label htmlFor="password">Confirm Password</label>
+            label={'Confirm Password'}
+            onChange={props.handleOnChange}
+            htmlFor={'password'}
+            type={'password'}
+            name={'confirmPassword'}
+            id={'confirmPassword'}
+            required
+          />
         </div>
         <div className="row center button">
-          <button className="btn-large waves-effect waves-light" type="submit" name="action">Reset Password</button>
+          <button className="btn-large waves-effect waves-light" type="submit" name="action">Save Password</button>
         </div>
      </form>
     </div>

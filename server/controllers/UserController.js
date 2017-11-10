@@ -48,12 +48,6 @@ class UserClass {
           };
           return res.status(201).send(user);
         }
-        // const data1 = {
-        //   error: [{
-        //     detail: 'User not created'
-        //   }]
-        // };
-        // return res.status(400).send(data1);
       })
       .catch(error => res.status(500).send(error));
   }
@@ -87,15 +81,12 @@ class UserClass {
             message: 'Invalid credentials'
           });
         }
-        // Compares password collected from user with password in database
         const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
         if (!passwordMatched) {
-          // If password provided doesn't match password in database, return password doesn't match
           return res.status(422).send({
             message: 'Invalid credentials'
           });
         }
-        // If password provided matches password in database, generate user token
         const token = jwt
           .sign({
             username: userFound.username,

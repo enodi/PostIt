@@ -1,4 +1,5 @@
 import React from 'react';
+import InputField from '../Common/InputField';
 
 const ForgotPassword = props => (
   <div className="container reset-password">
@@ -8,18 +9,20 @@ const ForgotPassword = props => (
       <p>Enter your email address and we will send you a password reset link</p>
       <form onSubmit={props.handleOnSubmit}>
         <div className="input-field col s12">
-          <input
-            className="validate"
-            type="email"
-            name="email"
-            id="email"
+          <InputField
             value={props.state.email}
             onChange={props.handleOnChange}
-            required/>
-          <label htmlFor="email">Email</label>
+            className="validate"
+            label={'Email'}
+            htmlFor={'email'}
+            type={'email'}
+            name={'email'}
+            id={'email'}
+            required
+          />
         </div>
         <div className="row center button">
-          <button className="btn-large waves-effect waves-light" type="submit" name="action">Send Password Reset Email</button>
+          <button className="btn-large waves-effect waves-light" type="submit" name="action">Submit </button>
         </div>
      </form>
     </div>
