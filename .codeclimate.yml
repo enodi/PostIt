@@ -6,7 +6,12 @@ engines:
         enabled: false
     config:
       languages:
-        javascript:
-
+        - javascript
     exclude_paths:
+    - node_modules/
     - template/
+    - coverage/
+    ratings:
+      paths: 
+      - "server/**/*.js"
+
