@@ -1,6 +1,7 @@
 import express from 'express';
-import UserController from '../controllers/userController';
-import UserGroupController from '../controllers/usergroupController';
+import UserController from '../controllers/UserController';
+import UserGroupController from '../controllers/UserGroupController';
+import ResetPasswordController from '../controllers/ResetPasswordController';
 import authenticate from '../middleware/authenticate';
 import validations from '../middleware/validation';
 
@@ -11,6 +12,12 @@ app.route('/signup')
 
 app.route('/signin')
   .post(UserController.signIn);
+
+app.route('/forgotPassword')
+  .post(ResetPasswordController.forgotPassword);
+
+app.route('/resetPassword')
+  .put(validations.validateResetPassword, ResetPasswordController.resetPassword);
 
 app.use(authenticate.isLoggedIn);
 app.route('/:userId/group')

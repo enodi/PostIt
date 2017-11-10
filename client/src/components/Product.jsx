@@ -67,7 +67,7 @@ export default class Product extends Component {
      				<div className="col l12 s12">
                <h4>Across All Devices</h4>
                <p>Use PostIt on any device</p><br/>
-     					<img src={require("../assets/images/devices.png")} className="circle responsive-img" alt=""/>
+     					<img src={require("../assets/images/devices.png")} className="responsive-img" alt=""/>
      				</div>
      			</div>
      		</div><br/>

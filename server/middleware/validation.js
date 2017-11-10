@@ -97,6 +97,20 @@ const validations = {
         });
     });
     validation.fails(() => res.status(400).json(validation.errors.all()));
+  },
+
+  validateResetPassword(req, res, next) {
+    if (!req.body.password || !req.body.confirmPassword) {
+      return res.status(400).json({
+        message: 'All fields are required'
+      });
+    }
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.status(422).json({
+        message: 'Password doesn\'t match'
+      });
+    }
+    next();
   }
 };
 
