@@ -1,8 +1,8 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
 import dotenv from 'dotenv';
-import app from '../index';
-import db from '../server/models';
+import app from '../../index';
+import db from '../models';
 
 const request = supertest(app);
 dotenv.config();
@@ -368,192 +368,6 @@ describe('GET /api/v1/user/search', () => {
   });
 });
 
-
-describe('GET /api/v1/user/:userId/group', () => {
-  describe('handles retrieving groups', () => {
-    it('should return 200 when group is retrieved successfully', (done) => {
-      request
-        .get(`/api/v1/user/${1}/group`)
-        .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          done();
-        });
-    });
-
-    it('should return 400 when a wrong value is passed', (done) => {
-      request
-        .get(`/api/v1/user/${' '}/group`)
-        .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          done();
-        });
-    });
-
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-      request
-      .get('/api/v1/user/:userId/group')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        done();
-      });
-    });
-  });
-});
-
-describe('POST /api/v1/group', () => {
-  describe('handles creating group', () => {
-    it('should return 201 when a group is created successfully', (done) => {
-      request
-      .post('/api/v1/group')
-      .set('x-access-token', token)
-      .send({
-        name: 'andela',
-        description: 'andela fellows'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.message).to.equal('Group created successfully');
-        done();
-      });
-    });
-
-    it('should return 400 when whitspaces are supplied', (done) => {
-      request
-        .post('/api/v1/group')
-        .set('x-access-token', token)
-        .send({
-          name: '    ',
-          description: 'andela fellows'
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          done();
-        });
-    });
-
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-      request
-      .post('/api/v1/group')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        done();
-      });
-    });
-  });
-});
-
-describe('POST /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-    request
-    .post('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      done();
-    });
-  });
-});
-
-describe('GET /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-    request
-    .get('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      done();
-    });
-  });
-});
-
-describe('POST /api/v1/group/:groupId/message', () => {
-  before((done) => {
-    request
-    .post('/api/v1/user/signin')
-    .send({
-      username: 'enodi',
-      password: 'password',
-    })
-    .end((err, res) => {
-      token = res.body.token;
-      done();
-    });
-  });
-  describe('handles posting messages', () => {
-    it('should return 201 when a message is posted successfully', (done) => {
-      request
-      .post(`/api/v1/group/${1}/message`)
-      .set('x-access-token', token)
-      .send({
-        message: 'hello world',
-        priority: 'critical'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.message).to.equal('message posted successfully');
-        done();
-      });
-    });
-
-    it('should return 400 when no message is supplied', (done) => {
-      request
-      .post(`/api/v1/group/${1}/message`)
-      .set('x-access-token', token)
-      .send({
-        priority: 'critical'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-    });
-
-    it('should return 400 when no priority is supplied', (done) => {
-      request
-      .post(`/api/v1/group/${1}/message`)
-      .set('x-access-token', token)
-      .send({
-        message: 'hello world'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        done();
-      });
-    });
-
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-      request
-      .post('/api/v1/group/:groupId/message')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        done();
-      });
-    });
-  });
-});
-
-describe('GET /api/v1/group/:groupId/messages', () => {
-  describe('handles retrieving messages', () => {
-    it('should return 200 when messages are retrieved', (done) => {
-      request
-      .get(`/api/v1/group/${1}/messages`)
-      .set('x-access-token', token)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
-    });
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-      request
-      .get('/api/v1/group/:groupId/messages')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        done();
-      });
-    });
-  });
-});
-
 describe('POST /api/v1/group/:groupId/user', () => {
   before((done) => {
     request
@@ -588,6 +402,20 @@ describe('POST /api/v1/group/:groupId/user', () => {
         done();
       });
     });
+    it('should return 201 when a group is created successfully', (done) => {
+      request
+      .post('/api/v1/group')
+      .set('x-access-token', token)
+      .send({
+        name: 'andela',
+        description: 'andela fellows'
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.body.message).to.equal('Group created successfully');
+        done();
+      });
+    });
     it('should return 422 when user tries to add an existing user', (done) => {
       request
       .post(`/api/v1/group/${1}/user`)
@@ -615,73 +443,140 @@ describe('POST /api/v1/group/:groupId/user', () => {
   });
 });
 
-describe('POST /api/v1/user/forgotPassword', () => {
-  describe('handles sending reset password email', () => {
-    it('should return 400 when no email is supplied', (done) => {
-      request
-      .post('/api/v1/user/forgotPassword')
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
+describe('User Model', () => {
+  before((done) => {
+    db.sequelize.sync({ force: true })
+      .then(() => {
+        done(null);
+      })
+      .catch((error) => {
+        done(error);
+      });
+  });
+  describe('handles creating new user', () => {
+    it('should create a new user', (done) => {
+      db.User.create({
+        username: 'enodi',
+        email: 'enodi@gmail.com',
+        fullname: 'Enodi Audu',
+        password: 'password',
+      })
+      .then((user) => {
+        if (user) {
+          expect('enodi').to.equal(user.username);
+          expect('enodi@gmail.com').to.equal(user.email);
+          expect('Enodi Audu').to.equal(user.fullname);
+        }
+        done();
+      })
+      .catch((error) => {
+        done(error);
+      });
+    });
+  });
+
+  describe('handles retrieving user data', () => {
+    it('should retrieve an existing user', (done) => {
+      db.User.findOne({
+        where: {
+          username: 'enodi',
+          password: 'password'
+        }
+      })
+      .then((user) => {
+        if (user) {
+          expect('enodi').to.equal(user.username);
+        }
+        done();
+      })
+      .catch((error) => {
+        done(error);
+      });
+    });
+  });
+
+  describe('handles null input', () => {
+    it('should return username cannot be null when user passes null input', (done) => {
+      db.User.create({
+        username: null,
+        email: 'enodi@gmail.com',
+        fullname: 'Enodi Audu',
+        password: 'password',
+      })
+      .then(() => {
+        done();
+      })
+      .catch((error) => {
+        expect(error.errors[0].message).to.equal('username cannot be null');
         done();
       });
     });
-    it('should return 404 when an invalid email is specified', (done) => {
-      request
-      .post('/api/v1/user/forgotPassword')
-      .send({
-        email: 'audu@gmail.com'
+
+    it('should return password cannot be null when user passes null input', (done) => {
+      db.User.create({
+        username: 'enodi',
+        email: 'enodi@gmail.com',
+        fullname: 'Enodi Audu',
+        password: null,
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
+      .then(() => {
         done();
-      });
-    });
-    it('should return 400 when user passes whitespaces in email field', (done) => {
-      request
-      .post('/api/v1/user/forgotPassword')
-      .send({
-        email: ' '
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
+      .catch((error) => {
+        expect(error.errors[0].message).to.equal('password cannot be null');
         done();
       });
     });
   });
-});
 
-describe('PUT /api/v1/user/resetPassword', () => {
-  describe('handles resetting user password', () => {
-    it('should return 400 when no password is supplied', (done) => {
-      request
-      .put('/api/v1/user/resetPassword')
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
+  describe('handles wrong input', () => {
+    it('should return Validation isEmail failed when user passes wrong email', (done) => {
+      db.User.create({
+        username: 'enodi',
+        email: 'enodi',
+        fullname: 'Enodi Audu',
+        password: 'password',
+      })
+      .then(() => {
+        done();
+      })
+      .catch((error) => {
+        expect(error.errors[0].message).to.equal('Validation isEmail failed');
         done();
       });
     });
-    it('should return 422 when password supplied doesn\'t match', (done) => {
-      request
-      .put('/api/v1/user/resetPassword')
-      .send({
-        password: 'password',
-        confirmPassword: 'hello'
+  });
+
+  describe('handles updating user information', () => {
+    it('should update user details in the database', (done) => {
+      db.User.update({
+        username: 'clara',
+      }, {
+        where: {
+          username: 'enodi'
+        }
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(422);
+      .then(() => {
         done();
+      })
+      .catch((error) => {
+        done(error);
       });
     });
-    it('should return 401 when no token is supplied', (done) => {
-      request
-      .put('/api/v1/user/resetPassword')
-      .send({
-        password: 'password',
-        confirmPassword: 'password'
+  });
+
+  describe('handles deleting user information', () => {
+    it('should delete user details from the database', (done) => {
+      db.User.destroy({
+        where: {
+          username: 'enodi'
+        }
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
+      .then(() => {
         done();
+      })
+      .catch((error) => {
+        done(error);
       });
     });
   });

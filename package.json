@@ -6,9 +6,10 @@
   "scripts": {
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
-    "test": "NODE_ENV=test mocha test/*.test.js --compilers js:babel-register",
+    "test": "NODE_ENV=test mocha server/test/*.test.js --compilers js:babel-register",
+    "client:test": "jest client/test",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
-    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha test/*.test.js",
+    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha server/test/*.test.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "showcoverage": "open coverage/lcov-report/index.html"
   },
@@ -78,6 +79,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
     "istanbul": "^0.4.5",
+    "jest": "^20.0.4",
     "mocha": "^3.5.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.11.0",
