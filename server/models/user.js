@@ -37,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
         });
       }
     }
-  });
+  }
+);
 
   User.beforeCreate((user) => {
     const salt = bcrypt.genSaltSync(10);

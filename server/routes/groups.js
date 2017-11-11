@@ -1,7 +1,7 @@
 import express from 'express';
-import UserController from '../controllers/userController';
-import GroupController from '../controllers/groupController';
-import MessageController from '../controllers/messageController';
+import UserController from '../controllers/UserController';
+import GroupController from '../controllers/GroupController';
+import MessageController from '../controllers/MessageController';
 import authenticate from '../middleware/authenticate';
 import validations from '../middleware/validation';
 

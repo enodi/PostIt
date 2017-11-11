@@ -1,4 +1,5 @@
-import { Message, User } from '../models';
+import sendNotification from '../middleware/notification';
+import { Message, User, Group } from '../models';
 
 /**
  *
@@ -20,20 +21,28 @@ class MessageClass {
         .status(400)
         .json('All fields are required');
     }
-    const UserId = req.decoded.userId;
+    const { userId, email, username } = req.decoded;
     Message
-      .create({ UserId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
+      .create({ UserId: userId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
       .then((messageCreated) => {
-        if (messageCreated) {
-          return res
-            .status(201)
-            .json({ message: 'message posted successfully', messageCreated });
+        if (messageCreated.priority === 'critical' || messageCreated.priority === 'urgent') {
+          Group.findById(req.params.groupId)
+          .then((group) => {
+            group.getUsers().then((users) => {
+              users.forEach((user) => {
+                if (email !== user.email) {
+                  sendNotification(user, username, group);
+                }
+              });
+            });
+          });
         }
-        return res
-          .status(400)
-          .json({ error: 'message not created' });
+        return res.status(201)
+        .json({ message: 'message posted successfully', messageCreated });
       })
-      .catch(error => res.status(500).json(error));
+      .catch(() => res
+        .status(400)
+        .json({ error: 'message not created' }));
   }
 
   /**

@@ -7,7 +7,7 @@
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
     "test": "NODE_ENV=test mocha test/*.test.js --compilers js:babel-register",
-    "start:dev": "babel-node index.js",
+    "start:dev": "nodemon --watch server --exec babel-node index.js",
     "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha test/*.test.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "showcoverage": "open coverage/lcov-report/index.html"
@@ -40,6 +40,7 @@
     "materialize-css": "^0.100.2",
     "morgan": "^1.8.2",
     "node-sass": "^4.5.3",
+    "nodemailer": "^4.3.1",
     "pg": "^4.3.0",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.10",
