@@ -34,7 +34,8 @@ class UserClass {
           const token = jwt
             .sign({
               userId: userCreated.id,
-              username: userCreated.username
+              username: userCreated.username,
+              email: userCreated.email
             }, process.env.JWT_SECRET, {
               expiresIn: process.env.JWT_EXPIRY_TIME
             });
@@ -91,6 +92,7 @@ class UserClass {
           .sign({
             username: userFound.username,
             userId: userFound.id,
+            email: userFound.email
           }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRY_TIME
           });
