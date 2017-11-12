@@ -70,7 +70,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 * Create a pull request [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
 
 ## FAQ
-* Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) read our FAQ.
+* Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) to read our FAQ.
 
 ## License
 * https://github.com/enodi/PostIt/blob/master/LICENSE
