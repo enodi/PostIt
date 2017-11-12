@@ -67,7 +67,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 * Make your contribution
 * Commit your change [(see wiki for commit message convention)](https://github.com/enodi/PostIt/wiki/Commit-Message-Convention)
 * Make sure to test your work
-* Create a pull request [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
+* Raise a pull request against develop branch [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
 
 ## FAQ
 * Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) to read our FAQ.
