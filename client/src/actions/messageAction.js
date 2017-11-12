@@ -43,7 +43,7 @@ export function getMessages(groupId) {
       .then((res) => {
         dispatch(getMessageSuccess(res.data));
       })
-      .catch(error => error.response.data);
+      .catch(error =>  console.log(error));
   };
 }
 
