@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 
+// sends email notification to users in a group when priority is urgent/critical
 const sendNotification = (user, sender, group) => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

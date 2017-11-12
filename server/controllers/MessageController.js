@@ -2,17 +2,20 @@ import sendNotification from '../middleware/notification';
 import { Message, User, Group } from '../models';
 
 /**
- *
+ * This class handles messages
  * @class MessageClass
  */
 class MessageClass {
 
   /**
-   *
+   * This method handles posting of messages in a group
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof MessageClass
    */
   static create(req, res) {
@@ -41,16 +44,19 @@ class MessageClass {
         .json({ message: 'message posted successfully', messageCreated });
       })
       .catch(() => res
-        .status(400)
+        .status(500)
         .json({ error: 'message not created' }));
   }
 
   /**
-   *
+   * This method handles retrieving messages in a group
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof MessageClass
    */
   static retrieve(req, res) {
@@ -70,10 +76,8 @@ class MessageClass {
         }
       ]
     }).then((messageRetrieved) => {
-      res
-        .status(200)
-        .json(messageRetrieved);
-    }).catch(error => res.status(500).json(error));
+      res.status(200).json(messageRetrieved);
+    }).catch(error => res.status(500).json(error.response.data));
   }
 }
 export default MessageClass;

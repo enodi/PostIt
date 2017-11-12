@@ -8,6 +8,7 @@ import * as types from '../actionTypes';
 /**
  * @export signinSuccess
  * @param {Object} user
+ *
  * @returns {Object} action type
  */
 export function signinSuccess(user) {
@@ -20,6 +21,7 @@ export function signinSuccess(user) {
 
 /**
  * @export signOutSuccess
+ *
  * @returns  {Object} action type
  */
 export function signoutSuccess() {
@@ -30,9 +32,11 @@ export function signoutSuccess() {
 
 
 /**
- * @export signinAction
- * @param {any} credentials
- * @returns {Object} Promise
+ * Async action that handles user signin
+ *
+ * @param {object} credentials
+ *
+ * @returns {function} dispatch
  */
 export function signinAction(credentials) {
   return (dispatch) => {
@@ -49,8 +53,9 @@ export function signinAction(credentials) {
 }
 
 /**
- * @export signOutUser
- * @returns {Object} Promise
+ * Action that handles user signout
+ *
+ * @returns {function} dispatch
  */
 export function signoutUser() {
   return (dispatch) => {

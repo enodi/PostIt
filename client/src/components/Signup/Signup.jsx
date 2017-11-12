@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../Common/InputField.jsx';
 
+/**
+ * Gives the presentational view for signup component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const Signup = props => (
   <div id="test-swipe-2" className="col s12">
   <h5 > Create Your Account </h5>

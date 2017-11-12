@@ -5,7 +5,8 @@ import MessageBoard from './MessageBoard.jsx';
 import { postMessage } from '../../../actions/messageAction';
 
 /**
- *
+ * This class is the container component for
+ * post message component
  *
  * @class PostMessageContainer
  * @extends {React.Component}
@@ -13,7 +14,10 @@ import { postMessage } from '../../../actions/messageAction';
 class PostMessageContainer extends React.Component {
   /**
    * Creates an instance of PostMessageContainer.
-   * @param {any} props
+   * Initializes the state and binds this to the methods in the class
+   *
+   * @param {object} props
+   *
    * @memberof PostMessageContainer
    */
   constructor(props) {
@@ -28,10 +32,15 @@ class PostMessageContainer extends React.Component {
   }
 
   /**
+   * Takes in the target object and sets the state with
+   * the input
    *
+   * @param {object} event
    *
-   * @param {any} event
+   * @returns {void}
+   *
    * @memberof PostMessageContainer
+   * @method priorityOnChange
    */
   priorityOnChange(event) {
     this.setState({
@@ -40,10 +49,14 @@ class PostMessageContainer extends React.Component {
   }
 
   /**
+   * Takes in the target object and sets the state with
+   * the form input
    *
+   * @param {object} event
    *
-   * @param {any} event
+   * @returns {void}
    * @memberof PostMessageContainer
+   * @method handleOnChange
    */
   handleOnChange(event) {
     this.setState({
@@ -52,10 +65,15 @@ class PostMessageContainer extends React.Component {
   }
 
   /**
+   * Makes a post request to postMessage endpoint upon
+   * successful validation
    *
+   * @param {object} event
    *
-   * @param {any} event
+   * @returns {void}
+   *
    * @memberof PostMessageContainer
+   * @method handleOnSubmit
    */
   handleOnSubmit(event) {
     event.preventDefault();
@@ -68,11 +86,11 @@ class PostMessageContainer extends React.Component {
   }
 
   /**
-   *
-   *
-   * @returns
-   * @memberof PostMessageContainer
-   */
+  * @returns {jsx} an xml/html like syntax extension for
+  * javascript
+  *
+  * @memberof PostMessageContainer
+  */
   render() {
     return (
       <div>

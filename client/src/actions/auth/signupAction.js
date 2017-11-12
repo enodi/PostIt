@@ -8,7 +8,8 @@ import * as types from '../actionTypes';
 
 /**
  *
- * @param {any} user
+ * @param {object} user
+ *
  * @returns {Object} object
  */
 function setCurrentUser(user) {
@@ -19,10 +20,11 @@ function setCurrentUser(user) {
 }
 
 /**
+ * Async action that handles user registration
  *
- * @export
- * @param {any} userData
- * @returns {Object} Promise
+ * @param {object} userData
+ *
+ * @returns {function} dispatch
  */
 export function signupAction(userData) {
   return (dispatch) => {

@@ -3,11 +3,9 @@ import toastr from 'toastr';
 import * as types from './actionTypes';
 
 /**
+ * @param {object} user
  *
- *
- * @export
- * @param {any} user
- * @returns
+ * @returns {object} action type
  */
 export function addUserSuccess(user) {
   return {
@@ -17,12 +15,12 @@ export function addUserSuccess(user) {
 }
 
 /**
+ * Async action that handles adding users to a group
  *
+ * @param {number} groupId
+ * @param {number} userId
  *
- * @export
- * @param {any} groupId
- * @param {any} userId
- * @returns
+ * @returns {function} dispatch
  */
 export function addUser(groupId, userId) {
   return dispatch => axios

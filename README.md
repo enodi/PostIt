@@ -1,35 +1,34 @@
-# PostIt 
-[![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=add-license)](https://travis-ci.org/enodi/PostIt)  [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=staging)](https://coveralls.io/github/enodi/PostIt?branch=staging)
+## PostIt 
+[![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=add-license)](https://travis-ci.org/enodi/PostIt)  [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=staging)](https://coveralls.io/github/enodi/PostIt?branch=staging) [![Code Climate](https://codeclimate.com/github/enodi/PostIt/badges/gpa.svg)](https://codeclimate.com/github/enodi/PostIt/)
 
-# Introduction
+## Introduction
 PostIt is a JavaScript application that allow registered users communicate with each other via groups. It allows you post messages and retrieve messages from groups you belong to. It includes a well structured API documentation that can be used by anyone.
 
 You can view the deployed application [here](https://postit-enodi.herokuapp.com/)
 
-# Features
+## Features
   * It has the following features:
-     * Signin
-     * Signup
-     * Create group
-     * Add users to group
-     * Post messages to groups
-     * Display messages posted
+      * Creating an account
+      * Signing in as an existing user
+      * Creating a new group
+      * Adding new users to groups
+      * Post messages to groups in real-time
+      * Display posted messages
+      * Search for users in a group
+      * Reset password
+      * Receive email notification when a message is posted in the group you belong to based on priority level i.e `Normal`,         `Critical` and `Urgent`
 
-# Project Dependencies
+## Project Dependencies
 * Dependies
 
   * [axios](https://www.npmjs.com/package/axios): A JavaScript library used to make http requests from nodejs or        XMLHttpRequests from the browser
   * [babel-cli](https://www.npmjs.com/package/babel-cli) : Used to transpile es6 code to es5 on the command line
   * [babel-preset-es2015](https://www.npmjs.com/package/babel-preset-es2015): Plugin that adds support for es6
   * [babel-preset-react](https://www.npmjs.com/package/babel-preset-react) : Plugin that adds support for jsx
-  * [bcryptjs](https://www.npmjs.com/package/bcryptjs) : Used to hash passwords
-  * [body-parser](https://www.npmjs.com/package/body-parser) : Nodejs body parsing middleware. Parse incoming request bodies in a middleware before your handlers, available     under the req.body property. 
+  * [bcryptjs](https://www.npmjs.com/package/bcryptjs) : Used to hash passwords 
   * [dotenv](https://www.npmjs.com/package/dotenv) : Used to load environment variable from .env file
   * [express](https://www.npmjs.com/package/express) : Web application framework. Used as application web server.
   * [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) : Used to create access tokens that asserts some number of claims.
-  * [morgan](https://www.npmjs.com/package/morgan) : HTTP request logger middleware for node.js
-  * [pg](https://www.npmjs.com/package/pg) : Non-blocking PostgreSQL client for node.js.
-  * [pg-hstore](https://www.npmjs.com/package/pg-hstore): A node package for serializing and deserializing JSON data to hstore format
   * [react](https://www.npmjs.com/package/react) : A Javascript library for building user interfaces
   * [sequelize](https://www.npmjs.com/package/sequelize) : Sequelize is a promise-based Node.js ORM for Postgres, MySQL, SQLite and Microsoft SQL Server. It features         solid transaction support, relations, read replication and more.
 
@@ -41,41 +40,40 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
   * [supertest](https://www.npmjs.com/package/supertest) : HTTP assertions made easy via superagent.
   
 
-# Installation and Setup
+## Installation and Setup
 
 * Navigate to a directory with your terminal
 * Clone this repo to your directory
 * Using HTTP; ```$ git clone https://github.com/enodi/PostIt.git```
+* Using SSH; ```$ git clone git@github.com:enodi/PostIt.git```
 * Navigate to the repo directory
 * ```$ cd postit```
 * install app dependencies
 * ```$ npm install```
 * Run the app
-* ```$ npm start```
+  * ```$ npm start```
+  * Running the above command will run the app on http://localhost:3200
 
 
-# Tests
-* The tests were written using supertest and chai.
+## Tests
+* The tests were written using Mocha, Supertest and Chai.
 * To run test, navigate to app directory
 * run test
 * ```$ npm test```
 
-# Want To Contribute?
-* Fork this repo to your personal repository 
+## Want To Contribute?
+* Fork this repo to your repository, clone the repo and configure
+* Create a new branch [(see wiki for branch naming convention)](https://github.com/enodi/PostIt/wiki/Branch-Naming-Convention)
 * Make your contribution
-* Commit your change
-* Write descriptive commit messages
+* Commit your change [(see wiki for commit message convention)](https://github.com/enodi/PostIt/wiki/Commit-Message-Convention)
 * Make sure to test your work
-* Create a pull request
+* Raise a pull request against develop branch [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
 
-Note: Certain guidelines and style guides must be followed when contributing. More info can be found on the repo's [wiki](https://github.com/enodi/PostIt/wiki)
+## FAQ
+* Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) to read our FAQ.
 
-# FAQ
-* Can I contribute to this project?
-  * Yes
-
-# License
+## License
 * https://github.com/enodi/PostIt/blob/master/LICENSE
 
-# Author
+## Author
 Enodi Audu - @enodi

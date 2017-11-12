@@ -5,7 +5,8 @@ import { signupAction } from '../../actions/auth/signupAction';
 import Signup from './Signup.jsx';
 
 /**
- *
+ * This class is the container component for signup
+ * presentational component
  *
  * @class SignupContainer
  * @extends {React.Component}
@@ -13,7 +14,10 @@ import Signup from './Signup.jsx';
 class SignupContainer extends React.Component {
   /**
    * Creates an instance of SignupContainer.
-   * @param {any} props
+   * Initializes the state and binds this to the methods in the class
+   *
+   * @param {object} props
+   *
    * @memberof SignupContainer
    */
   constructor(props) {
@@ -35,8 +39,10 @@ class SignupContainer extends React.Component {
 
   /**
    *
-   *
    * @memberof SignupContainer
+   * @method onFocus
+   *
+   * @returns {void}
    */
   onFocus() {
     this.setState({
@@ -46,10 +52,9 @@ class SignupContainer extends React.Component {
   }
 
   /**
-   *
-   *
+   * Validates user input
    * @param {any} state
-   * @returns
+   * @returns {void}
    * @memberof SignupContainer
    */
   validateInput(state) {
@@ -78,19 +83,25 @@ class SignupContainer extends React.Component {
   }
 
   /**
+   * Takes in the target object and sets the state with the form input
+   * @param {object} event
    *
-   *
-   * @param {any} event
    * @memberof SignupContainer
+   *
+   * @returns {void}
    */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   /**
-   *
+   * Makes a post request to signup endpoint upon successful validation
    *
    * @param {any} event
+   *
+   * @returns {void}
+   *
+   * @method onSubmit
    * @memberof SignupContainer
    */
   onSubmit(event) {
@@ -99,9 +110,7 @@ class SignupContainer extends React.Component {
   }
 
   /**
-   *
-   *
-   * @returns
+   * @returns {jsx} an xml/html like syntax extension for javascript
    * @memberof SignupContainer
    */
   render() {

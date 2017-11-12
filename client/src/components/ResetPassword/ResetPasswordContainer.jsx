@@ -4,15 +4,20 @@ import ResetPassword from './ResetPassword';
 import { resetPassword } from '../../actions/resetPasswordAction';
 
 /**
- *
+ * This class is the container component for reset
+ * password component
  *
  * @class ResetPasswordContainer
  * @extends {React.Component}
  */
 class ResetPasswordContainer extends React.Component {
   /**
-   * Creates an instance of ResetPasswordContainer.
-   * @param {any} props
+   * Creates an instance of ResetPasswordContainer
+   * Initializes the state and binds this to the methods
+   * in the class
+   *
+   * @param {object} props
+   *
    * @memberof ResetPasswordContainer
    */
   constructor(props) {
@@ -27,10 +32,15 @@ class ResetPasswordContainer extends React.Component {
   }
 
   /**
+   * Takes in the target object and sets the state with the
+   * form input
    *
+   * @param {object} event
    *
-   * @param {any} event
+   * @returns {void}
+   *
    * @memberof ResetPasswordContainer
+   * @method handleOnChange
    */
   handleOnChange(event) {
     this.setState({
@@ -39,10 +49,14 @@ class ResetPasswordContainer extends React.Component {
   }
 
   /**
+   * Makes a post request to resetPasword endpoint upon successful
+   * validation
    *
+   * @param {object} event
    *
-   * @param {any} event
+   * @returns {void}
    * @memberof ResetPasswordContainer
+   * @method handleOnSubmit
    */
   handleOnSubmit(event) {
     event.preventDefault();
@@ -50,12 +64,10 @@ class ResetPasswordContainer extends React.Component {
     this.props.resetPassword(this.state, token);
   }
 
-  /**
-   *
-   *
-   * @returns
-   * @memberof ResetPasswordContainer
-   */
+   /**
+  * @returns {jsx} an xml/html like syntax extension for javascript
+  * @memberof ForgotPasswordContainer
+  */
   render() {
     return (
       <ResetPassword

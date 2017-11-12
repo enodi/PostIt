@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './src/components/Header/index.jsx';
 
- /* eslint-disable react/prefer-stateless-function */
 /**
+ * This parent is the parent component of all other components
  * @class App
  * @classdesc main app component
  */
@@ -11,7 +11,7 @@ class App extends React.Component {
 
   /**
    * render - renders app component
-   * @return {object} the component view
+   * @return {jsx} jsx
    */
   render() {
     return (
