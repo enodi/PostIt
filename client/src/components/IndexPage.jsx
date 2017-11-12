@@ -3,16 +3,16 @@ import { Link } from 'react-router';
 import Footer from './Footer';
 
 /**
- *
- *
+ * This handles the landing page
  * @export
  * @class IndexPage
  * @extends {Component}
  */
 export default class IndexPage extends Component {
   /**
+   * Initializes component parallax image
    *
-   *
+   * @returns {void}
    * @memberof IndexPage
    */
   componentDidMount() {
@@ -21,9 +21,7 @@ export default class IndexPage extends Component {
   }
 
   /**
-   *
-   *
-   * @returns {jsx}
+   * @returns {jsx} a xml/html like syntax extension for javascript
    * @memberof IndexPage
    */
   render() {

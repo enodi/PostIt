@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+/**
+ * This component handles displaying the groups
+ * a user belongs to
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const GroupList = (props) => {
   return (
     <div>

@@ -1,9 +1,6 @@
 import * as types from '../actions/actionTypes';
+import { authInitialState } from './initialState';
 
-const authInitialState = {
-  isAuthenticated: false,
-  user: {}
-};
 
 /**
  *

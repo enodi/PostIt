@@ -2,9 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 /**
- * This class is responsible for managing state
- * change and handling user signout
- *
  * @class AuthNavBar
  * @extends {React.Component}
  */
@@ -12,8 +9,7 @@ class AuthNavBar extends React.Component {
 
   /**
    *
-   *
-   * @returns {void} jsx - xml/html like syntax extension to javascript
+   * @returns {jsx} an xml/html like syntax extension to javascript
    *
    * @memberof AuthNavBar
    */
