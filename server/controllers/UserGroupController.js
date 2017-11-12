@@ -1,21 +1,20 @@
-import {
-  Group,
-  User
-} from '../models';
+import { Group, User } from '../models';
 
 
 /**
- *
+ * This class handles retrieving groups
  * @class UserGroupClass
  */
 class UserGroupClass {
 
   /**
-   *
+   * This method handles retrieving groups
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof UserGroupClass
    */
   static retrieveGroups(req, res) {
@@ -36,10 +35,9 @@ class UserGroupClass {
         }
       ]
     }).then((groups) => {
-      res.status(200).json({
-        groups
-      });
-    });
+      res.status(200).json({ groups });
+    })
+    .catch(error => res.status(500).json(error.response.data));
   }
 }
 export default UserGroupClass;

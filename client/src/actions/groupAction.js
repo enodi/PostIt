@@ -3,25 +3,12 @@ import toastr from 'toastr';
 import * as types from './actionTypes';
 import { getMessages } from './messageAction';
 
-
-/**
- *
- * @export groupSuccess
- * @param {any} group
- * @returns {Object} action type
- */
-export function createGroupSuccess(group) {
-  return {
-    type: types.CREATE_GROUP_SUCCESSFUL,
-    group
-  };
-}
-
-
 /**
  *
  * @export retrieveGroupsSuccess
- * @param {any} groups
+ *
+ * @param {object} groups
+ *
  * @returns {Object} action type
  */
 export function retrieveGroupsSuccess(groups) {
@@ -32,10 +19,13 @@ export function retrieveGroupsSuccess(groups) {
 }
 
 /**
+ * Async action that handles retrieving groups
  *
  * @export retrieveGroups
- * @param {any} userId
- * @returns {Object} Promise
+ *
+ * @param {number} userId
+ *
+ * @returns {function} dispatch
  */
 export function retrieveGroups(userId) {
   return dispatch =>
@@ -48,10 +38,14 @@ export function retrieveGroups(userId) {
 
 
 /**
+ * Async action that handles creating a group
  *
  * @export groupAction
- * @param {any} data
- * @returns {Object} Promise
+ *
+ * @param {object} data
+ * @param {number} userId
+ *
+ * @returns {function} dispatch
  */
 export function createGroup(data, userId) {
   return (dispatch) => {
@@ -66,11 +60,11 @@ export function createGroup(data, userId) {
 }
 
 /**
+ * @export activeGroupSuccess
  *
+ * @param {object} active
  *
- * @export
- * @param {any} active
- * @returns
+ * @returns {object} action type
  */
 export function activeGroupSuccess(active) {
   return {
@@ -80,10 +74,11 @@ export function activeGroupSuccess(active) {
 }
 
 /**
- *
  * @export activeGroup
- * @param {any} active
- * @returns {Object} action type
+ *
+ * @param {object} active
+ *
+ * @returns {function} dispatch
  */
 export function activeGroup(active) {
   return (dispatch) => {

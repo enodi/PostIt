@@ -4,7 +4,9 @@ import * as types from './actionTypes';
 /**
  *
  * @export messageSuccess
- * @param {any} message
+ *
+ * @param {object} message
+ *
  * @returns {Object} action type
  */
 export function messageSuccess(message) {
@@ -15,10 +17,11 @@ export function messageSuccess(message) {
 }
 
 /**
- *
  * @export getMessageSuccess
- * @param {any} messages
- * @returns {Object} action type
+ *
+ * @param {object} messages
+ *
+ * @returns {object} action type
  */
 export function getMessageSuccess(messages) {
   return {
@@ -28,10 +31,11 @@ export function getMessageSuccess(messages) {
 }
 
 /**
+ * Async action that handles retrieving messages
  *
- * @export getMessages
- * @param {any} groupId
- * @returns {Object} Promise
+ * @param {number} groupId
+ *
+ * @returns {function} dispatch
  */
 export function getMessages(groupId) {
   return (dispatch) => {
@@ -44,11 +48,12 @@ export function getMessages(groupId) {
 }
 
 /**
+ * Async action that handles posting messages
  *
- * @export messageAction
- * @param {any} groupId
- * @param {any} data
- * @returns {Object} Promise
+ * @param {number} groupId
+ * @param {object} data
+ *
+ * @returns {function} dispatch
  */
 export function postMessage(groupId, data) {
   return (dispatch) => {

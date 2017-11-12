@@ -1,6 +1,13 @@
 import React from 'react';
 import InputField from '../Common/InputField';
 
+/**
+ * Gives the presentational view for forgotPassword component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const ForgotPassword = props => (
   <div className="container reset-password">
   <div className="row">

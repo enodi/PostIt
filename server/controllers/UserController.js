@@ -4,17 +4,20 @@ import { User, Group } from '../models';
 
 
 /**
- *
+ * This class handles users account
  * @class UserClass
  */
 class UserClass {
 
   /**
-   *
+   * This method handles registering a new user
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof UserClass
    */
   static signUp(req, res) {
@@ -55,11 +58,14 @@ class UserClass {
 
 
   /**
-   *
+   * This method handles user signin
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof UserClass
    */
   static signIn(req, res) {
@@ -69,7 +75,6 @@ class UserClass {
         message: 'Invalid credentials',
       });
     }
-    // Handles user login
     User
       .findOne({
         where: {
@@ -101,16 +106,17 @@ class UserClass {
           token
         });
       })
-      .catch(err => res.send(err));
+      .catch(error => res.status(500).json(error.response.data));
   }
 
   /**
-   *
-   *
+   * This method handles adding registered users to a group
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} promise
    * @memberof UserClass
    */
   static addUsers(req, res) {
@@ -160,11 +166,13 @@ class UserClass {
   }
 
   /**
-   *
+   * This method handles retrieving all registered users
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof UserClass
    */
   static fetchUsers(req, res) {
@@ -172,12 +180,16 @@ class UserClass {
       return res.status(422)
         .json({ message: 'query params must be passed' });
     }
-    User.findAll({
+    const limit = parseInt(req.query.limit, 10) || 5;
+    const offset = parseInt(req.query.offset, 10) || 0;
+    User.findAndCountAll({
       where: {
         username: {
           $ilike: `%${req.query.q}%`
         }
       },
+      offset,
+      limit,
       attributes: {
         exclude:
         ['password', 'createdAt', 'updatedAt']
@@ -186,7 +198,7 @@ class UserClass {
       .then((retrieveUsers) => {
         res.status(200).json(retrieveUsers);
       })
-      .catch(error => res.status(500).json(error));
+      .catch(error => res.status(500).json(error.response.data));
   }
 }
 export default UserClass;

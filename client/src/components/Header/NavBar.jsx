@@ -2,12 +2,12 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
 /**
- *
  * NavBar Presentational Component
  *
  * @param {object} props
  *
- * @returns {void}
+ * @returns {jsx} an xml/html like syntax extension for
+ * javascript
  */
 const NavBar = () => (
   <nav>
@@ -24,13 +24,9 @@ const NavBar = () => (
         <i className="material-icons">menu</i>
       </Link>
       <ul className="right hide-on-med-and-down">
-        <li><Link to="/product">Product</Link></li>
-        <li><Link to="/support">Support</Link></li>
         <li><Link to="/account">My Account</Link></li>
       </ul>
       <ul className="side-nav" id="mobile-demo">
-        <li><Link to="/product">Product</Link></li>
-        <li><Link to="/support">Support</Link></li>
         <li><Link to="/account">My Account</Link></li>
       </ul>
     </div>

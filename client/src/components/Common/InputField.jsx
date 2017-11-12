@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
+/**
+ * A reusable component for input fields
+ *
+ * @param {object} props - destructured
+ *
+ * @returns {void}
+ */
 const InputField = ({
   name, value, id, type, htmlFor, label, onChange, onBlur, onFocus, placeholder
 }) => (

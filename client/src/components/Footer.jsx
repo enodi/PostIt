@@ -14,21 +14,6 @@ const Footer = () => (
               <li className="grey-text text-lighten-4">&copy; 2017</li>
             </ul>
           </div>
-          <div className="col l4 s12">
-            <h5 className="white-text">Features</h5>
-            <ul>
-              <li><Link to="/product">Product</Link></li>
-              <li><Link to="/support">Support</Link></li>
-            </ul>
-          </div>
-          <div className="col l4 s12">
-            <h5 className="white-text">Company</h5>
-            <ul>
-              <li><Link to="#">Blog</Link></li>
-              <li><Link to="#">About Us</Link></li>
-              <li><Link to="#">Contact Us</Link></li>
-            </ul>
-          </div>
         </div>
       </div>
       <div className="footer-copyright"></div>

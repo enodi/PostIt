@@ -4,11 +4,11 @@ import { browserHistory } from 'react-router';
 import * as types from './actionTypes';
 
 /**
+ * @export passwordResetLinkSuccess
  *
+ * @param {object} link
  *
- * @export
- * @param {any} link
- * @returns
+ * @returns {object} action type
  */
 export function passwordResetLinkSuccess(link) {
   return {
@@ -18,11 +18,12 @@ export function passwordResetLinkSuccess(link) {
 }
 
 /**
+ * Async action that handles sending an email
+ * containing reset password link
  *
+ * @param {object} userEmail
  *
- * @export
- * @param {any} userEmail
- * @returns
+ * @returns {function} dispatch
  */
 export function passwordResetLink(userEmail) {
   return (dispatch) => {
@@ -37,11 +38,9 @@ export function passwordResetLink(userEmail) {
 }
 
 /**
+ * @param {object} password
  *
- *
- * @export
- * @param {any} password
- * @returns
+ * @returns {object} action type
  */
 export function resetPasswordSuccess(user) {
   return {
@@ -51,11 +50,13 @@ export function resetPasswordSuccess(user) {
 }
 
 /**
+ * Aysnc action that handles resetting user
+ * password
  *
+ * @param {object} userPassword
+ * @param {string} token
  *
- * @export
- * @param {any} userPassword
- * @returns
+ * @returns {function} dispatch
  */
 export function resetPassword(userPassword, token) {
   return (dispatch) => {
