@@ -1,4 +1,5 @@
 import supertest from 'supertest';
+import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
 import dotenv from 'dotenv';
 import app from '../index';
@@ -24,7 +25,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Enodi Audu',
           password: 'password',
         })
@@ -56,7 +57,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'julian',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -71,7 +72,7 @@ describe('POST /api/v1/user/signup', () => {
       request
         .post('/api/v1/user/signup')
         .send({
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -100,7 +101,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           password: 'password',
         })
         .end((err, res) => {
@@ -114,7 +115,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
         })
         .end((err, res) => {
@@ -153,7 +154,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'en',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -168,7 +169,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: '       ',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -198,7 +199,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: '     ',
           password: 'password'
         })
@@ -213,7 +214,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Enodi Audu',
           password: '    '
         })
@@ -444,28 +445,6 @@ describe('POST /api/v1/group', () => {
   });
 });
 
-describe('POST /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-    request
-    .post('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      done();
-    });
-  });
-});
-
-describe('GET /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
-    request
-    .get('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      done();
-    });
-  });
-});
-
 describe('POST /api/v1/group/:groupId/message', () => {
   before((done) => {
     request
@@ -570,7 +549,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
   describe('handles adding users to group', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/group/:groupId/user')
+      .post('/api/v1/group/:groupId/user')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
@@ -622,6 +601,7 @@ describe('POST /api/v1/user/forgotPassword', () => {
       .post('/api/v1/user/forgotPassword')
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('Field cannot be empty');
         done();
       });
     });
@@ -647,6 +627,17 @@ describe('POST /api/v1/user/forgotPassword', () => {
         done();
       });
     });
+    it('should return 200 when email is sent successfully', (done) => {
+      request
+      .post('/api/v1/user/forgotPassword')
+      .send({
+        email: 'enodiaudu5@gmail.com'
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        done();
+      });
+    });
   });
 });
 
@@ -655,6 +646,41 @@ describe('PUT /api/v1/user/resetPassword', () => {
     it('should return 400 when no password is supplied', (done) => {
       request
       .put('/api/v1/user/resetPassword')
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+    });
+    it('should return 400 when whitespace is supplied to any field', (done) => {
+      request
+      .put('/api/v1/user/resetPassword')
+      .send({
+        password: 'password',
+        confirmPassword: ' '
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+    });
+    it('should return 400 when whitespace is supplied to both fields', (done) => {
+      request
+      .put('/api/v1/user/resetPassword')
+      .send({
+        password: ' ',
+        confirmPassword: ' '
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+    });
+    it('should return 400 when only one password is supplied', (done) => {
+      request
+      .put('/api/v1/user/resetPassword')
+      .send({
+        password: ' ',
+      })
       .end((err, res) => {
         expect(res.status).to.equal(400);
         done();
@@ -681,6 +707,23 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        done();
+      });
+    });
+    it('should return 200 on successful password reset', (done) => {
+      const tokn = jwt.sign({
+        email: 'enodiaudu5@gmail.com'
+      }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRY_TIME
+      });
+      request
+      .put(`/api/v1/user/resetPassword?tokn=${tokn}`)
+      .send({
+        password: 'password',
+        confirmPassword: 'password'
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
         done();
       });
     });

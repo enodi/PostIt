@@ -5,7 +5,7 @@ const GroupDescription = props => (
     <div className="row">
       <div className="col s12 m10 offset-m2 l10 offset-l2">
       <li>
-      {props.groups && props.groups.map(group => <span className="black-text" key={group.id}>{group.description}</span>)}
+      {props.group.name}
       </li>
       </div>
     </div>

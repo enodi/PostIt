@@ -104,7 +104,8 @@ const validations = {
 
   // handles reset password validation
   validateResetPassword(req, res, next) {
-    if (!req.body.password || !req.body.confirmPassword) {
+    if (!req.body.password || !req.body.confirmPassword ||
+      req.body.password === ' ' || req.body.confirmPassword === ' ') {
       return res.status(400).json({
         message: 'All fields are required'
       });

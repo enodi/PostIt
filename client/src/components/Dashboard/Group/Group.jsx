@@ -29,6 +29,7 @@ const Group = props => (
         {props.groups && props.groups.map(group => <GroupList
           group={group}
           active={props.active}
+          activeGroup={props.activeGroup}
           key={group.id}
           />)}
       </div>
