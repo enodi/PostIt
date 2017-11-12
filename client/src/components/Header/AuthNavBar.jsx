@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 /**
  * @class AuthNavBar
@@ -15,12 +16,13 @@ class AuthNavBar extends React.Component {
    */
   render() {
     return (
-      <div>
+      <div className="row">
         <nav className="white dashboard logout-icon">
           <div className="nav-wrapper">
             <Link to="/" className="brand-logo li">PostIt</Link>
-            <ul className="right hide-on-med-and-down">
-              <li>
+            <ul className="col m10 offset-m2 hide-on-med-and-down">
+            {this.props.group.name && <li className="black-text flow-text">{this.props.group.name}</li>}
+              <li className="right">
                 <a href="#add_users" className="modal-trigger">
                   <i className="material-icons black-text" href="#add_users">group_add</i>
                 </a>
@@ -40,4 +42,8 @@ class AuthNavBar extends React.Component {
   }
 }
 
-export default AuthNavBar;
+const mapStateToProps = state => ({
+  group: state.groupReducer.activeGroup
+});
+
+export default connect(mapStateToProps)(AuthNavBar);

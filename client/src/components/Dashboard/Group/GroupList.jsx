@@ -13,7 +13,10 @@ const GroupList = (props) => {
   return (
     <div>
       <ul>
-        <li key={props.group.id}>
+        <li
+        className={props.activeGroup.id === props.group.id ?
+        'active' : ''}
+        key={props.group.id}>
           <Link to="#"
             onClick={event => props.active(event, props.group.name, props.group.id)}>{props.group.name}</Link>
         </li>
