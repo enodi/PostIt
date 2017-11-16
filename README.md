@@ -1,12 +1,12 @@
 ## PostIt 
 [![Build Status](https://travis-ci.org/enodi/PostIt.svg?branch=add-license)](https://travis-ci.org/enodi/PostIt)  [![Code Climate](https://codeclimate.com/github/enodi/PostIt/badges/gpa.svg)](https://codeclimate.com/github/enodi/PostIt/)  [![Coverage Status](https://coveralls.io/repos/github/enodi/PostIt/badge.svg?branch=staging)](https://coveralls.io/github/enodi/PostIt?branch=staging)
 
-## Introduction
+### Introduction
 PostIt is a JavaScript application that allow registered users communicate with each other via groups. It allows you post messages and retrieve messages from groups you belong to. It includes a well structured API documentation that can be used by anyone.
 
 You can view the deployed application [here](https://postit-enodi.herokuapp.com/)
 
-## Features
+### Features
   * It has the following features:
       * Creating an account
       * Signing in as an existing user
@@ -18,7 +18,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
       * Reset password
       * Receive email notification when a message is posted in the group you belong to based on priority level i.e `Normal`,         `Critical` and `Urgent`
 
-## Project Dependencies
+### Project Dependencies
 * Dependies
 
   * [axios](https://www.npmjs.com/package/axios): A JavaScript library used to make http requests from nodejs or        XMLHttpRequests from the browser
@@ -40,7 +40,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
   * [supertest](https://www.npmjs.com/package/supertest) : HTTP assertions made easy via superagent.
   
 
-## Installation and Setup
+### Installation and Setup
 
 * Navigate to a directory with your terminal
 * Clone this repo to your directory
@@ -55,13 +55,13 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
   * Running the above command will run the app on http://localhost:3200
 
 
-## Tests
+### Tests
 * The tests were written using Mocha, Supertest and Chai.
 * To run test, navigate to app directory
 * run test
 * ```$ npm test```
 
-## Want To Contribute?
+### Want To Contribute?
 * Fork this repo to your repository, clone the repo and configure
 * Create a new branch [(see wiki for branch naming convention)](https://github.com/enodi/PostIt/wiki/Branch-Naming-Convention)
 * Make your contribution
@@ -69,14 +69,14 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 * Make sure to test your work
 * Raise a pull request against develop branch [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
 
-## API DOCUMENTATION
+### API Documentation
 For detailed information on how to use api, view [api documentation](http://postit-enodi.herokuapp.com/apidocs/#introduction)
 
-## FAQ
+### FAQ
 * Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) to read our FAQ.
 
-## License
+### License
 * https://github.com/enodi/PostIt/blob/master/LICENSE
 
-## Author
+### Author
 Enodi Audu - @enodi
