@@ -1,17 +1,21 @@
-import { Message, User } from '../models';
+import sendNotification from '../middleware/notification';
+import { Message, User, Group } from '../models';
 
 /**
- *
+ * This class handles messages
  * @class MessageClass
  */
 class MessageClass {
 
   /**
-   *
+   * This method handles posting of messages in a group
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof MessageClass
    */
   static create(req, res) {
@@ -20,28 +24,39 @@ class MessageClass {
         .status(400)
         .json('All fields are required');
     }
-    const UserId = req.decoded.userId;
+    const { userId, email, username } = req.decoded;
     Message
-      .create({ UserId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
+      .create({ UserId: userId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
       .then((messageCreated) => {
-        if (messageCreated) {
-          return res
-            .status(201)
-            .json({ message: 'message posted successfully', messageCreated });
+        if (messageCreated.priority === 'critical' || messageCreated.priority === 'urgent') {
+          Group.findById(req.params.groupId)
+          .then((group) => {
+            group.getUsers().then((users) => {
+              users.forEach((user) => {
+                if (email !== user.email) {
+                  sendNotification(user, username, group);
+                }
+              });
+            });
+          });
         }
-        return res
-          .status(400)
-          .json({ error: 'message not created' });
+        return res.status(201)
+        .json({ message: 'message posted successfully', messageCreated });
       })
-      .catch(error => res.status(500).json(error));
+      .catch(() => res
+        .status(500)
+        .json({ error: 'message not created' }));
   }
 
   /**
-   *
+   * This method handles retrieving messages in a group
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns {Object} Promise
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} Promise
+   *
    * @memberof MessageClass
    */
   static retrieve(req, res) {
@@ -61,10 +76,8 @@ class MessageClass {
         }
       ]
     }).then((messageRetrieved) => {
-      res
-        .status(200)
-        .json(messageRetrieved);
-    }).catch(error => res.status(500).json(error));
+      res.status(200).json(messageRetrieved);
+    }).catch(error => res.status(500).json(error.response.data));
   }
 }
 export default MessageClass;

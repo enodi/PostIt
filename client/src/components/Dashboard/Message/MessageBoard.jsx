@@ -1,6 +1,13 @@
 import React from 'react';
 
-const MessageBoard = props => {
+/**
+ * Gives the presentational view for MessageBoard component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
+const MessageBoard = (props) => {
   return (
     <div className="row display-message">
       <div className="col s12 m10 offset-m2 l10 offset-l2">

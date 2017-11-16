@@ -4,18 +4,19 @@ import bcrypt from 'bcryptjs';
 import { User } from '../models';
 
 /**
- *
- *
+ * This class handles password reset
  * @class ResetPassword
  */
 class ResetPassword {
 
   /**
-   *
-   *
+   * This method handles sending email to a registered user to reset password
    * @static
-   * @param {any} req
-   * @param {any} res
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} promise
    * @memberof ResetPassword
    */
   static forgotPassword(req, res) {
@@ -74,12 +75,14 @@ class ResetPassword {
   }
 
   /**
-   *
-   *
+   * This method handles resetting user password
    * @static
-   * @param {any} req
-   * @param {any} res
-   * @returns
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @returns {object} promise
+   *
    * @memberof ResetPassword
    */
   static resetPassword(req, res) {

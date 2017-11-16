@@ -5,21 +5,6 @@ describe('Group Reducer', () => {
     expect(groupReducer({}, {})).toEqual({});
   });
 
-  it('should create a new group', () => {
-    expect(groupReducer({}, {
-      type: 'CREATE_GROUP_SUCCESSFUL',
-      group: [{
-        name: 'random',
-        description: 'for random conversations'
-      }]
-    })).toEqual({
-      Groups: [{
-        name: 'random',
-        description: 'for random conversations'
-      }] }
-    );
-  });
-
   it('should retrieve groups', () => {
     expect(groupReducer({
       Groups: [{

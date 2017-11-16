@@ -3,6 +3,13 @@ import { Link } from 'react-router';
 import PropTypes from 'prop-types';
 import InputField from '../Common/InputField.jsx';
 
+/**
+ * Gives the presentational view for signin component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const Signin = props => (
   <div id="test-swipe-1" className="col s12">
   <h5 > Log Into Your Account </h5>

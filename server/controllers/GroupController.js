@@ -2,17 +2,21 @@ import { Group } from '../models';
 
 
 /**
- *
+ * This class handles group creation
  * @class GroupClass
  */
 class GroupClass {
 
   /**
+   * This method handles creating a new group
    * @static
-   * @param {any} req
-   * @param {any} res
+   *
+   * @param {object} req
+   * @param {object} res
+   *
    * @memberof GroupClass
-   * @returns {Object} Promise
+   *
+   * @returns {object} Promise
    */
   static create(req, res) {
     const UserId = req.decoded.userId;

@@ -13,9 +13,6 @@ const groupInitialState = {
  */
 export default function groupReducer(state = groupInitialState, action = {}) {
   switch (action.type) {
-    case types.CREATE_GROUP_SUCCESSFUL:
-      return { ...state, ...{ Groups: action.group } };
-
     case types.RETRIEVE_GROUP_SUCCESSFUL:
       return { ...state, ...{ Groups: action.groups } };
 
