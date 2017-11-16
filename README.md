@@ -69,6 +69,9 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
 * Make sure to test your work
 * Raise a pull request against develop branch [(see wiki for pull request convention)](https://github.com/enodi/PostIt/wiki/Pull-Request-Naming-and-Description-Convention)
 
+## API DOCUMENTATION
+For detailed information on how to use api, view [api documentation](http://postit-enodi.herokuapp.com/apidocs/#introduction)
+
 ## FAQ
 * Click [here](https://github.com/enodi/PostIt/wiki/Frequently-Asked-Questions) to read our FAQ.
 
