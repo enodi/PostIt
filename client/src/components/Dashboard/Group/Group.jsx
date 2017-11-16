@@ -3,6 +3,13 @@ import PropTypes from 'prop-types';
 import InputField from '../../Common/InputField.jsx';
 import GroupList from './GroupList.jsx';
 
+/**
+ * Gives the presentational view for group component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const Group = props => (
   <div>
     <ul className="side-nav fixed" id="slide-out">
@@ -12,17 +19,20 @@ const Group = props => (
         </i>
       </li>
       <li className="divider"></li>
-      <li>
-        <a href="#modal1" className="sidebar-text modal-trigger">
-          GROUPS
-          <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
-        </a>
-      </li>
-      {props.groups && props.groups.map(group => <GroupList
-        group={group}
-        active={props.active}
-        key={group.id}
-        />)}
+      <div className="li">
+        <li>
+          <a href="#modal1" className="sidebar-text modal-trigger">
+            GROUPS
+            <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
+          </a>
+        </li>
+        {props.groups && props.groups.map(group => <GroupList
+          group={group}
+          active={props.active}
+          activeGroup={props.activeGroup}
+          key={group.id}
+          />)}
+      </div>
     </ul>
     <div className="container group-container">
       <div className="row">

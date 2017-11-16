@@ -10,20 +10,11 @@ let token;
 
 describe('GET /api/v1/user/:userId/group', () => {
   before((done) => {
-    db.sequelize.sync({ force: true })
-      .then(() => {
-        done(null);
-      })
-      .catch((error) => {
-        done(error);
-      });
-  });
-  before((done) => {
     request
     .post('/api/v1/user/signup')
     .send({
       username: 'enodi',
-      email: 'enodi@gmail.com',
+      email: 'enodiaudu5@gmail.com',
       fullname: 'Enodi Audu',
       password: 'password',
     })

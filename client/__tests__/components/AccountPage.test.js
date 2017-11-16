@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import 'materialize-css/dist/js/materialize';
-import AuthenticationPage from '../../src/components/AuthenticationPage.jsx';
+import AccountPage from '../../src/components/AccountPage.jsx';
 
-describe('AuthenticationPage Component', () => {
+describe('AccountPage Component', () => {
   it('should render AuthenticationPage Component', () => {
-    const wrapper = shallow(<AuthenticationPage />);
+    const wrapper = shallow(<AccountPage />);
     expect(wrapper).toMatchSnapshot();
   });
 });

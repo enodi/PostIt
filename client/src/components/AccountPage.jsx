@@ -4,15 +4,14 @@ import SigninContainer from '../components/Signin/SigninContainer.jsx';
 
 /**
  *
- *
- * @class AuthenticationPage
+ * @class AccountPage
  * @extends {React.Component}
  */
-class AuthenticationPage extends React.Component {
+class AccountPage extends React.Component {
   /**
-   *
+   * Initializes component swipeable tabs
    * @returns {void}
-   * @memberof AuthenticationPage
+   * @memberof AccountPage
    */
   componentDidMount() {
      $('ul.tabs').tabs();
@@ -20,9 +19,8 @@ class AuthenticationPage extends React.Component {
 
   /**
    *
-   *
-   * @returns {jsx}
-   * @memberof AuthenticationPage
+   * @returns {jsx} an xml/html like syntax extension for javascript
+   * @memberof AccountPage
    */
   render() {
     return (
@@ -54,4 +52,4 @@ class AuthenticationPage extends React.Component {
   }
 }
 
-export default AuthenticationPage;
+export default AccountPage;

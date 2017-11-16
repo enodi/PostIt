@@ -1,4 +1,5 @@
 import supertest from 'supertest';
+import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
 import dotenv from 'dotenv';
 import app from '../../index';
@@ -24,7 +25,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Enodi Audu',
           password: 'password',
         })
@@ -56,7 +57,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'julian',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -71,7 +72,7 @@ describe('POST /api/v1/user/signup', () => {
       request
         .post('/api/v1/user/signup')
         .send({
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -100,7 +101,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           password: 'password',
         })
         .end((err, res) => {
@@ -114,7 +115,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
         })
         .end((err, res) => {
@@ -153,7 +154,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'en',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -168,7 +169,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: '       ',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -198,7 +199,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: '     ',
           password: 'password'
         })
@@ -213,7 +214,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Enodi Audu',
           password: '    '
         })
@@ -384,7 +385,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
   describe('handles adding users to group', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/group/:groupId/user')
+      .post('/api/v1/group/:groupId/user')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
@@ -581,3 +582,4 @@ describe('User Model', () => {
     });
   });
 });
+

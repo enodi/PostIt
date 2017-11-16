@@ -2,12 +2,12 @@ import React from 'react';
 import { Link, IndexLink } from 'react-router';
 
 /**
- *
  * NavBar Presentational Component
  *
  * @param {object} props
  *
- * @returns {void}
+ * @returns {jsx} an xml/html like syntax extension for
+ * javascript
  */
 const NavBar = () => (
   <nav>
