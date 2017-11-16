@@ -9,7 +9,7 @@ import { resetPassword } from '../../actions/resetPasswordAction';
  * @class ResetPasswordContainer
  * @extends {React.Component}
  */
-class ResetPasswordContainer extends React.Component {
+export class ResetPasswordContainer extends React.Component {
   /**
    * Creates an instance of ResetPasswordContainer.
    * @param {any} props

@@ -11,6 +11,7 @@ const ResetPassword = props => (
           <InputField
             className="validate"
             label={'Password'}
+            value={props.state.password}
             onChange={props.handleOnChange}
             htmlFor={'password'}
             type={'password'}
@@ -23,6 +24,7 @@ const ResetPassword = props => (
           <InputField
             className="validate"
             label={'Confirm Password'}
+            value={props.state.confirmPassword}
             onChange={props.handleOnChange}
             htmlFor={'password'}
             type={'password'}

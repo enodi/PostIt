@@ -10,7 +10,7 @@ import { addUser } from '../../../actions/userAction';
  * @class AddUsersContainier
  * @extends {React.Component}
  */
-class AddUsersContainier extends React.Component {
+export class AddUsersContainier extends React.Component {
   /**
    * Creates an instance of AddUsersContainier.
    * @param {any} props

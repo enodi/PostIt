@@ -10,7 +10,7 @@ import { postMessage } from '../../../actions/messageAction';
  * @class PostMessageContainer
  * @extends {React.Component}
  */
-class PostMessageContainer extends React.Component {
+export class PostMessageContainer extends React.Component {
   /**
    * Creates an instance of PostMessageContainer.
    * @param {any} props
@@ -76,13 +76,12 @@ class PostMessageContainer extends React.Component {
   render() {
     return (
       <div>
-      <MessageBoard groupMessages={this.props.messages}/>
+        <MessageBoard groupMessages={this.props.messages}/>
         <PostMessage
           handleOnChange={this.handleOnChange}
           state={this.state}
           handleOnSubmit={this.handleOnSubmit}
           priorityOnChange={this.priorityOnChange}/>
-        
       </div>
     );
   }

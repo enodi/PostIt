@@ -4,8 +4,6 @@ import { Route, IndexRoute } from 'react-router';
 import Dashboard from './src/components/Dashboard/Dashboard';
 import AuthenticationPage from './src/components/AuthenticationPage';
 import IndexPage from './src/components/IndexPage';
-import Product from './src/components/Product';
-import Support from './src/components/Support';
 import ResetPasswordContainer from './src/components/ResetPassword/ResetPasswordContainer';
 import ForgotPasswordContainer from './src/components/ResetPassword/ForgotPasswordContainer';
 import App from './App';
@@ -29,9 +27,7 @@ function requireAuth(nextState, replace) {
 export default(
   <Route path="/" component={App}>
     <IndexRoute component={IndexPage}/>
-    <Route path="/product" component={Product}/>
     <Route path="/account" component={AuthenticationPage}/>
-    <Route path="/support" component={Support}/>
     <Route path="/forgotPassword" component={ForgotPasswordContainer} />
     <Route path="/resetPassword" component={ResetPasswordContainer} />
     <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>

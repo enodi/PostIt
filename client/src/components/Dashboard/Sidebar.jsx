@@ -11,7 +11,7 @@ import { createGroup, retrieveGroups, activeGroup } from '../../actions/groupAct
  * @class Sidebar
  * @extends {React.Component}
  */
-class Sidebar extends React.Component {
+export class Sidebar extends React.Component {
   /**
    * Creates an instance of Sidebar.
    * @param {any} props
