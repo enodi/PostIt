@@ -11,7 +11,7 @@ import * as types from '../actionTypes';
  * @param {any} user
  * @returns {Object} object
  */
-function setCurrentUser(user) {
+export function setCurrentUser(user) {
   return {
     type: types.SIGNUP_SUCCESSFUL,
     user

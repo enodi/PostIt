@@ -44,7 +44,11 @@ export function signinAction(credentials) {
         dispatch(signinSuccess(jwtDecode(token)));
         browserHistory.push('/dashboard');
       })
-      .catch(error => toastr.error(error.response.data.message));
+      .catch((error) => {
+        if (error.response) {
+          return toastr.error(error.response.data.message);
+        }
+      });
   };
 }
 

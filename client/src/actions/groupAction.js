@@ -61,7 +61,11 @@ export function createGroup(data, userId) {
         toastr.success(res.data.message);
         $('#modal1').modal('close');
       })
-      .catch(error => toastr.error(error.response.data));
+      .catch((error) => {
+        if (error.response) {
+          return toastr.error(error.response.data);
+        }
+      });
   };
 }
 
