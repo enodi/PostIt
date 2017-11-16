@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthenticationPage Component should render AuthenticationPage Component 1`] = `
+exports[`AccountPage Component should render AuthenticationPage Component 1`] = `
 <div>
   <div
     className="container"

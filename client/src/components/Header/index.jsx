@@ -5,8 +5,10 @@ import AddUsersContainier from '../Dashboard/Users/AddUsersContainer.jsx';
 import AuthNavBar from './AuthNavBar.jsx';
 
 /**
- *
- * Header Component
+ * This component manipulates the two navbar components.
+ * It disappears the authenticated navbar component
+ * when a user is loggedin and displays the unauthenticated
+ * navbar component when the user isn't loggedin
  *
  * @param {object} props
  *
@@ -18,7 +20,7 @@ export const Header = props => (
       {props.groups.id && <AuthNavBar />}
       <div id="add_users" className="modal">
         <AddUsersContainier activeGroup={props.groups.id} />
-    </div>
+      </div>
     </div>
   );
 

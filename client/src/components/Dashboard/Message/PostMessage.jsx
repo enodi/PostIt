@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputField from '../../Common/InputField.jsx';
 
+/**
+ * Gives the presentational view for postMessage component
+ *
+ * @param {object} props
+ *
+ * @returns {void}
+ */
 const PostMessage = props => (
   <div className="container post-message">
     <div className="row">

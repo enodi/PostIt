@@ -5,7 +5,8 @@ import { signinAction } from '../../actions/auth/signinAction';
 import Signin from './Signin.jsx';
 
 /**
- *
+ * This class is the container component for signin
+ * presentational component
  *
  * @class SigninContainer
  * @extends {React.Component}
@@ -13,7 +14,9 @@ import Signin from './Signin.jsx';
 export class SigninContainer extends React.Component {
   /**
    * Creates an instance of SigninContainer.
-   * @param {any} props
+   * Initializes the state and binds this to the methods in the class
+   *
+   * @param {object} props
    * @memberof SigninContainer
    */
   constructor(props) {
@@ -30,11 +33,12 @@ export class SigninContainer extends React.Component {
   }
 
   /**
+   * @param {object} event
    *
-   *
-   * @param {any} event
    * @returns {void}
+   *
    * @memberof SigninContainer
+   * @method onFocus
    */
   onFocus(event) {
     const name = event.target.name;
@@ -54,10 +58,10 @@ export class SigninContainer extends React.Component {
   }
 
   /**
+   * @param {object} event
    *
-   *
-   * @param {any} event
    * @returns {void}
+   *
    * @memberof SigninContainer
    */
   onBlur(event) {
@@ -83,11 +87,14 @@ export class SigninContainer extends React.Component {
   }
 
   /**
+   * Takes in the target object and sets the state with the form input
    *
+   * @param {object} event
    *
-   * @param {any} event
    * @returns {void}
+   *
    * @memberof SigninContainer
+   * @method onChange
    */
   onChange(event) {
     const value = event.target.value.trim();
@@ -97,11 +104,14 @@ export class SigninContainer extends React.Component {
   }
 
   /**
+   * Makes a post request to signin endpoint upon successful validation
    *
+   * @param {object} event
    *
-   * @param {any} event
    * @returns {void}
+   *
    * @memberof SigninContainer
+   * @method handleSubmit
    */
   handleSubmit(event) {
     event.preventDefault();
@@ -109,9 +119,7 @@ export class SigninContainer extends React.Component {
   }
 
  /**
-  *
-  *
-  * @returns
+  * @returns {jsx} an xml/html like syntax extension for javascript
   * @memberof SigninContainer
   */
   render() {

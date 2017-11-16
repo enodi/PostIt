@@ -7,15 +7,16 @@ const key = process.env.JWT_SECRET;
 
 
 /**
- *
+ * This class handles user authentication
  * @class authenticate
  */
 class authenticate {
   /**
-   * isLoggedIn - checks if a user looged in
+   * This method checks if a user logged in
    * @param  {object} req  request object
    * @param  {object} res  response object
    * @param  {function} next callback function
+   *
    * @return {void} no return or void
    */
   static isLoggedIn(req, res, next) {

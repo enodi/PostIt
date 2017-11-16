@@ -1,55 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthNavBar Component should render AuthNavBar Component 1`] = `
-<div>
-  <nav
-    className="white dashboard logout-icon"
-  >
-    <div
-      className="nav-wrapper"
-    >
-      <Link
-        className="brand-logo li"
-        onlyActiveOnIndex={false}
-        style={Object {}}
-        to="/"
-      >
-        PostIt
-      </Link>
-      <ul
-        className="right hide-on-med-and-down"
-      >
-        <li>
-          <a
-            className="modal-trigger"
-            href="#add_users"
-          >
-            <i
-              className="material-icons black-text"
-              href="#add_users"
-            >
-              group_add
-            </i>
-          </a>
-        </li>
-      </ul>
-      <ul
-        className="side-nav"
-        id="mobile-demo"
-      >
-        <li>
-          <i
-            className="large material-icons black-text"
-          >
-            group_add
-          </i>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
-`;
-
 exports[`NavBar Component should render NavBar Component 1`] = `
 <nav>
   <div

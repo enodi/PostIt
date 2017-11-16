@@ -11,9 +11,11 @@ let token;
 describe('POST /api/v1/group/:groupId/message', () => {
   before((done) => {
     request
-    .post('/api/v1/user/signin')
+    .post('/api/v1/user/signup')
     .send({
-      username: 'enodi',
+      username: 'enodi000',
+      email: 'enodiaudu5@gmail.co.uk',
+      fullname: 'Enodi Audu',
       password: 'password',
     })
     .end((err, res) => {

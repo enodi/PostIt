@@ -9,22 +9,13 @@ dotenv.config();
 let token;
 
 describe('POST /api/v1/user/signup', () => {
-  before((done) => {
-    db.sequelize.sync({ force: true })
-      .then(() => {
-        done(null);
-      })
-      .catch((error) => {
-        done(error);
-      });
-  });
   describe('handles user registration', () => {
     it('should return 201 when user signs up successfully', (done) => {
       request
         .post('/api/v1/user/signup')
         .send({
-          username: 'enodi',
-          email: 'enodi@gmail.com',
+          username: 'enodi123',
+          email: 'enodi.audu@gmail.com',
           fullname: 'Enodi Audu',
           password: 'password',
         })
@@ -39,7 +30,7 @@ describe('POST /api/v1/user/signup', () => {
       request
         .post('/api/v1/user/signup')
         .send({
-          username: 'enodi',
+          username: 'enodi123',
           email: 'julian@gmail.com',
           fullname: 'Julian Audu',
           password: 'password',
@@ -56,7 +47,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'julian',
-          email: 'enodi@gmail.com',
+          email: 'enodi.audu@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -71,7 +62,7 @@ describe('POST /api/v1/user/signup', () => {
       request
         .post('/api/v1/user/signup')
         .send({
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password',
         })
@@ -100,7 +91,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           password: 'password',
         })
         .end((err, res) => {
@@ -114,7 +105,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
         })
         .end((err, res) => {
@@ -153,7 +144,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'en',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -168,7 +159,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: '       ',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
           password: 'password'
         })
@@ -198,7 +189,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: '     ',
           password: 'password'
         })
@@ -213,7 +204,7 @@ describe('POST /api/v1/user/signup', () => {
         .post('/api/v1/user/signup')
         .send({
           username: 'enodi',
-          email: 'enodi@gmail.com',
+          email: 'enodiaudu5@gmail.com',
           fullname: 'Enodi Audu',
           password: '    '
         })
@@ -231,7 +222,7 @@ describe('POST /api/v1/user/signin', () => {
       request
         .post('/api/v1/user/signin')
         .send({
-          username: 'enodi',
+          username: 'enodi123',
           password: 'password',
         })
         .end((err, res) => {
@@ -373,7 +364,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
     request
     .post('/api/v1/user/signin')
     .send({
-      username: 'enodi',
+      username: 'enodi123',
       password: 'password',
     })
     .end((err, res) => {
@@ -384,12 +375,40 @@ describe('POST /api/v1/group/:groupId/user', () => {
   describe('handles adding users to group', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
-      .get('/api/v1/group/:groupId/user')
+      .post('/api/v1/group/:groupId/user')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         done();
       });
     });
+    describe('When a user tries to add another user to a group', () => {
+      before((done) => {
+        request
+        .post('/api/v1/group')
+        .set('x-access-token', token)
+        .send({
+          name: 'andela',
+          description: 'andela fellows'
+        })
+        .end((err, res) => {
+          if (res) {
+            done();
+          }
+        });
+      });
+      it('should return 200 when a user successfully adds another user to the group', (done) => {
+        request
+        .post('/api/v1/group/1/user')
+        .set('x-access-token', token)
+        .send({
+          userId: 1
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+      });
+    
     it('should return 404 when user tries to add a user that doesn\'t exist', (done) => {
       request
       .post(`/api/v1/group/${1}/user`)
@@ -399,20 +418,6 @@ describe('POST /api/v1/group/:groupId/user', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(404);
-        done();
-      });
-    });
-    it('should return 201 when a group is created successfully', (done) => {
-      request
-      .post('/api/v1/group')
-      .set('x-access-token', token)
-      .send({
-        name: 'andela',
-        description: 'andela fellows'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.message).to.equal('Group created successfully');
         done();
       });
     });
@@ -440,6 +445,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
         done();
       });
     });
+  });
   });
 });
 
