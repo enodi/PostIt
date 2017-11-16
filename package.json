@@ -3,12 +3,31 @@
   "version": "1.0.0",
   "description": "A JavaScript Application that allows users communicate with each other within a group",
   "main": "index.js",
+  "jest": {
+    "verbose": true,
+    "setupFiles": [
+      "./jestSetup.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "./client/src/assets/",
+      "./client/src/utils/"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js",
+      "\\.(css|less)$": "<rootDir>/assetsTransformer.js"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
   "scripts": {
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
-    "test": "NODE_ENV=test mocha test/*.test.js --compilers js:babel-register",
+    "test": "NODE_ENV=test mocha server/test/*.test.js --compilers js:babel-register",
+    "client:test": "node_modules/.bin/jest ./client/__tests__/**/*.test.js --coverage --collectCoverageFrom=client/src/**/*.{js,jsx}",
+    "client:coverage": "node_modules/.bin/jest --coverage",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
-    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha test/*.test.js",
+    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha server/test/*.test.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "showcoverage": "open coverage/lcov-report/index.html"
   },
@@ -22,6 +41,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "css-loader": "^0.28.4",
@@ -31,8 +51,9 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
-    "jest": "^20.0.4",
+    "jest": "^21.2.1",
     "jquery": "^3.2.1",
+    "jsdom": "^11.3.0",
     "jsonwebtoken": "^7.4.3",
     "jsx-loader": "^0.13.2",
     "jwt-decode": "^2.2.0",
@@ -44,7 +65,7 @@
     "pg": "^4.3.0",
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
+    "react": "^15.6.2",
     "react-dom": "^15.6.1",
     "react-notify-toast": "^0.3.2",
     "react-redux": "^5.0.6",
@@ -66,10 +87,13 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "babel-istanbul": "^0.12.2",
-    "babel-register": "^6.26.0",
+    "babel-jest": "^21.2.0",
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
     "coveralls": "^2.13.1",
+    "enzyme": "^3.1.1",
+    "enzyme-adapter-react-15": "^1.0.5",
+    "enzyme-to-json": "^3.2.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-airbnb-base": "^11.2.0",
@@ -81,6 +105,8 @@
     "mocha": "^3.5.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.11.0",
+    "react-test-renderer": "^15.6.1",
+    "redux-mock-store": "^1.3.0",
     "sequelize-cli": "^3.0.0",
     "style-loader": "^0.18.2",
     "supertest": "^3.0.0",

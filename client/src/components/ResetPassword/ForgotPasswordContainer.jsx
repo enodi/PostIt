@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ForgotPassword from './ForgotPassword.jsx';
 import { passwordResetLink } from '../../actions/resetPasswordAction';
 
-class ForgotPasswordContainer extends React.Component {
+export class ForgotPasswordContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

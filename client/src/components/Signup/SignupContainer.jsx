@@ -10,7 +10,7 @@ import Signup from './Signup.jsx';
  * @class SignupContainer
  * @extends {React.Component}
  */
-class SignupContainer extends React.Component {
+export class SignupContainer extends React.Component {
   /**
    * Creates an instance of SignupContainer.
    * @param {any} props

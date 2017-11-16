@@ -34,14 +34,14 @@ export function getMessageSuccess(messages) {
  * @returns {Object} Promise
  */
 export function getMessages(groupId) {
-  return (dispatch) => {
+  return dispatch =>
     axios.get(`api/v1/group/${groupId}/messages`)
       .then((res) => {
         dispatch(getMessageSuccess(res.data));
       })
       .catch(error => error.response.data);
-  };
 }
+
 
 /**
  *
@@ -51,11 +51,10 @@ export function getMessages(groupId) {
  * @returns {Object} Promise
  */
 export function postMessage(groupId, data) {
-  return (dispatch) => {
+  return dispatch =>
     axios.post(`api/v1/group/${groupId}/message`, data)
-      .then((res) => {
+      .then(() => {
         dispatch(getMessages(groupId));
       })
       .catch(error => error.response.data);
-  };
 }
