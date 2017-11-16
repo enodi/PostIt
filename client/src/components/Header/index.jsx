@@ -14,7 +14,7 @@ import AuthNavBar from './AuthNavBar.jsx';
  *
  * @returns {void}
  */
-const Header = props => (
+export const Header = props => (
     <div>
       {!props.loggedIn && <NavBar />}
       {props.groups.id && <AuthNavBar />}

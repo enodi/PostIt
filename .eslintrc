@@ -12,7 +12,9 @@
     "describe": true,
     "expect": true,
     "should": true,
-    "React": true
+    "React": true,
+    "jest": true,
+    "mount": true
   },
   "parserOptions": {
     "ecmaFeatures": {

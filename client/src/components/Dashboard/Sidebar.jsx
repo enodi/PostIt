@@ -13,7 +13,7 @@ import GroupDescription from '../Dashboard/Group/GroupDescription.jsx';
  * @class Sidebar
  * @extends {React.Component}
  */
-class Sidebar extends React.Component {
+export class Sidebar extends React.Component {
   /**
    * Creates an instance of Sidebar.
    * Initializes the state and binds this to the methods

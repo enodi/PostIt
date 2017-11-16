@@ -33,7 +33,11 @@ export function passwordResetLink(userEmail) {
         dispatch(passwordResetLinkSuccess(res.data));
         return toastr.success(res.data.message);
       })
-      .catch(error => toastr.error(error.response.data.message));
+      .catch((error) => {
+        if (error.response) {
+          return toastr.error(error.response.data.message);
+        }
+      });
   };
 }
 
@@ -67,6 +71,10 @@ export function resetPassword(userPassword, token) {
         toastr.success(res.data.message);
         browserHistory.push('/account');
       })
-      .catch(error => toastr.error(error.response.data.message));
+      .catch((error) => {
+        if (error.response) {
+          return toastr.error(error.response.data.message);
+        }
+      });
   };
 }

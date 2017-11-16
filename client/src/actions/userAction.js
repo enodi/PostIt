@@ -23,12 +23,16 @@ export function addUserSuccess(user) {
  * @returns {function} dispatch
  */
 export function addUser(groupId, userId) {
-  return dispatch => axios
-    .post(`/api/v1/group/${groupId}/user`, userId)
+  return dispatch =>
+  axios.post(`/api/v1/group/${groupId}/user`, userId)
     .then((res) => {
       dispatch(addUserSuccess(res.data));
       toastr.success(res.data.message);
       $('#modal1').modal('close');
     })
-    .catch(error => toastr.error(error.response.data.message));
+    .catch((error) => {
+      if (error.response) {
+        return toastr.error(error.response.data.message);
+      }
+    });
 }

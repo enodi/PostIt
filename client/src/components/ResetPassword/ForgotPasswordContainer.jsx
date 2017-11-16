@@ -10,7 +10,7 @@ import { passwordResetLink } from '../../actions/resetPasswordAction';
  * @class ForgotPasswordContainer
  * @extends {React.Component}
  */
-class ForgotPasswordContainer extends React.Component {
+export class ForgotPasswordContainer extends React.Component {
   /**
    * Creates an instance of ForgotPasswordContainer.
    * Initializes the state and binds this to the methods

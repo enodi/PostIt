@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar Component should render NavBar Component 1`] = `
+<nav>
+  <div
+    className="nav-wrapper #212121 grey darken-4"
+  >
+    <IndexLink
+      className="brand-logo"
+      to="/"
+    >
+      <span
+        className="logo grey-text text-lighten-2"
+      >
+        PostIt
+      </span>
+    </IndexLink>
+    <Link
+      className="button-collapse"
+      data-activates="mobile-demo"
+      onlyActiveOnIndex={false}
+      style={Object {}}
+      to="#"
+    >
+      <i
+        className="material-icons"
+      >
+        menu
+      </i>
+    </Link>
+    <ul
+      className="right hide-on-med-and-down"
+    >
+      <li>
+        <Link
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/account"
+        >
+          My Account
+        </Link>
+      </li>
+    </ul>
+    <ul
+      className="side-nav"
+      id="mobile-demo"
+    >
+      <li>
+        <Link
+          onlyActiveOnIndex={false}
+          style={Object {}}
+          to="/account"
+        >
+          My Account
+        </Link>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;

@@ -32,35 +32,52 @@ export function getMessageSuccess(messages) {
 
 /**
  * Async action that handles retrieving messages
+<<<<<<< HEAD
  *
  * @param {number} groupId
  *
+=======
+ *
+ * @param {number} groupId
+ *
+>>>>>>> chore/152155945/client-side-test
  * @returns {function} dispatch
  */
 export function getMessages(groupId) {
-  return (dispatch) => {
+  return dispatch =>
     axios.get(`api/v1/group/${groupId}/messages`)
       .then((res) => {
         dispatch(getMessageSuccess(res.data));
       })
+<<<<<<< HEAD
       .catch(error =>  console.log(error));
   };
+=======
+      .catch(error => error.response.data);
+>>>>>>> chore/152155945/client-side-test
 }
+
 
 /**
  * Async action that handles posting messages
+<<<<<<< HEAD
  *
  * @param {number} groupId
  * @param {object} data
  *
+=======
+ *
+ * @param {number} groupId
+ * @param {object} data
+ *
+>>>>>>> chore/152155945/client-side-test
  * @returns {function} dispatch
  */
 export function postMessage(groupId, data) {
-  return (dispatch) => {
+  return dispatch =>
     axios.post(`api/v1/group/${groupId}/message`, data)
-      .then((res) => {
+      .then(() => {
         dispatch(getMessages(groupId));
       })
       .catch(error => error.response.data);
-  };
 }

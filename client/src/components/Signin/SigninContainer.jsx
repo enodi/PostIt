@@ -11,7 +11,7 @@ import Signin from './Signin.jsx';
  * @class SigninContainer
  * @extends {React.Component}
  */
-class SigninContainer extends React.Component {
+export class SigninContainer extends React.Component {
   /**
    * Creates an instance of SigninContainer.
    * Initializes the state and binds this to the methods in the class

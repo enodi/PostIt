@@ -11,7 +11,7 @@ import Signup from './Signup.jsx';
  * @class SignupContainer
  * @extends {React.Component}
  */
-class SignupContainer extends React.Component {
+export class SignupContainer extends React.Component {
   /**
    * Creates an instance of SignupContainer.
    * Initializes the state and binds this to the methods in the class

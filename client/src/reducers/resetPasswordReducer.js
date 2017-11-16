@@ -14,7 +14,7 @@ const initialState = {
  * @param {any} action
  * @returns
  */
-export default function resetPasswordReducer(state = initialState, action) {
+export default function resetPasswordReducer(state = initialState, action = {}) {
   switch (action.type) {
     case types.FORGOT_PASSWORD_LINK_SUCCESS:
       return {

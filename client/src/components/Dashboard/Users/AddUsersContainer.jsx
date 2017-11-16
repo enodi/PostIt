@@ -11,7 +11,7 @@ import { addUser } from '../../../actions/userAction';
  * @class AddUsersContainier
  * @extends {React.Component}
  */
-class AddUsersContainier extends React.Component {
+export class AddUsersContainer extends React.Component {
   /**
    * Creates an instance of AddUsersContainier.
    * Initializes the state and binds this to the methods in the class
@@ -132,4 +132,4 @@ const mapStateToProps = state => ({
   group: state.groupReducer.activeGroup
 });
 
-export default connect(mapStateToProps, { searchUsers, addUser })(AddUsersContainier);
+export default connect(mapStateToProps, { searchUsers, addUser })(AddUsersContainer);
