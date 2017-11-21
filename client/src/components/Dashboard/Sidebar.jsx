@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Group from './Group/Group.jsx';
 import { signoutUser } from '../../actions/auth/signinAction';
 import { createGroup, retrieveGroups, activeGroup } from '../../actions/groupAction';
-import GroupDescription from '../Dashboard/Group/GroupDescription.jsx';
 
 /**
  * This class is the container component for group

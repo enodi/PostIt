@@ -17,7 +17,7 @@ const PostMessage = props => (
           <div className="input-field col m10 offset-m1">
           <div className="input-border">
             <InputField
-              className="autocomplete"
+              className="autocomplete post-message"
               type={'text'}
               name={'messsage'}
               value={props.state.message}
@@ -53,7 +53,7 @@ const PostMessage = props => (
           </div>
           <div className="input-field col m1">
             <div className="button-border">
-              <button className="btn-large right" type="submit" name="action">
+              <button className="btn-large right messageBtn" type="submit" name="action">
                 send
               </button>
             </div>

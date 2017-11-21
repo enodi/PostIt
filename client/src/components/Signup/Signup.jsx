@@ -21,7 +21,7 @@ const Signup = props => (
           onChange={props.onChange}
           validateInput={props.validateInput}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate fullname"
           label={'Full Name'}
           htmlFor={'fullname'}
           type={'text'}
@@ -38,7 +38,7 @@ const Signup = props => (
           onChange={props.onChange}
           validateInput={props.validateInput}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate username"
           label={'Username'}
           htmlFor={'username'}
           type={'text'}
@@ -55,7 +55,7 @@ const Signup = props => (
           onChange={props.onChange}
           validateInput={props.validateInput}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate email"
           label={'Email'}
           htmlFor={'email'}
           type={'text'}
@@ -72,7 +72,7 @@ const Signup = props => (
           onChange={props.onChange}
           validateInput={props.validateInput}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate password"
           label={'Password'}
           htmlFor={'password'}
           type={'password'}
@@ -85,7 +85,7 @@ const Signup = props => (
     <div className="row center button">
       <button
         disabled={props.state.disable}
-        className="btn-large waves-effect waves-light"
+        className="btn-large waves-effect waves-light signup-button"
         type="submit"
         name="action">SIGNUP</button>
     </div>

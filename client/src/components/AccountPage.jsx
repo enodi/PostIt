@@ -33,8 +33,12 @@ class AccountPage extends React.Component {
                   <div className="row">
                     <div className="col s12 s12">
                       <ul id="tabs-swipe-demo" className="tabs">
-                        <li className="tab col l6 s6"><a className="active" href="#test-swipe-1">SIGN IN</a></li>
-                        <li className="tab col l6 s6"><a href="#test-swipe-2">SIGN UP</a></li>
+                        <li className="tab col l6 s6">
+                          <a className="active" href="#test-swipe-1" id="signin">SIGN IN</a>
+                        </li>
+                        <li className="tab col l6 s6">
+                          <a href="#test-swipe-2" id="signup">SIGN UP</a>
+                        </li>
                       </ul>
                     </div>
                     <div>

@@ -11,7 +11,7 @@ import { Link } from 'react-router';
  */
 const GroupList = (props) => {
   return (
-    <div>
+    <div className="grouplist">
       <ul>
         <li
         className={props.activeGroup.id === props.group.id ?

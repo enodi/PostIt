@@ -22,7 +22,7 @@ const Signin = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate username"
           label={'Username'}
           htmlFor={'username'}
           type={'text'}
@@ -40,7 +40,7 @@ const Signin = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate password"
           label={'Password'}
           htmlFor={'password'}
           type={'password'}
@@ -53,10 +53,11 @@ const Signin = props => (
     </div>
     <div className="row center button">
       <button
-        className="btn-large waves-effect waves-light"
+        className="btn-large waves-effect waves-light signin-button"
         type="submit"
         name="action"
-      >SIGNIN
+      >
+      SIGNIN
       </button>
       <p className="center">
         <b><Link to="/forgotPassword"> Forgot your password ? </Link></b>
