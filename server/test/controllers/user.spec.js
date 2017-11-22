@@ -1,12 +1,10 @@
 import supertest from 'supertest';
 import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
-import dotenv from 'dotenv';
-import app from '../../index';
-import db from '../models';
+import app from '../../../index';
+import db from '../../models';
 
 const request = supertest(app);
-dotenv.config();
 let token;
 
 describe('POST /api/v1/user/signup', () => {
@@ -32,6 +30,7 @@ describe('POST /api/v1/user/signup', () => {
         .end((err, res) => {
           expect(res.status).to.equal(201);
           expect(res.body.message).to.equal('Signup successful');
+          expect(res.body.username).to.equal('enodi');
           done();
         });
     });
@@ -78,6 +77,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -92,6 +92,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -106,6 +107,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -120,6 +122,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -130,6 +133,7 @@ describe('POST /api/v1/user/signup', () => {
         .send({})
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -145,6 +149,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -160,6 +165,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -175,6 +181,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -190,6 +197,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -205,6 +213,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -220,6 +229,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -237,6 +247,7 @@ describe('POST /api/v1/user/signin', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.success).to.equal(true);
           done();
         });
     });
@@ -250,11 +261,12 @@ describe('POST /api/v1/user/signin', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('Invalid credentials');
           done();
         });
     });
 
-    it('should return 422 when user signs in with wrong password', (done) => {
+    it('should return 404 when user signs in with wrong password', (done) => {
       request
         .post('/api/v1/user/signin')
         .send({
@@ -262,7 +274,8 @@ describe('POST /api/v1/user/signin', () => {
           password: 'password12345',
         })
         .end((err, res) => {
-          expect(res.status).to.equal(422);
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -302,6 +315,7 @@ describe('POST /api/v1/user/signin', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -315,6 +329,7 @@ describe('POST /api/v1/user/signin', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -348,12 +363,13 @@ describe('GET /api/v1/user/search', () => {
         });
     });
 
-    it('should return 422 when a query param isn\'t passed', (done) => {
+    it('should return 404 when a query param isn\'t passed', (done) => {
       request
         .get('/api/v1/user/search')
         .set('x-access-token', token)
         .end((err, res) => {
-          expect(res.status).to.equal(422);
+          expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('query params must be passed');
           done();
         });
     });
@@ -363,6 +379,8 @@ describe('GET /api/v1/user/search', () => {
       .get('/api/v1/user/search')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
       });
     });
@@ -388,18 +406,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
       .post('/api/v1/group/:groupId/user')
       .end((err, res) => {
         expect(res.status).to.equal(401);
-        done();
-      });
-    });
-    it('should return 404 when user tries to add a user that doesn\'t exist', (done) => {
-      request
-      .post(`/api/v1/group/${1}/user`)
-      .set('x-access-token', token)
-      .send({
-        userId: 10
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
       });
     });
@@ -417,7 +425,20 @@ describe('POST /api/v1/group/:groupId/user', () => {
         done();
       });
     });
-    it('should return 422 when user tries to add an existing user', (done) => {
+    it('should return 404 when user tries to add a user that doesn\'t exist', (done) => {
+      request
+      .post(`/api/v1/group/${1}/user`)
+      .set('x-access-token', token)
+      .send({
+        userId: 10
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        expect(res.body.message).to.equal('User not found');
+        done();
+      });
+    });
+    it('should return 409 when user tries to add an existing user', (done) => {
       request
       .post(`/api/v1/group/${1}/user`)
       .set('x-access-token', token)
@@ -425,7 +446,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
         userId: 1
       })
       .end((err, res) => {
-        expect(res.status).to.equal(422);
+        expect(res.status).to.equal(409);
+        expect(res.body.message).to.equal('User is already a member of the group');
         done();
       });
     });
@@ -438,162 +460,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(404);
-        done();
-      });
-    });
-  });
-});
-
-describe('User Model', () => {
-  before((done) => {
-    db.sequelize.sync({ force: true })
-      .then(() => {
-        done(null);
-      })
-      .catch((error) => {
-        done(error);
-      });
-  });
-  describe('handles creating new user', () => {
-    it('should create a new user', (done) => {
-      db.User.create({
-        username: 'enodi',
-        email: 'enodi@gmail.com',
-        fullname: 'Enodi Audu',
-        password: 'password',
-      })
-      .then((user) => {
-        if (user) {
-          expect('enodi').to.equal(user.username);
-          expect('enodi@gmail.com').to.equal(user.email);
-          expect('Enodi Audu').to.equal(user.fullname);
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles retrieving user data', () => {
-    it('should retrieve an existing user', (done) => {
-      db.User.findOne({
-        where: {
-          username: 'enodi',
-          password: 'password'
-        }
-      })
-      .then((user) => {
-        if (user) {
-          expect('enodi').to.equal(user.username);
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles null input', () => {
-    it('should return username cannot be null when user passes null input', (done) => {
-      db.User.create({
-        username: null,
-        email: 'enodi@gmail.com',
-        fullname: 'Enodi Audu',
-        password: 'password',
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors[0].message).to.equal('username cannot be null');
-        done();
-      });
-    });
-
-    it('should return password cannot be null when user passes null input', (done) => {
-      db.User.create({
-        username: 'enodi',
-        email: 'enodi@gmail.com',
-        fullname: 'Enodi Audu',
-        password: null,
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors[0].message).to.equal('password cannot be null');
-        done();
-      });
-    });
-  });
-
-  describe('handles wrong input', () => {
-    it('should return Validation isEmail failed when user passes wrong email', (done) => {
-      db.User.create({
-        username: 'enodi',
-        email: 'enodi',
-        fullname: 'Enodi Audu',
-        password: 'password',
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors[0].message).to.equal('Validation isEmail failed');
-        done();
-      });
-    });
-  });
-
-  describe('handles updating user information', () => {
-    it('should update user details in the database', (done) => {
-      db.User.update({
-        username: 'clara',
-      }, {
-        where: {
-          username: 'enodi'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting user information', () => {
-    it('should delete user details from the database', (done) => {
-      db.User.destroy({
-        where: {
-          username: 'enodi'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-    it('should return 200 on successful password reset', (done) => {
-      const tokn = jwt.sign({
-        email: 'enodiaudu5@gmail.com'
-      }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRY_TIME
-      });
-      request
-      .put(`/api/v1/user/resetPassword?tokn=${tokn}`)
-      .send({
-        password: 'password',
-        confirmPassword: 'password'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Group doesn\'t exist');
         done();
       });
     });

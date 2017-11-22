@@ -1,29 +1,17 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
-import dotenv from 'dotenv';
-import app from '../../index';
-import db from '../models';
+import app from '../../../index';
 
 const request = supertest(app);
-dotenv.config();
 let token;
 
 describe('GET /api/v1/user/:userId/group', () => {
-  before((done) => {
-    db.sequelize.sync({ force: true })
-      .then(() => {
-        done(null);
-      })
-      .catch((error) => {
-        done(error);
-      });
-  });
   before((done) => {
     request
     .post('/api/v1/user/signup')
     .send({
       username: 'enodi',
-      email: 'enodi@gmail.com',
+      email: 'enodiaudu5@gmail.com',
       fullname: 'Enodi Audu',
       password: 'password',
     })
@@ -49,6 +37,7 @@ describe('GET /api/v1/user/:userId/group', () => {
         .set('x-access-token', token)
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(res.body.error).to.equal('Invalid User Id');
           done();
         });
     });
@@ -58,6 +47,8 @@ describe('GET /api/v1/user/:userId/group', () => {
       .get('/api/v1/user/:userId/group')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
       });
     });
@@ -91,6 +82,7 @@ describe('POST /api/v1/group', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.message).to.equal('object');
           done();
         });
     });
@@ -100,6 +92,8 @@ describe('POST /api/v1/group', () => {
       .post('/api/v1/group')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
       });
     });
@@ -112,6 +106,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
     .post('/api/v1/group/:groupId/user')
     .end((err, res) => {
       expect(res.status).to.equal(401);
+      expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+      expect(res.body.success).to.equal(false);
       done();
     });
   });
@@ -123,98 +119,9 @@ describe('GET /api/v1/group/:groupId/user', () => {
     .get('/api/v1/group/:groupId/user')
     .end((err, res) => {
       expect(res.status).to.equal(401);
+      expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+      expect(res.body.success).to.equal(false);
       done();
-    });
-  });
-});
-
-describe('Group Model', () => {
-  describe('handles creating new group', () => {
-    it('should create a new group', (done) => {
-      db.Group.create({
-        name: 'Andela',
-        description: 'Welcome to Andela',
-      })
-      .then((group) => {
-        if (group) {
-          expect('Andela').to.equal(group.name);
-          expect('Welcome to Andela').to.equal(group.description);
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles retrieving group data', () => {
-    it('should retrieve an existing group', (done) => {
-      db.Group.findOne({
-        where: {
-          name: 'Andela',
-          description: 'Welcome to Andela',
-        }
-      })
-      .then((group) => {
-        if (group) {
-          expect('Andela').to.equal(group.name);
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles null input', () => {
-    it('should return name cannot be null when user passes null input', (done) => {
-      db.Group.create({
-        name: null,
-        description: 'Welcome to Andela',
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors[0].message).to.equal('name cannot be null');
-        done();
-      });
-    });
-  });
-
-  describe('handles updating group information', () => {
-    it('should update group details in the database', (done) => {
-      db.Group.update({
-        name: 'Bootcamp',
-      }, {
-        where: {
-          name: 'Andela'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting group information', () => {
-    it('should delete group details from the database', (done) => {
-      db.Group.destroy({
-        where: {
-          name: 'Andela'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
     });
   });
 });

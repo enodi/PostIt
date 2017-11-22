@@ -27,7 +27,7 @@ class ResetPassword {
     }
     User.findOne({
       where: {
-        email: req.body.email
+        email: req.body.email.trim()
       }
     })
     .then((userFound) => {
@@ -71,7 +71,8 @@ class ResetPassword {
         });
       });
     })
-    .catch(error => error.response.data);
+    .catch(() => res.status(500)
+    .json({ error: 'Internal server error' }));
   }
 
   /**
@@ -101,7 +102,8 @@ class ResetPassword {
           where: { email: decoded.email }
         })
         .then(() => res.status(200).json({ message: 'Password reset successful' }))
-        .catch(err => res.status(500).json({ error: err }));
+        .catch(() => res.status(500)
+        .json({ error: 'Internal server error' }));
       });
     } else {
       return res.status(401).json({

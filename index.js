@@ -25,6 +25,7 @@ if (isDevelopment) {
 } else {
   app.use(express.static(path.resolve(__dirname, 'dist')));
 }
+app.use('/apiDocs', express.static(path.resolve(__dirname, './apiDocs/')));
 app.use(express.static(path.resolve(__dirname, 'dist')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
