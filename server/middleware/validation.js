@@ -10,9 +10,7 @@ const userGroupRule = {
   userId: 'required'
 };
 
-
 const validations = {
-
   validateGroup(req, res, next) {
     const validation = new Validator(req.body, rule);
     let {
@@ -38,6 +36,7 @@ const validations = {
       message: validation.errors.all()
     }));
   },
+
 
   validateUser(req, res, next) {
     const validation = new Validator(req.body, rules);
@@ -103,7 +102,7 @@ const validations = {
     });
     validation.fails(() => res.status(400).json(validation.errors.all()));
   },
-
+  
   validateResetPassword(req, res, next) {
     if (!req.body.password || !req.body.confirmPassword ||
       req.body.password === ' ' || req.body.confirmPassword === ' ') {

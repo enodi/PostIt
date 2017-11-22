@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NavBar from './NavBar.jsx';
 import AddUsersContainier from '../Dashboard/Users/AddUsersContainer.jsx';
-import AuthNavBar from './AuthNavBar.jsx';
+import AuthNavbar from './AuthNavBar.jsx';
 
 /**
  * This component manipulates the two navbar components.
@@ -17,7 +17,7 @@ import AuthNavBar from './AuthNavBar.jsx';
 export const Header = props => (
     <div>
       {!props.loggedIn && <NavBar />}
-      {props.groups.id && <AuthNavBar />}
+      {props.groups.id && <AuthNavbar />}
       <div id="add_users" className="modal">
         <AddUsersContainier activeGroup={props.groups.id} />
       </div>

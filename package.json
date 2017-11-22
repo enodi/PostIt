@@ -24,7 +24,7 @@
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
     "test": "NODE_ENV=test mocha server/test/**/*.spec.js --compilers js:babel-register --timeout=25000",
-    "client:test": "node_modules/.bin/jest ./client/__tests__/**/*.test.js --coverage --collectCoverageFrom=client/src/**/*.{js,jsx}",
+    "client:test": "node_modules/.bin/jest ./client/test/**/*.spec.js --coverage --collectCoverageFrom=client/src/**/*.{js,jsx}",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "showcoverage": "open coverage/lcov-report/index.html"

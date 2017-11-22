@@ -19,7 +19,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
       * Receive email notification when a message is posted in the group you belong to based on priority level i.e `Normal`,         `Critical` and `Urgent`
 
 ### Project Dependencies
-* Dependies
+* Dependencies
 
   * [axios](https://www.npmjs.com/package/axios): A JavaScript library used to make http requests from nodejs or        XMLHttpRequests from the browser
   * [babel-cli](https://www.npmjs.com/package/babel-cli) : Used to transpile es6 code to es5 on the command line

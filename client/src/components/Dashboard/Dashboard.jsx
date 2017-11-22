@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Sidebar from './Sidebar.jsx';
-import PostMessageContainer from './Message/PostMessageContainer.jsx';
+import SideBar from './Sidebar.jsx';
+import PostMessage from './Message/PostMessageContainer.jsx';
 
 /**
  * @class Dashboard
  * @extends {React.Component}
  */
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
   /**
   * @returns {jsx} an xml/html like syntax extension for
   * javascript
@@ -17,8 +17,8 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <Sidebar />
-        { this.props.groups.activeGroup.id && <PostMessageContainer />}
+        <SideBar />
+        { this.props.groups.activeGroup.id && <PostMessage />}
         { !this.props.groups.activeGroup.id &&
           <div className="container">
             <div className="row">

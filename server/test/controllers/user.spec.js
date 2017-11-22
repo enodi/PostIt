@@ -1,4 +1,5 @@
 import supertest from 'supertest';
+import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
 import app from '../../../index';
 import db from '../../models';
