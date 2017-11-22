@@ -22,7 +22,9 @@ class MessageClass {
     if (!req.body.message || !req.body.priority) {
       return res
         .status(400)
-        .json('All fields are required');
+        .json({
+          message: 'All fields are required'
+        });
     }
     const { userId, email, username } = req.decoded;
     Message
@@ -45,7 +47,7 @@ class MessageClass {
       })
       .catch(() => res
         .status(500)
-        .json({ error: 'message not created' }));
+        .json({ error: 'Internal server error' }));
   }
 
   /**
@@ -77,7 +79,9 @@ class MessageClass {
       ]
     }).then((messageRetrieved) => {
       res.status(200).json(messageRetrieved);
-    }).catch(error => res.status(500).json(error.response.data));
+    }).catch(() => res
+    .status(500)
+    .json({ error: 'Internal server error' }));
   }
 }
 export default MessageClass;

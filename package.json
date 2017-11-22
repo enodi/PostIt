@@ -23,11 +23,9 @@
   "scripts": {
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
-    "test": "NODE_ENV=test mocha server/test/*.test.js --compilers js:babel-register --timeout=25000",
+    "test": "NODE_ENV=test mocha server/test/**/*.spec.js --compilers js:babel-register --timeout=25000",
     "client:test": "node_modules/.bin/jest ./client/__tests__/**/*.test.js --coverage --collectCoverageFrom=client/src/**/*.{js,jsx}",
-    "client:coverage": "node_modules/.bin/jest --coverage",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
-    "coverage": "NODE_ENV=test node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/mocha/bin/_mocha server/test/*.test.js",
     "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "showcoverage": "open coverage/lcov-report/index.html"
   },

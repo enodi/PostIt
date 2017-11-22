@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import { expect } from 'chai';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import app from '../../index';
+import app from '../../../index';
 
 const request = supertest(app);
 dotenv.config();
@@ -29,6 +29,7 @@ describe('POST /api/v1/user/forgotPassword', () => {
       .post('/api/v1/user/forgotPassword')
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('Field cannot be empty');
         done();
       });
     });
@@ -40,6 +41,7 @@ describe('POST /api/v1/user/forgotPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(404);
+        expect(res.body.message).to.equal('Email doesn\'t exist');
         done();
       });
     });
@@ -51,6 +53,7 @@ describe('POST /api/v1/user/forgotPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('Field cannot be empty');
         done();
       });
     });
@@ -62,6 +65,7 @@ describe('POST /api/v1/user/forgotPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Please check your mail for the reset link');
         done();
       });
     });
@@ -75,6 +79,7 @@ describe('PUT /api/v1/user/resetPassword', () => {
       .put('/api/v1/user/resetPassword')
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
@@ -87,6 +92,7 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
@@ -99,6 +105,7 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
@@ -110,10 +117,11 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
-    it('should return 422 when password supplied doesn\'t match', (done) => {
+    it('should return 409 when password supplied doesn\'t match', (done) => {
       request
       .put('/api/v1/user/resetPassword')
       .send({
@@ -121,7 +129,8 @@ describe('PUT /api/v1/user/resetPassword', () => {
         confirmPassword: 'hello'
       })
       .end((err, res) => {
-        expect(res.status).to.equal(422);
+        expect(res.status).to.equal(409);
+        expect(res.body.message).to.equal('Password doesn\'t match');
         done();
       });
     });
@@ -134,6 +143,7 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Unauthorized');
         done();
       });
     });
@@ -151,6 +161,7 @@ describe('PUT /api/v1/user/resetPassword', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(200);
+        expect(res.body.message).to.equal('Password reset successful');
         done();
       });
     });

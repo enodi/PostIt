@@ -53,7 +53,12 @@ class UserClass {
           return res.status(201).send(user);
         }
       })
-      .catch(error => res.status(500).send(error));
+      .catch((error) => {
+        res.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
   }
 
 
@@ -78,7 +83,7 @@ class UserClass {
     User
       .findOne({
         where: {
-          username: req.body.username
+          username: req.body.username.trim()
         }
       })
       .then((userFound) => {
@@ -87,9 +92,9 @@ class UserClass {
             message: 'Invalid credentials'
           });
         }
-        const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
+        const passwordMatched = bcrypt.compareSync(req.body.password.trim(), userFound.password);
         if (!passwordMatched) {
-          return res.status(422).send({
+          return res.status(404).send({
             message: 'Invalid credentials'
           });
         }
@@ -106,7 +111,12 @@ class UserClass {
           token
         });
       })
-      .catch(error => res.status(500).json(error.response.data));
+      .catch((error) => {
+        res.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
   }
 
   /**
@@ -147,7 +157,7 @@ class UserClass {
         }
         foundGroup.addUser(foundUser).then((addedUser) => {
           if (addedUser.length === 0) {
-            return res.status(422).json({
+            return res.status(409).json({
               message: 'User is already a member of the group'
             });
           }
@@ -156,13 +166,19 @@ class UserClass {
           });
         });
       })
-      .catch(error => res.status(500).json({
-        err: error.response.data
-      }));
+      .catch((error) => {
+        res.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
     })
-    .catch(error => res.status(500).json({
-      err: error.response.data
-    }));
+    .catch((error) => {
+      res.status(500).json({
+        message: 'Internal server error',
+        error
+      });
+    });
   }
 
   /**
@@ -177,7 +193,7 @@ class UserClass {
    */
   static fetchUsers(req, res) {
     if (!req.query.q) {
-      return res.status(422)
+      return res.status(404)
         .json({ message: 'query params must be passed' });
     }
     const limit = parseInt(req.query.limit, 10) || 5;
@@ -198,7 +214,12 @@ class UserClass {
       .then((retrieveUsers) => {
         res.status(200).json(retrieveUsers);
       })
-      .catch(error => res.status(500).json(error.response.data));
+      .catch((error) => {
+        res.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
   }
 }
 export default UserClass;

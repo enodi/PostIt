@@ -37,7 +37,12 @@ class UserGroupClass {
     }).then((groups) => {
       res.status(200).json({ groups });
     })
-    .catch(error => res.status(500).json(error.response.data));
+    .catch((error) => {
+      res.status(500).json({
+        message: 'Internal server error',
+        error
+      });
+    });
   }
 }
 export default UserGroupClass;
