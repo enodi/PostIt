@@ -78,6 +78,7 @@ describe('POST /api/v1/user/signup', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(400);
+          expect(typeof res.body.username).to.equal('object');
           done();
         });
     });
@@ -237,6 +238,7 @@ describe('POST /api/v1/user/signin', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.success).to.equal(true);
           done();
         });
     });

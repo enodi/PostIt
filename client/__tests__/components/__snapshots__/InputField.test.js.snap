@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InputField Component should render InputField Component 1`] = `
-<div
-  className="input-field col s12"
->
+<span>
   <input
     type="text"
   />
@@ -11,5 +9,5 @@ exports[`InputField Component should render InputField Component 1`] = `
      
      
   </label>
-</div>
+</span>
 `;

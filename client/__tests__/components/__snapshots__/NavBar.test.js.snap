@@ -32,6 +32,13 @@ exports[`NavBar Component should render NavBar Component 1`] = `
       className="right hide-on-med-and-down"
     >
       <li>
+        <a
+          href="http://postit-enodi.herokuapp.com/apidocs/#introduction"
+        >
+          API Docs
+        </a>
+      </li>
+      <li>
         <Link
           onlyActiveOnIndex={false}
           style={Object {}}

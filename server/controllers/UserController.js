@@ -69,8 +69,8 @@ class UserClass {
    * @memberof UserClass
    */
   static signIn(req, res) {
-    if (!req.body.username || req.body.username === ' '
-      || !req.body.password || req.body.password === ' ') {
+    if (!req.body.username.toString() || req.body.username === ' '
+      || !req.body.password.toString() || req.body.password === ' ') {
       return res.status(400).json({
         message: 'Invalid credentials',
       });
@@ -78,7 +78,7 @@ class UserClass {
     User
       .findOne({
         where: {
-          username: req.body.username
+          username: req.body.username.toString()
         }
       })
       .then((userFound) => {
