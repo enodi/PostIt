@@ -1,11 +1,8 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
-import dotenv from 'dotenv';
-import app from '../../index';
-import db from '../models';
+import app from '../../../index';
 
 const request = supertest(app);
-dotenv.config();
 let token;
 
 describe('POST /api/v1/group/:groupId/message', () => {
@@ -48,6 +45,7 @@ describe('POST /api/v1/group/:groupId/message', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
@@ -61,6 +59,7 @@ describe('POST /api/v1/group/:groupId/message', () => {
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
+        expect(res.body.message).to.equal('All fields are required');
         done();
       });
     });
@@ -70,6 +69,8 @@ describe('POST /api/v1/group/:groupId/message', () => {
       .post('/api/v1/group/:groupId/message')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
       });
     });
@@ -84,6 +85,7 @@ describe('GET /api/v1/group/:groupId/messages', () => {
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res.status).to.equal(200);
+        expect(res.body[0].id).to.equal(1);
         done();
       });
     });
@@ -92,77 +94,9 @@ describe('GET /api/v1/group/:groupId/messages', () => {
       .get('/api/v1/group/:groupId/messages')
       .end((err, res) => {
         expect(res.status).to.equal(401);
+        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(res.body.success).to.equal(false);
         done();
-      });
-    });
-  });
-});
-
-describe('Message Model', () => {
-  describe('handles creating new message', () => {
-    it('should create a message', (done) => {
-      db.Message.create({
-        message: 'hello all',
-        priority: 'normal',
-      })
-      .then((message) => {
-        if (message) {
-          expect('hello all').to.equal(message.message);
-          expect('normal').to.equal(message.priority);
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles null input', () => {
-    it('should return message cannot be null when user passes null input', (done) => {
-      db.Message.create({
-        message: null,
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors[0].message).to.equal('message cannot be null');
-        done();
-      });
-    });
-  });
-
-  describe('handles updating messages', () => {
-    it('should update messages in the database', (done) => {
-      db.Message.update({
-        message: 'hello all',
-      }, {
-        where: {
-          message: 'sorry about that'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting messages', () => {
-    it('should delete messages from the database', (done) => {
-      db.Message.destroy({
-        where: {
-          message: 'hello all'
-        }
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
       });
     });
   });

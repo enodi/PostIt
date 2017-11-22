@@ -22,8 +22,8 @@ class GroupClass {
     const UserId = req.decoded.userId;
     Group
       .create({
-        name: req.body.name.toLowerCase(),
-        description: req.body.description,
+        name: req.body.name.toLowerCase().trim(),
+        description: req.body.description.trim(),
         UserId
       })
       .then((groupCreated) => {
@@ -44,7 +44,10 @@ class GroupClass {
         }
       })
       .catch((error) => {
-        res.status(500).send({ error });
+        res.status(500).json({
+          message: 'Internal server error',
+          error
+        });
       });
   }
 }

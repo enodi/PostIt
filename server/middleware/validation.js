@@ -10,9 +10,9 @@ const userGroupRule = {
   userId: 'required'
 };
 
-// handles validations
+
 const validations = {
-  // handles group validation
+
   validateGroup(req, res, next) {
     const validation = new Validator(req.body, rule);
     let {
@@ -34,10 +34,11 @@ const validations = {
         next();
       });
     });
-    validation.fails(() => res.status(400).json(validation.errors.all()));
+    validation.fails(() => res.status(400).json({
+      message: validation.errors.all()
+    }));
   },
 
-  // handles user validation
   validateUser(req, res, next) {
     const validation = new Validator(req.body, rules);
     const {
@@ -64,11 +65,12 @@ const validations = {
         next();
       });
     });
-    validation.fails(() => res.status(400).json(validation.errors.all()));
+    validation.fails(() => res.status(400).json({
+      message: validation.errors.all()
+    }));
   },
 
 
-  // handles user validation when adding a new user to group
   validateUserGroup(req, res, next) {
     const validation = new Validator(req.body, userGroupRule);
     const groupId = req.params.group_id;
@@ -102,7 +104,6 @@ const validations = {
     validation.fails(() => res.status(400).json(validation.errors.all()));
   },
 
-  // handles reset password validation
   validateResetPassword(req, res, next) {
     if (!req.body.password || !req.body.confirmPassword ||
       req.body.password === ' ' || req.body.confirmPassword === ' ') {
@@ -111,7 +112,7 @@ const validations = {
       });
     }
     if (req.body.password !== req.body.confirmPassword) {
-      return res.status(422).json({
+      return res.status(409).json({
         message: 'Password doesn\'t match'
       });
     }
