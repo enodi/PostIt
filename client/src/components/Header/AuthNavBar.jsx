@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
  * @class AuthNavBar
  * @extends {React.Component}
  */
-class AuthNavBar extends React.Component {
+export class AuthNavBar extends React.Component {
 
   /**
    *
