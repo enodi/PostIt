@@ -30,6 +30,44 @@ describe('Signin container', () => {
     expect(wrapper.state().username).toEqual('enodi');
   });
 
+  it('handles usernameError when user enters an empty field', () => {
+    const evt = { preventDefault: jest.fn(),
+      target: {
+        value: '',
+        name: 'username',
+      } };
+    wrapper.instance().onBlur(evt);
+    expect(wrapper.setState({ usernameError: 'Please insert your username' }));
+  });
+
+  it('handles passwordError when user enters an empty field', () => {
+    const evt = { preventDefault: jest.fn(),
+      target: {
+        value: '',
+        name: 'password',
+      } };
+    wrapper.instance().onBlur(evt);
+    expect(wrapper.setState({ passwordError: 'Please insert your password' }));
+  });
+
+  it('handles clearing usernameError', () => {
+    const evt = { preventDefault: jest.fn(),
+      target: {
+        name: 'username',
+      } };
+    wrapper.instance().onFocus(evt);
+    expect(wrapper.setState({ usernameError: '' }));
+  });
+
+  it('handles clearing passwordError', () => {
+    const evt = { preventDefault: jest.fn(),
+      target: {
+        name: 'password',
+      } };
+    wrapper.instance().onFocus(evt);
+    expect(wrapper.setState({ passwordError: '' }));
+  });
+
   it('should dispatch signinAction action when user signin', () => {
     wrapper.setState({ username: 'enodi', password: 'password' });
     wrapper.instance().handleSubmit(event);
