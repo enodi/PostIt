@@ -15,8 +15,8 @@ describe('GET /api/v1/user/:userId/group', () => {
       fullname: 'Enodi Audu',
       password: 'password',
     })
-    .end((err, res) => {
-      token = res.body.token;
+    .end((err, response) => {
+      token = response.body.token;
       done();
     });
   });
@@ -25,8 +25,8 @@ describe('GET /api/v1/user/:userId/group', () => {
       request
         .get(`/api/v1/user/${1}/group`)
         .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
           done();
         });
     });
@@ -35,9 +35,9 @@ describe('GET /api/v1/user/:userId/group', () => {
       request
         .get(`/api/v1/user/${' '}/group`)
         .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.error).to.equal('Invalid User Id');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.error).to.equal('Invalid User Id');
           done();
         });
     });
@@ -45,10 +45,10 @@ describe('GET /api/v1/user/:userId/group', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
       .get('/api/v1/user/:userId/group')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-        expect(res.body.success).to.equal(false);
+      .end((err, response) => {
+        expect(response.status).to.equal(401);
+        expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(response.body.success).to.equal(false);
         done();
       });
     });
@@ -65,9 +65,9 @@ describe('POST /api/v1/group', () => {
         name: 'andela',
         description: 'andela fellows'
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.message).to.equal('Group created successfully');
+      .end((err, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body.message).to.equal('Group created successfully');
         done();
       });
     });
@@ -80,9 +80,9 @@ describe('POST /api/v1/group', () => {
           name: '    ',
           description: 'andela fellows'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -90,10 +90,10 @@ describe('POST /api/v1/group', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
       .post('/api/v1/group')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-        expect(res.body.success).to.equal(false);
+      .end((err, response) => {
+        expect(response.status).to.equal(401);
+        expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(response.body.success).to.equal(false);
         done();
       });
     });
@@ -104,10 +104,10 @@ describe('POST /api/v1/group/:groupId/user', () => {
   it('should return 401 when an unauthenticated user tries to access this route', (done) => {
     request
     .post('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-      expect(res.body.success).to.equal(false);
+    .end((err, response) => {
+      expect(response.status).to.equal(401);
+      expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+      expect(response.body.success).to.equal(false);
       done();
     });
   });
@@ -117,10 +117,10 @@ describe('GET /api/v1/group/:groupId/user', () => {
   it('should return 401 when an unauthenticated user tries to access this route', (done) => {
     request
     .get('/api/v1/group/:groupId/user')
-    .end((err, res) => {
-      expect(res.status).to.equal(401);
-      expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-      expect(res.body.success).to.equal(false);
+    .end((err, response) => {
+      expect(response.status).to.equal(401);
+      expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+      expect(response.body.success).to.equal(false);
       done();
     });
   });

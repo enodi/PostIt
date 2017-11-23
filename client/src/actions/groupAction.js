@@ -30,8 +30,8 @@ export function retrieveGroupsSuccess(groups) {
 export function retrieveGroups(userId) {
   return dispatch =>
     axios.get(`/api/v1/user/${userId}/group`)
-      .then((res) => {
-        dispatch(retrieveGroupsSuccess(res.data.groups.Groups));
+      .then((response) => {
+        dispatch(retrieveGroupsSuccess(response.data.groups.Groups));
       })
       .catch(error => error.response.data);
 }
@@ -50,9 +50,9 @@ export function retrieveGroups(userId) {
 export function createGroup(data, userId) {
   return (dispatch) => {
     return axios.post('/api/v1/group', data)
-      .then((res) => {
+      .then((response) => {
         dispatch(retrieveGroups(userId));
-        toastr.success(res.data.message);
+        toastr.success(response.data.message);
         $('#modal1').modal('close');
       })
       .catch((error) => {

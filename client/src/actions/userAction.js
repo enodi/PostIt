@@ -25,9 +25,9 @@ export function addUserSuccess(user) {
 export function addUser(groupId, userId) {
   return dispatch =>
   axios.post(`/api/v1/group/${groupId}/user`, userId)
-    .then((res) => {
-      dispatch(addUserSuccess(res.data));
-      toastr.success(res.data.message);
+    .then((response) => {
+      dispatch(addUserSuccess(response.data));
+      toastr.success(response.data.message);
       $('#modal1').modal('close');
     })
     .catch((error) => {

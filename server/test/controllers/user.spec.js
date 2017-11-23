@@ -1,5 +1,4 @@
 import supertest from 'supertest';
-import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
 import app from '../../../index';
 import db from '../../models';
@@ -27,10 +26,10 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Enodi Audu',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body.message).to.equal('Signup successful');
-          expect(res.body.username).to.equal('enodi');
+        .end((err, response) => {
+          expect(response.status).to.equal(201);
+          expect(response.body.message).to.equal('Signup successful');
+          expect(response.body.username).to.equal('enodi');
           done();
         });
     });
@@ -44,9 +43,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Julian Audu',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(409);
-          expect(res.body.message).to.equal('Email or Username already exist');
+        .end((err, response) => {
+          expect(response.status).to.equal(409);
+          expect(response.body.message).to.equal('Email or Username already exist');
           done();
         });
     });
@@ -60,9 +59,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(409);
-          expect(res.body.message).to.equal('Email or Username already exist');
+        .end((err, response) => {
+          expect(response.status).to.equal(409);
+          expect(response.body.message).to.equal('Email or Username already exist');
           done();
         });
     });
@@ -75,9 +74,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -90,9 +89,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -105,9 +104,9 @@ describe('POST /api/v1/user/signup', () => {
           email: 'enodiaudu5@gmail.com',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -120,9 +119,9 @@ describe('POST /api/v1/user/signup', () => {
           email: 'enodiaudu5@gmail.com',
           fullname: 'Clara Audu',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -131,9 +130,9 @@ describe('POST /api/v1/user/signup', () => {
       request
         .post('/api/v1/user/signup')
         .send({})
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -147,9 +146,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -163,9 +162,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -179,9 +178,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -195,9 +194,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Clara Audu',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -211,9 +210,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: '     ',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -227,9 +226,9 @@ describe('POST /api/v1/user/signup', () => {
           fullname: 'Enodi Audu',
           password: '    '
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(typeof res.body.message).to.equal('object');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(typeof response.body.message).to.equal('object');
           done();
         });
     });
@@ -245,9 +244,9 @@ describe('POST /api/v1/user/signin', () => {
           username: 'enodi',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body.success).to.equal(true);
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
+          expect(response.body.success).to.equal(true);
           done();
         });
     });
@@ -259,9 +258,9 @@ describe('POST /api/v1/user/signin', () => {
           username: 'enodi5',
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -273,9 +272,9 @@ describe('POST /api/v1/user/signin', () => {
           username: 'enodi',
           password: 'password12345',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -286,9 +285,9 @@ describe('POST /api/v1/user/signin', () => {
         .send({
           password: 'password',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -299,9 +298,9 @@ describe('POST /api/v1/user/signin', () => {
         .send({
           username: 'enodi',
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -313,9 +312,9 @@ describe('POST /api/v1/user/signin', () => {
           username: ' ',
           password: 'password'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -327,9 +326,9 @@ describe('POST /api/v1/user/signin', () => {
           username: 'enodi',
           password: ' '
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Invalid credentials');
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.message).to.equal('Invalid credentials');
           done();
         });
     });
@@ -345,8 +344,8 @@ describe('GET /api/v1/user/search', () => {
       username: 'enodi',
       password: 'password',
     })
-    .end((err, res) => {
-      token = res.body.token;
+    .end((err, response) => {
+      token = response.body.token;
       done();
     });
   });
@@ -357,8 +356,8 @@ describe('GET /api/v1/user/search', () => {
         .get('/api/v1/user/search')
         .set('x-access-token', token)
         .query({ q: 'enodi' })
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
           done();
         });
     });
@@ -367,9 +366,9 @@ describe('GET /api/v1/user/search', () => {
       request
         .get('/api/v1/user/search')
         .set('x-access-token', token)
-        .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('query params must be passed');
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          expect(response.body.message).to.equal('query params must be passed');
           done();
         });
     });
@@ -377,10 +376,10 @@ describe('GET /api/v1/user/search', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
       .get('/api/v1/user/search')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-        expect(res.body.success).to.equal(false);
+      .end((err, response) => {
+        expect(response.status).to.equal(401);
+        expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(response.body.success).to.equal(false);
         done();
       });
     });
@@ -395,8 +394,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
       username: 'enodi',
       password: 'password',
     })
-    .end((err, res) => {
-      token = res.body.token;
+    .end((err, response) => {
+      token = response.body.token;
       done();
     });
   });
@@ -404,10 +403,10 @@ describe('POST /api/v1/group/:groupId/user', () => {
     it('should return 401 when an unauthenticated user tries to access this route', (done) => {
       request
       .post('/api/v1/group/:groupId/user')
-      .end((err, res) => {
-        expect(res.status).to.equal(401);
-        expect(res.body.message).to.equal('Access denied, Authentication token does not exist');
-        expect(res.body.success).to.equal(false);
+      .end((err, response) => {
+        expect(response.status).to.equal(401);
+        expect(response.body.message).to.equal('Access denied, Authentication token does not exist');
+        expect(response.body.success).to.equal(false);
         done();
       });
     });
@@ -419,9 +418,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
         name: 'andela',
         description: 'andela fellows'
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(res.body.message).to.equal('Group created successfully');
+      .end((err, response) => {
+        expect(response.status).to.equal(201);
+        expect(response.body.message).to.equal('Group created successfully');
         done();
       });
     });
@@ -432,9 +431,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
       .send({
         userId: 10
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal('User not found');
+      .end((err, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('User not found');
         done();
       });
     });
@@ -445,9 +444,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
       .send({
         userId: 1
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(409);
-        expect(res.body.message).to.equal('User is already a member of the group');
+      .end((err, response) => {
+        expect(response.status).to.equal(409);
+        expect(response.body.message).to.equal('User is already a member of the group');
         done();
       });
     });
@@ -458,9 +457,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
       .send({
         userId: 1
       })
-      .end((err, res) => {
-        expect(res.status).to.equal(404);
-        expect(res.body.message).to.equal('Group doesn\'t exist');
+      .end((err, response) => {
+        expect(response.status).to.equal(404);
+        expect(response.body.message).to.equal('Group doesn\'t exist');
         done();
       });
     });
