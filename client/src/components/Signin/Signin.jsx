@@ -48,8 +48,8 @@ const Signin = props => (
           id={'password'}
           required
         />
-      </div> <div style={{ color: 'red' }}>
-        {props.passwordError} </div>
+      </div>
+      <div style={{ color: 'red' }}>{props.passwordError} </div>
     </div>
     <div className="row center button">
       <button

@@ -26,14 +26,12 @@ export class SignupContainer extends React.Component {
       fullname: '',
       username: '',
       email: '',
-      password: '',
-      error: {},
-      disable: true
+      password: ''
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.validateInput = this.validateInput.bind(this);
+    this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
   }
 
@@ -44,42 +42,78 @@ export class SignupContainer extends React.Component {
    *
    * @returns {void}
    */
-  onFocus() {
-    this.setState({
-      error: {},
-      disable: false
-    });
+  onFocus(event) {
+    const name = event.target.name;
+    switch (name) {
+      case 'fullname':
+        this.setState({
+          fullnameError: ''
+        });
+        break;
+      case 'email':
+        this.setState({
+          emailError: ''
+        });
+        break;
+      case 'username':
+        this.setState({
+          usernameError: ''
+        });
+        break;
+      case 'password':
+        this.setState({
+          passwordError: ''
+        });
+        break;
+      default:
+    }
   }
 
   /**
    * Validates user input
-   * @param {any} state
+   * @param {object} event
+   *
    * @returns {void}
+   *
    * @memberof SignupContainer
    */
-  validateInput(state) {
-    const { username, email } = state;
+  onBlur(event) {
+    const { email } = this.state;
     const re = /\S+@\S+\.\S+/;
     const emailVal = re.test(email);
-    const error = {};
-    let disable = false;
-
-    if (username && username.trim().length < 4) {
-      error.username = 'Username should be atleast 4 characters';
+    const name = event.target.name;
+    const value = event.target.value;
+    switch (name) {
+      case 'fullname':
+        if (!value) {
+          this.setState({
+            fullnameError: 'This field cannot be empty'
+          });
+        }
+        break;
+      case 'username':
+        if (!value) {
+          this.setState({
+            usernameError: 'This field cannot be empty'
+          });
+        }
+        break;
+      case 'email':
+        if (!value || !emailVal) {
+          this.setState({
+            emailError: 'Invalid email'
+          });
+        }
+        break;
+      case 'password':
+        if (!value) {
+          this.setState({
+            passwordError: 'This field cannot be empty'
+          });
+        }
+        break;
+      default:
     }
-
-    if (email && !emailVal) {
-      error.email = 'Email Address is not valid';
-    }
-
-    if (Object.keys(error).length > 0) {
-      disable = true;
-    }
-
-    return {
-      disable,
-      error
-    };
   }
 
   /**
@@ -120,8 +154,11 @@ export class SignupContainer extends React.Component {
         onChange={this.onChange}
         onSubmit={this.onSubmit}
         onFocus={this.onFocus}
-        validateInput={this.validateInput}
-        disable={this.disable}/>
+        onBlur={this.onBlur}
+        usernameError={this.state.usernameError}
+        fullnameError={this.state.fullnameError}
+        emailError={this.state.emailError}
+        passwordError={this.state.passwordError}/>
     );
   }
 }
