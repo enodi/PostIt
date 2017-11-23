@@ -11,19 +11,19 @@ class GroupClass {
    * This method handles creating a new group
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @memberof GroupClass
    *
    * @returns {object} Promise
    */
-  static create(req, res) {
-    const UserId = req.decoded.userId;
+  static create(request, response) {
+    const UserId = request.decoded.userId;
     Group
       .create({
-        name: req.body.name.toLowerCase().trim(),
-        description: req.body.description.trim(),
+        name: request.body.name.toLowerCase().trim(),
+        description: request.body.description.trim(),
         UserId
       })
       .then((groupCreated) => {
@@ -40,11 +40,11 @@ class GroupClass {
             description,
             createdAt
           };
-          return res.status(201).send(data);
+          return response.status(201).send(data);
         }
       })
       .catch((error) => {
-        res.status(500).json({
+        response.status(500).json({
           message: 'Internal server error',
           error
         });

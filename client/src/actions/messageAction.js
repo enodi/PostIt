@@ -40,8 +40,8 @@ export function getMessageSuccess(messages) {
 export function getMessages(groupId) {
   return dispatch =>
     axios.get(`api/v1/group/${groupId}/messages`)
-      .then((res) => {
-        dispatch(getMessageSuccess(res.data));
+      .then((response) => {
+        dispatch(getMessageSuccess(response.data));
       })
       .catch(error => error.response.data);
 }

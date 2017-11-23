@@ -28,8 +28,8 @@ export function searchUsers(username, pageOffset, pageLimit) {
   const offset = pageOffset || 0;
   return dispatch =>
     axios.get(`/api/v1/user/search?q=${username}&offset=${offset}&limit=${limit}`)
-      .then((res) => {
-        dispatch(searchUsersSuccess(res.data));
+      .then((response) => {
+        dispatch(searchUsersSuccess(response.data));
       })
       .catch(error => error.response.data);
 }
