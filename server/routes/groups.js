@@ -1,16 +1,17 @@
 import express from 'express';
+
 import UserController from '../controllers/UserController';
 import GroupController from '../controllers/GroupController';
 import MessageController from '../controllers/MessageController';
-import authenticate from '../middleware/authenticate';
-import validations from '../middleware/validation';
+import Authenticate from '../middleware/Authenticate';
+import Validations from '../middleware/Validation';
 
 const app = express.Router();
 
-app.use(authenticate.isLoggedIn);
+app.use(Authenticate.isLoggedIn);
 
 app.route('/')
-  .post(validations.validateGroup, GroupController.create);
+  .post(Validations.validateGroup, GroupController.create);
 
 app.route('/:groupId/message')
   .post(MessageController.create);

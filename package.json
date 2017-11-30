@@ -8,6 +8,10 @@
     "setupFiles": [
       "./jestSetup.js"
     ],
+    "coveragePathIgnorePatterns": [
+      "./client/test/",
+      "<rootDir>/client/test/**/*.spec.js"
+    ],
     "modulePathIgnorePatterns": [
       "./client/src/assets/",
       "./client/src/utils/",
@@ -19,17 +23,20 @@
     },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "client/src/**/*.spec.{jsx, js}"
     ]
   },
   "scripts": {
     "start": "npm run build && babel-node index.js",
     "build": "webpack",
     "test": "NODE_ENV=test mocha server/test/**/*.spec.js --compilers js:babel-register --timeout=25000",
-    "client:test": "node_modules/.bin/jest ./client/test/**/*.spec.js --coverage --collectCoverageFrom=client/src/**/*.{js,jsx}",
+    "client:test": "node_modules/.bin/jest ./client/test/**/*.spec.js",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
-    "cover": "istanbul cover _mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "showcoverage": "open coverage/lcov-report/index.html"
+    "showcoverage": "open coverage/lcov-report/index.html",
+    "coverage": "nyc --reporter=text npm test"
   },
   "author": "Enodi Audu",
   "license": "ISC",
@@ -37,6 +44,7 @@
     "axios": "^0.16.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.25.0",
+    "babel-istanbul": "^0.12.2",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -107,6 +115,7 @@
     "mocha": "^3.5.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.11.0",
+    "nyc": "^11.3.0",
     "react-test-renderer": "^15.6.1",
     "redux-mock-store": "^1.3.0",
     "sequelize-cli": "^3.0.0",

@@ -5,11 +5,12 @@ const groupInitialState = {
   activeGroup: {}
 };
 /**
- *
  * @export groupReducer
+ *
  * @param {any} [state=groupInitialState]
  * @param {any} [action={}]
- * @returns {Object} object
+ *
+ * @returns {Object} current state
  */
 export default function groupReducer(state = groupInitialState, action = {}) {
   switch (action.type) {

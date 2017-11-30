@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 const InputField = ({
   name, value, id, type, htmlFor, label, onChange, onBlur, onFocus, placeholder
 }) => (
-  <div className="input-field col s12" >
+  <div className="input-field" >
     <input
       value={value}
       onChange={onChange}
@@ -24,7 +24,7 @@ const InputField = ({
       placeholder={placeholder}
     />
     <label htmlFor={htmlFor} > {label} </label>
-  </div >
+  </div>
 );
 
 InputField.PropTypes = {

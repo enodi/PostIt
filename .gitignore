@@ -1,7 +1,11 @@
 node_modules/
+.nyc_output/
 .env
 .coveralls.yml
 
+server/config/
 coverage/
 dist/
 sample.js
+.coveralls.yml
+.nycrc

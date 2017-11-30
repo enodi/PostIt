@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import * as types from './actionTypes';
 
 
@@ -27,7 +28,8 @@ export function searchUsers(username, pageOffset, pageLimit) {
   const limit = pageLimit || 5;
   const offset = pageOffset || 0;
   return dispatch =>
-    axios.get(`/api/v1/user/search?q=${username}&offset=${offset}&limit=${limit}`)
+    axios
+    .get(`/api/v1/user/search?q=${username}&offset=${offset}&limit=${limit}`)
       .then((response) => {
         dispatch(searchUsersSuccess(response.data));
       })

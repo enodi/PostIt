@@ -21,10 +21,13 @@ export class AuthNavBar extends React.Component {
           <div className="nav-wrapper">
             <Link to="/" className="brand-logo li">PostIt</Link>
             <ul className="col m10 offset-m2 hide-on-med-and-down">
-            {this.props.group.name && <li className="black-text flow-text">{this.props.group.name}</li>}
+            {this.props.group.name &&
+              <li className="black-text flow-text">
+              {this.props.group.name}</li>}
               <li className="right">
                 <a href="#add_users" className="modal-trigger">
-                  <i className="material-icons black-text" href="#add_users">group_add</i>
+                  <i
+                  className="material-icons black-text" href="#add_users">group_add</i>
                 </a>
               </li>
             </ul>

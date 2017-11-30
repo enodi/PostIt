@@ -1,5 +1,6 @@
 import React from 'react';
-import InputField from '../Common/InputField';
+
+import InputField from '../Common/InputField.jsx';
 
 /**
  * Gives the presentational view for resetPassword component
@@ -41,7 +42,8 @@ const ResetPassword = props => (
           />
         </div>
         <div className="row center button">
-          <button className="btn-large waves-effect waves-light" type="submit" name="action">Save Password</button>
+          <button className="btn-large waves-effect waves-light"
+          type="submit" name="action">Save Password</button>
         </div>
      </form>
     </div>

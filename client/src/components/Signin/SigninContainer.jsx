@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { signinAction } from '../../actions/auth/signinAction';
 import Signin from './Signin.jsx';
 
