@@ -6,4 +6,3 @@ coverage/
 dist/
 sample.js
 .coveralls.yml
-.nycrc
