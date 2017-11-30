@@ -1,0 +1,23 @@
+{
+  "exclude": [
+    "client",
+    "template",
+    "server/migrations",
+    "server/test",
+    "server/config",
+    "dist"
+  ],
+  "include": [
+    "server"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "reporter": [
+    "lcov",
+    "text"
+  ],
+  "all": true,
+  "sourceMap": false,
+  "instrument": false
+}
