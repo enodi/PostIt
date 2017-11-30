@@ -5,7 +5,7 @@ describe('Message Reducer', () => {
     expect(messageReducer({}, {})).toEqual({});
   });
 
-  it('should post a new message', () => {
+  it('should update the state when POST_MESSAGE_SUCCESSFUL is passed', () => {
     expect(messageReducer({}, {
       type: 'POST_MESSAGE_SUCCESSFUL',
       message: {
@@ -20,7 +20,8 @@ describe('Message Reducer', () => {
     );
   });
 
-  it('should retrieve all messages', () => {
+  it('should update the state when RETRIEVE_MESSAGE_SUCCESSFUL is passed',
+  () => {
     expect(messageReducer({
       groupMessages: []
     }, {

@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import db from '../../models';
 
 describe('User Model', () => {

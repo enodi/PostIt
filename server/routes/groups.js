@@ -21,4 +21,7 @@ app.route('/:groupId/messages')
 app.route('/:groupId/user')
   .post(UserController.addUsers);
 
+app.route('/:groupId/users')
+  .get(UserController.fetchUsers);
+
 export default app;

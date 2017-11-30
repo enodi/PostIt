@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import db from '../../models';
 
 describe('Group Model', () => {
@@ -42,7 +43,8 @@ describe('Group Model', () => {
   });
 
   describe('handles null input', () => {
-    it('should return name cannot be null when user passes null input', (done) => {
+    it('should return name cannot be null when user passes null input',
+    (done) => {
       db.Group.create({
         name: null,
         description: 'Welcome to Andela',

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ForgotPasswordContainer } from '../../src/components/ResetPassword/ForgotPasswordContainer.jsx';
 
 jest.mock('react-dom');

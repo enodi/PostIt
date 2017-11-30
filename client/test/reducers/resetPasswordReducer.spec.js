@@ -5,7 +5,8 @@ describe('Reset Password Reducer', () => {
     expect(resetPasswordReducer({}, {})).toEqual({});
   });
 
-  it('should send password reset link', () => {
+  it('should update the state when FORGOT_PASSWORD_LINK_SUCCESS is passed',
+  () => {
     expect(resetPasswordReducer({}, {
       type: 'FORGOT_PASSWORD_LINK_SUCCESS',
       emailSent: true,
@@ -17,7 +18,7 @@ describe('Reset Password Reducer', () => {
     );
   });
 
-  it('should reset password', () => {
+  it('should update the state when PASSWORD_RESET_SUCCESS is passed', () => {
     expect(resetPasswordReducer({}, {
       type: 'PASSWORD_RESET_SUCCESS',
       resetPassword: true

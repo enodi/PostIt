@@ -23,10 +23,10 @@ class UserClass {
   static signUp(request, response) {
     User
       .create({
-        fullname: request.body.fullname,
-        username: request.body.username,
-        email: request.body.email,
-        password: request.body.password
+        fullname: request.body.fullname.trim(),
+        username: request.body.username.trim(),
+        email: request.body.email.trim(),
+        password: request.body.password.trim()
       })
       .then((userCreated) => {
         if (userCreated) {
@@ -53,10 +53,9 @@ class UserClass {
           return response.status(201).send(user);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         response.status(500).json({
-          message: 'Internal server error',
-          error
+          error: 'Internal server error'
         });
       });
   }
@@ -191,7 +190,7 @@ class UserClass {
    *
    * @memberof UserClass
    */
-  static fetchUsers(request, response) {
+  static searchUsers(request, response) {
     if (!request.query.q) {
       return response.status(404)
         .json({ message: 'query params must be passed' });
@@ -220,6 +219,54 @@ class UserClass {
           error
         });
       });
+  }
+
+  /**
+   * This method handles retrieving users in a group
+   * @static
+   *
+   * @param  {object} request sends a request to get groupId
+   * @param  {object} response sends a response with the corresponding message
+   * from the request object
+   *
+   * @return {object} Promise
+   *
+   * @memberof UserClass
+   * @method fetchUsers
+   */
+  static fetchUsers(request, response) {
+    const groupID = parseInt(request.params.groupId, 10);
+    if (!groupID) {
+      return response.status(400).json({
+        message: 'Please specify a groupId'
+      });
+    }
+    Group.findOne({
+      where: { id: request.params.groupId },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'username', 'fullname', 'createdAt']
+        }
+      ]
+    })
+    .then((groupUsers) => {
+      if (!groupUsers) {
+        return response.status(404).json({
+          message: 'Group doesn\'t exist'
+        });
+      }
+      response.status(200).json({
+        message: 'Users retrieved successfully',
+        groupUsers
+      });
+    })
+    .catch(() => {
+      response.status(500).json({
+        error: 'Internal server error'
+      });
+    });
   }
 }
 export default UserClass;
