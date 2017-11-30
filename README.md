@@ -12,6 +12,7 @@ You can view the deployed application [here](https://postit-enodi.herokuapp.com/
       * Signing in as an existing user
       * Creating a new group
       * Adding new users to groups
+      * Display all users in a group
       * Post messages to groups in real-time
       * Display posted messages
       * Search for users in a group

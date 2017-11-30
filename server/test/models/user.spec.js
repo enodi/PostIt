@@ -25,6 +25,10 @@ describe('User Model', () => {
           expect('enodi').to.equal(user.username);
           expect('enodi@gmail.com').to.equal(user.email);
           expect('Enodi Audu').to.equal(user.fullname);
+          expect(user).to.be.an('object');
+          expect(user.dataValues)
+          .to.have.all.keys('id', 'username', 'email',
+          'fullname', 'createdAt', 'password', 'updatedAt');
         }
         done();
       })
@@ -39,12 +43,17 @@ describe('User Model', () => {
       db.User.findOne({
         where: {
           username: 'enodi',
-          password: 'password'
         }
       })
       .then((user) => {
         if (user) {
           expect('enodi').to.equal(user.username);
+          expect('enodi@gmail.com').to.equal(user.email);
+          expect('Enodi Audu').to.equal(user.fullname);
+          expect(user).to.be.an('object');
+          expect(user.dataValues)
+          .to.have.all.keys('id', 'username', 'email',
+          'fullname', 'createdAt', 'password', 'updatedAt');
         }
         done();
       })
@@ -67,6 +76,9 @@ describe('User Model', () => {
       })
       .catch((error) => {
         expect(error.errors[0].message).to.equal('username cannot be null');
+        expect(error.errors).to.be.an('array');
+        expect(error.errors[0]).to.have.all.keys('message', 'type',
+        'path', 'value');
         done();
       });
     });
@@ -83,6 +95,9 @@ describe('User Model', () => {
       })
       .catch((error) => {
         expect(error.errors[0].message).to.equal('password cannot be null');
+        expect(error.errors).to.be.an('array');
+        expect(error.errors[0]).to.have.all.keys('message', 'type',
+        'path', 'value');
         done();
       });
     });
@@ -101,6 +116,8 @@ describe('User Model', () => {
       })
       .catch((error) => {
         expect(error.errors[0].message).to.equal('Validation isEmail failed');
+        expect(error.errors).to.be.an('array');
+        expect(error).to.be.an('object');
         done();
       });
     });
@@ -115,23 +132,8 @@ describe('User Model', () => {
           username: 'enodi'
         }
       })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting user information', () => {
-    it('should delete user details from the database', (done) => {
-      db.User.destroy({
-        where: {
-          username: 'enodi'
-        }
-      })
-      .then(() => {
+      .then((user) => {
+        expect(user).to.be.an('array');
         done();
       })
       .catch((error) => {

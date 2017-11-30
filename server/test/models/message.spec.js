@@ -13,6 +13,10 @@ describe('Message Model', () => {
         if (message) {
           expect('hello all').to.equal(message.message);
           expect('normal').to.equal(message.priority);
+          expect(message).to.be.an('object');
+          expect(message.dataValues)
+          .to.have.all.keys('id', 'message', 'priority',
+          'updatedAt', 'createdAt', 'UserId', 'GroupId');
         }
         done();
       })
@@ -32,6 +36,9 @@ describe('Message Model', () => {
       })
       .catch((error) => {
         expect(error.errors[0].message).to.equal('message cannot be null');
+        expect(error.errors).to.be.an('array');
+        expect(error.errors[0]).to.have.all.keys('message', 'type',
+        'path', 'value');
         done();
       });
     });
@@ -46,23 +53,8 @@ describe('Message Model', () => {
           message: 'sorry about that'
         }
       })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting messages', () => {
-    it('should delete messages from the database', (done) => {
-      db.Message.destroy({
-        where: {
-          message: 'hello all'
-        }
-      })
-      .then(() => {
+      .then((messages) => {
+        expect(messages).to.be.an('array');
         done();
       })
       .catch((error) => {
