@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import sequelize from 'sequelize';
+
 import { User, Group } from '../models';
 
 
@@ -23,10 +25,10 @@ class UserClass {
   static signUp(request, response) {
     User
       .create({
-        fullname: request.body.fullname,
-        username: request.body.username,
-        email: request.body.email,
-        password: request.body.password
+        fullname: request.body.fullname.trim(),
+        username: request.body.username.trim(),
+        email: request.body.email.trim(),
+        password: request.body.password.trim()
       })
       .then((userCreated) => {
         if (userCreated) {
@@ -53,10 +55,9 @@ class UserClass {
           return response.status(201).send(user);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         response.status(500).json({
-          message: 'Internal server error',
-          error
+          error: 'Internal server error'
         });
       });
   }
@@ -74,10 +75,9 @@ class UserClass {
    * @memberof UserClass
    */
   static signIn(request, response) {
-    if (!request.body.username || request.body.username === ' '
-      || !request.body.password || request.body.password === ' ') {
+    if (!request.body.username || !request.body.password) {
       return response.status(400).json({
-        message: 'Invalid credentials',
+        message: 'Invalid credentials'
       });
     }
     User
@@ -92,7 +92,8 @@ class UserClass {
             message: 'Invalid credentials'
           });
         }
-        const passwordMatched = bcrypt.compareSync(request.body.password.trim(), userFound.password);
+        const passwordMatched =
+        bcrypt.compareSync(request.body.password.trim(), userFound.password);
         if (!passwordMatched) {
           return response.status(404).send({
             message: 'Invalid credentials'
@@ -191,7 +192,7 @@ class UserClass {
    *
    * @memberof UserClass
    */
-  static fetchUsers(request, response) {
+  static searchUsers(request, response) {
     if (!request.query.q) {
       return response.status(404)
         .json({ message: 'query params must be passed' });
@@ -220,6 +221,66 @@ class UserClass {
           error
         });
       });
+  }
+
+  /**
+   * This method handles retrieving users in a group
+   * @static
+   *
+   * @param  {object} request sends a request to get groupId
+   * @param  {object} response sends a response with the corresponding message
+   * from the request object
+   *
+   * @return {object} Promise
+   *
+   * @memberof UserClass
+   * @method fetchUsers
+   */
+  static fetchUsers(request, response) {
+    const UserId = request.decoded.userId;
+    const groupID = parseInt(request.params.groupId, 10);
+    if (!groupID) {
+      return response.status(400).json({
+        message: 'Please specify a groupId'
+      });
+    }
+    Group.findOne({
+      where: { id: request.params.groupId },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+    })
+    .then((groupCheck) => {
+      if (!groupCheck) {
+        return response.status(404).json({
+          message: 'Group doesn\'t exist'
+        });
+      }
+      groupCheck.getUsers({
+        order: [
+          [sequelize.fn('lower', sequelize.col('fullname'))]
+        ],
+        where: {
+          id: {
+            $not: UserId
+          }
+        }
+      }).then((groupUsers) => {
+        response.status(200).json({
+          message: (groupUsers.length >= 1) ?
+          'Users retrieved successfully'
+          : 'No other user exist in the group',
+          groupUsers
+        });
+      }).catch(() => {
+        response.status(500).json({
+          error: 'Internal server error'
+        });
+      });
+    })
+    .catch(() => {
+      response.status(500).json({
+        error: 'Internal server error'
+      });
+    });
   }
 }
 export default UserClass;

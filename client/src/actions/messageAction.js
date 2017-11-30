@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import * as types from './actionTypes';
 
 /**
@@ -61,5 +62,5 @@ export function postMessage(groupId, data) {
       .then(() => {
         dispatch(getMessages(groupId));
       })
-      .catch(error => error.response.data);
+      .catch(error => error.response);
 }

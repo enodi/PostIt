@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import AddUsers from './AddUsers.jsx';
 import { searchUsers } from '../../../actions/searchAction';
 import { addUser } from '../../../actions/userAction';

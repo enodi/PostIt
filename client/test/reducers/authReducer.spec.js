@@ -10,7 +10,7 @@ describe('authReducer', () => {
     });
   });
 
-  it('should signup a user', () => {
+  it('should update the state when SIGNUP_SUCCESSFUL is passed', () => {
     expect(authReducer({}, {
       type: 'SIGNUP_SUCCESSFUL',
       isAuthenticated: true,
@@ -31,7 +31,7 @@ describe('authReducer', () => {
     });
   });
 
-  it('should signin a user', () => {
+  it('should update the state when SIGN_IN_SUCCESS is passed', () => {
     expect(authReducer({}, {
       type: 'SIGN_IN_SUCCESS',
       isAuthenticated: true,

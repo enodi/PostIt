@@ -1,7 +1,9 @@
 import axios from 'axios';
 import toastr from 'toastr';
+
 import * as types from './actionTypes';
 import { getMessages } from './messageAction';
+import { fetchUsers } from './userAction';
 
 /**
  *
@@ -48,8 +50,8 @@ export function retrieveGroups(userId) {
  * @returns {function} dispatch
  */
 export function createGroup(data, userId) {
-  return (dispatch) => {
-    return axios.post('/api/v1/group', data)
+  return dispatch =>
+    axios.post('/api/v1/group', data)
       .then((response) => {
         dispatch(retrieveGroups(userId));
         toastr.success(response.data.message);
@@ -60,7 +62,6 @@ export function createGroup(data, userId) {
           return toastr.error(error.response.data);
         }
       });
-  };
 }
 
 /**
@@ -87,6 +88,7 @@ export function activeGroupSuccess(active) {
 export function activeGroup(active) {
   return (dispatch) => {
     dispatch(getMessages(active.id));
+    dispatch(fetchUsers(active.id));
     dispatch(activeGroupSuccess(active));
   };
 }

@@ -6,7 +6,7 @@ import AccountPage from './src/components/AccountPage';
 import IndexPage from './src/components/IndexPage';
 import ResetPasswordContainer from './src/components/ResetPassword/ResetPasswordContainer';
 import ForgotPasswordContainer from './src/components/ResetPassword/ForgotPasswordContainer';
-import App from './App';
+import App from './App.jsx';
 
 /**
  * @param {any} nextState

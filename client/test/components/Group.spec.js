@@ -1,4 +1,5 @@
 import React from 'react';
+
 import 'materialize-css/dist/js/materialize';
 import { Sidebar } from '../../src/components/Dashboard/Sidebar.jsx';
 
@@ -7,7 +8,9 @@ jest.mock('react-dom');
 const setup = () => {
   const props = {
     currentUser: { id: 1 },
-    groups: { Groups: [{ id: 1, name: 'general' }], activeGroup: { id: 1, name: 'general' } },
+    groups: {
+      Groups: [{ id: 1, name: 'general' }],
+      activeGroup: { id: 1, name: 'general' } },
     createGroup: jest.fn(),
     retrieveGroups: jest.fn(),
     activeGroup: jest.fn(),
@@ -37,7 +40,9 @@ describe('Side bar Container', () => {
   });
 
   it('should dispatch createGroup action when group is created', () => {
-    wrapper.setState({ name: 'random', description: 'for random conversations' });
+    wrapper.setState({
+      name: 'random',
+      description: 'for random conversations' });
     wrapper.instance().onSubmit(event);
     expect(props.createGroup.mock.calls.length).toEqual(1);
   });

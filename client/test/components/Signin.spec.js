@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SigninContainer } from '../../src/components/Signin/SigninContainer.jsx';
 
 jest.mock('react-dom');
@@ -30,42 +31,44 @@ describe('Signin container', () => {
     expect(wrapper.state().username).toEqual('enodi');
   });
 
-  it('handles usernameError when user enters an empty field', () => {
+  it('should return usernameError when user enters an empty field', () => {
     const evt = { preventDefault: jest.fn(),
       target: {
         value: '',
         name: 'username',
       } };
     wrapper.instance().onBlur(evt);
-    expect(wrapper.setState({ usernameError: 'Please insert your username' }));
+    expect(wrapper.state().usernameError)
+    .toEqual('Please insert your username');
   });
 
-  it('handles passwordError when user enters an empty field', () => {
+  it('should return passwordError when user enters an empty field', () => {
     const evt = { preventDefault: jest.fn(),
       target: {
         value: '',
         name: 'password',
       } };
     wrapper.instance().onBlur(evt);
-    expect(wrapper.setState({ passwordError: 'Please insert your password' }));
+    expect(wrapper.state().passwordError)
+    .toEqual('Please insert your password');
   });
 
-  it('handles clearing usernameError', () => {
+  it('should clear usernameError when user clicks on username field', () => {
     const evt = { preventDefault: jest.fn(),
       target: {
         name: 'username',
       } };
     wrapper.instance().onFocus(evt);
-    expect(wrapper.setState({ usernameError: '' }));
+    expect(wrapper.state().usernameError).toEqual('');
   });
 
-  it('handles clearing passwordError', () => {
+  it('should clear passwordError when user clicks on password field', () => {
     const evt = { preventDefault: jest.fn(),
       target: {
         name: 'password',
       } };
     wrapper.instance().onFocus(evt);
-    expect(wrapper.setState({ passwordError: '' }));
+    expect(wrapper.state().passwordError).toEqual('');
   });
 
   it('should dispatch signinAction action when user signin', () => {

@@ -1,6 +1,7 @@
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
+
 import * as types from '../../src/actions/actionTypes';
 import { postMessage, getMessages,
   getMessageSuccess, messageSuccess } from '../../src/actions/messageAction';
@@ -8,7 +9,7 @@ import { postMessage, getMessages,
 const mockStore = configureMockStore([thunk]);
 
 describe('Message Action', () => {
-  it('handles getMessageSuccess', () => {
+  it('should return appropriate action when message is retrieved successfully', () => {
     const action = getMessageSuccess(['hello']);
     expect(action).toEqual({
       type: 'RETRIEVE_MESSAGE_SUCCESSFUL',
@@ -16,7 +17,8 @@ describe('Message Action', () => {
     });
   });
 
-  it('handles messageSuccess', () => {
+  it('should return appropriate action when message is posted successfully',
+  () => {
     const action = messageSuccess({ message: 'hello', priority: 'normal' });
     expect(action).toEqual({
       type: 'POST_MESSAGE_SUCCESSFUL',
@@ -27,7 +29,7 @@ describe('Message Action', () => {
     });
   });
 
-  it('handles retrieving message action', () => {
+  it('should return appropriate action when message is retrieved successfully', () => {
     axios.get = jest.fn(() => Promise.resolve({
       data: {}
     }));
@@ -45,9 +47,9 @@ describe('Message Action', () => {
     });
   });
 
-  it('handles post message action', () => {
+  it('should dispatch appropriate action when user successfully post a message', () => {
     axios.post = jest.fn(() => Promise.resolve({
-      data: {}
+      groupId: []
     }));
 
     const expectedActions = [
@@ -57,7 +59,8 @@ describe('Message Action', () => {
       }
     ];
     const store = mockStore();
-    return store.dispatch(postMessage(1, { message: 'hello', priority: 'normal' }))
+    return store.dispatch(postMessage(1,
+      { message: 'hello', priority: 'normal' }))
     .then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });

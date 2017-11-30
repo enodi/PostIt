@@ -1,5 +1,6 @@
 import { configure, shallow, render, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
+
 import LocalStorage from './client/__mocks__/localStorage';
 
 configure({

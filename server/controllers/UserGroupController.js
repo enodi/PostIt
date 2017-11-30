@@ -31,16 +31,16 @@ class UserGroupClass {
       include: [
         {
           model: Group,
-          attributes: ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
+          attributes:
+          ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
         }
       ]
     }).then((groups) => {
       response.status(200).json({ groups });
     })
-    .catch((error) => {
+    .catch(() => {
       response.status(500).json({
-        message: 'Internal server error',
-        error
+        error: 'Internal server error'
       });
     });
   }

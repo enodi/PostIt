@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import PostMessage from './PostMessage.jsx';
 import MessageBoard from './MessageBoard.jsx';
 import { postMessage } from '../../../actions/messageAction';

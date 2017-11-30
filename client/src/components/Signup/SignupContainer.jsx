@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { signupAction } from '../../actions/auth/signupAction';
 import Signup from './Signup.jsx';
 
@@ -38,7 +39,10 @@ export class SignupContainer extends React.Component {
   /**
    *
    * @memberof SignupContainer
+   *
    * @method onFocus
+   *
+   * @param {object} event
    *
    * @returns {void}
    */
@@ -92,9 +96,9 @@ export class SignupContainer extends React.Component {
         }
         break;
       case 'username':
-        if (!value) {
+        if (!value || value.length < 4) {
           this.setState({
-            usernameError: 'This field cannot be empty'
+            usernameError: 'Username cannot be less than 4 characters'
           });
         }
         break;

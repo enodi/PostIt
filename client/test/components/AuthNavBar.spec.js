@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router';
+
 import { AuthNavBar } from '../../src/components/Header/AuthNavBar.jsx';
 
 jest.mock('react-dom');
 
 describe('AuthNavBar Component', () => {
-  it('renders AuthNavBar Component', () => {
+  it('should render AuthNavBar Component', () => {
     const props = {
       group: {
         name: 'general'

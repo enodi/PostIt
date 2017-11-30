@@ -6,11 +6,12 @@ const authInitialState = {
 };
 
 /**
- *
  * @export authReducer
+ *
  * @param {any} [state=authInitialState]
  * @param {any} [action={}]
- * @returns {Object} object
+ *
+ * @returns {Object} current state
  */
 export default function authReducer(state = authInitialState, action = {}) {
   switch (action.type) {

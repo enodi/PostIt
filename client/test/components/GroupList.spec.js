@@ -1,10 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Link } from 'react-router';
+
 import GroupList from '../../../client/src/components/Dashboard/Group/GroupList.jsx';
 
 describe('GroupList Component', () => {
-  it('simulates onClick event', () => {
+  it('should simulate onClick event', () => {
     const props = {
       active: () => {},
       group: {},

@@ -2,6 +2,7 @@ import axios from 'axios';
 import toastr from 'toastr';
 import jwtDecode from 'jwt-decode';
 import { browserHistory } from 'react-router';
+
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import * as types from '../actionTypes';
 

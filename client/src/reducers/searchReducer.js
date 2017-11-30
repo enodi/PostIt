@@ -5,11 +5,12 @@ const searchInitialState = {
 };
 
 /**
+ * Handles searching
  *
- * @export
  * @param {any} [state=searchInitialState]
  * @param {any} [action={}]
- * @returns {Object} object
+ *
+ * @returns {Object} current state
  */
 export default function searchReducer(state = searchInitialState, action = {}) {
   switch (action.type) {

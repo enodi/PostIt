@@ -5,7 +5,7 @@ describe('Search Reducer', () => {
     expect(searchReducer({}, {})).toEqual({});
   });
 
-  it('should search for users', () => {
+  it('should update the state when SEARCH_USERS_SUCCESSFUL is passed', () => {
     expect(searchReducer({}, {
       type: 'SEARCH_USERS_SUCCESSFUL',
       users: ['enodi']

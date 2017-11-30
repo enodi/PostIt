@@ -1,11 +1,14 @@
 /**
  * LocalStorageMock serve as a mock of the localStorage for testing in Jest
+ *
  * @class LocalStorageMock
  */
 export default class LocalStorage {
   /**
    * @description creates a new instance of this class
+   *
    * @constructor
+   *
    * @memberOf LocalStorageMock
    */
   constructor() {
@@ -15,8 +18,9 @@ export default class LocalStorage {
 
   /**
    * @description clears the store
-   * @method
+   *
    * @memberOf LocalStorageMock
+   *
    * @returns {void}
    */
   clear() {
@@ -25,9 +29,11 @@ export default class LocalStorage {
 
   /**
    * @description returns the value stored on the supplied key
-   * @method
+   *
    * @memberOf LocalStorageMock
+   *
    * @param {string} key The item's key to retrieve from
+   *
    * @returns {void}
    */
   getItem(key) {
@@ -36,10 +42,12 @@ export default class LocalStorage {
 
   /**
    * @description sets the store with the supplied key
-   * @method
+   *
    * @memberOf LocalStorageMock
+   *
    * @param {Object} key The key to store
    * @param {string} value The value to set the key to
+   *
    * @returns {void}
    */
   setItem(key, value) {
@@ -48,9 +56,11 @@ export default class LocalStorage {
 
   /**
    * @description removes the item from the store corresponding to the key
-   * @method
+   *
    * @memberOf LocalStorageMock
+   *
    * @param {Object} key The key to remove
+   *
    * @returns {void}
    */
   removeItem(key) {

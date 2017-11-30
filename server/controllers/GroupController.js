@@ -19,15 +19,15 @@ class GroupClass {
    * @returns {object} Promise
    */
   static create(request, response) {
-    const UserId = request.decoded.userId;
+    const userId = request.decoded.userId;
     Group
       .create({
         name: request.body.name.toLowerCase().trim(),
         description: request.body.description.trim(),
-        UserId
+        userId
       })
       .then((groupCreated) => {
-        groupCreated.addUser(UserId);
+        groupCreated.addUser(userId);
         if (groupCreated) {
           const { id,
             name,

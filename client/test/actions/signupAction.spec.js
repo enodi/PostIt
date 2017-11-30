@@ -2,15 +2,17 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import configureMockStore from 'redux-mock-store';
+
 import * as types from '../../src/actions/actionTypes';
-import { signupAction, setCurrentUser } from '../../src/actions/auth/signupAction';
+import { signupAction, setCurrentUser }
+from '../../src/actions/auth/signupAction';
 
 jest.mock('react-router');
 jwtDecode.mockImplementation(() => ({}));
 const mockStore = configureMockStore([thunk]);
 
 describe('Signup Action', () => {
-  it('handles user signup', () => {
+  it('should return appropriate action when user signs up', () => {
     const action = setCurrentUser({
       username: 'enodi',
       fullname: 'Enodi Audu',
@@ -28,7 +30,7 @@ describe('Signup Action', () => {
     });
   });
 
-  it('handles signupAction', () => {
+  it('should dispatch appropriate action on successful signup', () => {
     axios.post = jest.fn(() => Promise.resolve({
       data: { token: 'token' }
     }));

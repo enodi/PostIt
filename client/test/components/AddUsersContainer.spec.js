@@ -1,5 +1,7 @@
 import React from 'react';
-import { AddUsersContainer } from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
+
+import { AddUsersContainer }
+from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
 
 const setup = () => {
   const props = {

@@ -2,6 +2,9 @@ engines:
   duplication:
     enabled: true
     checks:
+      method-lines:
+        config:
+          threshold: 250
       Similar code:
         enabled: false
     config:
