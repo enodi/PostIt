@@ -36,7 +36,9 @@
     "client:test": "node_modules/.bin/jest ./client/test/**/*.spec.js",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
     "showcoverage": "open coverage/lcov-report/index.html",
-    "coverage": "nyc --reporter=text npm test"
+    "coverage": "nyc --reporter=text npm test",
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "coverall": "nyc --reporter=lcov --reporter=text-lcov npm test | coveralls"
   },
   "author": "Enodi Audu",
   "license": "ISC",
