@@ -1,0 +1,20 @@
+engines:
+  duplication:
+    enabled: true
+    checks:
+      method-lines:
+        config:
+          threshold: 250
+      Similar code:
+        enabled: false
+    config:
+      languages:
+        - javascript
+    exclude_paths:
+    - node_modules/
+    - template/
+    - coverage/
+    ratings:
+      paths: 
+      - "server/**/*.js"
+

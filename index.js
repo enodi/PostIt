@@ -1,24 +1,48 @@
-// Import express, morgan and body-parser
-const express = require('express');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
+import logger from 'morgan';
+import webpack from 'webpack';
+import dotenv from 'dotenv';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
-// Create an instance of express
-const app = express();
+import UserRouter from './server/routes/users';
+import GroupsRouter from './server/routes/groups';
+import config from './webpack.config';
 
-// Log requests to console
+dotenv.config();
+
+const app = express(),
+  isDevelopment = process.env.NODE_ENV === 'development';
+
+if (isDevelopment) {
+  const compiler = webpack(config);
+  app.use(webpackDevMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  }));
+} else {
+  app.use(express.static(path.resolve(__dirname, 'dist')));
+}
+app.use('/apiDocs', express.static(path.resolve(__dirname, './apiDocs/')));
+app.use(express.static(path.resolve(__dirname, 'dist')));
 app.use(logger('dev'));
-
-// Parse incoming request data
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
-// Require routes for the Application
-require('./server/routes')(app);
+app.get('/', (request, response) => response.status(200).send({
+  message: 'Welcome to PostIt Application, Conversation just became easy',
+}));
 
-// Default route that sends a welcome message in JSON format
-/* app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to PostIt Application',
-}));*/
+app.use('/api/v1/user', UserRouter);
+app.use('/api/v1/group', GroupsRouter);
 
-module.exports = app;
+app.get('*', (request, response) => response.status(200)
+.sendFile(path.join(__dirname, './client/index.html')));
+
+app.listen(process.env.PORT || 3200);
+
+export default app;

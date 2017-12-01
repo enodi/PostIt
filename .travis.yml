@@ -1,0 +1,12 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js: "6"
+script:
+  - npm run test
+  - npm run coveralls  
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE postit_test;' -U postgres
+  - NODE_ENV=test sequelize db:migrate

@@ -1,59 +1,49 @@
-const bcrypt = require('bcrypt-nodejs');
+import bcrypt from 'bcryptjs';
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: {
-        args: true,
-        msg: 'username already exists'
-      },
-    },
-    firstName: {
-      type: DataTypes.STRING
-    },
-    lastName: {
-      type: DataTypes.STRING
-    },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
-        isEmail: true,
-        contains: {
-          args: '@andela.com',
-          msg: 'Must use andela.com email'
-        },
-      },
+        isEmail: true
+      }
     },
     password: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    username: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: {
-          args: 4,
-          msg: 'Password cannot be less than 4 characters'
-        }
-      }
+      unique: true,
+      allowNull: false
+    },
+    fullname: {
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {
       associate: (models) => {
         User.hasMany(models.Message, {
-          foreignKey: 'userId'
+          foreignKey: 'UserId'
+        });
+        User.hasMany(models.Group, {
+          foreignKey: 'UserId',
+          onDelete: 'CASCADE'
         });
         User.belongsToMany(models.Group, {
-          through: 'UserGroup'
+          through: 'UserGroup',
+          foreignKey: 'UserId',
+          onDelete: 'CASCADE'
         });
-      },
-    },
-    hooks: {
-      beforeCreate: (user) => {
-        const salt = bcrypt.genSaltSync(10);
-        user.password = bcrypt.hashSync(user.password, salt);
       }
-    },
+    }
+  }
+);
+
+  User.beforeCreate((user) => {
+    const salt = bcrypt.genSaltSync(10);
+    user.password = bcrypt.hashSync(user.password, salt);
   });
+
   return User;
 };
