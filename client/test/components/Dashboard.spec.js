@@ -26,7 +26,7 @@ describe('Dashboard Component', () => {
 
   it('should render one <PostMessage /> component', () => {
     const props = {
-      groups: { activeGroup: { id: true } },
+      groups: { id: 1 },
       users: { Users: {
         message: 'Users retrieved successfully',
         groupUsers: [{ id: 2, email: 'agnes@gmail.com', username: 'agnes' }] } }

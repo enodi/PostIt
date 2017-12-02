@@ -34,7 +34,6 @@ exports[`IndexPage Component should render IndexPage Component 1`] = `
         >
           <Link
             className="waves-effect hoverable btn-large"
-            id="get-started"
             onlyActiveOnIndex={false}
             style={Object {}}
             to="/account"

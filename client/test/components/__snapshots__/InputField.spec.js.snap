@@ -11,5 +11,5 @@ exports[`InputField Component should render InputField Component 1`] = `
      
      
   </label>
-</span>
+</div>
 `;

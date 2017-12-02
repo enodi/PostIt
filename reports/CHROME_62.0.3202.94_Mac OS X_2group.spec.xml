@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="1">
+
+  <testsuite name="2group.spec"
+    errors="0" failures="0" hostname="" id="" package="2group.spec" skipped="0"
+    tests="1" time="6.053" timestamp="Sat, 02 Dec 2017 10:37:11 GMT">
+  
+    <testcase name="Users should be able to create group" classname="2group.spec" time="6.053" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>
