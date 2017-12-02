@@ -24,7 +24,7 @@ const AddUsers = props => (
           <div className="input-field col s6 s12 li">
             <i className="material-icons prefix">search</i>
             <input onChange={props.onChange}
-            type="text" placeholder="Search..."
+            type="text" placeholder="Search..." name="search"
             id="autocomplete-input" className="autocomplete black-text" />
           </div>
         </div>
@@ -40,7 +40,8 @@ const AddUsers = props => (
               <div className="button-border">
                 <button id={user.id}
                 onClick={props.onClick}
-                className="btn-large right" type="submit" name="action">
+                className="btn-large right addUsersBtn"
+                type="submit" name="action">
                   add
                 </button>
               </div>

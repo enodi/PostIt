@@ -40,7 +40,7 @@ class AccountPage extends React.Component {
                         <a className="active"
                         href="#test-swipe-1">SIGN IN</a></li>
                         <li
-                        className="tab col l6 s6">
+                        className="tab col l6 s6 signup">
                         <a href="#test-swipe-2">SIGN UP</a></li>
                       </ul>
                     </div>

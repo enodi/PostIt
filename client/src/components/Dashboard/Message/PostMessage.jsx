@@ -17,9 +17,9 @@ const PostMessage = props => (
         <div className="col m9">
           <div className="input-border">
             <InputField
-              className="autocomplete"
+              className="autocomplete post-message"
               type={'text'}
-              name={'messsage'}
+              name={'message'}
               value={props.state.message}
               onChange={props.handleOnChange}
               placeholder={'Type a message'}

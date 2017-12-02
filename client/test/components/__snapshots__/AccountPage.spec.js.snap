@@ -37,7 +37,7 @@ exports[`AccountPage Component should render AuthenticationPage Component 1`] = 
                     </a>
                   </li>
                   <li
-                    className="tab col l6 s6"
+                    className="tab col l6 s6 signup"
                   >
                     <a
                       href="#test-swipe-2"
