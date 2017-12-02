@@ -3,9 +3,9 @@
 //     browser
 //       .url('localhost:3200')
 //       .waitForElementVisible('.waves-effect.hoverable.btn-large')
-//       .click('#get-started')
+//       .click('.waves-effect.hoverable.btn-large')
 //       .waitForElementPresent('h5')
-//       .setValue('.username', 'enodi')
+//       .setValue('.username', 'ndeya')
 //       .setValue('.password', 'password')
 //       .click('.signin-button')
 //       .waitForElementPresent('h3')

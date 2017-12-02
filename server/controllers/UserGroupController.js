@@ -10,34 +10,39 @@ class UserGroupClass {
   /**
    * This method handles retrieving groups
    * @static
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof UserGroupClass
    */
-  static retrieveGroups(req, res) {
-    const userID = parseInt(req.params.userId, 10);
+  static retrieveGroups(request, response) {
+    const userID = parseInt(request.params.userId, 10);
     if (isNaN(userID)) {
-      return res.status(400).json({
+      return response.status(400).json({
         error: 'Invalid User Id',
       });
     }
 
     User.findOne({
-      where: { id: req.params.userId },
+      where: { id: request.params.userId },
       attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
       include: [
         {
           model: Group,
-          attributes: ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
+          attributes:
+          ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
         }
       ]
     }).then((groups) => {
-      res.status(200).json({ groups });
+      response.status(200).json({ groups });
     })
-    .catch(error => res.status(500).json(error.response.data));
+    .catch(() => {
+      response.status(500).json({
+        error: 'Internal server error'
+      });
+    });
   }
 }
 export default UserGroupClass;

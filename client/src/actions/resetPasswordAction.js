@@ -1,6 +1,7 @@
 import axios from 'axios';
 import toastr from 'toastr';
 import { browserHistory } from 'react-router';
+
 import * as types from './actionTypes';
 
 /**
@@ -29,9 +30,9 @@ export function passwordResetLink(userEmail) {
   return (dispatch) => {
     return axios
       .post('/api/v1/user/forgotPassword', userEmail)
-      .then((res) => {
-        dispatch(passwordResetLinkSuccess(res.data));
-        return toastr.success(res.data.message);
+      .then((response) => {
+        dispatch(passwordResetLinkSuccess(response.data));
+        return toastr.success(response.data.message);
       })
       .catch((error) => {
         if (error.response) {
@@ -42,7 +43,7 @@ export function passwordResetLink(userEmail) {
 }
 
 /**
- * @param {object} password
+ * @param {object} user
  *
  * @returns {object} action type
  */
@@ -66,9 +67,9 @@ export function resetPassword(userPassword, token) {
   return (dispatch) => {
     return axios
       .put(`/api/v1/user/resetPassword${token}`, userPassword)
-      .then((res) => {
-        dispatch(resetPasswordSuccess(res.data));
-        toastr.success(res.data.message);
+      .then((response) => {
+        dispatch(resetPasswordSuccess(response.data));
+        toastr.success(response.data.message);
         browserHistory.push('/account');
       })
       .catch((error) => {

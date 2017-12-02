@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ResetPassword from './ResetPassword';
+
+import ResetPassword from './ResetPassword.jsx';
 import { resetPassword } from '../../actions/resetPasswordAction';
 
 /**

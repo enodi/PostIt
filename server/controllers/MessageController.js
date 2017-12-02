@@ -11,25 +11,30 @@ class MessageClass {
    * This method handles posting of messages in a group
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof MessageClass
    */
-  static create(req, res) {
-    if (!req.body.message || !req.body.priority) {
-      return res
-        .status(400)
-        .json('All fields are required');
+  static create(request, response) {
+    if (!request.body.message || !request.body.priority) {
+      return response.status(400).json({
+        message: 'All fields are required'
+      });
     }
-    const { userId, email, username } = req.decoded;
+    const { userId, email, username } = request.decoded;
     Message
-      .create({ UserId: userId, GroupId: req.params.groupId, message: req.body.message, priority: req.body.priority })
+      .create({
+        UserId: userId,
+        GroupId: request.params.groupId,
+        message: request.body.message,
+        priority: request.body.priority })
       .then((messageCreated) => {
-        if (messageCreated.priority === 'critical' || messageCreated.priority === 'urgent') {
-          Group.findById(req.params.groupId)
+        if (messageCreated.priority === 'critical' ||
+        messageCreated.priority === 'urgent') {
+          Group.findById(request.params.groupId)
           .then((group) => {
             group.getUsers().then((users) => {
               users.forEach((user) => {
@@ -40,29 +45,30 @@ class MessageClass {
             });
           });
         }
-        return res.status(201)
-        .json({ message: 'message posted successfully', messageCreated });
+        return response.status(201).json({
+          message: 'message posted successfully',
+          messageCreated
+        });
       })
-      .catch(() => res
-        .status(500)
-        .json({ error: 'message not created' }));
+      .catch(() => response.status(500)
+      .json({ error: 'Internal server error' }));
   }
 
   /**
    * This method handles retrieving messages in a group
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof MessageClass
    */
-  static retrieve(req, res) {
+  static retrieve(request, response) {
     Message.findAll({
       where: {
-        GroupId: req.params.groupId
+        GroupId: request.params.groupId
       },
       include: [
         {
@@ -76,8 +82,12 @@ class MessageClass {
         }
       ]
     }).then((messageRetrieved) => {
-      res.status(200).json(messageRetrieved);
-    }).catch(error => res.status(500).json(error.response.data));
+      response.status(200).json({
+        message: 'messages retrieved',
+        messageRetrieved
+      });
+    }).catch(() => response.status(500)
+    .json({ error: 'Internal server error' }));
   }
 }
 export default MessageClass;

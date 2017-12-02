@@ -7,12 +7,12 @@ const initialState = {
 };
 
 /**
+ * Handles reset passsword reducer
  *
- *
- * @export
  * @param {any} [state=initialState]
  * @param {any} action
- * @returns
+ *
+ * @returns {object} current state
  */
 export default function resetPasswordReducer(state = initialState, action = {}) {
   switch (action.type) {

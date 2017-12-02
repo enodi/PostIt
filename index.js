@@ -33,14 +33,14 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.get('/', (req, res) => res.status(200).send({
+app.get('/', (request, response) => response.status(200).send({
   message: 'Welcome to PostIt Application, Conversation just became easy',
 }));
 
 app.use('/api/v1/user', UserRouter);
 app.use('/api/v1/group', GroupsRouter);
 
-app.get('*', (req, res) => res.status(200)
+app.get('*', (request, response) => response.status(200)
 .sendFile(path.join(__dirname, './client/index.html')));
 
 app.listen(process.env.PORT || 3200);

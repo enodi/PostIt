@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
+
 import InputField from '../Common/InputField.jsx';
 
 /**
@@ -48,8 +49,8 @@ const Signin = props => (
           id={'password'}
           required
         />
-      </div> <div style={{ color: 'red' }}>
-        {props.passwordError} </div>
+      </div>
+      <div style={{ color: 'red' }}>{props.passwordError} </div>
     </div>
     <div className="row center button">
       <button

@@ -18,7 +18,10 @@ const GroupList = (props) => {
         'active' : ''}
         key={props.group.id}>
           <Link to="#"
-            onClick={event => props.active(event, props.group.name, props.group.id)}>{props.group.name}</Link>
+            onClick=
+            {event => props
+              .active(event, props.group.name, props.group.id)
+            }>{props.group.name}</Link>
         </li>
       </ul>
     </div>

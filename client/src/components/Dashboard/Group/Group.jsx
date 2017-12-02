@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import InputField from '../../Common/InputField.jsx';
 import GroupList from './GroupList.jsx';
 
@@ -14,7 +15,9 @@ const Group = props => (
   <div>
     <ul className="side-nav fixed" id="slide-out">
       <li className="brand-logo logo-text">PostIt
-        <i className="small material-icons white-text" onClick={props.handleOnClick}>
+        <i
+        className="small material-icons white-text"
+        onClick={props.handleOnClick}>
         input
         </i>
       </li>
@@ -23,7 +26,10 @@ const Group = props => (
         <li>
           <a href="#modal1" className="sidebar-text modal-trigger">
             GROUPS
-            <i className="material-icons right sidebar-text" href="#modal1">add_box</i>
+            <i
+            className="material-icons right sidebar-text" href="#modal1">
+            add_box
+            </i>
           </a>
         </li>
         {props.groups && props.groups.map(group => <GroupList

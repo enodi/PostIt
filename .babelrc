@@ -4,7 +4,12 @@
     "react",
     "stage-2"
   ],
-  "plugins": [
-    "add-module-exports"
-  ]
+  "ignore": "node_modules",
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
 }

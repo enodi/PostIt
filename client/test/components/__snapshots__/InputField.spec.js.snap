@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputField Component should render InputField Component 1`] = `
+<div
+  className="input-field"
+>
+  <input
+    type="text"
+  />
+  <label>
+     
+     
+  </label>
+</span>
+`;

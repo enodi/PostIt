@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites errors="0"
-            failures="1"
-            tests="1">
+            failures="0"
+            tests="0">
 
   <testsuite name="signin.spec"
-    errors="0" failures="1" hostname="" id="" package="signin.spec" skipped="0"
-    tests="1" time="14.78" timestamp="Thu, 23 Nov 2017 13:59:44 GMT">
-  
-    <testcase name="Users should be able to sign in" classname="signin.spec" time="14.78" assertions="3">
-
-    
-
-      <failure message="Timed out while waiting for element &lt;h3&gt; to be present for 10000 milliseconds.">    at Object.UsersShouldBeAbleToSignIn [as Users should be able to sign in] (/Users/andeladeveloper/repositories/PostIt/e2e-test/signin.spec.js:11:8)
-    at _combinedTickCallback (internal/process/next_tick.js:73:7)</failure>
-
-    
-    </testcase>
+    errors="0" failures="0" hostname="" id="" package="signin.spec" skipped="0"
+    tests="0" time="0.000" timestamp="Fri, 01 Dec 2017 06:05:42 GMT">
   
 
   

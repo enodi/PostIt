@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import InputField from '../Common/InputField.jsx';
 
 /**
@@ -19,7 +20,7 @@ const Signup = props => (
         <InputField
           value={props.state.fullname}
           onChange={props.onChange}
-          validateInput={props.validateInput}
+          onBlur={props.onBlur}
           onFocus={props.onFocus}
           className="validate fullname"
           label={'Full Name'}
@@ -30,13 +31,14 @@ const Signup = props => (
           required
         />
       </div>
+      <div style={{ color: 'red' }}>{props.fullnameError} </div>
     </div>
     <div className="row signin" >
       <div className="input-field col s12" >
         <InputField
           value={props.state.username}
           onChange={props.onChange}
-          validateInput={props.validateInput}
+          onBlur={props.onBlur}
           onFocus={props.onFocus}
           className="validate username"
           label={'Username'}
@@ -47,13 +49,14 @@ const Signup = props => (
           required
         />
       </div>
+      <div style={{ color: 'red' }}>{props.usernameError} </div>
     </div>
     <div className="row signin" >
       <div className="input-field col s12" >
         <InputField
           value={props.state.email}
           onChange={props.onChange}
-          validateInput={props.validateInput}
+          onBlur={props.onBlur}
           onFocus={props.onFocus}
           className="validate email"
           label={'Email'}
@@ -64,13 +67,14 @@ const Signup = props => (
           required
         />
       </div>
+      <div style={{ color: 'red' }}>{props.emailError} </div>
     </div>
     <div className="row signin" >
       <div className="input-field col s12" >
         <InputField
           value={props.state.password}
           onChange={props.onChange}
-          validateInput={props.validateInput}
+          onBlur={props.onBlur}
           onFocus={props.onFocus}
           className="validate password"
           label={'Password'}
@@ -81,11 +85,11 @@ const Signup = props => (
           required
         />
       </div>
+      <div style={{ color: 'red' }}>{props.passwordError} </div>
     </div>
     <div className="row center button">
       <button
-        disabled={props.state.disable}
-        className="btn-large waves-effect waves-light signup-button"
+        className="btn-large waves-effect waves-light"
         type="submit"
         name="action">SIGNUP</button>
     </div>
@@ -94,7 +98,7 @@ const Signup = props => (
 );
 
 Signup.propTypes = {
-  validateInput: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import sequelize from 'sequelize';
+
 import { User, Group } from '../models';
 
 
@@ -13,20 +15,20 @@ class UserClass {
    * This method handles registering a new user
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof UserClass
    */
-  static signUp(req, res) {
+  static signUp(request, response) {
     User
       .create({
-        fullname: req.body.fullname,
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+        fullname: request.body.fullname.trim(),
+        username: request.body.username.trim(),
+        email: request.body.email.trim(),
+        password: request.body.password.trim()
       })
       .then((userCreated) => {
         if (userCreated) {
@@ -50,10 +52,14 @@ class UserClass {
             fullname,
             token
           };
-          return res.status(201).send(user);
+          return response.status(201).send(user);
         }
       })
-      .catch(error => res.status(500).send(error));
+      .catch(() => {
+        response.status(500).json({
+          error: 'Internal server error'
+        });
+      });
   }
 
 
@@ -61,35 +67,35 @@ class UserClass {
    * This method handles user signin
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof UserClass
    */
-  static signIn(req, res) {
-    if (!req.body.username.toString() || req.body.username === ' '
-      || !req.body.password.toString() || req.body.password === ' ') {
-      return res.status(400).json({
-        message: 'Invalid credentials',
+  static signIn(request, response) {
+    if (!request.body.username || !request.body.password) {
+      return response.status(400).json({
+        message: 'Invalid credentials'
       });
     }
     User
       .findOne({
         where: {
-          username: req.body.username.toString()
+          username: request.body.username.trim()
         }
       })
       .then((userFound) => {
         if (!userFound) {
-          return res.status(404).send({
+          return response.status(404).send({
             message: 'Invalid credentials'
           });
         }
-        const passwordMatched = bcrypt.compareSync(req.body.password, userFound.password);
+        const passwordMatched =
+        bcrypt.compareSync(request.body.password.trim(), userFound.password);
         if (!passwordMatched) {
-          return res.status(422).send({
+          return response.status(404).send({
             message: 'Invalid credentials'
           });
         }
@@ -101,91 +107,102 @@ class UserClass {
           }, process.env.JWT_SECRET, {
             expiresIn: process.env.JWT_EXPIRY_TIME
           });
-        return res.status(200).send({
+        return response.status(200).send({
           success: true,
           token
         });
       })
-      .catch(error => res.status(500).json(error.response.data));
+      .catch((error) => {
+        response.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
   }
 
   /**
    * This method handles adding registered users to a group
    * @static
    *
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} promise
    * @memberof UserClass
    */
-  static addUsers(req, res) {
-    if (!req.body.userId) {
-      return res.status(400).json({
+  static addUsers(request, response) {
+    if (!request.body.userId) {
+      return response.status(400).json({
         message: 'No user selected'
       });
     }
     Group.findOne({
       where: {
-        id: req.params.groupId
+        id: request.params.groupId
       }
     }).then((foundGroup) => {
       if (!foundGroup) {
-        return res.status(404).json({
+        return response.status(404).json({
           message: 'Group doesn\'t exist'
         });
       }
       User.findOne({
         where: {
-          id: req.body.userId
+          id: request.body.userId
         }
       }).then((foundUser) => {
         if (!foundUser) {
-          return res.status(404).json({
+          return response.status(404).json({
             message: 'User not found'
           });
         }
         foundGroup.addUser(foundUser).then((addedUser) => {
           if (addedUser.length === 0) {
-            return res.status(422).json({
+            return response.status(409).json({
               message: 'User is already a member of the group'
             });
           }
-          return res.status(200).json({
+          return response.status(200).json({
             message: 'User added successfully'
           });
         });
       })
-      .catch(error => res.status(500).json({
-        err: error.response.data
-      }));
+      .catch((error) => {
+        response.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
     })
-    .catch(error => res.status(500).json({
-      err: error.response.data
-    }));
+    .catch((error) => {
+      response.status(500).json({
+        message: 'Internal server error',
+        error
+      });
+    });
   }
 
   /**
    * This method handles retrieving all registered users
    * @static
-   * @param {object} req
-   * @param {object} res
+   * @param {object} request
+   * @param {object} response
    *
    * @returns {object} Promise
    *
    * @memberof UserClass
    */
-  static fetchUsers(req, res) {
-    if (!req.query.q) {
-      return res.status(422)
+  static searchUsers(request, response) {
+    if (!request.query.q) {
+      return response.status(404)
         .json({ message: 'query params must be passed' });
     }
-    const limit = parseInt(req.query.limit, 10) || 5;
-    const offset = parseInt(req.query.offset, 10) || 0;
+    const limit = parseInt(request.query.limit, 10) || 5;
+    const offset = parseInt(request.query.offset, 10) || 0;
     User.findAndCountAll({
       where: {
         username: {
-          $ilike: `%${req.query.q}%`
+          $ilike: `%${request.query.q}%`
         }
       },
       offset,
@@ -196,9 +213,74 @@ class UserClass {
       }
     })
       .then((retrieveUsers) => {
-        res.status(200).json(retrieveUsers);
+        response.status(200).json(retrieveUsers);
       })
-      .catch(error => res.status(500).json(error.response.data));
+      .catch((error) => {
+        response.status(500).json({
+          message: 'Internal server error',
+          error
+        });
+      });
+  }
+
+  /**
+   * This method handles retrieving users in a group
+   * @static
+   *
+   * @param  {object} request sends a request to get groupId
+   * @param  {object} response sends a response with the corresponding message
+   * from the request object
+   *
+   * @return {object} Promise
+   *
+   * @memberof UserClass
+   * @method fetchUsers
+   */
+  static fetchUsers(request, response) {
+    const UserId = request.decoded.userId;
+    const groupID = parseInt(request.params.groupId, 10);
+    if (!groupID) {
+      return response.status(400).json({
+        message: 'Please specify a groupId'
+      });
+    }
+    Group.findOne({
+      where: { id: request.params.groupId },
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
+    })
+    .then((groupCheck) => {
+      if (!groupCheck) {
+        return response.status(404).json({
+          message: 'Group doesn\'t exist'
+        });
+      }
+      groupCheck.getUsers({
+        order: [
+          [sequelize.fn('lower', sequelize.col('fullname'))]
+        ],
+        where: {
+          id: {
+            $not: UserId
+          }
+        }
+      }).then((groupUsers) => {
+        response.status(200).json({
+          message: (groupUsers.length >= 1) ?
+          'Users retrieved successfully'
+          : 'No other user exist in the group',
+          groupUsers
+        });
+      }).catch(() => {
+        response.status(500).json({
+          error: 'Internal server error'
+        });
+      });
+    })
+    .catch(() => {
+      response.status(500).json({
+        error: 'Internal server error'
+      });
+    });
   }
 }
 export default UserClass;

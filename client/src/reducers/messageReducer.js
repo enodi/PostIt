@@ -6,11 +6,12 @@ const messageInitialState = {
 };
 
 /**
- *
  * @export messageReducer
+ *
  * @param {any} [state=messageInitialState]
  * @param {any} [action={}]
- * @returns {Object} object
+ *
+ * @returns {Object} current state
  */
 export default function messageReducer(state = messageInitialState, action = {}) {
   switch (action.type) {

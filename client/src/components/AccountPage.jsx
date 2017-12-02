@@ -1,6 +1,7 @@
 import React from 'react';
-import SignupContainer from '../components/Signup/SignupContainer.jsx';
-import SigninContainer from '../components/Signin/SigninContainer.jsx';
+
+import Signup from '../components/Signup/SignupContainer.jsx';
+import Signin from '../components/Signin/SigninContainer.jsx';
 
 /**
  *
@@ -11,6 +12,7 @@ class AccountPage extends React.Component {
   /**
    * Initializes component swipeable tabs
    * @returns {void}
+   *
    * @memberof AccountPage
    */
   componentDidMount() {
@@ -20,6 +22,7 @@ class AccountPage extends React.Component {
   /**
    *
    * @returns {jsx} an xml/html like syntax extension for javascript
+   *
    * @memberof AccountPage
    */
   render() {
@@ -34,16 +37,16 @@ class AccountPage extends React.Component {
                     <div className="col s12 s12">
                       <ul id="tabs-swipe-demo" className="tabs">
                         <li className="tab col l6 s6">
-                          <a className="active" href="#test-swipe-1" id="signin">SIGN IN</a>
-                        </li>
-                        <li className="tab col l6 s6">
-                          <a href="#test-swipe-2" id="signup">SIGN UP</a>
-                        </li>
+                        <a className="active"
+                        href="#test-swipe-1">SIGN IN</a></li>
+                        <li
+                        className="tab col l6 s6 signup">
+                        <a href="#test-swipe-2">SIGN UP</a></li>
                       </ul>
                     </div>
                     <div>
-                    <SignupContainer />
-                    <SigninContainer />
+                    <Signup />
+                    <Signin />
                     </div>
                   </div>
               </div>

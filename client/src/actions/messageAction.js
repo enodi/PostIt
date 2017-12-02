@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import * as types from './actionTypes';
 
 /**
@@ -40,10 +41,10 @@ export function getMessageSuccess(messages) {
 export function getMessages(groupId) {
   return dispatch =>
     axios.get(`api/v1/group/${groupId}/messages`)
-      .then((res) => {
-        dispatch(getMessageSuccess(res.data));
+      .then((response) => {
+        dispatch(getMessageSuccess(response.data));
       })
-      .catch(error => error.response.data);
+      .catch(error => error.response);
 }
 
 
@@ -61,5 +62,5 @@ export function postMessage(groupId, data) {
       .then(() => {
         dispatch(getMessages(groupId));
       })
-      .catch(error => error.response.data);
+      .catch(error => error.response);
 }
