@@ -1,27 +1,30 @@
 module.exports = {
-  'Users should be able to post message': function (browser) {
+  'Users should be able to add users to a group': function (browser) {
     browser
-      .url('localhost:3200')
+      .url('http://postit-enodi.herokuapp.com/')
       .waitForElementVisible('.waves-effect.hoverable.btn-large')
       .click('.waves-effect.hoverable.btn-large')
       .click('.signup')
       .waitForElementPresent('.username')
       .setValue('.fullname', 'Enodi Audu')
       .setValue('.username', 'enodi')
-      .setValue('.email', 'enodiaudu5@gmail.com')
+      .setValue('.email', 'enodi@gmail.com')
       .setValue('.password', 'password')
       .click('.btn-large.waves-effect.waves-light')
       .waitForElementPresent('h3')
       .click('.sidebar-text')
       .waitForElementPresent('h2')
-      .setValue('input[name="name"]', 'General')
+      .setValue('input[name="name"]', 'Random')
       .setValue('input[name="description"]', 'general channel')
       .click('button[type="submit"]')
       .pause(2000)
       .click('.grouplist > ul > li > a')
-      .waitForElementPresent('.post-message')
-      .setValue('.post-message', 'Hello')
-      .click('.messageBtn')
+      .waitForElementPresent('.right')
+      .click('.right')
+      .pause(2000)
+      .waitForElementPresent('h4')
+      .setValue('input[name="search"]', 'matty')
+      .click('.addUsersBtn')
       .pause(2000)
       .end();
   },
