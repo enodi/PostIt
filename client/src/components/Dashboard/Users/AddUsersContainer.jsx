@@ -118,11 +118,11 @@ export class AddUsersContainer extends React.Component {
   render() {
     return (
       <AddUsers
-      searchResult={this.props.searchResult}
-      onChange={this.onChange}
-      limit = {this.state.limit}
-      onClick={this.handleOnClick}
-      handlePageClick={this.handlePageClick}
+        searchResult={this.props.searchResult}
+        onChange={this.onChange}
+        limit={this.state.limit}
+        onClick={this.handleOnClick}
+        handlePageClick={this.handlePageClick}
       />
     );
   }
@@ -133,4 +133,5 @@ const mapStateToProps = state => ({
   group: state.groupReducer.activeGroup
 });
 
-export default connect(mapStateToProps, { searchUsers, addUser })(AddUsersContainer);
+export default connect(mapStateToProps,
+  { searchUsers, addUser })(AddUsersContainer);

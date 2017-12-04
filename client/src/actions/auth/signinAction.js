@@ -64,7 +64,7 @@ export function signinAction(credentials) {
  */
 export function signoutUser() {
   return (dispatch) => {
-    localStorage.removeItem('jwt');
+    localStorage.clear();
     dispatch(signoutSuccess());
     browserHistory.push('/account');
   };

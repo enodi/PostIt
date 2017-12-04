@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
+import PropTypes from 'prop-types';
 
 /**
  * Gives the presentational view for AddUsers component
@@ -14,7 +15,8 @@ const AddUsers = props => (
       <div className="modal-footer">
         <a
           href="#"
-          className="modal-action modal-close waves-effect waves-green btn-flat large material-icons"
+          className=
+          "modal-action modal-close waves-effect waves-green btn-flat large material-icons"
         >close
         </a>
       </div>
@@ -24,29 +26,29 @@ const AddUsers = props => (
           <div className="input-field col s6 s12 li">
             <i className="material-icons prefix">search</i>
             <input onChange={props.onChange}
-            type="text" placeholder="Search..." name="search"
-            id="autocomplete-input" className="autocomplete black-text" />
+              type="text" placeholder="Search..." name="search"
+              id="autocomplete-input" className="autocomplete black-text" />
           </div>
         </div>
       </div>
       <div className="container add-user">
-          {props.searchResult.rows &&
-            props.searchResult.rows.map(user =>
-              <div key={user.id} className="row">
-            <div className="col m10">
-              <p>{user.username}</p>
-            </div>
-            <div className="col m2">
-              <div className="button-border">
-                <button id={user.id}
-                onClick={props.onClick}
-                className="btn-large right addUsersBtn"
-                type="submit" name="action">
-                  add
-                </button>
+        {props.searchResult.rows &&
+          props.searchResult.rows.map(user =>
+            <div key={user.id} className="row">
+              <div className="col m10">
+                <p>{user.username}</p>
               </div>
-            </div>
-          </div>)}
+              <div className="col m2">
+                <div className="button-border">
+                  <button id={user.id}
+                    onClick={props.onClick}
+                    className="btn-large right addUsersBtn"
+                    type="submit" name="action">
+                    add
+                </button>
+                </div>
+              </div>
+            </div>)}
       </div>
       <div className="center">
         <ReactPaginate
@@ -58,10 +60,18 @@ const AddUsers = props => (
           onPageChange={props.handlePageClick}
           containerClassName={'pagination'}
           activeClassName={'active'}
-          />
+        />
       </div>
     </div>
   </div>
 );
+
+AddUsers.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  searchResult: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+  limit: PropTypes.number.isRequired
+};
 
 export default AddUsers;

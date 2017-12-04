@@ -30,12 +30,12 @@
     ]
   },
   "scripts": {
-    "start": "npm run build && babel-node index.js",
+    "start": "npm run build && NODE_ENV=production babel-node index.js",
     "e2e-setup": "selenium-standalone install",
     "e2e:test": "nightwatch",
-    "build": "webpack",
+    "build": "webpack -p --config webpack.config.prod.js",
     "test": "NODE_ENV=test nyc mocha server/test/**/*.spec.js --timeout=25000",
-    "client:test": "node_modules/.bin/jest ./client/test/**/*.spec.js",
+    "client:test": "node_modules/.bin/jest client/test/**/*.spec.js",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
     "showcoverage": "open coverage/lcov-report/index.html",
     "coverage": "nyc npm test",
@@ -83,7 +83,6 @@
     "react-paginate": "^5.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^3.0.5",
-    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.1.2",
     "redux-thunk": "^2.2.0",
@@ -125,6 +124,7 @@
     "sequelize-cli": "^3.0.0",
     "style-loader": "^0.18.2",
     "supertest": "^3.0.0",
+    "url-loader": "^0.6.2",
     "webpack-dev-server": "^2.6.1"
   }
 }

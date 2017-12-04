@@ -15,19 +15,17 @@ exports[`NavBar Component should render NavBar Component 1`] = `
         PostIt
       </span>
     </IndexLink>
-    <Link
+    <a
       className="button-collapse"
-      data-activates="mobile-demo"
-      onlyActiveOnIndex={false}
-      style={Object {}}
-      to="#"
+      data-activates="mobile-menu"
+      href="#"
     >
       <i
         className="material-icons"
       >
         menu
       </i>
-    </Link>
+    </a>
     <ul
       className="right hide-on-med-and-down"
     >
@@ -49,11 +47,20 @@ exports[`NavBar Component should render NavBar Component 1`] = `
       </li>
     </ul>
     <ul
-      className="side-nav"
-      id="mobile-demo"
+      className="side-nav #000000 black hide-on-large-only"
+      id="mobile-menu"
     >
       <li>
+        <a
+          className="white-text"
+          href="http://postit-enodi.herokuapp.com/apidocs/#introduction"
+        >
+          API Docs
+        </a>
+      </li>
+      <li>
         <Link
+          className="white-text"
           onlyActiveOnIndex={false}
           style={Object {}}
           to="/account"

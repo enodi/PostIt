@@ -34,10 +34,10 @@ describe('Reset password Container Component', () => {
     expect(wrapper.state().password).toEqual('password');
   });
 
-  it(`should dispatch resetPassword action when
-  user requests for a new password`, () => {
-    wrapper.setState({ password: 'password', confirmPassword: 'password' });
-    wrapper.instance().handleOnSubmit(event);
-    expect(props.resetPassword.mock.calls.length).toEqual(1);
-  });
+  it('should dispatch resetPassword action when user requests for a new password',
+    () => {
+      wrapper.setState({ password: 'password', confirmPassword: 'password' });
+      wrapper.instance().handleOnSubmit(event);
+      expect(props.resetPassword.mock.calls.length).toEqual(1);
+    });
 });

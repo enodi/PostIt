@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 /**
@@ -19,23 +18,16 @@ export class AuthNavBar extends React.Component {
       <div className="row">
         <nav className="white dashboard logout-icon">
           <div className="nav-wrapper">
-            <Link to="/" className="brand-logo li">PostIt</Link>
-            <ul className="col m10 offset-m2 hide-on-med-and-down">
-            {this.props.group.name &&
-              <li className="black-text flow-text">
-              {this.props.group.name}</li>}
+            <ul className="col m12 s12">
+              {this.props.group.name &&
+                <li className="black-text flow-text">
+                  {this.props.group.name}</li>}
               <li className="right">
                 <a href="#add_users" className="modal-trigger">
                   <i
-                  className="material-icons black-text" href="#add_users">group_add</i>
+                    className=
+                    "material-icons black-text" href="#add_users">group_add</i>
                 </a>
-              </li>
-            </ul>
-            <ul className="side-nav" id="mobile-demo">
-              <li>
-                <i className="large material-icons black-text">
-                group_add
-                </i>
               </li>
             </ul>
           </div>

@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import sequelize from 'sequelize';
 
 import { User, Group } from '../models';
 
@@ -9,7 +8,7 @@ import { User, Group } from '../models';
  * This class handles users account
  * @class UserClass
  */
-class UserClass {
+class UserController {
 
   /**
    * This method handles registering a new user
@@ -93,7 +92,7 @@ class UserClass {
           });
         }
         const passwordMatched =
-        bcrypt.compareSync(request.body.password.trim(), userFound.password);
+          bcrypt.compareSync(request.body.password.trim(), userFound.password);
         if (!passwordMatched) {
           return response.status(404).send({
             message: 'Invalid credentials'
@@ -118,68 +117,6 @@ class UserClass {
           error
         });
       });
-  }
-
-  /**
-   * This method handles adding registered users to a group
-   * @static
-   *
-   * @param {object} request
-   * @param {object} response
-   *
-   * @returns {object} promise
-   * @memberof UserClass
-   */
-  static addUsers(request, response) {
-    if (!request.body.userId) {
-      return response.status(400).json({
-        message: 'No user selected'
-      });
-    }
-    Group.findOne({
-      where: {
-        id: request.params.groupId
-      }
-    }).then((foundGroup) => {
-      if (!foundGroup) {
-        return response.status(404).json({
-          message: 'Group doesn\'t exist'
-        });
-      }
-      User.findOne({
-        where: {
-          id: request.body.userId
-        }
-      }).then((foundUser) => {
-        if (!foundUser) {
-          return response.status(404).json({
-            message: 'User not found'
-          });
-        }
-        foundGroup.addUser(foundUser).then((addedUser) => {
-          if (addedUser.length === 0) {
-            return response.status(409).json({
-              message: 'User is already a member of the group'
-            });
-          }
-          return response.status(200).json({
-            message: 'User added successfully'
-          });
-        });
-      })
-      .catch((error) => {
-        response.status(500).json({
-          message: 'Internal server error',
-          error
-        });
-      });
-    })
-    .catch((error) => {
-      response.status(500).json({
-        message: 'Internal server error',
-        error
-      });
-    });
   }
 
   /**
@@ -209,7 +146,7 @@ class UserClass {
       limit,
       attributes: {
         exclude:
-        ['password', 'createdAt', 'updatedAt']
+          ['password', 'createdAt', 'updatedAt']
       }
     })
       .then((retrieveUsers) => {
@@ -224,63 +161,41 @@ class UserClass {
   }
 
   /**
-   * This method handles retrieving users in a group
+   * This method handles retrieving groups
    * @static
+   * @param {object} request
+   * @param {object} response
    *
-   * @param  {object} request sends a request to get groupId
-   * @param  {object} response sends a response with the corresponding message
-   * from the request object
+   * @returns {object} Promise
    *
-   * @return {object} Promise
-   *
-   * @memberof UserClass
-   * @method fetchUsers
+   * @memberof UserGroupClass
    */
-  static fetchUsers(request, response) {
-    const UserId = request.decoded.userId;
-    const groupID = parseInt(request.params.groupId, 10);
-    if (!groupID) {
+  static retrieveGroups(request, response) {
+    const userId = parseInt(request.params.userId, 10);
+    if (isNaN(userId)) {
       return response.status(400).json({
-        message: 'Please specify a groupId'
+        error: 'Invalid User Id',
       });
     }
-    Group.findOne({
-      where: { id: request.params.groupId },
+
+    User.findOne({
+      where: { id: request.params.userId },
       attributes: { exclude: ['password', 'createdAt', 'updatedAt'] },
-    })
-    .then((groupCheck) => {
-      if (!groupCheck) {
-        return response.status(404).json({
-          message: 'Group doesn\'t exist'
-        });
-      }
-      groupCheck.getUsers({
-        order: [
-          [sequelize.fn('lower', sequelize.col('fullname'))]
-        ],
-        where: {
-          id: {
-            $not: UserId
-          }
+      include: [
+        {
+          model: Group,
+          attributes:
+            ['id', 'name', 'description', 'createdAt', ['UserId', 'ownerId']]
         }
-      }).then((groupUsers) => {
-        response.status(200).json({
-          message: (groupUsers.length >= 1) ?
-          'Users retrieved successfully'
-          : 'No other user exist in the group',
-          groupUsers
-        });
-      }).catch(() => {
+      ]
+    }).then((groups) => {
+      response.status(200).json({ groups });
+    })
+      .catch(() => {
         response.status(500).json({
           error: 'Internal server error'
         });
       });
-    })
-    .catch(() => {
-      response.status(500).json({
-        error: 'Internal server error'
-      });
-    });
   }
 }
-export default UserClass;
+export default UserController;
