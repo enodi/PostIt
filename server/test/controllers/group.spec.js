@@ -50,7 +50,8 @@ describe('GET /api/v1/user/:userId/group', () => {
         });
     });
 
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .get('/api/v1/user/:userId/group')
       .end((err, response) => {
@@ -122,7 +123,8 @@ describe('POST /api/v1/group', () => {
         });
     });
 
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .post('/api/v1/group')
       .end((err, response) => {
@@ -139,7 +141,8 @@ describe('POST /api/v1/group', () => {
 });
 
 describe('POST /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+  it(`should return 401 when an unauthenticated user
+  tries to access this route`, (done) => {
     request
     .post('/api/v1/group/:groupId/user')
     .end((err, response) => {
@@ -155,7 +158,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
 });
 
 describe('GET /api/v1/group/:groupId/user', () => {
-  it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+  it(`should return 401 when an unauthenticated user
+  tries to access this route`, (done) => {
     request
     .get('/api/v1/group/:groupId/user')
     .end((err, response) => {

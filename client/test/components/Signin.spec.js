@@ -16,7 +16,7 @@ const setup = () => {
   };
 };
 
-describe('Signin container', () => {
+describe('Signin Container Component', () => {
   const { props, wrapper } = setup();
   const event = {
     preventDefault: jest.fn(),

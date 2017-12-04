@@ -27,7 +27,8 @@ describe('Message Model', () => {
   });
 
   describe('handles null input', () => {
-    it('should return message cannot be null when user passes null input', (done) => {
+    it(`should return message cannot be null when user
+    passes null input`, (done) => {
       db.Message.create({
         message: null,
       })

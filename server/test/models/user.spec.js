@@ -64,7 +64,8 @@ describe('User Model', () => {
   });
 
   describe('handles null input', () => {
-    it('should return username cannot be null when user passes null input', (done) => {
+    it(`should return username cannot be null when
+    user passes null input`, (done) => {
       db.User.create({
         username: null,
         email: 'enodi@gmail.com',
@@ -83,7 +84,8 @@ describe('User Model', () => {
       });
     });
 
-    it('should return password cannot be null when user passes null input', (done) => {
+    it(`should return password cannot be null when user
+    passes null input`, (done) => {
       db.User.create({
         username: 'enodi',
         email: 'enodi@gmail.com',
@@ -104,7 +106,8 @@ describe('User Model', () => {
   });
 
   describe('handles wrong input', () => {
-    it('should return Validation isEmail failed when user passes wrong email', (done) => {
+    it(`should return Validation isEmail failed when
+    user passes wrong email`, (done) => {
       db.User.create({
         username: 'enodi',
         email: 'enodi',

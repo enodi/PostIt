@@ -31,7 +31,8 @@ describe('Forgot password container', () => {
     expect(wrapper.state().email).toEqual('enodiaudu5@gmail.com');
   });
 
-  it('should dispatch passwordResetLink action when user requests for a new password', () => {
+  it(`should dispatch passwordResetLink action when user
+  requests for a new password`, () => {
     wrapper.setState({ email: 'enodiaudu5@gmail.com' });
     wrapper.instance().handleOnSubmit(event);
     expect(props.passwordResetLink.mock.calls.length).toEqual(1);

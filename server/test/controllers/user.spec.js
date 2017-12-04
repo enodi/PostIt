@@ -209,7 +209,8 @@ describe('POST /api/v1/user/signup', () => {
         });
     });
 
-    it('should return 400 when user provides username with less than 4 characters', (done) => {
+    it(`should return 400 when user provides username
+    with less than 4 characters`, (done) => {
       request
         .post('/api/v1/user/signup')
         .send({
@@ -229,7 +230,8 @@ describe('POST /api/v1/user/signup', () => {
         });
     });
 
-    it('should return 400 when user passes whitespace into username field', (done) => {
+    it(`should return 400 when user passes whitespace
+    into username field`, (done) => {
       request
         .post('/api/v1/user/signup')
         .send({
@@ -270,7 +272,8 @@ describe('POST /api/v1/user/signup', () => {
         });
     });
 
-    it('should return 400 when user passes whitespace into fullname field', (done) => {
+    it(`should return 400 when user passes whitespace
+    into fullname field`, (done) => {
       request
         .post('/api/v1/user/signup')
         .send({
@@ -290,7 +293,8 @@ describe('POST /api/v1/user/signup', () => {
         });
     });
 
-    it('should return 400 when user passes whitespace into password field', (done) => {
+    it(`should return 400 when user passes whitespace
+    into password field`, (done) => {
       request
         .post('/api/v1/user/signup')
         .send({
@@ -438,7 +442,8 @@ describe('GET /api/v1/user/search', () => {
         });
     });
 
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .get('/api/v1/user/search')
       .end((err, response) => {
@@ -484,7 +489,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
     });
   });
   describe('handles adding users to group', () => {
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .post('/api/v1/group/:groupId/user')
       .end((err, response) => {
@@ -514,7 +520,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
         done();
       });
     });
-    it('should return 404 when user tries to add a user that doesn\'t exist', (done) => {
+    it(`should return 404 when user tries to add a user
+    that doesn't exist`, (done) => {
       request
       .post(`/api/v1/group/${1}/user`)
       .set('x-access-token', token)
@@ -592,7 +599,8 @@ describe('GET /api/v1/group/:groupId/users', () => {
     });
   });
   describe('handles retrieving users from group', () => {
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .get(`/api/v1/group/${1}/users`)
       .end((err, response) => {
