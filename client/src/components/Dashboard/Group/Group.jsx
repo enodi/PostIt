@@ -81,7 +81,8 @@ const Group = props => (
                         required />
                     </div>
                     <div className="col l7 offset-l5 button">
-                      <button className="btn-large" type="reset">
+                      <button className="btn-large" type="reset"
+                      onClick={props.handleReset}>
                         Cancel
                       </button>
                       <button
@@ -105,6 +106,7 @@ const Group = props => (
 Group.propTypes = {
   handleOnChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
   state: PropTypes.object.isRequired
 };
 

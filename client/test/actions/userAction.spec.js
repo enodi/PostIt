@@ -18,7 +18,8 @@ describe('User Action', () => {
     });
   });
 
-  it('should dispatch appropriate action when user successfully adds another user to a group', () => {
+  it(`should dispatch appropriate action when user
+  successfully adds another user to a group`, () => {
     axios.post = jest.fn(() => Promise.resolve({
       groupId: []
     }));

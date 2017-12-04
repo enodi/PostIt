@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
  * @returns {void}
  */
 const InputField = ({
-  name, value, id, type, htmlFor, label, onChange, onBlur, onFocus, placeholder
+  name, value, id, type, htmlFor, label,
+  onChange, onBlur, onFocus, placeholder, className
 }) => (
   <div className="input-field" >
     <input
@@ -19,6 +20,7 @@ const InputField = ({
       type={type}
       onBlur={onBlur}
       onFocus={onFocus}
+      className={className}
       name={name}
       id={id}
       placeholder={placeholder}

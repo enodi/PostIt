@@ -22,7 +22,7 @@ const Signup = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate fullname"
           label={'Full Name'}
           htmlFor={'fullname'}
           type={'text'}
@@ -40,7 +40,7 @@ const Signup = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate username"
           label={'Username'}
           htmlFor={'username'}
           type={'text'}
@@ -58,7 +58,7 @@ const Signup = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate email"
           label={'Email'}
           htmlFor={'email'}
           type={'text'}
@@ -76,7 +76,7 @@ const Signup = props => (
           onChange={props.onChange}
           onBlur={props.onBlur}
           onFocus={props.onFocus}
-          className="validate"
+          className="validate password"
           label={'Password'}
           htmlFor={'password'}
           type={'password'}

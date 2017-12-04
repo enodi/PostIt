@@ -22,7 +22,8 @@ describe('POST /api/v1/group/:groupId/message', () => {
     });
   });
   describe('handles posting messages', () => {
-    it('should return 201 when a message is posted with priority critical', (done) => {
+    it(`should return 201 when a message is posted
+    with priority critical`, (done) => {
       request
       .post(`/api/v1/group/${1}/message`)
       .set('x-access-token', token)
@@ -97,7 +98,8 @@ describe('POST /api/v1/group/:groupId/message', () => {
       });
     });
 
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .post('/api/v1/group/:groupId/message')
       .end((err, response) => {
@@ -131,7 +133,8 @@ describe('GET /api/v1/group/:groupId/messages', () => {
         done();
       });
     });
-    it('should return 401 when an unauthenticated user tries to access this route', (done) => {
+    it(`should return 401 when an unauthenticated user
+    tries to access this route`, (done) => {
       request
       .get('/api/v1/group/:groupId/messages')
       .end((err, response) => {
