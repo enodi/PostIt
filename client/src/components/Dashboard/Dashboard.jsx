@@ -24,9 +24,8 @@ export class Dashboard extends React.Component {
           <div className="col m2">
             <SideBar />
           </div>
-          <div className="col m10">
-            { this.props.groups.activeGroup.id &&
-              <div>
+            { this.props.groups.id &&
+              <div className="col m10">
                 <div className="col m10">
                   <PostMessage />
                 </div>
@@ -35,9 +34,8 @@ export class Dashboard extends React.Component {
                   {...Users}/>
                 </div>
               </div>}
-          </div>
         </div>
-        { !this.props.groups.activeGroup.id &&
+        { !this.props.groups.id &&
           <div className="container">
             <div className="row">
               <div
@@ -54,7 +52,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  groups: state.groupReducer,
+  groups: state.groupReducer.activeGroup,
   users: state.userReducer
 });
 

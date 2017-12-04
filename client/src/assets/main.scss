@@ -100,7 +100,7 @@
 
 .account {
 	margin-top: 110px;
-	height: 700px;
+	height: 750px;
 	.tab {
 		a {
 			color: #000 !important;
@@ -344,4 +344,21 @@
       vertical-align: middle;
     }
   }
+}
+.icon-new {
+  position: relative !important;
+  float: right;
+  border-radius: 5px;
+}
+
+.normal{
+  background-color: green;
+}
+
+.urgent{
+  background-color: red;
+}
+
+.critical{
+  background-color: #e65100;
 }

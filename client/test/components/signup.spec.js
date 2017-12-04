@@ -16,7 +16,7 @@ const setup = () => {
   };
 };
 
-describe('Signup container', () => {
+describe('Signup Container Component', () => {
   const { props, wrapper } = setup();
   const event = {
     preventDefault: jest.fn(),
@@ -31,7 +31,8 @@ describe('Signup container', () => {
     expect(wrapper.state().username).toEqual('enodi');
   });
 
-  it('should return usernameError when user tries to signup with a username less than 4 characters', () => {
+  it(`should return usernameError when user tries
+  to signup with a username less than 4 characters`, () => {
     const evt = { preventDefault: jest.fn(),
       target: {
         value: '',

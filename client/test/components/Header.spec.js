@@ -8,7 +8,8 @@ import AddUsers from '../../../client/src/components/Dashboard/Users/AddUsersCon
 jest.mock('react-dom');
 
 describe('Header Component', () => {
-  it('should render <AddUsersContainier/> Component when a group is selected', () => {
+  it(`should render <AddUsersContainier/> Component
+  when a group is selected`, () => {
     const props = {
       loggedIn: true,
       groups: { id: 1 }

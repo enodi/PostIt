@@ -9,7 +9,8 @@ import { postMessage, getMessages,
 const mockStore = configureMockStore([thunk]);
 
 describe('Message Action', () => {
-  it('should return appropriate action when message is retrieved successfully', () => {
+  it(`should return appropriate action when message
+  is retrieved successfully`, () => {
     const action = getMessageSuccess(['hello']);
     expect(action).toEqual({
       type: 'RETRIEVE_MESSAGE_SUCCESSFUL',
@@ -29,7 +30,8 @@ describe('Message Action', () => {
     });
   });
 
-  it('should return appropriate action when message is retrieved successfully', () => {
+  it(`should return appropriate action when message
+  is retrieved successfully`, () => {
     axios.get = jest.fn(() => Promise.resolve({
       data: {}
     }));
@@ -47,7 +49,8 @@ describe('Message Action', () => {
     });
   });
 
-  it('should dispatch appropriate action when user successfully post a message', () => {
+  it(`should dispatch appropriate action when user
+  successfully post a message`, () => {
     axios.post = jest.fn(() => Promise.resolve({
       groupId: []
     }));

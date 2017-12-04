@@ -2,9 +2,10 @@
   "exclude": [
     "client",
     "template",
-    "server/test",
     "server/migrations",
-    "server/config"
+    "server/test",
+    "server/config",
+    "dist"
   ],
   "include": [
     "server"

@@ -44,7 +44,7 @@ export function getMessages(groupId) {
       .then((response) => {
         dispatch(getMessageSuccess(response.data));
       })
-      .catch(error => error.response.data);
+      .catch(error => error.response);
 }
 
 
