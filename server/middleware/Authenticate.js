@@ -10,7 +10,7 @@ const key = process.env.JWT_SECRET;
  * This class handles user authentication
  * @class authenticate
  */
-class authenticate {
+class Authenticate {
   /**
    * This method checks if a user logged in
    * @param  {object} request  request object
@@ -45,4 +45,4 @@ class authenticate {
     }
   }
 }
-export default authenticate;
+export default Authenticate;

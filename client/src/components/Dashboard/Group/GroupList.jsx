@@ -11,14 +11,17 @@ import { Link } from 'react-router';
  */
 const GroupList = (props) => {
   return (
-    <div>
+    <div className="grouplist">
       <ul>
         <li
         className={props.activeGroup.id === props.group.id ?
         'active' : ''}
         key={props.group.id}>
           <Link to="#"
-            onClick={event => props.active(event, props.group.name, props.group.id)}>{props.group.name}</Link>
+            onClick=
+            {event => props
+              .active(event, props.group.name, props.group.id)
+            }>{props.group.name}</Link>
         </li>
       </ul>
     </div>

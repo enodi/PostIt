@@ -1,6 +1,7 @@
 import axios from 'axios';
 import toastr from 'toastr';
 import { browserHistory } from 'react-router';
+
 import * as types from './actionTypes';
 
 /**
@@ -42,7 +43,7 @@ export function passwordResetLink(userEmail) {
 }
 
 /**
- * @param {object} password
+ * @param {object} user
  *
  * @returns {object} action type
  */

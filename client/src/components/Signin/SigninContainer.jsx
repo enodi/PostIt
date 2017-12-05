@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { signinAction } from '../../actions/auth/signinAction';
 import Signin from './Signin.jsx';
 
@@ -23,8 +24,7 @@ export class SigninContainer extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
-      error: ''
+      password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -130,6 +130,8 @@ export class SigninContainer extends React.Component {
           handleSubmit={this.handleSubmit}
           onBlur={this.onBlur}
           onFocus={this.onFocus}
+          usernameError={this.state.usernameError}
+          passwordError={this.state.passwordError}
         />
     );
   }

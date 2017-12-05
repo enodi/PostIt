@@ -1,13 +1,15 @@
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
+
 import * as types from '../../src/actions/actionTypes';
-import { searchUsers, searchUsersSuccess } from '../../src/actions/searchAction';
+import { searchUsers, searchUsersSuccess }
+from '../../src/actions/searchAction';
 
 const mockStore = configureMockStore([thunk]);
 
 describe('Search Action', () => {
-  it('should search for users', () => {
+  it('should return appropriate action on successful user search', () => {
     const action = searchUsersSuccess({ username: 'enodi' });
     expect(action).toEqual({
       type: 'SEARCH_USERS_SUCCESSFUL',
@@ -17,7 +19,7 @@ describe('Search Action', () => {
     });
   });
 
-  it('handles search user action', () => {
+  it('should dispatch appropriate action on successful user search', () => {
     axios.get = jest.fn(() => Promise.resolve({
       data: {}
     }));

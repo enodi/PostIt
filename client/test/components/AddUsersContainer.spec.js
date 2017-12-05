@@ -1,5 +1,7 @@
 import React from 'react';
-import { AddUsersContainer } from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
+
+import { AddUsersContainer }
+from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
 
 const setup = () => {
   const props = {
@@ -16,7 +18,7 @@ const setup = () => {
   };
 };
 
-describe('Add Users Container', () => {
+describe('Add Users Container Component', () => {
   const { props, wrapper } = setup();
   const event = {
     preventDefault: jest.fn(),

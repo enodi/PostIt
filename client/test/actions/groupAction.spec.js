@@ -1,6 +1,7 @@
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import configureMockStore from 'redux-mock-store';
+
 import * as types from '../../src/actions/actionTypes';
 import { createGroup, retrieveGroupsSuccess,
   retrieveGroups, activeGroupSuccess } from '../../src/actions/groupAction';
@@ -8,7 +9,8 @@ import { createGroup, retrieveGroupsSuccess,
 const mockStore = configureMockStore([thunk]);
 
 describe('Group Action', () => {
-  it('should retrieve groups', () => {
+  it('should return appropriate action when group is retrieved successfully',
+  () => {
     const action = retrieveGroupsSuccess([{ name: 'general' }]);
     expect(action).toEqual({
       type: 'RETRIEVE_GROUP_SUCCESSFUL',
@@ -18,7 +20,7 @@ describe('Group Action', () => {
     });
   });
 
-  it('handles activeGroupSuccess', () => {
+  it('should return appropriate action when a group is clicked', () => {
     const action = activeGroupSuccess([{ name: 'general' }]);
     expect(action).toEqual({
       type: 'ACTIVE_GROUP_CLICKED',
@@ -28,7 +30,7 @@ describe('Group Action', () => {
     });
   });
 
-  it('handles retrieving group action', () => {
+  it('should dispatch appropriate action on successful group retrieval', () => {
     axios.get = jest.fn(() => Promise.resolve({
       data: {
         groups: {
@@ -50,7 +52,7 @@ describe('Group Action', () => {
     });
   });
 
-  it('handles creating a new group', () => {
+  it('should dispatch appropriate action on successful group creation', () => {
     axios.post = jest.fn(() => Promise.resolve({
       userId: []
     }));

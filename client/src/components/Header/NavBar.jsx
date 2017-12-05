@@ -18,17 +18,21 @@ const NavBar = () => (
         >PostIt
         </span>
       </IndexLink>
-      <Link to="#"
+      <a href="#"
         data-activates="mobile-demo"
         className="button-collapse">
         <i className="material-icons">menu</i>
-      </Link>
+      </a>
       <ul className="right hide-on-med-and-down">
-        <li><a href="http://postit-enodi.herokuapp.com/apidocs/#introduction">API Docs</a></li>
+        <li><a href="http://postit-enodi.herokuapp.com/apidocs/#introduction">
+        API Docs</a></li>
         <li><Link to="/account">My Account</Link></li>
       </ul>
       <ul className="side-nav" id="mobile-demo">
-        <li><Link to="/account">My Account</Link></li>
+        <li><a className="black-text" href=
+        "http://postit-enodi.herokuapp.com/apidocs/#introduction">
+        API Docs</a></li>
+        <li><Link to="/account" className="black-text">My Account</Link></li>
       </ul>
     </div>
   </nav>

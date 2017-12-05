@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import PostMessage from './PostMessage.jsx';
 import MessageBoard from './MessageBoard.jsx';
 import { postMessage } from '../../../actions/messageAction';
@@ -94,12 +95,12 @@ export class PostMessageContainer extends React.Component {
   render() {
     return (
       <div>
-        <MessageBoard groupMessages={this.props.messages}/>
-        <PostMessage
-          handleOnChange={this.handleOnChange}
-          state={this.state}
-          handleOnSubmit={this.handleOnSubmit}
-          priorityOnChange={this.priorityOnChange}/>
+      <PostMessage
+        handleOnChange={this.handleOnChange}
+        state={this.state}
+        handleOnSubmit={this.handleOnSubmit}
+        priorityOnChange={this.priorityOnChange}/>
+      <MessageBoard groupMessages={this.props.messages}/>
       </div>
     );
   }
@@ -107,7 +108,7 @@ export class PostMessageContainer extends React.Component {
 
 const mapStateToProps = state => ({
   group: state.groupReducer,
-  messages: state.messageReducer.groupMessages
+  messages: state.messageReducer.groupMessages.messageRetrieved
 });
 
 export default connect(mapStateToProps, { postMessage })(PostMessageContainer);

@@ -1,16 +1,12 @@
 import Validator from 'validatorjs';
-import { Group, User, UserGroup } from '../models';
+import { Group, User } from '../models';
 import rules from '../validation';
 
 const rule = {
   name: 'required'
 };
 
-const userGroupRule = {
-  userId: 'required'
-};
-
-const validations = {
+const Validations = {
   validateGroup(request, response, next) {
     const validation = new Validator(request.body, rule);
     let {
@@ -27,7 +23,8 @@ const validations = {
         }
       }).then((groupExists) => {
         if (groupExists) {
-          return response.status(409).json('Group name already exists');
+          return response.status(409)
+          .json('Group name already exists');
         }
         next();
       });
@@ -69,48 +66,13 @@ const validations = {
     }));
   },
 
-
-  validateUserGroup(request, response, next) {
-    const validation = new Validator(request.body, userGroupRule);
-    const groupId = request.params.group_id;
-    const userId = request.body.userId;
-
-    validation.passes(() => {
-      User.findById(userId)
-        .then((userFound) => {
-          if (userFound) {
-            Group.findById(groupId)
-              .then((group) => {
-                if (group) {
-                  UserGroup
-                    .findOne({
-                      where: {
-                        $and: [{ GroupId: request.params.group_id },
-                        { UserId: request.body.userId }]
-                      }
-                    })
-                    .then((userExists) => {
-                      if (userExists) {
-                        return response.status(409).json('User is already a member of this group');
-                      }
-                      next();
-                    });
-                }
-              });
-          }
-        });
-    });
-    validation.fails(() => response.status(400).json(validation.errors.all()));
-  },
-  
   validateResetPassword(request, response, next) {
-    if (!request.body.password || !request.body.confirmPassword ||
-      request.body.password === ' ' || request.body.confirmPassword === ' ') {
+    if (!request.body.password || !request.body.confirmPassword) {
       return response.status(400).json({
         message: 'All fields are required'
       });
     }
-    if (request.body.password !== request.body.confirmPassword) {
+    if (request.body.password.trim() !== request.body.confirmPassword.trim()) {
       return response.status(409).json({
         message: 'Password doesn\'t match'
       });
@@ -119,5 +81,5 @@ const validations = {
   }
 };
 
-export default validations;
+export default Validations;
 

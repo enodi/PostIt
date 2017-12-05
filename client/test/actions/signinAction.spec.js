@@ -2,6 +2,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import configureMockStore from 'redux-mock-store';
+
 import * as types from '../../src/actions/actionTypes';
 import { signinAction,
   signoutSuccess, signinSuccess } from '../../src/actions/auth/signinAction';
@@ -11,7 +12,7 @@ jwtDecode.mockImplementation(() => ({}));
 const mockStore = configureMockStore([thunk]);
 
 describe('Signin Action', () => {
-  it('handles user signin', () => {
+  it('should return appropriate action when user signs in', () => {
     const action = signinSuccess({ username: 'enodi', password: 'password' });
     expect(action).toEqual({
       type: 'SIGN_IN_SUCCESS',
@@ -22,14 +23,14 @@ describe('Signin Action', () => {
     });
   });
 
-  it('handles user signout', () => {
+  it('should return appropriate action when user signs out', () => {
     const action = signoutSuccess();
     expect(action).toEqual({
       type: 'SIGN_OUT_SUCCESSFUL'
     });
   });
 
-  it('handles signinAction', () => {
+  it('should dispatch appropriate action on successful signin', () => {
     axios.post = jest.fn(() => Promise.resolve({
       data: { token: 'token' }
     }));
@@ -41,13 +42,14 @@ describe('Signin Action', () => {
       }
     ];
     const store = mockStore();
-    return store.dispatch(signinAction({ username: 'enodi', password: 'password' }))
+    return store.dispatch(signinAction(
+      { username: 'enodi', password: 'password' }))
     .then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
 
-  it('handles signoutUser', () => {
+  it('should dispatch appropriate action on successful signout', () => {
     const expectedActions = [
       {
         type: types.SIGN_OUT_SUCCESSFUL,

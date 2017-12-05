@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+
 import { User } from '../models';
 
 /**
@@ -20,11 +21,6 @@ class ResetPassword {
    * @memberof resetPassword
    */
   static forgotPassword(request, response) {
-    if (!request.body.email || request.body.email === ' ') {
-      return response.status(400).json({
-        message: 'Field cannot be empty'
-      });
-    }
     User.findOne({
       where: {
         email: request.body.email.trim()
@@ -53,11 +49,22 @@ class ResetPassword {
         to: email,
         subject: 'reset Password',
         html: `<div><h3>Hi,</h3>
-        <p>You are receiving this mail because you (or someone else) requested a password reset for your PostIt account</p>
-        <p>To change your PostIt password, click <a href="${request.headers.origin}/resetPassword?tokn=${token}">here</a> or copy and paste the link below into your browser</p><br/>
-        <a href="${request.headers.origin}/resetPassword?tokn=${token}"><p>${request.headers.origin}/resetPassword?tokn=${token}</p></a><br/>
-        <p>This link will expire in 24 hours, so be sure to use it right away.</p>
-        <p>If you did not request this, please ignore this email and your password will remain unchanged</p>
+        <p>You are receiving this mail because you 
+        (or someone else) requested a password reset 
+        for your PostIt account</p>
+        <p>To change your PostIt password, click 
+        <a
+        href="${request.headers.origin}/resetPassword?tokn=${token}">
+        here</a>
+        or copy and paste the link below into your browser</p><br/>
+        <a
+        href="${request.headers.origin}/resetPassword?tokn=${token}">
+        <p>${request.headers.origin}/resetPassword?tokn=${token}</p>
+        </a><br/>
+        <p>This link will expire in 24 hours, so be sure to use 
+        it right away.</p>
+        <p>If you did not request this, please ignore this email
+        and your password will remain unchanged</p>
         <p>The PostIt Team</p></div>`
       };
       transporter.sendMail(mailOptions, (error) => {
@@ -87,7 +94,7 @@ class ResetPassword {
    * @memberof resetPassword
    */
   static resetPassword(request, response) {
-    const token = request.query.tokn;
+    const token = request.query.token;
     if (token) {
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
@@ -101,7 +108,8 @@ class ResetPassword {
         User.update({ password: passwordHash }, {
           where: { email: decoded.email }
         })
-        .then(() => response.status(200).json({ message: 'Password reset successful' }))
+        .then(() => response.status(200)
+        .json({ message: 'Password reset successful' }))
         .catch(() => response.status(500)
         .json({ error: 'Internal server error' }));
       });

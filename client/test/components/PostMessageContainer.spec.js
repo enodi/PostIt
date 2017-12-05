@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { PostMessageContainer } from '../../src/components/Dashboard/Message/PostMessageContainer.jsx';
 
 jest.mock('react-dom');
@@ -6,7 +7,10 @@ jest.mock('react-dom');
 const setup = () => {
   const props = {
     group: { activeGroup: { id: 1 } },
-    messages: [{ id: 2, User: { id: 1, username: '' } }, { id: 3, User: { id: 1, username: '' } }],
+    messages: [{
+      id: 2,
+      User: { id: 1, username: '' } },
+      { id: 3, User: { id: 1, username: '' } }],
     postMessage: jest.fn()
   };
 

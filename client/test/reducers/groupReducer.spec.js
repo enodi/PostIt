@@ -5,7 +5,7 @@ describe('Group Reducer', () => {
     expect(groupReducer({}, {})).toEqual({});
   });
 
-  it('should retrieve groups', () => {
+  it('should update the state when RETRIEVE_GROUP_SUCCESSFUL is passed', () => {
     expect(groupReducer({
       Groups: [{
         name: 'random',
@@ -25,7 +25,7 @@ describe('Group Reducer', () => {
     });
   });
 
-  it('should return active group clicked', () => {
+  it('should update the state when ACTIVE_GROUP_CLICKED is passed', () => {
     expect(groupReducer({
       activeGroup: {}
     }, {

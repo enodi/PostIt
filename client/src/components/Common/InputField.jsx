@@ -10,21 +10,23 @@ import PropTypes from 'prop-types';
  * @returns {void}
  */
 const InputField = ({
-  name, value, id, type, htmlFor, label, onChange, onBlur, onFocus, placeholder
+  name, value, id, type, htmlFor, label,
+  onChange, onBlur, onFocus, placeholder, className
 }) => (
-  <div className="input-field col s12" >
+  <div className="input-field" >
     <input
       value={value}
       onChange={onChange}
       type={type}
       onBlur={onBlur}
       onFocus={onFocus}
+      className={className}
       name={name}
       id={id}
       placeholder={placeholder}
     />
     <label htmlFor={htmlFor} > {label} </label>
-  </div >
+  </div>
 );
 
 InputField.PropTypes = {

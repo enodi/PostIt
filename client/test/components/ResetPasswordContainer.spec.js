@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ResetPasswordContainer } from '../../src/components/ResetPassword/ResetPasswordContainer.jsx';
 
 jest.mock('react-dom');
@@ -18,7 +19,7 @@ const setup = () => {
   };
 };
 
-describe('Reset password container', () => {
+describe('Reset password Container Component', () => {
   const { props, wrapper } = setup();
   const event = {
     preventDefault: jest.fn(),
@@ -33,7 +34,8 @@ describe('Reset password container', () => {
     expect(wrapper.state().password).toEqual('password');
   });
 
-  it('should dispatch resetPassword action when user updates password', () => {
+  it(`should dispatch resetPassword action when
+  user requests for a new password`, () => {
     wrapper.setState({ password: 'password', confirmPassword: 'password' });
     wrapper.instance().handleOnSubmit(event);
     expect(props.resetPassword.mock.calls.length).toEqual(1);

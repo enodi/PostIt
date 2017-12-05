@@ -1,6 +1,39 @@
 import axios from 'axios';
 import toastr from 'toastr';
+
 import * as types from './actionTypes';
+
+/**
+ * @param {object} users
+ *
+ * @returns {object} action type
+ */
+export function fetchUsersSuccess(users) {
+  return {
+    type: types.FETCH_USERS_IN_GROUP,
+    users
+  };
+}
+
+/**
+ * Async action that handles fetching users in a group
+ *
+ * @param {number} groupId
+ *
+ * @returns {function} dispatch
+ */
+export function fetchUsers(groupId) {
+  return dispatch =>
+    axios.get(`/api/v1/group/${groupId}/users`)
+    .then((response) => {
+      dispatch(fetchUsersSuccess(response.data));
+    })
+    .catch((error) => {
+      if (error.response) {
+        return toastr.error(error.response.data.error);
+      }
+    });
+}
 
 /**
  * @param {object} user
@@ -26,7 +59,7 @@ export function addUser(groupId, userId) {
   return dispatch =>
   axios.post(`/api/v1/group/${groupId}/user`, userId)
     .then((response) => {
-      dispatch(addUserSuccess(response.data));
+      dispatch(fetchUsers(groupId));
       toastr.success(response.data.message);
       $('#modal1').modal('close');
     })
@@ -36,3 +69,4 @@ export function addUser(groupId, userId) {
       }
     });
 }
+

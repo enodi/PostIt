@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import Group from './Group/Group.jsx';
 import { signoutUser } from '../../actions/auth/signinAction';
 import { createGroup, retrieveGroups, activeGroup } from '../../actions/groupAction';
-import GroupDescription from '../Dashboard/Group/GroupDescription.jsx';
 
 /**
  * This class is the container component for group
@@ -34,6 +34,7 @@ export class Sidebar extends React.Component {
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleActiveGroup = this.handleActiveGroup.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   /**
@@ -120,6 +121,25 @@ export class Sidebar extends React.Component {
   }
 
   /**
+   * Takes in the target object of the onclick event
+   * and resets the group and description fields
+   *
+   * @param {object} event
+   *
+   * @returns {void}
+   *
+   * @memberof Sidebar
+   * @method handleReset
+   */
+  handleReset(event) {
+    event.preventDefault();
+    this.setState({
+      name: '',
+      description: ''
+    });
+  }
+
+  /**
   * @returns {jsx} an xml/html like syntax extension for
   * javascript
   *
@@ -135,7 +155,8 @@ export class Sidebar extends React.Component {
           state={this.state}
           onSubmit={this.onSubmit}
           active={this.handleActiveGroup}
-          handleOnClick={this.handleOnClick}/>
+          handleOnClick={this.handleOnClick}
+          handleReset={this.handleReset}/>
       </div>
     );
   }

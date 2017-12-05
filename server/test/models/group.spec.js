@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import db from '../../models';
 
 describe('Group Model', () => {
@@ -12,6 +13,10 @@ describe('Group Model', () => {
         if (group) {
           expect('Andela').to.equal(group.name);
           expect('Welcome to Andela').to.equal(group.description);
+          expect(group).to.be.an('object');
+          expect(group.dataValues)
+          .to.have.all.keys('id', 'name', 'description',
+          'updatedAt', 'createdAt', 'UserId');
         }
         done();
       })
@@ -32,6 +37,10 @@ describe('Group Model', () => {
       .then((group) => {
         if (group) {
           expect('Andela').to.equal(group.name);
+          expect('Welcome to Andela').to.equal(group.description);
+          expect(group).to.be.an('object');
+          expect(group.dataValues).to.have.all.keys('id', 'name',
+          'description', 'updatedAt', 'createdAt', 'UserId');
         }
         done();
       })
@@ -42,7 +51,8 @@ describe('Group Model', () => {
   });
 
   describe('handles null input', () => {
-    it('should return name cannot be null when user passes null input', (done) => {
+    it('should return name cannot be null when user passes null input',
+    (done) => {
       db.Group.create({
         name: null,
         description: 'Welcome to Andela',
@@ -51,7 +61,10 @@ describe('Group Model', () => {
         done();
       })
       .catch((error) => {
+        expect(error.errors).to.be.an('array');
         expect(error.errors[0].message).to.equal('name cannot be null');
+        expect(error.errors[0]).to.have.all.keys('message', 'type',
+        'path', 'value');
         done();
       });
     });
@@ -66,23 +79,9 @@ describe('Group Model', () => {
           name: 'Andela'
         }
       })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
-    });
-  });
-
-  describe('handles deleting group information', () => {
-    it('should delete group details from the database', (done) => {
-      db.Group.destroy({
-        where: {
-          name: 'Andela'
-        }
-      })
-      .then(() => {
+      .then((group) => {
+        expect(group).to.be.an('array');
+        expect(group[0]).to.equal(1);
         done();
       })
       .catch((error) => {
