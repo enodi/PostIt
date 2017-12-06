@@ -1,6 +1,5 @@
 import { Group } from '../models';
 
-
 /**
  * This class handles group creation
  * @class GroupClass
@@ -53,4 +52,3 @@ class GroupClass {
 }
 
 export default GroupClass;
-

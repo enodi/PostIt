@@ -10,13 +10,14 @@ import { Link } from 'react-router';
  * @returns {void}
  */
 const GroupList = (props) => {
+  const activeId = window.localStorage.getItem('activeId');
   return (
     <div className="grouplist">
       <ul>
         <li
-        className={props.activeGroup.id === props.group.id ?
-        'active' : ''}
-        key={props.group.id}>
+          className={Number(activeId) === props.group.id ?
+            'active' : ''}
+          key={props.group.id}>
           <Link to="#"
             onClick=
             {event => props

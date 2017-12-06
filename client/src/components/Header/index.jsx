@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import NavBar from './NavBar.jsx';
 import AddUsers from '../Dashboard/Users/AddUsersContainer.jsx';
 import AuthNavbar from './AuthNavBar.jsx';
+// import MobileNavBar from './MobileNavBar.jsx';
 
 /**
  * This component manipulates the two navbar components.

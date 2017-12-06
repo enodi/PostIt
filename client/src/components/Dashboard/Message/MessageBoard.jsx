@@ -10,33 +10,33 @@ import placeholder from '../../../assets/images/placeholder.png';
  * @returns {void}
  */
 const MessageBoard = props => (
-    <div className="display-message">
-      {props.groupMessages && props
-        .groupMessages
-        .map(message => (
-            <div className="" key={message.id}>
-              <div className="row valign-wrapper">
-                <div className="col m1">
-                  <img
-                    src={placeholder}
-                    alt="profile picture"
-                    className="circle responsive-img"/>
-                </div>
-                <div className="col m11">
-                  <p key={message.User.id}>
-                  <b>{message.User.username}</b>
-                  <span className=
+  <div className="display-message">
+    {props.groupMessages && props
+      .groupMessages
+      .map(message => (
+        <div className="" key={message.id}>
+          <div className="row valign-wrapper">
+            <div className="col m1 s1">
+              <img
+                src={placeholder}
+                alt="profile picture"
+                className="circle responsive-img" />
+            </div>
+            <div className="col m11 s11 priority-badge">
+              <p key={message.User.id}>
+                <b>{message.User.username}</b>
+                <span className=
                   {`icon-new badge ${message.priority}
                   darken-4 white-text`}>{message.priority}</span>
-                  </p>
-                  <span className="black-text">{message.message}</span>
-                </div>
-              </div>
+              </p>
+              <span className="black-text">{message.message}</span>
             </div>
-          )
-        )
-  }
-    </div>
+          </div>
+        </div>
+      )
+      )
+    }
+  </div>
 );
 
 export default MessageBoard;

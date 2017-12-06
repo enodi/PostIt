@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { AddUsersContainer }
-from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
+  from '../../src/components/Dashboard/Users/AddUsersContainer.jsx';
 
 const setup = () => {
   const props = {
     group: { id: 1 },
-    searchResult: [{ id: 1, username: 'enodi' }],
+    searchResult: { id: 1, username: 'enodi' },
     searchUsers: jest.fn(),
     addUser: jest.fn()
   };

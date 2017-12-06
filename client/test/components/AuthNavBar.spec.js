@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Link } from 'react-router';
 
 import { AuthNavBar } from '../../src/components/Header/AuthNavBar.jsx';
 
@@ -14,8 +13,9 @@ describe('AuthNavBar Component', () => {
       }
     };
 
-    const wrapper = shallow(<AuthNavBar {...props}/>);
-    expect(wrapper.find(Link).prop('to')).toEqual('/');
+    const wrapper = shallow(<AuthNavBar {...props} />);
+    expect(wrapper.find('nav').prop('className'))
+      .toEqual('white dashboard logout-icon');
     expect(props.group.name).toEqual('general');
   });
 });

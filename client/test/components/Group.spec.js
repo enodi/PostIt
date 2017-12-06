@@ -10,11 +10,13 @@ const setup = () => {
     currentUser: { id: 1 },
     groups: {
       Groups: [{ id: 1, name: 'general' }],
-      activeGroup: { id: 1, name: 'general' } },
+      activeGroup: { id: 1, name: 'general' }
+    },
     createGroup: jest.fn(),
     retrieveGroups: jest.fn(),
     activeGroup: jest.fn(),
-    signoutUser: jest.fn()
+    signoutUser: jest.fn(),
+    getMessages: jest.fn()
   };
 
   const wrapper = mount(<Sidebar {...props} />);
@@ -42,7 +44,8 @@ describe('Side bar Container', () => {
   it('should dispatch createGroup action when group is created', () => {
     wrapper.setState({
       name: 'random',
-      description: 'for random conversations' });
+      description: 'for random conversations'
+    });
     wrapper.instance().onSubmit(event);
     expect(props.createGroup.mock.calls.length).toEqual(1);
   });

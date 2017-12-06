@@ -7,14 +7,14 @@ import AddUsers from '../../src/components/Dashboard/Users/AddUsers.jsx';
 describe('Addusers Component', () => {
   it('should render one <ReactPaginate /> component', () => {
     const props = {
-      onChange: () => {},
-      searchResult: () => {},
-      onClick: () => {},
-      handlePageClick: () => {},
+      onChange: () => { },
+      searchResult: {},
+      onClick: () => { },
+      handlePageClick: () => { },
       limit: {}
     };
 
-    const wrapper = shallow(<AddUsers {...props}/>);
+    const wrapper = shallow(<AddUsers {...props} />);
     expect(wrapper.find(ReactPaginate)).toHaveLength(1);
   });
 });

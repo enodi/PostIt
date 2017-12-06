@@ -18,27 +18,27 @@ describe('User Action', () => {
     });
   });
 
-  it(`should dispatch appropriate action when user
-  successfully adds another user to a group`, () => {
-    axios.post = jest.fn(() => Promise.resolve({
-      groupId: []
-    }));
+  it('should dispatch appropriate action when user successfully adds another user to a group',
+    () => {
+      axios.post = jest.fn(() => Promise.resolve({
+        groupId: []
+      }));
 
-    axios.get = jest.fn(() => Promise.resolve({
-      data: {}
-    }));
+      axios.get = jest.fn(() => Promise.resolve({
+        data: {}
+      }));
 
-    const expectedActions = [
-      {
-        type: types.FETCH_USERS_IN_GROUP,
-        users: {}
-      }
-    ];
-    const store = mockStore();
-    return store.dispatch(addUser(1, 2))
-    .then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      const expectedActions = [
+        {
+          type: types.FETCH_USERS_IN_GROUP,
+          users: {}
+        }
+      ];
+      const store = mockStore();
+      return store.dispatch(addUser(1, 2))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
     });
-  });
 });
 
