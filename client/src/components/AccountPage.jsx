@@ -16,7 +16,7 @@ class AccountPage extends React.Component {
    * @memberof AccountPage
    */
   componentDidMount() {
-     $('ul.tabs').tabs();
+    $('ul.tabs').tabs();
   }
 
   /**
@@ -28,7 +28,7 @@ class AccountPage extends React.Component {
   render() {
     return (
       <div>
-        <div className="container"><br/>
+        <div className="container"><br />
           <div className="row">
             <div className="col l8 offset-l2 s12">
               <center>
@@ -36,25 +36,25 @@ class AccountPage extends React.Component {
                   <div className="row">
                     <div className="col s12 s12">
                       <ul id="tabs-swipe-demo" className="tabs">
-                        <li className="tab col l6 s6">
-                        <a className="active"
-                        href="#test-swipe-1">SIGN IN</a></li>
+                        <li className="tab col l6 s6 signin">
+                          <a className="active"
+                            href="#test-swipe-1">SIGN IN</a></li>
                         <li
-                        className="tab col l6 s6 signup">
-                        <a href="#test-swipe-2">SIGN UP</a></li>
+                          className="tab col l6 s6 signup">
+                          <a href="#test-swipe-2">SIGN UP</a></li>
                       </ul>
                     </div>
                     <div>
-                    <Signup />
-                    <Signin />
+                      <Signup />
+                      <Signin />
                     </div>
                   </div>
-              </div>
-            </center>
+                </div>
+              </center>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }

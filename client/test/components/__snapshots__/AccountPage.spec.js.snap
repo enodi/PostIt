@@ -27,7 +27,7 @@ exports[`AccountPage Component should render AuthenticationPage Component 1`] = 
                   id="tabs-swipe-demo"
                 >
                   <li
-                    className="tab col l6 s6"
+                    className="tab col l6 s6 signin"
                   >
                     <a
                       className="active"

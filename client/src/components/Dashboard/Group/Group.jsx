@@ -12,34 +12,40 @@ import GroupList from './GroupList.jsx';
  * @returns {void}
  */
 const Group = props => (
-  <div>
-    <ul className="side-nav fixed" id="slide-out">
-      <li className="brand-logo logo-text">PostIt
-        <i
-        className="small material-icons white-text"
-        onClick={props.handleOnClick}>
-        input
-        </i>
-      </li>
-      <li className="divider"></li>
-      <div className="li">
-        <li>
-          <a href="#modal1" className="sidebar-text modal-trigger">
-            GROUPS
-            <i
-            className="material-icons right sidebar-text" href="#modal1">
-            add_box
-            </i>
-          </a>
+  <div className="group">
+    <div>
+      <ul className="side-nav fixed" id="slide-out">
+        <li className="brand-logo logo-text">PostIt
+          <i
+            className="small material-icons white-text"
+            onClick={props.handleOnClick}>
+            input
+          </i>
         </li>
-        {props.groups && props.groups.map(group => <GroupList
-          group={group}
-          active={props.active}
-          activeGroup={props.activeGroup}
-          key={group.id}
+        <li className="divider"></li>
+        <div className="li">
+          <li>
+            <a href="#modal1" className="sidebar-text modal-trigger">
+              GROUPS
+              <i
+                className="material-icons right sidebar-text" href="#modal1">
+                add_box
+              </i>
+            </a>
+          </li>
+          {props.groups && props.groups.map(group => <GroupList
+            group={group}
+            active={props.active}
+            activeGroup={props.activeGroup}
+            key={group.id}
           />)}
-      </div>
-    </ul>
+        </div>
+      </ul>
+      <a href="#" data-activates="slide-out"
+        className="button-collapse mobile-nav">
+        <i className="material-icons">menu</i>
+      </a>
+    </div>
     <div className="container group-container">
       <div className="row">
         <div className="col s12 m8 offset-m2 l9 offset-l3">
@@ -47,14 +53,15 @@ const Group = props => (
             <div className="modal-content">
               <div className="modal-footer">
                 <a href="#!"
-                  className="modal-action modal-close waves-effect waves-green btn-flat large material-icons"
+                  className=
+                  "modal-action modal-close waves-effect waves-green btn-flat large material-icons"
                 >close
                 </a>
               </div>
               <div className="col s12 m8 offset-m2 l8 offset-l2">
                 <h2> Create a Group </h2>
                 <p>
-                Start a conversation with your friends by creating a group
+                  Start a conversation with your friends by creating a group
                 </p>
                 <div className="row">
                   <form name="add_group" onSubmit={props.onSubmit}>
@@ -82,7 +89,7 @@ const Group = props => (
                     </div>
                     <div className="col l7 offset-l5 button">
                       <button className="btn-large" type="reset"
-                      onClick={props.handleReset}>
+                        onClick={props.handleReset}>
                         Cancel
                       </button>
                       <button

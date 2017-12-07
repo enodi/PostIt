@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Group from './Group/Group.jsx';
+import { getMessages } from '../../actions/messageAction';
 import { signoutUser } from '../../actions/auth/signinAction';
-import { createGroup, retrieveGroups, activeGroup } from '../../actions/groupAction';
+import { createGroup, retrieveGroups, activeGroup } from
+  '../../actions/groupAction';
 
 /**
  * This class is the container component for group
@@ -40,14 +42,19 @@ export class Sidebar extends React.Component {
   /**
    * Initializes component modal
    *
-   * @returns {void}
+   * @returns {userGroups} userGroups
    *
    * @memberof Sidebar
    */
   componentDidMount() {
     $('.modal').modal();
+    const id = localStorage.getItem('activeId');
+    const name = localStorage.getItem('activeName');
     const user = this.props.currentUser;
     this.props.retrieveGroups(user.userId);
+    if (id !== null) {
+      this.props.activeGroup({ id, name });
+    }
   }
 
   /**
@@ -56,7 +63,7 @@ export class Sidebar extends React.Component {
    *
    * @param {object} event
    *
-   * @returns {void}
+   * @returns {group} group
    *
    * @memberof Sidebar
    * @method onSubmit
@@ -77,14 +84,16 @@ export class Sidebar extends React.Component {
    * @param {object} id
    * @param {object} description
    *
-   * @returns {void}
+   * @returns {activeGroup} activeGroup
    *
    * @memberof Sidebar
    * @method handleActiveGroup
    */
-  handleActiveGroup(event, name, id, description) {
+  handleActiveGroup(event, name, id) {
     event.preventDefault();
-    this.props.activeGroup({ name, id, description });
+    localStorage.setItem('activeId', id);
+    localStorage.setItem('activeName', name);
+    this.props.activeGroup({ name, id });
   }
 
   /**
@@ -156,7 +165,7 @@ export class Sidebar extends React.Component {
           onSubmit={this.onSubmit}
           active={this.handleActiveGroup}
           handleOnClick={this.handleOnClick}
-          handleReset={this.handleReset}/>
+          handleReset={this.handleReset} />
       </div>
     );
   }
@@ -172,4 +181,10 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps,
-  { createGroup, retrieveGroups, activeGroup, signoutUser })(Sidebar);
+  {
+    createGroup,
+    retrieveGroups,
+    activeGroup,
+    signoutUser,
+    getMessages
+  })(Sidebar);

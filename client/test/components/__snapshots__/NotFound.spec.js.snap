@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not Found Component should render NotFound Component 1`] = `
+<div
+  className="container center"
+>
+  <h1>
+    404 NOT FOUND
+  </h1>
+  <p>
+    This Page doesn't exist. Click the link below to return back to the home page
+  </p>
+  <Link
+    onlyActiveOnIndex={false}
+    style={Object {}}
+    to="/"
+  >
+    HOME
+  </Link>
+</div>
+`;

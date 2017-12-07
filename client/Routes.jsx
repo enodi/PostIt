@@ -6,6 +6,7 @@ import AccountPage from './src/components/AccountPage';
 import IndexPage from './src/components/IndexPage';
 import ResetPasswordContainer from './src/components/ResetPassword/ResetPasswordContainer';
 import ForgotPasswordContainer from './src/components/ResetPassword/ForgotPasswordContainer';
+import NotFound from './src/components/Common/404NotFound.jsx';
 import App from './App.jsx';
 
 /**
@@ -25,12 +26,13 @@ function requireAuth(nextState, replace) {
   }
 }
 
-export default(
+export default (
   <Route path="/" component={App}>
-    <IndexRoute component={IndexPage}/>
-    <Route path="/account" component={AccountPage}/>
+    <IndexRoute component={IndexPage} />
+    <Route path="/account" component={AccountPage} />
     <Route path="/forgotPassword" component={ForgotPasswordContainer} />
     <Route path="/resetPassword" component={ResetPasswordContainer} />
-    <Route path="/dashboard" component={Dashboard} onEnter={requireAuth}/>
+    <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
+    <Route path='*' component={NotFound} />
   </Route>
 );

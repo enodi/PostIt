@@ -42,6 +42,10 @@
 	}
 }
 
+.side-nav {
+  left: 0;
+}
+
 .side-nav li.active {
 	background-color: #676767 !important;
 }
@@ -102,6 +106,7 @@
 	margin-top: 110px;
 	height: 750px;
 	.tab {
+    padding: 0px 30px !important;
 		a {
 			color: #000 !important;
 		}
@@ -138,7 +143,7 @@
 .logout-icon {
 	ul {
 		li {
-			margin-right: 80px;
+			margin-right: 20px;
 			i {
 				font-size: 40px;
 				&:hover {
@@ -151,6 +156,7 @@
 
 .fixed {
   background-color: #212121;
+  left: 0 !important;
   li {
     cursor: pointer;
   }
@@ -177,9 +183,9 @@
 			color: #e0e0e0 !important;	
 		}
 		i.material-icons {
-			margin: 20px 0px 0px 0px !important;
+      margin: 20px 0px 0px 0px !important;
 		}
-	}
+  }
 }
 
 .add-user {
@@ -212,8 +218,8 @@
 		border-radius: 2px;
 		display: inline-block;
 		min-width: 100%;
-		margin: -15px;
-		padding: 2px 10px;
+		margin: -25px;
+		padding: 2px 5px;
 		position: relative;
 		box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 30px rgba(0,0,0,0.1);
 		& input[type=text]{
@@ -320,6 +326,8 @@
 	max-height: 550px;
 	overflow: scroll;
 	margin-left: 50px;
+	border-right: 1px solid #000;
+	min-height: 550px;
 }
 
 .welcome-message {
@@ -361,4 +369,42 @@
 
 .critical{
   background-color: #e65100;
+}
+
+.priority-badge{
+  z-index: -1;
+}
+
+@media (max-width: 992px) {
+  .dashboard {
+    .nav-wrapper {
+      .black-text.flow-text {
+        display: none;
+      }
+    }
+  }
+  .mobile-nav {
+    position: fixed;
+    top: 10px;
+    left: 14px;
+    i.material-icons {
+      color: #000;
+      font-size: 45px;
+    }
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1339px) {
+  .display-message {
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 600px) {
+	.display-message {
+		box-shadow: 0px 0px;
+		i.material-icons {
+			margin-top: 8px;
+		}
+	}
 }

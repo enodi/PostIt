@@ -12,14 +12,14 @@ const GroupMembers = (props) => {
       Add members to the group and start chatting</p>}
       <ul>
         {groupUsers && groupUsers.map(user => (
-            <li key={user.id} className="member">
-              <img
+          <li key={user.id} className="member">
+            <img
               src={placeholder}
               alt="profile picture"
-              className="circle responsive-img"/>
-              <span>{user.fullname}</span>
-            </li>
-          )
+              className="circle responsive-img" />
+            <span>{user.fullname}</span>
+          </li>
+        )
         )}
       </ul>
     </div>

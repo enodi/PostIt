@@ -30,12 +30,11 @@ export function retrieveGroupsSuccess(groups) {
  * @returns {function} dispatch
  */
 export function retrieveGroups(userId) {
-  return dispatch =>
-    axios.get(`/api/v1/user/${userId}/group`)
-      .then((response) => {
-        dispatch(retrieveGroupsSuccess(response.data.groups.Groups));
-      })
-      .catch(error => error.response.data);
+  return dispatch => axios.get(`/api/v1/user/${userId}/group`)
+    .then((response) => {
+      dispatch(retrieveGroupsSuccess(response.data.groups.Groups));
+    })
+    .catch(error => error.response.data);
 }
 
 
