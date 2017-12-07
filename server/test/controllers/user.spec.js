@@ -208,7 +208,7 @@ describe('POST /api/v1/user/signup', () => {
           done();
         });
     });
-
+    
     it('should return 400 when user provides username with less than 4 characters',
       (done) => {
         request
@@ -552,6 +552,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
           done();
         });
     });
+    
     it('should return 404 when group doesn\'t exist', (done) => {
       request
         .post(`/api/v1/group/${10}/user`)
