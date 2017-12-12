@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SideBar from './Sidebar.jsx';
-import PostMessage from './Message/PostMessageContainer.jsx';
+import Sidebar from './Sidebar.jsx';
+import PostMessageContainer from './Message/PostMessageContainer.jsx';
 import GroupMembers from '../Dashboard/GroupMembers.jsx';
 import WelcomePage from './WelcomePage.jsx';
 
@@ -21,12 +21,12 @@ export class Dashboard extends React.Component {
     const { Users } = this.props.users;
     return (
       <div>
-        <SideBar />
+        <Sidebar />
         <div className="row">
           {this.props.groups.id &&
             <div className="col l10 m12 s12 offset-l2">
               <div className="col m9 s12">
-                <PostMessage />
+                <PostMessageContainer />
               </div>
               <div className="col m3 hide-on-small-only right">
                 <GroupMembers

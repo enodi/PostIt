@@ -5,6 +5,8 @@ import axios from 'axios';
  *
  * @export setAuthorizationToken
  * @param {any} token
+ *
+ * @returns {void}
  */
 export default function setAuthorizationToken(token) {
   if (token) {

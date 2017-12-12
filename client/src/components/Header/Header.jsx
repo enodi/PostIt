@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NavBar from './NavBar.jsx';
-import AddUsers from '../Dashboard/Users/AddUsersContainer.jsx';
-import AuthNavbar from './AuthNavBar.jsx';
+import AddUsersContainer from '../Dashboard/Users/AddUsersContainer.jsx';
+import AuthNavBar from './AuthNavBar.jsx';
 // import MobileNavBar from './MobileNavBar.jsx';
 
 /**
@@ -17,14 +17,14 @@ import AuthNavbar from './AuthNavBar.jsx';
  * @returns {void}
  */
 export const Header = props => (
-    <div>
-      {!props.loggedIn && <NavBar />}
-      {props.groups.id && <AuthNavbar />}
-      <div id="add_users" className="modal">
-        <AddUsers activeGroup={props.groups.id} />
-      </div>
+  <div>
+    {!props.loggedIn && <NavBar />}
+    {props.groups.id && <AuthNavBar />}
+    <div id="add_users" className="modal">
+      <AddUsersContainer activeGroup={props.groups.id} />
     </div>
-  );
+  </div>
+);
 
 const mapStateToProps = state => ({
   loggedIn: state.authReducer.isAuthenticated,

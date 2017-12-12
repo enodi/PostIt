@@ -6,7 +6,7 @@ import { Group, User } from '../models';
  * This class handles group creation
  * @class GroupClass
  */
-class GroupClass {
+class GroupController {
 
   /**
    * This method handles creating a new group
@@ -175,4 +175,4 @@ class GroupClass {
   }
 }
 
-export default GroupClass;
+export default GroupController;

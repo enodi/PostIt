@@ -1,11 +1,11 @@
-import sendNotification from '../middleware/notification';
+import Notification from '../middleware/Notification';
 import { Message, User, Group } from '../models';
 
 /**
  * This class handles messages
  * @class MessageClass
  */
-class MessageClass {
+class MessageController {
 
   /**
    * This method handles posting of messages in a group
@@ -30,20 +30,21 @@ class MessageClass {
         UserId: userId,
         GroupId: request.params.groupId,
         message: request.body.message,
-        priority: request.body.priority })
+        priority: request.body.priority
+      })
       .then((messageCreated) => {
         if (messageCreated.priority === 'critical' ||
-        messageCreated.priority === 'urgent') {
+          messageCreated.priority === 'urgent') {
           Group.findById(request.params.groupId)
-          .then((group) => {
-            group.getUsers().then((users) => {
-              users.forEach((user) => {
-                if (email !== user.email) {
-                  sendNotification(user, username, group);
-                }
+            .then((group) => {
+              group.getUsers().then((users) => {
+                users.forEach((user) => {
+                  if (email !== user.email) {
+                    Notification(user, username, group);
+                  }
+                });
               });
             });
-          });
         }
         return response.status(201).json({
           message: 'message posted successfully',
@@ -51,7 +52,7 @@ class MessageClass {
         });
       })
       .catch(() => response.status(500)
-      .json({ error: 'Internal server error' }));
+        .json({ error: 'Internal server error' }));
   }
 
   /**
@@ -87,7 +88,7 @@ class MessageClass {
         messageRetrieved
       });
     }).catch(() => response.status(500)
-    .json({ error: 'Internal server error' }));
+      .json({ error: 'Internal server error' }));
   }
 }
-export default MessageClass;
+export default MessageController;

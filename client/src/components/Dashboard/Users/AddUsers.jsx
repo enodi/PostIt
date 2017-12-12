@@ -71,7 +71,7 @@ AddUsers.propTypes = {
   searchResult: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
   handlePageClick: PropTypes.func.isRequired,
-  limit: PropTypes.object.isRequired
+  limit: PropTypes.number.isRequired
 };
 
 export default AddUsers;

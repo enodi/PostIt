@@ -1,12 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Dashboard from './src/components/Dashboard/Dashboard';
-import AccountPage from './src/components/AccountPage';
-import IndexPage from './src/components/IndexPage';
-import ResetPasswordContainer from './src/components/ResetPassword/ResetPasswordContainer';
-import ForgotPasswordContainer from './src/components/ResetPassword/ForgotPasswordContainer';
-import NotFound from './src/components/Common/404NotFound.jsx';
+import Dashboard from './src/components/Dashboard/Dashboard.jsx';
+import AccountPage from './src/components/AccountPage.jsx';
+import IndexPage from './src/components/IndexPage.jsx';
+import ResetPasswordContainer from
+  './src/components/ResetPassword/ResetPasswordContainer.jsx';
+import ForgotPasswordContainer from
+  './src/components/ResetPassword/ForgotPasswordContainer.jsx';
+import NotFound from './src/components/Common/NotFound.jsx';
 import App from './App.jsx';
 
 /**

@@ -9,12 +9,8 @@ const rule = {
 const Validations = {
   validateGroup(request, response, next) {
     const validation = new Validator(request.body, rule);
-    let {
-      name,
-      description
-    } = request.body;
+    let { name } = request.body;
     name = name.toLowerCase();
-    description = description.toLowerCase();
 
     validation.passes(() => {
       Group.findOne({
@@ -24,7 +20,7 @@ const Validations = {
       }).then((groupExists) => {
         if (groupExists) {
           return response.status(409)
-          .json('Group name already exists');
+            .json('Group name already exists');
         }
         next();
       });

@@ -3,7 +3,7 @@ import express from 'express';
 import UserController from '../controllers/UserController';
 import ResetPasswordController from '../controllers/ResetPasswordController';
 import Authenticate from '../middleware/Authenticate';
-import Validations from '../middleware/Validation';
+import Validations from '../middleware/Validations';
 
 const app = express.Router();
 

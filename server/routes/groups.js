@@ -3,7 +3,7 @@ import express from 'express';
 import GroupController from '../controllers/GroupController';
 import MessageController from '../controllers/MessageController';
 import Authenticate from '../middleware/Authenticate';
-import Validations from '../middleware/Validation';
+import Validations from '../middleware/Validations';
 
 const app = express.Router();
 

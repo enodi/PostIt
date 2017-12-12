@@ -8,7 +8,7 @@ import { User, Group } from '../models';
  * This class handles users account
  * @class UserClass
  */
-class UserClass {
+class UserController {
 
   /**
    * This method handles registering a new user
@@ -198,4 +198,4 @@ class UserClass {
       });
   }
 }
-export default UserClass;
+export default UserController;
