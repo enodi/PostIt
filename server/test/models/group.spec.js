@@ -9,20 +9,20 @@ describe('Group Model', () => {
         name: 'Andela',
         description: 'Welcome to Andela',
       })
-      .then((group) => {
-        if (group) {
-          expect('Andela').to.equal(group.name);
-          expect('Welcome to Andela').to.equal(group.description);
-          expect(group).to.be.an('object');
-          expect(group.dataValues)
-          .to.have.all.keys('id', 'name', 'description',
-          'updatedAt', 'createdAt', 'UserId');
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
+        .then((group) => {
+          if (group) {
+            expect('Andela').to.equal(group.name);
+            expect('Welcome to Andela').to.equal(group.description);
+            expect(group).to.be.an('object');
+            expect(group.dataValues)
+              .to.have.all.keys('id', 'name', 'description',
+              'updatedAt', 'createdAt', 'UserId');
+          }
+          done();
+        })
+        .catch((error) => {
+          done(error);
+        });
     });
   });
 
@@ -34,59 +34,55 @@ describe('Group Model', () => {
           description: 'Welcome to Andela',
         }
       })
-      .then((group) => {
-        if (group) {
-          expect('Andela').to.equal(group.name);
-          expect('Welcome to Andela').to.equal(group.description);
-          expect(group).to.be.an('object');
-          expect(group.dataValues).to.have.all.keys('id', 'name',
-          'description', 'updatedAt', 'createdAt', 'UserId');
-        }
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
+        .then((group) => {
+          if (group) {
+            expect('Andela').to.equal(group.name);
+            expect('Welcome to Andela').to.equal(group.description);
+            expect(group).to.be.an('object');
+            expect(group.dataValues).to.have.all.keys('id', 'name',
+              'description', 'updatedAt', 'createdAt', 'UserId');
+          }
+          done();
+        })
+        .catch((error) => {
+          done(error);
+        });
     });
   });
 
   describe('handles null input', () => {
     it('should return name cannot be null when user passes null input',
-    (done) => {
-      db.Group.create({
-        name: null,
-        description: 'Welcome to Andela',
-      })
-      .then(() => {
-        done();
-      })
-      .catch((error) => {
-        expect(error.errors).to.be.an('array');
-        expect(error.errors[0].message).to.equal('name cannot be null');
-        expect(error.errors[0]).to.have.all.keys('message', 'type',
-        'path', 'value');
-        done();
+      (done) => {
+        db.Group.create({
+          name: null,
+          description: 'Welcome to Andela',
+        })
+          .then(() => {
+            done();
+          })
+          .catch((error) => {
+            expect(error.errors).to.be.an('array');
+            expect(error.errors[0].message).to.equal('name cannot be null');
+            expect(error.errors[0]).to.have.all.keys('message', 'type',
+              'path', 'value');
+            done();
+          });
       });
-    });
   });
 
   describe('handles updating group information', () => {
     it('should update group details in the database', (done) => {
       db.Group.update({
         name: 'Bootcamp',
-      }, {
-        where: {
-          name: 'Andela'
-        }
-      })
-      .then((group) => {
-        expect(group).to.be.an('array');
-        expect(group[0]).to.equal(1);
-        done();
-      })
-      .catch((error) => {
-        done(error);
-      });
+      }, { where: { name: 'Andela' } })
+        .then((group) => {
+          expect(group).to.be.an('array');
+          expect(group[0]).to.equal(1);
+          done();
+        })
+        .catch((error) => {
+          done(error);
+        });
     });
   });
 });

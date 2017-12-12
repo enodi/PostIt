@@ -1,6 +1,5 @@
 import express from 'express';
 
-import UserController from '../controllers/UserController';
 import GroupController from '../controllers/GroupController';
 import MessageController from '../controllers/MessageController';
 import Authenticate from '../middleware/Authenticate';
@@ -20,9 +19,9 @@ app.route('/:groupId/messages')
   .get(MessageController.retrieve);
 
 app.route('/:groupId/user')
-  .post(UserController.addUsers);
+  .post(GroupController.addUsers);
 
 app.route('/:groupId/users')
-  .get(UserController.fetchUsers);
+  .get(GroupController.fetchUsers);
 
 export default app;
