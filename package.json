@@ -30,10 +30,10 @@
     ]
   },
   "scripts": {
-    "start": "npm run build && babel-node index.js",
+    "start": "npm run build && NODE_ENV=production babel-node index.js",
     "e2e-setup": "selenium-standalone install",
     "e2e:test": "nightwatch",
-    "build": "webpack",
+    "build": "webpack -p --config webpack.config.prod.js",
     "test": "NODE_ENV=test nyc mocha server/test/**/*.spec.js --timeout=25000",
     "client:test": "node_modules/.bin/jest client/test/**/*.spec.js",
     "start:dev": "nodemon --watch server --exec babel-node index.js",
