@@ -1,8 +1,8 @@
 const rules = {
-  username: 'required|min:4',
+  username: 'required|min:4|string',
   email: 'required|email',
-  password: 'required',
-  fullname: 'required'
+  password: 'required|string',
+  fullname: 'required|string'
 };
 
 module.exports = rules;

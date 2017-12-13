@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Signup from '../components/Signup/SignupContainer.jsx';
-import Signin from '../components/Signin/SigninContainer.jsx';
+import SignupContainer from '../components/Signup/SignupContainer.jsx';
+import SigninContainer from '../components/Signin/SigninContainer.jsx';
 
 /**
  *
@@ -45,8 +45,8 @@ class AccountPage extends React.Component {
                       </ul>
                     </div>
                     <div>
-                      <Signup />
-                      <Signin />
+                      <SignupContainer />
+                      <SigninContainer />
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const sendNotification = (user, sender, group) => {
+const Notification = (user, sender, group) => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     service: 'gmail',
@@ -22,4 +22,4 @@ const sendNotification = (user, sender, group) => {
   transporter.sendMail(mailOptions);
 };
 
-export default sendNotification;
+export default Notification;

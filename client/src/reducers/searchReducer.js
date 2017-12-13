@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const searchInitialState = {
-  search: []
+  search: {}
 };
 
 /**

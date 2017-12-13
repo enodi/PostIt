@@ -3,19 +3,17 @@ import { Group, User } from '../models';
 import rules from '../validation';
 
 const rule = {
-  name: 'required'
+  name: 'required|string',
+  description: 'string'
 };
 
 const Validations = {
   validateGroup(request, response, next) {
     const validation = new Validator(request.body, rule);
-    let {
-      name,
-      description
-    } = request.body;
-    name = name.toLowerCase();
-    description = description.toLowerCase();
-
+    const { name } = request.body;
+    validation.fails(() => response.status(400).json({
+      message: validation.errors.all()
+    }));
     validation.passes(() => {
       Group.findOne({
         where: {
@@ -24,23 +22,17 @@ const Validations = {
       }).then((groupExists) => {
         if (groupExists) {
           return response.status(409)
-          .json('Group name already exists');
+            .json('Group name already exists');
         }
         next();
       });
     });
-    validation.fails(() => response.status(400).json({
-      message: validation.errors.all()
-    }));
   },
 
 
   validateUser(request, response, next) {
     const validation = new Validator(request.body, rules);
-    const {
-      email,
-      username
-    } = request.body;
+    const { email, username } = request.body;
 
     validation.passes(() => {
       User.findOne({
