@@ -110,6 +110,40 @@ describe('POST /api/v1/group/:groupId/message', () => {
         });
     });
 
+    it('should return 400 when a string is passed as group id', (done) => {
+      request
+        .post('/api/v1/group/groupId/message')
+        .set('x-access-token', token)
+        .send({
+          message: 'hello world',
+          priority: 'urgent'
+        })
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('error');
+          expect(response.body.error).to.equal('Invalid Group Id');
+          done();
+        });
+    });
+
+    it('should return 404 when an invalid group id is supplied', (done) => {
+      request
+        .post(`/api/v1/group/${20}/message`)
+        .set('x-access-token', token)
+        .send({
+          message: 'hello world',
+          priority: 'normal'
+        })
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body).to.have.property('message');
+          expect(response.body.message).to.equal('Group doesn\'t exist');
+          done();
+        });
+    });
+
     it('should return 401 when an unauthenticated user tries to access this route',
       (done) => {
         request

@@ -7,10 +7,11 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "Enodi",
-    "password": null,
+    "username": "postgres",
+    "password": "",
     "database": "postit_test",
-    "host": "localhost",
+    "host": "127.0.0.1",
+    "port": 5432,
     "dialect": "postgres",
     "logging": false
   },

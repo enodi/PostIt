@@ -171,8 +171,8 @@ class UserController {
    * @memberof UserGroupClass
    */
   static retrieveGroups(request, response) {
-    const userID = parseInt(request.params.userId, 10);
-    if (isNaN(userID)) {
+    const userId = parseInt(request.params.userId, 10);
+    if (isNaN(userId)) {
       return response.status(400).json({
         error: 'Invalid User Id',
       });

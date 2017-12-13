@@ -408,7 +408,7 @@
 
 @media (max-width: 600px) {
 	.display-message {
-		box-shadow: 0px 0px;
+		border-right: none;
 		i.material-icons {
 			margin-top: 8px;
 		}

@@ -136,6 +136,60 @@ describe('GET /api/v1/group/:groupId/user', () => {
 
 describe('POST /api/v1/group/:groupId/user', () => {
   describe('handles adding users to group', () => {
+    it('should return 400 when user passes a string as userId',
+      (done) => {
+        request
+          .post(`/api/v1/group/${1}/user`)
+          .set('x-access-token', token)
+          .send({
+            userId: 'userId'
+          })
+          .end((err, response) => {
+            expect(response.status).to.equal(400);
+            expect(response.body).to.be.an('object');
+            expect(response.body).to.have.property('error');
+            expect(response.body.error).to
+              .equal('Please specify a valid User Id');
+            done();
+          });
+      });
+
+    it('should return 400 when no userId is passed',
+      (done) => {
+        request
+          .post(`/api/v1/group/${1}/user`)
+          .set('x-access-token', token)
+          .send({
+            userId: '  '
+          })
+          .end((err, response) => {
+            expect(response.status).to.equal(400);
+            expect(response.body).to.be.an('object');
+            expect(response.body).to.have.property('error');
+            expect(response.body.error).to
+              .equal('Please specify a valid User Id');
+            done();
+          });
+      });
+
+    it('should return 400 when a string is passed as groupId',
+      (done) => {
+        request
+          .post('/api/v1/group/groupId/user')
+          .set('x-access-token', token)
+          .send({
+            userId: 2
+          })
+          .end((err, response) => {
+            expect(response.status).to.equal(400);
+            expect(response.body).to.be.an('object');
+            expect(response.body).to.have.property('error');
+            expect(response.body.error).to
+              .equal('Invalid Group Id');
+            done();
+          });
+      });
+
     it('should return 401 when an unauthenticated user tries to access this route',
       (done) => {
         request

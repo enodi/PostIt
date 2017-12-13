@@ -24,7 +24,7 @@ class GroupController {
     Group
       .create({
         name: request.body.name.toLowerCase().trim(),
-        description: request.body.description.trim(),
+        description: request.body.description.toLowerCase().trim(),
         userId
       })
       .then((groupCreated) => {
@@ -63,9 +63,16 @@ class GroupController {
    * @memberof UserClass
    */
   static addUsers(request, response) {
-    if (!request.body.userId) {
+    const userId = parseInt(request.body.userId, 10);
+    const groupId = parseInt(request.params.groupId, 10);
+    if (!request.body.userId || isNaN(userId)) {
       return response.status(400).json({
-        message: 'No user selected'
+        error: 'Please specify a valid User Id',
+      });
+    }
+    if (isNaN(groupId)) {
+      return response.status(400).json({
+        error: 'Invalid Group Id',
       });
     }
     Group.findOne({
@@ -129,8 +136,8 @@ class GroupController {
  */
   static fetchUsers(request, response) {
     const UserId = request.decoded.userId;
-    const groupID = parseInt(request.params.groupId, 10);
-    if (!groupID) {
+    const groupId = parseInt(request.params.groupId, 10);
+    if (!groupId) {
       return response.status(400).json({
         message: 'Please specify a groupId'
       });
