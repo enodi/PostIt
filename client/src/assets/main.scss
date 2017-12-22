@@ -392,7 +392,7 @@
         display: none;
       }
     }
-	}
+  }
   .mobile-nav {
     position: fixed;
     top: 10px;
@@ -403,7 +403,6 @@
     }
 	}
 }
-
 
 @media (min-width: 993px) and (max-width: 1339px) {
   .display-message {
