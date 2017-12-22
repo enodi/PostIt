@@ -52,6 +52,10 @@
   left: 0;
 }
 
+#sidenav-overlay {
+	background-color: rgba(0,0,0,0);
+}
+
 .side-nav li.active {
 	background-color: #676767 !important;
 }
@@ -388,7 +392,7 @@
         display: none;
       }
     }
-  }
+	}
   .mobile-nav {
     position: fixed;
     top: 10px;
@@ -397,8 +401,9 @@
       color: #000;
       font-size: 45px;
     }
-  }
+	}
 }
+
 
 @media (min-width: 993px) and (max-width: 1339px) {
   .display-message {

@@ -76,7 +76,7 @@ class UserController {
   static signIn(request, response) {
     if (!request.body.username || !request.body.password) {
       return response.status(400).json({
-        message: 'Invalid credentials'
+        message: 'All fields are required'
       });
     }
     User
@@ -174,7 +174,7 @@ class UserController {
     const userId = parseInt(request.params.userId, 10);
     if (isNaN(userId)) {
       return response.status(400).json({
-        error: 'Invalid User Id',
+        message: 'Invalid User Id',
       });
     }
 

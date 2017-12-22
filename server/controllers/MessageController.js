@@ -1,6 +1,6 @@
 import Notification from '../middleware/Notification';
 import { Message, User, Group } from '../models';
-import * as MessagePriority from '../middleware/Helper';
+import * as MessagePriority from '../middleware/PriorityType';
 
 /**
  * This class handles messages
@@ -40,7 +40,7 @@ class MessageController {
     }).then((groupFound) => {
       if (!groupFound) {
         return response.status(404).json({
-          message: 'Group doesn\'t exist'
+          message: 'Group name doesn\'t exist'
         });
       }
       Message

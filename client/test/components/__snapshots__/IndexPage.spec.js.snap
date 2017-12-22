@@ -118,19 +118,8 @@ exports[`IndexPage Component should render IndexPage Component 1`] = `
             className="card-content"
           >
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              PostIt brings all pieces of conversation and people to a place. It gives everyone a shared workspace where conversations are organized and accessible.
             </p>
-          </div>
-          <div
-            className="card-action"
-          >
-            <Link
-              onlyActiveOnIndex={false}
-              style={Object {}}
-              to="#"
-            >
-              View more
-            </Link>
           </div>
         </div>
       </div>
@@ -161,19 +150,8 @@ exports[`IndexPage Component should render IndexPage Component 1`] = `
             className="card-content"
           >
             <p>
-              Lorem ipsum dolo Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              You don’t have to go to team members desk to request for information. PostIt allows you chat with team members in order to stay informed and updated about recent changes
             </p>
-          </div>
-          <div
-            className="card-action"
-          >
-            <Link
-              onlyActiveOnIndex={false}
-              style={Object {}}
-              to="#"
-            >
-              View more
-            </Link>
           </div>
         </div>
       </div>
@@ -204,19 +182,8 @@ exports[`IndexPage Component should render IndexPage Component 1`] = `
             className="card-content"
           >
             <p>
-              Lorem ipsum dolo Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              You can keep your conversations private while working in different teams. PostIt allows you created as many groups you instead to and add as many members needed to work on a particular project.
             </p>
-          </div>
-          <div
-            className="card-action"
-          >
-            <Link
-              onlyActiveOnIndex={false}
-              style={Object {}}
-              to="#"
-            >
-              View more
-            </Link>
           </div>
         </div>
       </div>

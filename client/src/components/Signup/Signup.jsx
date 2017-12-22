@@ -15,7 +15,7 @@ const Signup = props => (
     <h5 > Create Your Account </h5>
     <div style={{ color: 'red' }}>{props.error} </div>
     <form onSubmit={props.onSubmit}>
-      <div className="row signin" >
+      <div className="row signup" >
         <div className="input-field col s12" >
           <InputField
             value={props.state.fullname}
@@ -33,7 +33,7 @@ const Signup = props => (
         </div>
         <div style={{ color: 'red' }}>{props.fullnameError} </div>
       </div>
-      <div className="row signin" >
+      <div className="row signup" >
         <div className="input-field col s12" >
           <InputField
             value={props.state.username}
@@ -45,13 +45,12 @@ const Signup = props => (
             htmlFor={'username'}
             type={'text'}
             name={'username'}
-            id={'username'}
             required
           />
         </div>
         <div style={{ color: 'red' }}>{props.usernameError} </div>
       </div>
-      <div className="row signin" >
+      <div className="row signup" >
         <div className="input-field col s12" >
           <InputField
             value={props.state.email}
@@ -69,7 +68,7 @@ const Signup = props => (
         </div>
         <div style={{ color: 'red' }}>{props.emailError} </div>
       </div>
-      <div className="row signin" >
+      <div className="row signup" >
         <div className="input-field col s12" >
           <InputField
             value={props.state.password}
@@ -81,7 +80,6 @@ const Signup = props => (
             htmlFor={'password'}
             type={'password'}
             name={'password'}
-            id={'password'}
             required
           />
         </div>

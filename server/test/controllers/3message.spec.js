@@ -139,7 +139,7 @@ describe('POST /api/v1/group/:groupId/message', () => {
           expect(response.status).to.equal(404);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('message');
-          expect(response.body.message).to.equal('Group doesn\'t exist');
+          expect(response.body.message).to.equal('Group name doesn\'t exist');
           done();
         });
     });
