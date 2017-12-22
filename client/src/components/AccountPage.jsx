@@ -17,6 +17,7 @@ class AccountPage extends React.Component {
    */
   componentDidMount() {
     $('ul.tabs').tabs();
+    $('.button-collapse').sideNav();
   }
 
   /**

@@ -147,9 +147,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
           .end((err, response) => {
             expect(response.status).to.equal(400);
             expect(response.body).to.be.an('object');
-            expect(response.body).to.have.property('error');
-            expect(response.body.error).to
-              .equal('Please specify a valid User Id');
+            expect(response.body).to.have.property('message');
+            expect(response.body.message).to
+              .equal('Invalid User Id');
             done();
           });
       });
@@ -165,9 +165,9 @@ describe('POST /api/v1/group/:groupId/user', () => {
           .end((err, response) => {
             expect(response.status).to.equal(400);
             expect(response.body).to.be.an('object');
-            expect(response.body).to.have.property('error');
-            expect(response.body.error).to
-              .equal('Please specify a valid User Id');
+            expect(response.body).to.have.property('message');
+            expect(response.body.message).to
+              .equal('Invalid User Id');
             done();
           });
       });
@@ -183,8 +183,8 @@ describe('POST /api/v1/group/:groupId/user', () => {
           .end((err, response) => {
             expect(response.status).to.equal(400);
             expect(response.body).to.be.an('object');
-            expect(response.body).to.have.property('error');
-            expect(response.body.error).to
+            expect(response.body).to.have.property('message');
+            expect(response.body.message).to
               .equal('Invalid Group Id');
             done();
           });
@@ -250,7 +250,7 @@ describe('POST /api/v1/group/:groupId/user', () => {
           expect(response.status).to.equal(404);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('message');
-          expect(response.body.message).to.equal('Group doesn\'t exist');
+          expect(response.body.message).to.equal('Group name doesn\'t exist');
           done();
         });
     });
@@ -298,7 +298,7 @@ describe('GET /api/v1/group/:groupId/users', () => {
           expect(response.status).to.equal(400);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('message');
-          expect(response.body.message).to.equal('Please specify a groupId');
+          expect(response.body.message).to.equal('Invalid Group Id');
           done();
         });
     });
@@ -328,7 +328,7 @@ describe('GET /api/v1/group/:groupId/users', () => {
           expect(response.status).to.equal(404);
           expect(response.body).to.be.an('object');
           expect(response.body).to.have.property('message');
-          expect(response.body.message).to.equal('Group doesn\'t exist');
+          expect(response.body.message).to.equal('Group name doesn\'t exist');
           done();
         });
     });

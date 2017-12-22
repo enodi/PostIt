@@ -13,59 +13,56 @@ import InputField from '../Common/InputField.jsx';
  */
 const Signin = props => (
   <div id="test-swipe-1" className="col s12">
-  <h5 > Log Into Your Account </h5>
-  <div style={{ color: 'red' }}>{props.error} </div>
-  <form onSubmit={props.handleSubmit}>
-    <div className="row signin" >
-      <div className="input-field col s12" >
-        <InputField
-          value={props.state.username}
-          onChange={props.onChange}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          className="validate username"
-          label={'Username'}
-          htmlFor={'username'}
-          type={'text'}
-          name={'username'}
-          id={'username'}
-          required
-        />
+    <h5 > Log Into Your Account </h5>
+    <form onSubmit={props.handleSubmit}>
+      <div className="row signin" >
+        <div className="col s12" >
+          <InputField
+            value={props.state.username}
+            onChange={props.onChange}
+            onBlur={props.onBlur}
+            onFocus={props.onFocus}
+            className="validate username"
+            label={'Username'}
+            htmlFor={'username'}
+            type={'text'}
+            name={'username'}
+            required
+          />
+        </div>
+        <div style={{ color: 'red' }}>{props.usernameError}</div>
       </div>
-      <div style={{ color: 'red' }}>{props.usernameError}</div>
-    </div>
-    <div className="row signin" >
-      <div className="input-field col s12" >
-        <InputField
-          value={props.state.password}
-          onChange={props.onChange}
-          onBlur={props.onBlur}
-          onFocus={props.onFocus}
-          className="validate password"
-          label={'Password'}
-          htmlFor={'password'}
-          type={'password'}
-          name={'password'}
-          id={'password'}
-          required
-        />
+      <div className="row signin" >
+        <div className="col s12" >
+          <InputField
+            value={props.state.password}
+            onChange={props.onChange}
+            onBlur={props.onBlur}
+            onFocus={props.onFocus}
+            className="validate password"
+            label={'Password'}
+            htmlFor={'password'}
+            type={'password'}
+            name={'password'}
+            required
+          />
+        </div>
+        <div style={{ color: 'red' }}>{props.passwordError} </div>
       </div>
-      <div style={{ color: 'red' }}>{props.passwordError} </div>
-    </div>
-    <div className="row center button">
-      <button
-        className="btn-large waves-effect waves-light signin-button"
-        type="submit"
-        name="action"
-      >
-      SIGNIN
+      <div className="row center button">
+        <button
+          className="btn-large waves-effect waves-light signin-button"
+          type="submit"
+          name="action"
+        >
+          SIGNIN
       </button>
-      <p className="center">
-        <b><Link to="/forgotPassword"> Forgot your password ? </Link></b>
-      </p>
-    </div>
-  </form>
-</div>
+        <p className="center">
+          <b><Link to="/forgotPassword"> Forgot your password ? </Link></b>
+        </p>
+      </div>
+    </form>
+  </div>
 );
 
 Signin.propTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Header } from '../../../client/src/components/Header/index.jsx';
+import { Header } from '../../../client/src/components/Header/Header.jsx';
 import NavBar from '../../../client/src/components/Header/NavBar.jsx';
 import AddUsers from '../../../client/src/components/Dashboard/Users/AddUsersContainer.jsx';
 

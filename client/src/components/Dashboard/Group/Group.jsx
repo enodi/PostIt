@@ -14,7 +14,7 @@ import GroupList from './GroupList.jsx';
 const Group = props => (
   <div className="group">
     <div>
-      <ul className="side-nav fixed" id="slide-nav">
+      <ul id="slide-nav" className="side-nav fixed">
         <li className="brand-logo logo-text">PostIt
           <i
             className="small material-icons white-text"

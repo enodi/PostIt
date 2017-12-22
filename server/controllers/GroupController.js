@@ -65,14 +65,14 @@ class GroupController {
   static addUsers(request, response) {
     const userId = parseInt(request.body.userId, 10);
     const groupId = parseInt(request.params.groupId, 10);
-    if (!request.body.userId || isNaN(userId)) {
+    if (isNaN(userId)) {
       return response.status(400).json({
-        error: 'Please specify a valid User Id',
+        message: 'Invalid User Id',
       });
     }
     if (isNaN(groupId)) {
       return response.status(400).json({
-        error: 'Invalid Group Id',
+        message: 'Invalid Group Id',
       });
     }
     Group.findOne({
@@ -82,7 +82,7 @@ class GroupController {
     }).then((foundGroup) => {
       if (!foundGroup) {
         return response.status(404).json({
-          message: 'Group doesn\'t exist'
+          message: 'Group name doesn\'t exist'
         });
       }
       User.findOne({
@@ -139,7 +139,7 @@ class GroupController {
     const groupId = parseInt(request.params.groupId, 10);
     if (!groupId) {
       return response.status(400).json({
-        message: 'Please specify a groupId'
+        message: 'Invalid Group Id'
       });
     }
     Group.findOne({
@@ -149,7 +149,7 @@ class GroupController {
       .then((groupCheck) => {
         if (!groupCheck) {
           return response.status(404).json({
-            message: 'Group doesn\'t exist'
+            message: 'Group name doesn\'t exist'
           });
         }
         groupCheck.getUsers({

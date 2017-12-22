@@ -81,9 +81,6 @@ export default class IndexPage extends Component {
                   people to a place. It gives everyone a shared
                   workspace where conversations are organized and accessible.</p>
                 </div>
-                <div className="card-action">
-                  <Link to="#">View more</Link>
-                </div>
               </div>
             </div>
 
@@ -98,9 +95,6 @@ export default class IndexPage extends Component {
                   to request for information. PostIt allows you chat
                   with team members in order to stay informed
                   and updated about recent changes</p>
-                </div>
-                <div className="card-action">
-                  <Link to="#">View more</Link>
                 </div>
               </div>
             </div>
@@ -117,9 +111,6 @@ export default class IndexPage extends Component {
                   you created as many groups you instead to and
                   add as many members needed to work on a particular
                   project.</p>
-                </div>
-                <div className="card-action">
-                  <Link to="#">View more</Link>
                 </div>
               </div>
             </div>

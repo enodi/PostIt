@@ -48,6 +48,7 @@ export class Sidebar extends React.Component {
    */
   componentDidMount() {
     $('.modal').modal();
+    $('.button-collapse').sideNav();
     const id = localStorage.getItem('activeId');
     const name = localStorage.getItem('activeName');
     const user = this.props.currentUser;

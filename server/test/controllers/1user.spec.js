@@ -387,7 +387,7 @@ describe('POST /api/v1/user/signin', () => {
         .end((err, response) => {
           expect(response.status).to.equal(400);
           expect(response.body).to.be.an('object');
-          expect(response.body.message).to.equal('Invalid credentials');
+          expect(response.body.message).to.equal('All fields are required');
           expect(response.body).to.have.property('message');
           done();
         });
@@ -402,7 +402,7 @@ describe('POST /api/v1/user/signin', () => {
         .end((err, response) => {
           expect(response.status).to.equal(400);
           expect(response.body).to.be.an('object');
-          expect(response.body.message).to.equal('Invalid credentials');
+          expect(response.body.message).to.equal('All fields are required');
           expect(response.body).to.have.property('message');
           done();
         });
@@ -456,8 +456,8 @@ describe('GET /api/v1/user/:userId/group', () => {
         .end((err, response) => {
           expect(response.status).to.equal(400);
           expect(response.body).to.be.an('object');
-          expect(response.body).to.have.property('error');
-          expect(response.body.error).to.equal('Invalid User Id');
+          expect(response.body).to.have.property('message');
+          expect(response.body.message).to.equal('Invalid User Id');
           done();
         });
     });
